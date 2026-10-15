@@ -1,0 +1,18 @@
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3f6bafe1] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1581840105 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 6, 1, <<BLOB>>, 1, 2026-09-29 04:32:21.089, 2026-09-29 04:32:21.089, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3f6bafe1]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@30d7ee8] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1113574605 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,datasource_name,plugin_name,plugin_version,datasource_config,description,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_datasource WHERE (datasource_name = ? AND id <> ? AND workspace_id = ?)
+==> Parameters: ds_ctrl(String), 0(Long), 1(Long)
+<==    Columns: id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id
+<==        Row: 23198763672352, ds_ctrl, JDBC-Mysql, 1.0.0, {"url":"jdbc:mysql://127.0.0.1:1/x","driver":"com.mysql.cj.jdbc.Driver","user":"u","password":"p"}, d, 1, 1, 2026-09-29 04:32:21.202, 2026-09-29 04:32:21.202, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@30d7ee8]

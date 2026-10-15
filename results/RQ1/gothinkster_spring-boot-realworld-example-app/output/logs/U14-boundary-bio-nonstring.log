@@ -1,0 +1,16 @@
+2026-09-29 03:07:43.720 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findById       : ==>  Preparing: select id, username, email, password, bio, image from users where id = ?
+2026-09-29 03:07:43.721 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findById       : ==> Parameters: 6617cc9f-8f05-4d27-8453-7f3646664798(String)
+2026-09-29 03:07:43.722 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findById       : <==      Total: 1
+2026-09-29 03:07:43.725 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findByEmail    : ==>  Preparing: select id, username, email, password, bio, image from users where email = ?
+2026-09-29 03:07:43.726 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findByEmail    : ==> Parameters: (String)
+2026-09-29 03:07:43.726 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.m.UserMapper.findByUsername      : ==>  Preparing: select * from users where username = ?
+2026-09-29 03:07:43.727 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.m.UserMapper.findByUsername      : ==> Parameters: (String)
+2026-09-29 03:07:43.727 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findById       : ==>  Preparing: select id, username, email, password, bio, image from users where id = ?
+2026-09-29 03:07:43.727 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findById       : ==> Parameters: 6617cc9f-8f05-4d27-8453-7f3646664798(String)
+2026-09-29 03:07:43.728 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findById       : <==      Total: 1
+2026-09-29 03:07:43.728 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.mybatis.mapper.UserMapper.update   : ==>  Preparing: update users SET username = ?, email = ?, password = ?, bio = ?, image = ? where id = ?
+2026-09-29 03:07:43.728 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.mybatis.mapper.UserMapper.update   : ==> Parameters: bob(String), bob@example.com(String), qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq(String), 12345(String), https://static.productionready.io/images/smiley-cyrus.jpg(String), 6617cc9f-8f05-4d27-8453-7f3646664798(String)
+2026-09-29 03:07:43.739 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.mybatis.mapper.UserMapper.update   : <==    Updates: 1
+2026-09-29 03:07:43.740 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.r.UserReadService.findById       : ==>  Preparing: select * from users where id = ?
+2026-09-29 03:07:43.740 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.r.UserReadService.findById       : ==> Parameters: 6617cc9f-8f05-4d27-8453-7f3646664798(String)
+2026-09-29 03:07:43.741 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.r.UserReadService.findById       : <==      Total: 1

@@ -1,0 +1,312 @@
+[2026-09-29 20:19:33.277] [DEBUG] [http-nio-127.0.0.1-18205-exec-7] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==>  Preparing: select id, is_deleted, create_time, created_by, last_update_time, last_updated_by, namespace, bus_id, content from namespace_info where namespace = ? limit 0,1 
+[2026-09-29 20:19:33.277] [DEBUG] [http-nio-127.0.0.1-18205-exec-7] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==> Parameters: nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn(String)
+[2026-09-29 20:19:33.278] [DEBUG] [http-nio-127.0.0.1-18205-exec-7] [c.v.s.j.c.m.r.N.selectByNamespace] >>> <==      Total: 0
+[2026-09-29 20:19:33.278] [DEBUG] [http-nio-127.0.0.1-18205-exec-7] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==>  Preparing: select id, is_deleted, create_time, created_by, last_update_time, last_updated_by, namespace, name, zk_cluster_key from namespace_zkcluster_mapping where namespace = ? limit 0,1 
+[2026-09-29 20:19:33.278] [DEBUG] [http-nio-127.0.0.1-18205-exec-7] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==> Parameters: nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn(String)
+[2026-09-29 20:19:33.278] [DEBUG] [http-nio-127.0.0.1-18205-exec-7] [c.v.s.j.c.m.r.N.selectByNamespace] >>> <==      Total: 0
+[2026-09-29 20:19:33.278] [DEBUG] [http-nio-127.0.0.1-18205-exec-7] [c.v.s.j.c.m.r.NamespaceInfoRepository.insert] >>> ==>  Preparing: insert into namespace_info( create_time, created_by, namespace, bus_id, content) values (?, ?,?, ?, ?) 
+[2026-09-29 20:19:33.279] [DEBUG] [http-nio-127.0.0.1-18205-exec-7] [c.v.s.j.c.m.r.NamespaceInfoRepository.insert] >>> ==> Parameters: 2026-09-29 20:19:33.278(Timestamp), REST_API(String), nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn(String), (String), (String)
+[2026-09-29 20:19:33.280] [ERROR] [http-nio-127.0.0.1-18205-exec-7] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> 
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column "NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\u57df\u540d')": "'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)"; SQL statement:
+insert into namespace_info( create_time, created_by, namespace, bus_id, content) values
+        (?, ?,?,
+        ?, ?) [22001-192]
+### The error may involve com.vip.saturn.job.console.mybatis.repository.NamespaceInfoRepository.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into namespace_info( create_time, created_by, namespace, bus_id, content) values         (?, ?,?,         ?, ?)
+### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column "NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\u57df\u540d')": "'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)"; SQL statement:
+insert into namespace_info( create_time, created_by, namespace, bus_id, content) values
+        (?, ?,?,
+        ?, ?) [22001-192]
+; SQL []; Value too long for column "NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\u57df\u540d')": "'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)"; SQL statement:
+insert into namespace_info( create_time, created_by, namespace, bus_id, content) values
+        (?, ?,?,
+        ?, ?) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column "NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\u57df\u540d')": "'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)"; SQL statement:
+insert into namespace_info( create_time, created_by, namespace, bus_id, content) values
+        (?, ?,?,
+        ?, ?) [22001-192]
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column "NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\u57df\u540d')": "'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)"; SQL statement:
+insert into namespace_info( create_time, created_by, namespace, bus_id, content) values
+        (?, ?,?,
+        ?, ?) [22001-192]
+### The error may involve com.vip.saturn.job.console.mybatis.repository.NamespaceInfoRepository.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into namespace_info( create_time, created_by, namespace, bus_id, content) values         (?, ?,?,         ?, ?)
+### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column "NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\u57df\u540d')": "'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)"; SQL statement:
+insert into namespace_info( create_time, created_by, namespace, bus_id, content) values
+        (?, ?,?,
+        ?, ?) [22001-192]
+; SQL []; Value too long for column "NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\u57df\u540d')": "'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)"; SQL statement:
+insert into namespace_info( create_time, created_by, namespace, bus_id, content) values
+        (?, ?,?,
+        ?, ?) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column "NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\u57df\u540d')": "'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)"; SQL statement:
+insert into namespace_info( create_time, created_by, namespace, bus_id, content) values
+        (?, ?,?,
+        ?, ?) [22001-192]
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:243)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:74)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:421)
+	at com.sun.proxy.$Proxy73.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:254)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:51)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:52)
+	at com.sun.proxy.$Proxy88.insert(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:333)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:136)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:213)
+	at com.sun.proxy.$Proxy89.insert(Unknown Source)
+	at com.vip.saturn.job.console.mybatis.service.impl.NamespaceInfoServiceImpl.create(NamespaceInfoServiceImpl.java:60)
+	at com.vip.saturn.job.console.mybatis.service.impl.NamespaceInfoServiceImpl$$FastClassBySpringCGLIB$$4ae484b9.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:720)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:280)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:655)
+	at com.vip.saturn.job.console.mybatis.service.impl.NamespaceInfoServiceImpl$$EnhancerBySpringCGLIB$$40661342.create(<generated>)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.createNamespace(RegistryCenterServiceImpl.java:1256)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl$$FastClassBySpringCGLIB$$a53ec39b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:720)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:280)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:655)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl$$EnhancerBySpringCGLIB$$921a2d28.createNamespace(<generated>)
+	at com.vip.saturn.job.console.controller.rest.NamespaceManagementRestApiController.create(NamespaceManagementRestApiController.java:53)
+	at com.vip.saturn.job.console.controller.rest.NamespaceManagementRestApiController$$FastClassBySpringCGLIB$$e2cba079.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:720)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:85)
+	at com.vip.saturn.job.console.aop.aspect.AuditLogAspect.logAuditInfo(AuditLogAspect.java:60)
+	at sun.reflect.GeneratedMethodAccessor223.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:629)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:618)
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:168)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:655)
+	at com.vip.saturn.job.console.controller.rest.NamespaceManagementRestApiController$$EnhancerBySpringCGLIB$$c3dc21a3.create(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:114)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:230)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:87)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:108)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:522)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:349)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:1110)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:785)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1425)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: org.h2.jdbc.JdbcSQLException: Value too long for column "NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\u57df\u540d')": "'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)"; SQL statement:
+insert into namespace_info( create_time, created_by, namespace, bus_id, content) values
+        (?, ?,?,
+        ?, ?) [22001-192]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.table.Column.validateConvertUpdateSequence(Column.java:335)
+	at org.h2.table.Table.validateConvertUpdateSequence(Table.java:784)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:151)
+	at org.h2.command.dml.Insert.update(Insert.java:114)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:98)
+	at org.h2.command.Command.executeUpdate(Command.java:258)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:201)
+	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:494)
+	at sun.reflect.GeneratedMethodAccessor94.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:62)
+	at com.sun.proxy.$Proxy84.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:44)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:69)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:48)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:105)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:71)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:152)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:141)
+	at sun.reflect.GeneratedMethodAccessor226.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:408)
+	... 110 common frames omitted
+[2026-09-29 20:19:33.281] [INFO] [http-nio-127.0.0.1-18205-exec-7] [AUDITLOG] >>> REST API:[create] path:[/rest/v1/namespaces] is called by IP:[127.0.0.1], result is failed.
+[2026-09-29 20:19:33.281] [ERROR] [http-nio-127.0.0.1-18205-exec-7] [c.v.s.j.c.controller.rest.AbstractRestController] >>> Internal server error happens while calling REST API:Fail to create new namespace {nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn} for reason {
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column "NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\u57df\u540d')": "'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)"; SQL statement:
+insert into namespace_info( create_time, created_by, namespace, bus_id, content) values
+        (?, ?,?,
+        ?, ?) [22001-192]
+### The error may involve com.vip.saturn.job.console.mybatis.repository.NamespaceInfoRepository.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into namespace_info( create_time, created_by, namespace, bus_id, content) values         (?, ?,?,         ?, ?)
+### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column "NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\u57df\u540d')": "'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)"; SQL statement:
+insert into namespace_info( create_time, created_by, namespace, bus_id, content) values
+        (?, ?,?,
+        ?, ?) [22001-192]
+; SQL []; Value too long for column "NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\u57df\u540d')": "'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)"; SQL statement:
+insert into namespace_info( create_time, created_by, namespace, bus_id, content) values
+        (?, ?,?,
+        ?, ?) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column "NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\u57df\u540d')": "'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)"; SQL statement:
+insert into namespace_info( create_time, created_by, namespace, bus_id, content) values
+        (?, ?,?,
+        ?, ?) [22001-192]}
+[2026-09-29 20:19:33.486] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==>  Preparing: select id, property, value from sys_config where id in (select max(id) from sys_config where property in ( ? ) group by property) 
+[2026-09-29 20:19:33.487] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==> Parameters: REFRESH_REGISTRY_CENTER_UUID(String)
+[2026-09-29 20:19:33.487] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> <==      Total: 1
+[2026-09-29 20:19:33.487] [INFO] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> Start refresh RegCenter
+[2026-09-29 20:19:33.487] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==>  Preparing: select id, property, value from sys_config where id in (select max(id) from sys_config where property in ( ? ) group by property) 
+[2026-09-29 20:19:33.487] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==> Parameters: CONSOLE_ZK_CLUSTER_MAPPING(String)
+[2026-09-29 20:19:33.488] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> <==      Total: 1
+[2026-09-29 20:19:33.488] [INFO] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> the current console cluster:default can do sharding and dashboard to zk clusters:[cluster1, it_cluster]
+[2026-09-29 20:19:33.488] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.ZkClusterInfoRepository.selectAll] >>> ==>  Preparing: select id, create_time, created_by, last_update_time, last_updated_by, zk_cluster_key, alias, connect_string, description from zk_cluster_info 
+[2026-09-29 20:19:33.488] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.ZkClusterInfoRepository.selectAll] >>> ==> Parameters: 
+[2026-09-29 20:19:33.488] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.ZkClusterInfoRepository.selectAll] >>> <==      Total: 1
+[2026-09-29 20:19:33.488] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByZkClusterKey] >>> ==>  Preparing: select id, is_deleted, create_time, created_by, last_update_time, last_updated_by, namespace, name, zk_cluster_key from namespace_zkcluster_mapping where zk_cluster_key = ? 
+[2026-09-29 20:19:33.488] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByZkClusterKey] >>> ==> Parameters: cluster1(String)
+[2026-09-29 20:19:33.488] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByZkClusterKey] >>> <==      Total: 3
+[2026-09-29 20:19:33.489] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==>  Preparing: select id, is_deleted, create_time, created_by, last_update_time, last_updated_by, namespace, bus_id, content from namespace_info where namespace = ? limit 0,1 
+[2026-09-29 20:19:33.489] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==> Parameters: mydomain(String)
+[2026-09-29 20:19:33.489] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByNamespace] >>> <==      Total: 0
+[2026-09-29 20:19:33.490] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==>  Preparing: select id, is_deleted, create_time, created_by, last_update_time, last_updated_by, namespace, bus_id, content from namespace_info where namespace = ? limit 0,1 
+[2026-09-29 20:19:33.490] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==> Parameters: pvns1(String)
+[2026-09-29 20:19:33.490] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByNamespace] >>> <==      Total: 1
+[2026-09-29 20:19:33.491] [ERROR] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> java.lang.IllegalArgumentException: Invalid path string "//$SaturnExecutors" caused by empty node name specified @1
+com.vip.saturn.job.console.exception.JobConsoleException: java.lang.IllegalArgumentException: Invalid path string "//$SaturnExecutors" caused by empty node name specified @1
+	at com.vip.saturn.job.console.repository.zookeeper.impl.CuratorRepositoryImpl$CuratorFrameworkOpImpl.checkExists(CuratorRepositoryImpl.java:125)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.initNamespaceZkNodeIfNecessary(RegistryCenterServiceImpl.java:848)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.initOrUpdateNamespace(RegistryCenterServiceImpl.java:431)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.refreshRegistryCenter(RegistryCenterServiceImpl.java:402)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.localRefresh(RegistryCenterServiceImpl.java:241)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.access$000(RegistryCenterServiceImpl.java:71)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl$2$1.run(RegistryCenterServiceImpl.java:218)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.lang.IllegalArgumentException: Invalid path string "//$SaturnExecutors" caused by empty node name specified @1
+	at org.apache.curator.utils.PathUtils.validatePath(PathUtils.java:102)
+	at org.apache.curator.utils.PathUtils.validatePath(PathUtils.java:37)
+	at org.apache.curator.utils.ZKPaths.fixForNamespace(ZKPaths.java:105)
+	at org.apache.curator.framework.imps.NamespaceImpl.fixForNamespace(NamespaceImpl.java:104)
+	at org.apache.curator.framework.imps.CuratorFrameworkImpl.fixForNamespace(CuratorFrameworkImpl.java:594)
+	at org.apache.curator.framework.imps.ExistsBuilderImpl.forPath(ExistsBuilderImpl.java:151)
+	at org.apache.curator.framework.imps.ExistsBuilderImpl.forPath(ExistsBuilderImpl.java:39)
+	at com.vip.saturn.job.console.repository.zookeeper.impl.CuratorRepositoryImpl$CuratorFrameworkOpImpl.checkExists(CuratorRepositoryImpl.java:121)
+	... 11 common frames omitted
+[2026-09-29 20:19:33.491] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==>  Preparing: select id, is_deleted, create_time, created_by, last_update_time, last_updated_by, namespace, bus_id, content from namespace_info where namespace = ? limit 0,1 
+[2026-09-29 20:19:33.491] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==> Parameters: (String)
+[2026-09-29 20:19:33.491] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByNamespace] >>> <==      Total: 1
+[2026-09-29 20:19:33.491] [ERROR] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> java.lang.IllegalArgumentException: Invalid path string "//$SaturnExecutors/executors" caused by empty node name specified @1
+com.vip.saturn.job.console.exception.JobConsoleException: java.lang.IllegalArgumentException: Invalid path string "//$SaturnExecutors/executors" caused by empty node name specified @1
+	at com.vip.saturn.job.console.repository.zookeeper.impl.CuratorRepositoryImpl$CuratorFrameworkOpImpl.checkExists(CuratorRepositoryImpl.java:125)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.getVersion(RegistryCenterServiceImpl.java:865)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.initOrUpdateNamespace(RegistryCenterServiceImpl.java:447)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.refreshRegistryCenter(RegistryCenterServiceImpl.java:402)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.localRefresh(RegistryCenterServiceImpl.java:241)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.access$000(RegistryCenterServiceImpl.java:71)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl$2$1.run(RegistryCenterServiceImpl.java:218)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.lang.IllegalArgumentException: Invalid path string "//$SaturnExecutors/executors" caused by empty node name specified @1
+	at org.apache.curator.utils.PathUtils.validatePath(PathUtils.java:102)
+	at org.apache.curator.utils.PathUtils.validatePath(PathUtils.java:37)
+	at org.apache.curator.utils.ZKPaths.fixForNamespace(ZKPaths.java:105)
+	at org.apache.curator.framework.imps.NamespaceImpl.fixForNamespace(NamespaceImpl.java:104)
+	at org.apache.curator.framework.imps.CuratorFrameworkImpl.fixForNamespace(CuratorFrameworkImpl.java:594)
+	at org.apache.curator.framework.imps.ExistsBuilderImpl.forPath(ExistsBuilderImpl.java:151)
+	at org.apache.curator.framework.imps.ExistsBuilderImpl.forPath(ExistsBuilderImpl.java:39)
+	at com.vip.saturn.job.console.repository.zookeeper.impl.CuratorRepositoryImpl$CuratorFrameworkOpImpl.checkExists(CuratorRepositoryImpl.java:121)
+	... 11 common frames omitted
+[2026-09-29 20:19:33.491] [INFO] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> Zkcluster [cluster1] namespace size change from 2 to 3
+[2026-09-29 20:19:33.491] [INFO] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> new zkClusterMap is : {cluster1=ZkCluster{zkClusterKey='cluster1', zkAlias='集群1', zkAddr='localhost:2181', description='', digest='null', offline=false, regCenterConfList=[RegistryCenterConfiguration [name=业务组, zkAddressList=localhost:2181, namespace=mydomain, zkAlias=集群1, zkClusterKey=cluster1, digest=null, nameAndNamespace=业务组/mydomain, sysAdmin=null, techAdmin=null, degree=null, version=, container=null], RegistryCenterConfiguration [name=, zkAddressList=localhost:2181, namespace=pvns1, zkAlias=集群1, zkClusterKey=cluster1, digest=null, nameAndNamespace=/pvns1, sysAdmin=null, techAdmin=null, degree=null, version=, container=null], RegistryCenterConfiguration [name=, zkAddressList=localhost:2181, namespace=, zkAlias=集群1, zkClusterKey=cluster1, digest=null, nameAndNamespace=/, sysAdmin=null, techAdmin=null, degree=null, version=, container=null]]}}
+[2026-09-29 20:19:33.492] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==>  Preparing: select id, property, value from sys_config where id in (select max(id) from sys_config where property in ( ? ) group by property) 
+[2026-09-29 20:19:33.492] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==> Parameters: IDC_ZK_CLUSTER_MAPPING(String)
+[2026-09-29 20:19:33.492] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> <==      Total: 1
+[2026-09-29 20:19:33.492] [WARN] [refresh-RegCenter-thread] [c.v.s.j.c.service.helper.ZkClusterMappingUtils] >>> The mapping idc is not found for the zkClusterKey that is cluster1
+[2026-09-29 20:19:33.492] [INFO] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> Start NamespaceShardingManager /
+[2026-09-29 20:19:33.492] [INFO] [refresh-RegCenter-thread] [o.a.curator.framework.imps.CuratorFrameworkImpl] >>> Starting
+[2026-09-29 20:19:33.492] [INFO] [refresh-RegCenter-thread] [org.apache.zookeeper.ZooKeeper] >>> Initiating client connection, connectString=localhost:2181 sessionTimeout=20000 watcher=org.apache.curator.ConnectionState@277578a5
+[2026-09-29 20:19:33.493] [INFO] [refresh-RegCenter-thread-SendThread(localhost:2181)] [org.apache.zookeeper.ClientCnxn] >>> Opening socket connection to server localhost/127.0.0.1:2181. Will not attempt to authenticate using SASL (unknown error)
+[2026-09-29 20:19:33.493] [INFO] [refresh-RegCenter-thread-SendThread(localhost:2181)] [org.apache.zookeeper.ClientCnxn] >>> Socket connection established to localhost/127.0.0.1:2181, initiating session
+[2026-09-29 20:19:33.493] [INFO] [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181] [org.apache.zookeeper.server.NIOServerCnxnFactory] >>> Accepted socket connection from /127.0.0.1:43778
+[2026-09-29 20:19:33.493] [INFO] [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181] [org.apache.zookeeper.server.ZooKeeperServer] >>> Client attempting to establish new session at /127.0.0.1:43778
+[2026-09-29 20:19:33.497] [INFO] [SyncThread:0] [org.apache.zookeeper.server.ZooKeeperServer] >>> Established session 0x100adaa051d0004 with negotiated timeout 20000 for client /127.0.0.1:43778
+[2026-09-29 20:19:33.497] [INFO] [refresh-RegCenter-thread-SendThread(localhost:2181)] [org.apache.zookeeper.ClientCnxn] >>> Session establishment complete on server localhost/127.0.0.1:2181, sessionid = 0x100adaa051d0004, negotiated timeout = 20000
+[2026-09-29 20:19:33.497] [INFO] [refresh-RegCenter-thread-EventThread] [o.a.curator.framework.state.ConnectionStateManager] >>> State change: CONNECTED
+[2026-09-29 20:19:33.498] [INFO] [refresh-RegCenter-thread] [c.v.s.j.sharding.service.NamespaceShardingService] >>> -127.0.1.1-38230801-bd02-4455-9fdf-1b3846049e9f leadership election start
+[2026-09-29 20:19:33.499] [INFO] [ProcessThread(sid:0 cport:2181):] [org.apache.zookeeper.server.PrepRequestProcessor] >>> Got user-level KeeperException when processing sessionid:0x100adaa051d0004 type:create cxid:0x3 zxid:0x77 txntype:-1 reqpath:n/a Error Path:/$SaturnExecutors/leader/latch Error:KeeperErrorCode = NoNode for /$SaturnExecutors/leader/latch
+[2026-09-29 20:19:33.509] [ERROR] [refresh-RegCenter-thread-EventThread] [o.a.curator.framework.imps.CuratorFrameworkImpl] >>> Background exception was not retry-able or retry gave up
+java.lang.IllegalArgumentException: Path must start with / character
+	at org.apache.curator.utils.PathUtils.validatePath(PathUtils.java:54)
+	at org.apache.curator.utils.ZKPaths.getNodeFromPath(ZKPaths.java:122)
+	at org.apache.curator.framework.recipes.leader.LeaderLatch.checkLeadership(LeaderLatch.java:529)
+	at org.apache.curator.framework.recipes.leader.LeaderLatch.access$700(LeaderLatch.java:64)
+	at org.apache.curator.framework.recipes.leader.LeaderLatch$7.processResult(LeaderLatch.java:588)
+	at org.apache.curator.framework.imps.CuratorFrameworkImpl.sendToBackgroundCallback(CuratorFrameworkImpl.java:749)
+	at org.apache.curator.framework.imps.CuratorFrameworkImpl.processBackgroundOperation(CuratorFrameworkImpl.java:522)
+	at org.apache.curator.framework.imps.GetChildrenBuilderImpl$2.processResult(GetChildrenBuilderImpl.java:166)
+	at org.apache.zookeeper.ClientCnxn$EventThread.processEvent(ClientCnxn.java:601)
+	at org.apache.zookeeper.ClientCnxn$EventThread.run(ClientCnxn.java:508)

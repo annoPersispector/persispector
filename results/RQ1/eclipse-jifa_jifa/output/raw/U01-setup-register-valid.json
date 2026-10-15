@@ -1,0 +1,49 @@
+{
+ "case_id": "U01-setup-register-valid",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18201/jifa-api/user",
+  "headers": {
+   "User-Agent": "python-requests/2.31.0",
+   "Accept-Encoding": "gzip, deflate, br",
+   "Accept": "*/*",
+   "Connection": "keep-alive",
+   "Content-Length": "405",
+   "Content-Type": "application/json"
+  },
+  "body": "{\"name\": \"Alice\", \"username\": \"alice_4b4b98\", \"password\": \"<RSA-ENCRYPTED:password>\"}"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+   "Authorization": "<JWT-REDACTED>",
+   "X-Content-Type-Options": "nosniff",
+   "X-XSS-Protection": "0",
+   "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+   "Pragma": "no-cache",
+   "Expires": "0",
+   "X-Frame-Options": "DENY",
+   "Content-Length": "0",
+   "Date": "Tue, 29 Sep 2026 15:18:04 GMT",
+   "Keep-Alive": "timeout=60",
+   "Connection": "keep-alive"
+  },
+  "body": ""
+ },
+ "correlated_log_lines": [
+  "2026-09-29T11:18:04.506-04:00 DEBUG 1126360 --- [.1-18201-exec-6] org.hibernate.SQL                        : select lde1_0.id,lde1_0.created_time,lde1_0.password_hash,lde1_0.user_id,lde1_0.username from login_data lde1_0 where lde1_0.username=?",
+  "2026-09-29T11:18:04.507-04:00 TRACE 1126360 --- [.1-18201-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [alice_4b4b98]",
+  "2026-09-29T11:18:04.568-04:00 DEBUG 1126360 --- [.1-18201-exec-6] org.hibernate.SQL                        : insert into users (admin,created_time,last_modified_time,name,id) values (?,?,?,?,default)",
+  "2026-09-29T11:18:04.568-04:00 TRACE 1126360 --- [.1-18201-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:BOOLEAN) <- [false]",
+  "2026-09-29T11:18:04.568-04:00 TRACE 1126360 --- [.1-18201-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (2:TIMESTAMP) <- [2026-09-29T11:18:04.568567]",
+  "2026-09-29T11:18:04.569-04:00 TRACE 1126360 --- [.1-18201-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (3:TIMESTAMP) <- [2026-09-29T11:18:04.568590]",
+  "2026-09-29T11:18:04.569-04:00 TRACE 1126360 --- [.1-18201-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (4:VARCHAR) <- [Alice]",
+  "2026-09-29T11:18:04.569-04:00 DEBUG 1126360 --- [.1-18201-exec-6] org.hibernate.SQL                        : insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)",
+  "2026-09-29T11:18:04.569-04:00 TRACE 1126360 --- [.1-18201-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:TIMESTAMP) <- [2026-09-29T11:18:04.569767]",
+  "2026-09-29T11:18:04.570-04:00 TRACE 1126360 --- [.1-18201-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [<BCRYPT-REDACTED>]",
+  "2026-09-29T11:18:04.570-04:00 TRACE 1126360 --- [.1-18201-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (3:BIGINT) <- [2]",
+  "2026-09-29T11:18:04.570-04:00 TRACE 1126360 --- [.1-18201-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (4:VARCHAR) <- [alice_4b4b98]"
+ ],
+ "extra": null
+}

@@ -1,0 +1,1534 @@
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@c62c74f]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7159dab3] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1832995185 wrapping conn5: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+JDBC Connection [HikariProxyConnection@1274428037 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==>  Preparing: SELECT id,datasource_name,plugin_name,plugin_version,datasource_config,description,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_datasource WHERE (datasource_name = ? AND id <> ? AND workspace_id = ?)
+==> Parameters: ds_race2(String), 0(Long), 1(Long)
+==> Parameters: 1(Long), 1(Integer)
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@63c93ef4]
+<==      Total: 0
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6ff3b98a]
+Creating a new SqlSession
+Creating a new SqlSession
+<==      Total: 1
+<==      Total: 1
+==> Parameters: 1(Long), 1(Integer)
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7159dab3]
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7d875a02]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@70dbdbe8] was not registered for synchronization because synchronization is not active
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+JDBC Connection [HikariProxyConnection@1124565465 wrapping conn2: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+<==      Total: 1
+==>  Preparing: select id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id , create_time, update_time from t_st_job_definition WHERE workspace_id = ? and name LIKE concat('%', ?, '%') order by update_time desc
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@29ef2bf6]
+Creating a new SqlSession
+Creating a new SqlSession
+==> Parameters: 1(Long), jd_race2(String)
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@42437063] was not registered for synchronization because synchronization is not active
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3e54fa01] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@59745645 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+Creating a new SqlSession
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@41e03070] was not registered for synchronization because synchronization is not active
+==> Parameters: 1(Long), 1(Integer)
+JDBC Connection [HikariProxyConnection@1474141652 wrapping conn5: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id , create_time, update_time from t_st_job_definition WHERE workspace_id = ? and name LIKE concat('%', ?, '%') order by update_time desc
+==> Parameters: 1(Long), jd_race2(String)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1bdd762c] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@322758800 wrapping conn3: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,datasource_name,plugin_name,plugin_version,datasource_config,description,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_datasource WHERE (datasource_name = ? AND id <> ? AND workspace_id = ?)
+==> Parameters: ds_race2(String), 0(Long), 1(Long)
+JDBC Connection [HikariProxyConnection@1939373161 wrapping conn4: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,datasource_name,plugin_name,plugin_version,datasource_config,description,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_datasource WHERE (datasource_name = ? AND id <> ? AND workspace_id = ?)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@70dbdbe8]
+==> Parameters: ds_race2(String), 0(Long), 1(Long)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@41e03070]
+Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@699329d3]
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1bdd762c]
+Creating a new SqlSession
+JDBC Connection [HikariProxyConnection@1100289402 wrapping conn2: url=jdbc:h2:mem:seatunnel user=SA] will be managed by Spring
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@54ace7bf] was not registered for synchronization because synchronization is not active
+==>  Preparing: insert into `t_st_job_definition` ( id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id ) values (?, ?, ?,?, ?, ?, ?)
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@23785977] was not registered for synchronization because synchronization is not active
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3a4c3a6e] was not registered for synchronization because synchronization is not active
+==> Parameters: 23198767644832(Long), jd_race2(String), d(String), DATA_INTEGRATION(String), 1(Integer), 1(Integer), 1(Long)
+JDBC Connection [HikariProxyConnection@354920747 wrapping conn1: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,datasource_name,plugin_name,plugin_version,datasource_config,description,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_datasource WHERE (datasource_name = ? AND id <> ? AND workspace_id = ?)
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@b03687d] was not registered for synchronization because synchronization is not active
+==> Parameters: ds_race2(String), 0(Long), 1(Long)
+JDBC Connection [HikariProxyConnection@1568411193 wrapping conn6: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Updates: 1
+<==      Total: 0
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@699329d3]
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@471b8f75]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@699329d3] from current transaction
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4f878db8] was not registered for synchronization because synchronization is not active
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@b03687d]
+JDBC Connection [HikariProxyConnection@1487861904 wrapping conn1: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: INSERT INTO t_st_datasource ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@a929509] was not registered for synchronization because synchronization is not active
+==> Parameters: 23198767644448(Long), ds_race2(String), JDBC-Mysql(String), 1.0.0(String), {"url":"u"}(String), r(String), 1(Integer), 1(Integer), 2026-09-29 04:32:52.226(Timestamp), 2026-09-29 04:32:52.226(Timestamp), 1(Long)
+JDBC Connection [HikariProxyConnection@1004412930 wrapping conn6: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id , create_time, update_time from t_st_job_definition WHERE workspace_id = ? and name LIKE concat('%', ?, '%') order by update_time desc
+==> Parameters: 1(Long), jd_race2(String)
+<==    Updates: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4f878db8]
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@36dd3437] was not registered for synchronization because synchronization is not active
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@a929509]
+JDBC Connection [HikariProxyConnection@983445319 wrapping conn1: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: INSERT INTO t_st_job_version ( id, name, job_id, job_mode, engine_name, engine_version, create_user_id, update_user_id, workspace_id ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? )
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+Creating a new SqlSession
+==> Parameters: 1(Long), 1(Integer)
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b8ef784]
+==> Parameters: 23198767644832(Long), 1.0(String), 23198767644832(Long), BATCH(String), SeaTunnel(String), 2.3.11(String), 1(Integer), 1(Integer), 1(Long)
+JDBC Connection [HikariProxyConnection@135973913 wrapping conn6: url=jdbc:h2:mem:seatunnel user=SA] will be managed by Spring
+==>  Preparing: insert into `t_st_job_definition` ( id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id ) values (?, ?, ?,?, ?, ?, ?)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@699329d3]
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@699329d3]
+==> Parameters: 23198767645088(Long), jd_race2(String), d(String), DATA_INTEGRATION(String), 1(Integer), 1(Integer), 1(Long)
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@36dd3437]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@19cca56e] was not registered for synchronization because synchronization is not active
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4032c43f] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1930266581 wrapping conn1: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,datasource_name,plugin_name,plugin_version,datasource_config,description,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_datasource WHERE (datasource_name = ? AND id <> ? AND workspace_id = ?)
+JDBC Connection [HikariProxyConnection@1553967677 wrapping conn4: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,datasource_name,plugin_name,plugin_version,datasource_config,description,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_datasource WHERE (datasource_name = ? AND id <> ? AND workspace_id = ?)
+==> Parameters: ds_race2(String), 0(Long), 1(Long)
+<==    Columns: id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id
+<==        Row: 23198767644448, ds_race2, JDBC-Mysql, 1.0.0, {"url":"u"}, r, 1, 1, 2026-09-29 04:32:52.226, 2026-09-29 04:32:52.226, 1
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6a6591b8] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1688363652 wrapping conn7: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+JDBC Connection [HikariProxyConnection@1927156892 wrapping conn8: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: INSERT INTO t_st_datasource ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6a6591b8]
+==> Parameters: 23198767644705(Long), ds_race2(String), JDBC-Mysql(String), 1.0.0(String), {"url":"u"}(String), r(String), 1(Integer), 1(Integer), 2026-09-29 04:32:52.226(Timestamp), 2026-09-29 04:32:52.226(Timestamp), 1(Long)
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@609dfac8] was not registered for synchronization because synchronization is not active
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@23785977]
+JDBC Connection [HikariProxyConnection@631204031 wrapping conn7: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id , create_time, update_time from t_st_job_definition WHERE workspace_id = ? and name LIKE concat('%', ?, '%') order by update_time desc
+==> Parameters: 1(Long), jd_race2(String)
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4032c43f]
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@609dfac8]
+Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6331c5e5]
+JDBC Connection [HikariProxyConnection@456449721 wrapping conn7: url=jdbc:h2:mem:seatunnel user=SA] will be managed by Spring
+==>  Preparing: insert into `t_st_job_definition` ( id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id ) values (?, ?, ?,?, ?, ?, ?)
+2026-09-29 04:32:52.231 seatunnel artifact-host ERROR [tr:,sp:] [qtp1371182382-20] [GlobalExceptionHandler.logError():79] - 
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+### The error may exist in org/apache/seatunnel/app/dal/mapper/DatasourceMapper.java (best guess)
+### The error may involve org.apache.seatunnel.app.dal.mapper.DatasourceMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  )
+### Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+; Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]; nested exception is org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+### The error may exist in org/apache/seatunnel/app/dal/mapper/DatasourceMapper.java (best guess)
+### The error may involve org.apache.seatunnel.app.dal.mapper.DatasourceMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  )
+### Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+; Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]; nested exception is org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:244)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
+	at jdk.proxy2/jdk.proxy2.$Proxy89.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:272)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:59)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:156)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:93)
+	at jdk.proxy2/jdk.proxy2.$Proxy113.insert(Unknown Source)
+	at org.apache.seatunnel.app.dal.dao.impl.DatasourceDaoImpl.insertDatasource(DatasourceDaoImpl.java:44)
+	at org.apache.seatunnel.app.dal.dao.impl.DatasourceDaoImpl$$FastClassBySpringCGLIB$$e37f93d4.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at org.apache.seatunnel.app.dal.dao.impl.DatasourceDaoImpl$$EnhancerBySpringCGLIB$$8906674d.insertDatasource(<generated>)
+	at org.apache.seatunnel.app.service.impl.DatasourceServiceImpl.createDatasource(DatasourceServiceImpl.java:141)
+	at org.apache.seatunnel.app.controller.SeatunnelDatasourceController.createDatasource(SeatunnelDatasourceController.java:115)
+	at jdk.internal.reflect.GeneratedMethodAccessor156.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799)
+	at org.eclipse.jetty.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1631)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:548)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:600)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1434)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:501)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1349)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:516)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:400)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:645)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:392)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105)
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:338)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:315)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:173)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:409)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:508)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.index.Index.getDuplicateKeyException(Index.java:525)
+	at org.h2.mvstore.db.MVSecondaryIndex.checkUnique(MVSecondaryIndex.java:223)
+	at org.h2.mvstore.db.MVSecondaryIndex.add(MVSecondaryIndex.java:184)
+	at org.h2.mvstore.db.MVTable.addRow(MVTable.java:519)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:174)
+	at org.h2.command.dml.Insert.update(Insert.java:135)
+	at org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:74)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:254)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at jdk.internal.reflect.GeneratedMethodAccessor96.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:58)
+	at jdk.proxy3/jdk.proxy3.$Proxy167.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:48)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:75)
+	at jdk.internal.reflect.GeneratedMethodAccessor131.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at jdk.proxy2/jdk.proxy2.$Proxy166.update(Unknown Source)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at jdk.internal.reflect.GeneratedMethodAccessor130.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:61)
+	at com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor.intercept(MybatisPlusInterceptor.java:106)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:59)
+	at jdk.proxy2/jdk.proxy2.$Proxy165.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at jdk.internal.reflect.GeneratedMethodAccessor129.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
+	... 80 common frames omitted
+==> Parameters: 23198767645472(Long), jd_race2(String), d(String), DATA_INTEGRATION(String), 1(Integer), 1(Integer), 1(Long)
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@37420a6e] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@445163946 wrapping conn4: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@37420a6e]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@60d472cf] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@2101513538 wrapping conn4: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id , create_time, update_time from t_st_job_definition WHERE workspace_id = ? and name LIKE concat('%', ?, '%') order by update_time desc
+==> Parameters: 1(Long), jd_race2(String)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@60d472cf]
+Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5a74f9fe]
+JDBC Connection [HikariProxyConnection@1181718155 wrapping conn4: url=jdbc:h2:mem:seatunnel user=SA] will be managed by Spring
+==>  Preparing: insert into `t_st_job_definition` ( id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id ) values (?, ?, ?,?, ?, ?, ?)
+==> Parameters: 23198767645728(Long), jd_race2(String), d(String), DATA_INTEGRATION(String), 1(Integer), 1(Integer), 1(Long)
+JDBC Connection [HikariProxyConnection@327071597 wrapping conn8: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: INSERT INTO t_st_datasource ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+==> Parameters: 23198767644704(Long), ds_race2(String), JDBC-Mysql(String), 1.0.0(String), {"url":"u"}(String), r(String), 1(Integer), 1(Integer), 2026-09-29 04:32:52.226(Timestamp), 2026-09-29 04:32:52.226(Timestamp), 1(Long)
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@54ace7bf]
+2026-09-29 04:32:52.240 seatunnel artifact-host ERROR [tr:,sp:] [qtp1371182382-26] [GlobalExceptionHandler.logError():79] - 
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+### The error may exist in org/apache/seatunnel/app/dal/mapper/DatasourceMapper.java (best guess)
+### The error may involve org.apache.seatunnel.app.dal.mapper.DatasourceMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  )
+### Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+; Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]; nested exception is org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+### The error may exist in org/apache/seatunnel/app/dal/mapper/DatasourceMapper.java (best guess)
+### The error may involve org.apache.seatunnel.app.dal.mapper.DatasourceMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  )
+### Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+; Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]; nested exception is org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:244)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
+	at jdk.proxy2/jdk.proxy2.$Proxy89.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:272)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:59)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:156)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:93)
+	at jdk.proxy2/jdk.proxy2.$Proxy113.insert(Unknown Source)
+	at org.apache.seatunnel.app.dal.dao.impl.DatasourceDaoImpl.insertDatasource(DatasourceDaoImpl.java:44)
+	at org.apache.seatunnel.app.dal.dao.impl.DatasourceDaoImpl$$FastClassBySpringCGLIB$$e37f93d4.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at org.apache.seatunnel.app.dal.dao.impl.DatasourceDaoImpl$$EnhancerBySpringCGLIB$$8906674d.insertDatasource(<generated>)
+	at org.apache.seatunnel.app.service.impl.DatasourceServiceImpl.createDatasource(DatasourceServiceImpl.java:141)
+	at org.apache.seatunnel.app.controller.SeatunnelDatasourceController.createDatasource(SeatunnelDatasourceController.java:115)
+	at jdk.internal.reflect.GeneratedMethodAccessor156.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799)
+	at org.eclipse.jetty.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1631)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:548)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:600)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1434)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:501)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1349)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:516)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:400)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:645)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:392)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105)
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:338)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:315)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:173)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:409)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:508)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.index.Index.getDuplicateKeyException(Index.java:525)
+	at org.h2.mvstore.db.MVSecondaryIndex.checkUnique(MVSecondaryIndex.java:223)
+	at org.h2.mvstore.db.MVSecondaryIndex.add(MVSecondaryIndex.java:184)
+	at org.h2.mvstore.db.MVTable.addRow(MVTable.java:519)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:174)
+	at org.h2.command.dml.Insert.update(Insert.java:135)
+	at org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:74)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:254)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at jdk.internal.reflect.GeneratedMethodAccessor96.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:58)
+	at jdk.proxy3/jdk.proxy3.$Proxy167.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:48)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:75)
+	at jdk.internal.reflect.GeneratedMethodAccessor131.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at jdk.proxy2/jdk.proxy2.$Proxy166.update(Unknown Source)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at jdk.internal.reflect.GeneratedMethodAccessor130.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:61)
+	at com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor.intercept(MybatisPlusInterceptor.java:106)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:59)
+	at jdk.proxy2/jdk.proxy2.$Proxy165.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at jdk.internal.reflect.GeneratedMethodAccessor129.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
+	... 80 common frames omitted
+==> Parameters: ds_race2(String), 0(Long), 1(Long)
+<==    Columns: id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id
+<==        Row: 23198767644448, ds_race2, JDBC-Mysql, 1.0.0, {"url":"u"}, r, 1, 1, 2026-09-29 04:32:52.226, 2026-09-29 04:32:52.226, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@19cca56e]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@699329d3]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@699329d3]
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5a74f9fe]
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b8ef784]
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6331c5e5]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b8ef784]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b8ef784]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6331c5e5]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6331c5e5]
+JDBC Connection [HikariProxyConnection@435222429 wrapping conn3: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+<==      Total: 0
+==>  Preparing: INSERT INTO t_st_datasource ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3e54fa01]
+Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@68ee49de]
+JDBC Connection [HikariProxyConnection@371124320 wrapping conn5: url=jdbc:h2:mem:seatunnel user=SA] will be managed by Spring
+==>  Preparing: insert into `t_st_job_definition` ( id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id ) values (?, ?, ?,?, ?, ?, ?)
+==> Parameters: 23198767647008(Long), jd_race2(String), d(String), DATA_INTEGRATION(String), 1(Integer), 1(Integer), 1(Long)
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5a74f9fe]
+==> Parameters: 23198767644449(Long), ds_race2(String), JDBC-Mysql(String), 1.0.0(String), {"url":"u"}(String), r(String), 1(Integer), 1(Integer), 2026-09-29 04:32:52.225(Timestamp), 2026-09-29 04:32:52.225(Timestamp), 1(Long)
+2026-09-29 04:32:52.243 seatunnel artifact-host ERROR [tr:,sp:] [qtp1371182382-24] [GlobalExceptionHandler.logError():79] - 
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+### The error may exist in org/apache/seatunnel/app/dal/mapper/JobMapper.xml
+### The error may involve org.apache.seatunnel.app.dal.mapper.JobMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into `t_st_job_definition` (      id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id    )     values (?, ?,     ?,?,     ?, ?, ?)
+### Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+; Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]; nested exception is org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+### The error may exist in org/apache/seatunnel/app/dal/mapper/JobMapper.xml
+### The error may involve org.apache.seatunnel.app.dal.mapper.JobMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into `t_st_job_definition` (      id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id    )     values (?, ?,     ?,?,     ?, ?, ?)
+### Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+; Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]; nested exception is org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:244)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
+	at jdk.proxy2/jdk.proxy2.$Proxy89.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:272)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:59)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:156)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:93)
+	at jdk.proxy2/jdk.proxy2.$Proxy109.insert(Unknown Source)
+	at org.apache.seatunnel.app.dal.dao.impl.JobDefinitionDaoImpl.add(JobDefinitionDaoImpl.java:51)
+	at org.apache.seatunnel.app.dal.dao.impl.JobDefinitionDaoImpl$$FastClassBySpringCGLIB$$f0c2c15b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at org.apache.seatunnel.app.dal.dao.impl.JobDefinitionDaoImpl$$EnhancerBySpringCGLIB$$40b91c42.add(<generated>)
+	at org.apache.seatunnel.app.service.impl.JobDefinitionServiceImpl.createJob(JobDefinitionServiceImpl.java:84)
+	at org.apache.seatunnel.app.service.impl.JobDefinitionServiceImpl$$FastClassBySpringCGLIB$$4ab89500.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at org.apache.seatunnel.app.service.impl.JobDefinitionServiceImpl$$EnhancerBySpringCGLIB$$471fceef.createJob(<generated>)
+	at org.apache.seatunnel.app.controller.JobDefinitionController.createJobDefinition(JobDefinitionController.java:62)
+	at jdk.internal.reflect.GeneratedMethodAccessor162.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799)
+	at org.eclipse.jetty.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1631)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:548)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:600)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1434)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:501)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1349)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:516)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:400)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:645)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:392)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105)
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:338)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:315)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:173)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:409)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:508)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.index.Index.getDuplicateKeyException(Index.java:525)
+	at org.h2.mvstore.db.MVSecondaryIndex.checkUnique(MVSecondaryIndex.java:223)
+	at org.h2.mvstore.db.MVSecondaryIndex.add(MVSecondaryIndex.java:184)
+	at org.h2.mvstore.db.MVTable.addRow(MVTable.java:519)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:174)
+	at org.h2.command.dml.Insert.update(Insert.java:135)
+	at org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:74)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:254)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at jdk.internal.reflect.GeneratedMethodAccessor96.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:58)
+	at jdk.proxy3/jdk.proxy3.$Proxy167.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:48)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:75)
+	at jdk.internal.reflect.GeneratedMethodAccessor131.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at jdk.proxy2/jdk.proxy2.$Proxy166.update(Unknown Source)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at jdk.internal.reflect.GeneratedMethodAccessor130.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:61)
+	at com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor.intercept(MybatisPlusInterceptor.java:106)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:59)
+	at jdk.proxy2/jdk.proxy2.$Proxy165.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at jdk.internal.reflect.GeneratedMethodAccessor129.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
+	... 92 common frames omitted
+2026-09-29 04:32:52.243 seatunnel artifact-host ERROR [tr:,sp:] [qtp1371182382-58] [GlobalExceptionHandler.logError():79] - 
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+### The error may exist in org/apache/seatunnel/app/dal/mapper/JobMapper.xml
+### The error may involve org.apache.seatunnel.app.dal.mapper.JobMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into `t_st_job_definition` (      id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id    )     values (?, ?,     ?,?,     ?, ?, ?)
+### Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+; Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]; nested exception is org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+### The error may exist in org/apache/seatunnel/app/dal/mapper/JobMapper.xml
+### The error may involve org.apache.seatunnel.app.dal.mapper.JobMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into `t_st_job_definition` (      id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id    )     values (?, ?,     ?,?,     ?, ?, ?)
+### Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+; Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]; nested exception is org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:244)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
+	at jdk.proxy2/jdk.proxy2.$Proxy89.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:272)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:59)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:156)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:93)
+	at jdk.proxy2/jdk.proxy2.$Proxy109.insert(Unknown Source)
+	at org.apache.seatunnel.app.dal.dao.impl.JobDefinitionDaoImpl.add(JobDefinitionDaoImpl.java:51)
+	at org.apache.seatunnel.app.dal.dao.impl.JobDefinitionDaoImpl$$FastClassBySpringCGLIB$$f0c2c15b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at org.apache.seatunnel.app.dal.dao.impl.JobDefinitionDaoImpl$$EnhancerBySpringCGLIB$$40b91c42.add(<generated>)
+	at org.apache.seatunnel.app.service.impl.JobDefinitionServiceImpl.createJob(JobDefinitionServiceImpl.java:84)
+	at org.apache.seatunnel.app.service.impl.JobDefinitionServiceImpl$$FastClassBySpringCGLIB$$4ab89500.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at org.apache.seatunnel.app.service.impl.JobDefinitionServiceImpl$$EnhancerBySpringCGLIB$$471fceef.createJob(<generated>)
+	at org.apache.seatunnel.app.controller.JobDefinitionController.createJobDefinition(JobDefinitionController.java:62)
+	at jdk.internal.reflect.GeneratedMethodAccessor162.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799)
+	at org.eclipse.jetty.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1631)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:548)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:600)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1434)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:501)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1349)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:516)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:400)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:645)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:392)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105)
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:508)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.index.Index.getDuplicateKeyException(Index.java:525)
+	at org.h2.mvstore.db.MVSecondaryIndex.checkUnique(MVSecondaryIndex.java:223)
+	at org.h2.mvstore.db.MVSecondaryIndex.add(MVSecondaryIndex.java:184)
+	at org.h2.mvstore.db.MVTable.addRow(MVTable.java:519)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:174)
+	at org.h2.command.dml.Insert.update(Insert.java:135)
+	at org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:74)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:254)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at jdk.internal.reflect.GeneratedMethodAccessor96.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:58)
+	at jdk.proxy3/jdk.proxy3.$Proxy167.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:48)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:75)
+	at jdk.internal.reflect.GeneratedMethodAccessor131.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at jdk.proxy2/jdk.proxy2.$Proxy166.update(Unknown Source)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at jdk.internal.reflect.GeneratedMethodAccessor130.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:61)
+	at com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor.intercept(MybatisPlusInterceptor.java:106)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:59)
+	at jdk.proxy2/jdk.proxy2.$Proxy165.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at jdk.internal.reflect.GeneratedMethodAccessor129.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
+	... 87 common frames omitted
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3a4c3a6e]
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@42437063]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3502cadf] was not registered for synchronization because synchronization is not active
+2026-09-29 04:32:52.244 seatunnel artifact-host ERROR [tr:,sp:] [qtp1371182382-53] [GlobalExceptionHandler.logError():79] - 
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+### The error may exist in org/apache/seatunnel/app/dal/mapper/DatasourceMapper.java (best guess)
+### The error may involve org.apache.seatunnel.app.dal.mapper.DatasourceMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  )
+### Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+; Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]; nested exception is org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+### The error may exist in org/apache/seatunnel/app/dal/mapper/DatasourceMapper.java (best guess)
+### The error may involve org.apache.seatunnel.app.dal.mapper.DatasourceMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  )
+### Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+; Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]; nested exception is org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:244)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
+	at jdk.proxy2/jdk.proxy2.$Proxy89.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:272)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:59)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:156)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:93)
+	at jdk.proxy2/jdk.proxy2.$Proxy113.insert(Unknown Source)
+	at org.apache.seatunnel.app.dal.dao.impl.DatasourceDaoImpl.insertDatasource(DatasourceDaoImpl.java:44)
+	at org.apache.seatunnel.app.dal.dao.impl.DatasourceDaoImpl$$FastClassBySpringCGLIB$$e37f93d4.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at org.apache.seatunnel.app.dal.dao.impl.DatasourceDaoImpl$$EnhancerBySpringCGLIB$$8906674d.insertDatasource(<generated>)
+	at org.apache.seatunnel.app.service.impl.DatasourceServiceImpl.createDatasource(DatasourceServiceImpl.java:141)
+	at org.apache.seatunnel.app.controller.SeatunnelDatasourceController.createDatasource(SeatunnelDatasourceController.java:115)
+	at jdk.internal.reflect.GeneratedMethodAccessor156.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799)
+	at org.eclipse.jetty.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1631)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:548)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:600)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1434)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:501)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1349)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:516)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:400)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:645)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:392)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105)
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:338)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:315)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:173)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:409)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))"; SQL statement:
+INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:508)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.index.Index.getDuplicateKeyException(Index.java:525)
+	at org.h2.mvstore.db.MVSecondaryIndex.checkUnique(MVSecondaryIndex.java:223)
+	at org.h2.mvstore.db.MVSecondaryIndex.add(MVSecondaryIndex.java:184)
+	at org.h2.mvstore.db.MVTable.addRow(MVTable.java:519)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:174)
+	at org.h2.command.dml.Insert.update(Insert.java:135)
+	at org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:74)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:254)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at jdk.internal.reflect.GeneratedMethodAccessor96.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:58)
+	at jdk.proxy3/jdk.proxy3.$Proxy167.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:48)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:75)
+	at jdk.internal.reflect.GeneratedMethodAccessor131.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at jdk.proxy2/jdk.proxy2.$Proxy166.update(Unknown Source)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at jdk.internal.reflect.GeneratedMethodAccessor130.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:61)
+	at com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor.intercept(MybatisPlusInterceptor.java:106)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:59)
+	at jdk.proxy2/jdk.proxy2.$Proxy165.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at jdk.internal.reflect.GeneratedMethodAccessor129.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
+	... 80 common frames omitted
+JDBC Connection [HikariProxyConnection@1386070579 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id , create_time, update_time from t_st_job_definition WHERE workspace_id = ? and name LIKE concat('%', ?, '%') order by update_time desc
+==> Parameters: 1(Long), jd_race2(String)
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5a74f9fe]
+<==    Columns: id, name, description, job_type, create_user_id, update_user_id, workspace_id, create_time, update_time
+<==        Row: 23198767644832, jd_race2, d, DATA_INTEGRATION, 1, 1, 1, 2026-09-29 04:32:52.226, 2026-09-29 04:32:52.226
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3502cadf]
+2026-09-29 04:32:52.245 seatunnel artifact-host ERROR [tr:,sp:] [qtp1371182382-52] [GlobalExceptionHandler.logError():79] - 
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+### The error may exist in org/apache/seatunnel/app/dal/mapper/JobMapper.xml
+### The error may involve org.apache.seatunnel.app.dal.mapper.JobMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into `t_st_job_definition` (      id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id    )     values (?, ?,     ?,?,     ?, ?, ?)
+### Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+; Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]; nested exception is org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+### The error may exist in org/apache/seatunnel/app/dal/mapper/JobMapper.xml
+### The error may involve org.apache.seatunnel.app.dal.mapper.JobMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into `t_st_job_definition` (      id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id    )     values (?, ?,     ?,?,     ?, ?, ?)
+### Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+; Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]; nested exception is org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:244)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
+	at jdk.proxy2/jdk.proxy2.$Proxy89.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:272)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:59)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:156)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:93)
+	at jdk.proxy2/jdk.proxy2.$Proxy109.insert(Unknown Source)
+	at org.apache.seatunnel.app.dal.dao.impl.JobDefinitionDaoImpl.add(JobDefinitionDaoImpl.java:51)
+	at org.apache.seatunnel.app.dal.dao.impl.JobDefinitionDaoImpl$$FastClassBySpringCGLIB$$f0c2c15b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at org.apache.seatunnel.app.dal.dao.impl.JobDefinitionDaoImpl$$EnhancerBySpringCGLIB$$40b91c42.add(<generated>)
+	at org.apache.seatunnel.app.service.impl.JobDefinitionServiceImpl.createJob(JobDefinitionServiceImpl.java:84)
+	at org.apache.seatunnel.app.service.impl.JobDefinitionServiceImpl$$FastClassBySpringCGLIB$$4ab89500.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at org.apache.seatunnel.app.service.impl.JobDefinitionServiceImpl$$EnhancerBySpringCGLIB$$471fceef.createJob(<generated>)
+	at org.apache.seatunnel.app.controller.JobDefinitionController.createJobDefinition(JobDefinitionController.java:62)
+	at jdk.internal.reflect.GeneratedMethodAccessor162.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799)
+	at org.eclipse.jetty.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1631)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:548)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:600)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1434)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:501)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1349)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:516)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:400)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:645)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:392)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105)
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:338)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:315)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:173)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:409)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:508)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.index.Index.getDuplicateKeyException(Index.java:525)
+	at org.h2.mvstore.db.MVSecondaryIndex.checkUnique(MVSecondaryIndex.java:223)
+	at org.h2.mvstore.db.MVSecondaryIndex.add(MVSecondaryIndex.java:184)
+	at org.h2.mvstore.db.MVTable.addRow(MVTable.java:519)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:174)
+	at org.h2.command.dml.Insert.update(Insert.java:135)
+	at org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:74)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:254)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at jdk.internal.reflect.GeneratedMethodAccessor96.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:58)
+	at jdk.proxy3/jdk.proxy3.$Proxy167.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:48)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:75)
+	at jdk.internal.reflect.GeneratedMethodAccessor131.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at jdk.proxy2/jdk.proxy2.$Proxy166.update(Unknown Source)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at jdk.internal.reflect.GeneratedMethodAccessor130.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:61)
+	at com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor.intercept(MybatisPlusInterceptor.java:106)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:59)
+	at jdk.proxy2/jdk.proxy2.$Proxy165.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at jdk.internal.reflect.GeneratedMethodAccessor129.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
+	... 92 common frames omitted
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@68ee49de]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@68ee49de]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@68ee49de]
+2026-09-29 04:32:52.246 seatunnel artifact-host ERROR [tr:,sp:] [qtp1371182382-25] [GlobalExceptionHandler.logError():79] - 
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+### The error may exist in org/apache/seatunnel/app/dal/mapper/JobMapper.xml
+### The error may involve org.apache.seatunnel.app.dal.mapper.JobMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into `t_st_job_definition` (      id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id    )     values (?, ?,     ?,?,     ?, ?, ?)
+### Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+; Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]; nested exception is org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+### The error may exist in org/apache/seatunnel/app/dal/mapper/JobMapper.xml
+### The error may involve org.apache.seatunnel.app.dal.mapper.JobMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into `t_st_job_definition` (      id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id    )     values (?, ?,     ?,?,     ?, ?, ?)
+### Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+; Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]; nested exception is org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:244)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
+	at jdk.proxy2/jdk.proxy2.$Proxy89.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:272)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:59)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:156)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:93)
+	at jdk.proxy2/jdk.proxy2.$Proxy109.insert(Unknown Source)
+	at org.apache.seatunnel.app.dal.dao.impl.JobDefinitionDaoImpl.add(JobDefinitionDaoImpl.java:51)
+	at org.apache.seatunnel.app.dal.dao.impl.JobDefinitionDaoImpl$$FastClassBySpringCGLIB$$f0c2c15b.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at org.apache.seatunnel.app.dal.dao.impl.JobDefinitionDaoImpl$$EnhancerBySpringCGLIB$$40b91c42.add(<generated>)
+	at org.apache.seatunnel.app.service.impl.JobDefinitionServiceImpl.createJob(JobDefinitionServiceImpl.java:84)
+	at org.apache.seatunnel.app.service.impl.JobDefinitionServiceImpl$$FastClassBySpringCGLIB$$4ab89500.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at org.apache.seatunnel.app.service.impl.JobDefinitionServiceImpl$$EnhancerBySpringCGLIB$$471fceef.createJob(<generated>)
+	at org.apache.seatunnel.app.controller.JobDefinitionController.createJobDefinition(JobDefinitionController.java:62)
+	at jdk.internal.reflect.GeneratedMethodAccessor162.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799)
+	at org.eclipse.jetty.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1631)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:548)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:600)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1434)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:501)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1349)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:516)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:400)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:645)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:392)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105)
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:338)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:315)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:173)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:409)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644832 */ 'jd_race2', CAST(1 AS BIGINT))"; SQL statement:
+insert into `t_st_job_definition` ( 
+    id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id
+   )
+    values (?, ?,
+    ?,?,
+    ?, ?, ?) [23505-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:508)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.index.Index.getDuplicateKeyException(Index.java:525)
+	at org.h2.mvstore.db.MVSecondaryIndex.checkUnique(MVSecondaryIndex.java:223)
+	at org.h2.mvstore.db.MVSecondaryIndex.add(MVSecondaryIndex.java:184)
+	at org.h2.mvstore.db.MVTable.addRow(MVTable.java:519)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:174)
+	at org.h2.command.dml.Insert.update(Insert.java:135)
+	at org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:74)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:254)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at jdk.internal.reflect.GeneratedMethodAccessor96.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:58)
+	at jdk.proxy3/jdk.proxy3.$Proxy167.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:48)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:75)
+	at jdk.internal.reflect.GeneratedMethodAccessor131.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at jdk.proxy2/jdk.proxy2.$Proxy166.update(Unknown Source)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at jdk.internal.reflect.GeneratedMethodAccessor130.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:61)
+	at com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor.intercept(MybatisPlusInterceptor.java:106)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:59)
+	at jdk.proxy2/jdk.proxy2.$Proxy165.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at jdk.internal.reflect.GeneratedMethodAccessor129.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
+	... 92 common frames omitted

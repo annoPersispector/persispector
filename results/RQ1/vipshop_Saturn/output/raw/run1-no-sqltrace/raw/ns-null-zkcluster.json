@@ -1,0 +1,34 @@
+{
+ "case_id": "ns-null-zkcluster",
+ "purpose": "violation",
+ "target_hint": [
+  "namespace_zkcluster_mapping.zk_cluster_key not-null"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "body": {
+   "namespace": "pvns2"
+  },
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 400,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:17:08 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"message\":\"Invalid request. Missing parameter: {zkCluster}\"}",
+  "json": {
+   "message": "Invalid request. Missing parameter: {zkCluster}"
+  }
+ },
+ "elapsed_seconds": 0.006,
+ "timestamp": "2026-09-29T20:17:08-0400"
+}

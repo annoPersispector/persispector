@@ -1,0 +1,42 @@
+{
+  "case_id": "line2-inputid-len-51",
+  "purpose": "violation",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/job/dag/23198804288544",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "edges": [
+        {
+          "inputPluginId": "ta",
+          "targetPluginId": "tb"
+        },
+        {
+          "inputPluginId": "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII",
+          "targetPluginId": "tb"
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:37:40 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 99994,
+      "msg": "input plugin not found",
+      "data": null,
+      "failed": true,
+      "success": false
+    }
+  },
+  "log_slice": "logs/cases/line2-inputid-len-51.log"
+}

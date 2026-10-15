@@ -1,0 +1,37 @@
+{
+  "case_id": "CC-09-violation-empty-id",
+  "purpose": "violation",
+  "target_ids": [
+    "pc-03e7ed0064f7"
+  ],
+  "timestamp": "2026-09-29T12:27:21-0400",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18204/canaryConfig?configurationAccountName=sql-account",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "cfgemptyid",
+      "applications": [
+        "verifapp"
+      ],
+      "metrics": [],
+      "classifier": {
+        "groupWeights": {}
+      },
+      "judge": {
+        "name": "NetflixACAJudge-v1.0",
+        "judgeConfigurations": {}
+      },
+      "configVersion": "1",
+      "id": ""
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"canaryConfigId\":\"a14c712e-8fb6-4493-a918-536e37b0ad62\"}"
+  },
+  "readback_sql": "SELECT id, CHAR_LENGTH(id) AS id_len FROM canary_config WHERE JSON_UNQUOTE(JSON_EXTRACT(content,'$.name'))='cfgemptyid'",
+  "readback_result": "id\tid_len\na14c712e-8fb6-4493-a918-536e37b0ad62\t36"
+}

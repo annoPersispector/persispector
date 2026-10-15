@@ -1,0 +1,36 @@
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2d21b6d6] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1460856515 wrapping conn1: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 10, 1, <<BLOB>>, 1, 2026-09-29 04:33:25.366, 2026-09-29 04:33:25.366, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2d21b6d6]
+Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1fd0c5f0]
+JDBC Connection [HikariProxyConnection@1375265238 wrapping conn1: url=jdbc:h2:mem:seatunnel user=SA] will be managed by Spring
+==>  Preparing: select id, username, `password`, `status`, `type`, create_time, update_time, auth_provider from `user` where username = ?
+==> Parameters: mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm(String)
+<==      Total: 0
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1fd0c5f0]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1fd0c5f0] from current transaction
+==>  Preparing: insert into `user` (username, password, status, type, auth_provider) values (?, ?, ?, ?, ?)
+==> Parameters: mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm(String), ac7fd31b1714b3fca180f034ad172d5a(String), 0(Byte), 1(Byte), DB(String)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1fd0c5f0]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1fd0c5f0] from current transaction
+==>  Preparing: select id, `type`, `role_name`, `description`, create_time, update_time from `role` where role_name = ?
+==> Parameters: ADMIN_ROLE(String)
+<==    Columns: id, type, role_name, description, create_time, update_time
+<==        Row: 1, 0, ADMIN_ROLE, Admin User, 2026-09-29 04:30:32.229486, 2026-09-29 04:30:32.229486
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1fd0c5f0]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1fd0c5f0] from current transaction
+==>  Preparing: insert into role_user_relation (id, role_id, user_id) values (?, ?, ?)
+==> Parameters: null, 1(Integer), 3(Integer)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1fd0c5f0]
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1fd0c5f0]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1fd0c5f0]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1fd0c5f0]

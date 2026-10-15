@@ -1,0 +1,37 @@
+{
+ "case_id": "C01-control-valid",
+ "purpose": "control",
+ "target_ids": [
+  "pc-c82aa238dd70",
+  "pc-9b7836344020",
+  "pc-06d6fa8e45f7",
+  "pc-892ebfa4030e"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/reg",
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8"
+  },
+  "body": {
+   "username": "pv121525ok",
+   "password": "123456",
+   "icon": "http://x/i.png",
+   "email": "a@b.c",
+   "nickName": "nick",
+   "note": "n",
+   "status": 1
+  }
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Tue, 29 Sep 2026 16:15:26 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"code\":200,\"message\":\"用户注册成功\",\"data\":{\"id\":5,\"username\":\"pv121525ok\",\"password\":\"$2a$10$d5GKU85xYGA5Cjm371AplOgO419NpvY7ubIAGHe7CbIXnM9XCnsEq\",\"icon\":\"http://x/i.png\",\"email\":\"a@b.c\",\"nickName\":\"nick\",\"note\":\"n\",\"createTime\":\"2026-09-30 00:15:26\",\"loginTime\":\"2026-09-30 00:15:26\",\"status\":1}}"
+ }
+}

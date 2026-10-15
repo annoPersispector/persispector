@@ -1,0 +1,1493 @@
+{
+ "schema_version": "persistence-runtime-verification-v1",
+ "application": "ddd-by-examples_all-things-cqrs__in-one-class",
+ "constraint_report_schema_version": "9",
+ "generated_at": "2026-09-29T07:53:16.477478+00:00",
+ "target_ids": [
+  "pc-578d46063b01",
+  "pc-c5c47a3dbf1c",
+  "pc-73e8caf08064",
+  "pc-3f13f3893d75",
+  "pc-2d38e685b482",
+  "pc-78f815ebd8bd",
+  "pc-c029559355f4",
+  "pc-3baf2fef4297",
+  "pc-a2c24ce96c78",
+  "pc-d422ab0eead2",
+  "pc-73e9479cc046",
+  "pc-c93d051c414e",
+  "pc-7a81073c57bc",
+  "pc-20303ffe4698",
+  "pc-f4259ca21b01",
+  "pc-a96b949d55f3",
+  "pc-9d6bb68ddecd",
+  "dep-6b92cefdf4cd"
+ ],
+ "cases": [
+  {
+   "case_id": "rb-00-initial",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-c5c47a3dbf1c",
+    "pc-3f13f3893d75",
+    "pc-3baf2fef4297"
+   ],
+   "endpoint": "H2 console /h2-console/query.do",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/h2-console/query.do",
+   "response_status": 200,
+   "reached_persistence": null,
+   "evidence": [
+    {
+     "path": "raw/rb-00-initial.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "b50b1970ff5a9156b55637a3ce5ee3054b6563475295a0bc49becaa514c08499"
+    }
+   ],
+   "observation": "Seed row from data.sql: CREDIT_CARD 3a3e99f0-... INITIAL_LIMIT=10000.00 USED_LIMIT=0.00. This is the only card; no API creates cards."
+  },
+  {
+   "case_id": "c01-control-valid-withdrawal",
+   "purpose": "control",
+   "target_ids": [
+    "pc-73e9479cc046",
+    "pc-7a81073c57bc",
+    "pc-f4259ca21b01",
+    "pc-2d38e685b482",
+    "pc-a2c24ce96c78",
+    "pc-73e8caf08064",
+    "pc-d422ab0eead2",
+    "dep-6b92cefdf4cd",
+    "pc-c93d051c414e"
+   ],
+   "endpoint": "POST /",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/",
+   "response_status": 200,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/c01-control-valid-withdrawal.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c01-control-valid-withdrawal",
+     "sha256": "b276884adefa6bcd9c8ac314a378efa3781f21bac6068b9f89652ab40ce23d6a"
+    },
+    {
+     "path": "logs/c01-control-valid-withdrawal.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c01-control-valid-withdrawal",
+     "sha256": "4b2dc65ebb29a0268e5a7afe1dedf9f627dd84419005083fa868e085bdb3de1c"
+    }
+   ],
+   "observation": "Valid withdrawal amount=10 -> 200; SQL trace shows insert into withdrawal(amount=10, card_id=seed card, id=generated UUID), update credit_card used_limit=10.00, update withdrawal set card_id."
+  },
+  {
+   "case_id": "c02-readback-withdrawals",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-73e9479cc046",
+    "pc-7a81073c57bc",
+    "pc-f4259ca21b01"
+   ],
+   "endpoint": "GET /",
+   "request_method": "GET",
+   "request_url": "http://127.0.0.1:18207/?cardId=3a3e99f0-5ad9-47fa-961d-d75fab32ef0e",
+   "response_status": 200,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/c02-readback-withdrawals.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c02-readback-withdrawals",
+     "sha256": "ba21c541c88d3a9c08fa44921d554e93df5cdec21333c19d4e9788f39e48ce6c"
+    },
+    {
+     "path": "logs/c02-readback-withdrawals.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c02-readback-withdrawals",
+     "sha256": "ff2432d61b0302fd7e50d377f1418d084ba77144bce9fb07e1a2521d0ce1b9be"
+    },
+    {
+     "path": "raw/c02-readback-withdrawals.json",
+     "kind": "read-back",
+     "description": "API read-back GET /?cardId=<seed card> returning persisted WITHDRAWAL rows (id, amount, cardId)",
+     "sha256": "ba21c541c88d3a9c08fa44921d554e93df5cdec21333c19d4e9788f39e48ce6c"
+    }
+   ],
+   "observation": "GET /?cardId=seed returns persisted withdrawal amount 10.00."
+  },
+  {
+   "case_id": "rb-01-after-control",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-73e9479cc046",
+    "pc-7a81073c57bc",
+    "pc-f4259ca21b01"
+   ],
+   "endpoint": "H2 console /h2-console/query.do",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/h2-console/query.do",
+   "response_status": 200,
+   "reached_persistence": null,
+   "evidence": [
+    {
+     "path": "raw/rb-01-after-control.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "9d38a94cd890aa130686b7aecabc039ff28048bc84b4c30a59dbbe0eeed48319"
+    }
+   ],
+   "observation": "WITHDRAWAL row persisted with AMOUNT 10.00 and generated UUID id."
+  },
+  {
+   "case_id": "c03-amount-null",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-73e9479cc046",
+    "pc-73e8caf08064"
+   ],
+   "endpoint": "POST /",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/",
+   "response_status": 500,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/c03-amount-null.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c03-amount-null",
+     "sha256": "0c8249f13a53c02896f3dc90e55c2f5c8ca1cd5da8e518a769a43b1bcef38e38"
+    },
+    {
+     "path": "logs/c03-amount-null.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c03-amount-null",
+     "sha256": "8a571e5f1080ffe58406be93af32473fa7a8ca0d1e2ac19044388b6a9af86b60"
+    }
+   ],
+   "observation": "amount=null -> 500 'No message available'; NullPointerException in CreditCard.withdraw (availableBalance().compareTo(null)); only the card SELECT executed, no INSERT/UPDATE issued."
+  },
+  {
+   "case_id": "c04-card-null",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-c93d051c414e"
+   ],
+   "endpoint": "POST /",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/",
+   "response_status": 500,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/c04-card-null.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c04-card-null",
+     "sha256": "d078f3d406274d5d57370fda6e974bb84e151cb05ea6a8fa3133616efe68d410"
+    },
+    {
+     "path": "logs/c04-card-null.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c04-card-null",
+     "sha256": "e7507ee61822adfc22df9e96f9db2600020fe7db62b1cf4b2d102c6e7d889e10"
+    }
+   ],
+   "observation": "card=null -> 500 IllegalArgumentException 'The given id must not be null!' from CrudRepository.findById; no SQL write issued."
+  },
+  {
+   "case_id": "c05-card-nonexistent-fk",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-d422ab0eead2",
+    "dep-6b92cefdf4cd"
+   ],
+   "endpoint": "POST /",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/",
+   "response_status": 500,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/c05-card-nonexistent-fk.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c05-card-nonexistent-fk",
+     "sha256": "ad3eb6779a4d943e67fd2c88f4767829ea30543608125da5d99771834d30ff52"
+    },
+    {
+     "path": "logs/c05-card-nonexistent-fk.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c05-card-nonexistent-fk",
+     "sha256": "46a4e13ca09ea2ff86f0b08383da517eddf46d638a9bbb8ebb9e387ef2de659c"
+    }
+   ],
+   "observation": "card=00000000-...-0001 (no such CREDIT_CARD) -> 500 IllegalStateException 'Cannot find card with id ...' thrown by WithdrawalProcess after findById returned empty; no INSERT into WITHDRAWAL issued."
+  },
+  {
+   "case_id": "c06-card-not-uuid",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-a96b949d55f3",
+    "pc-c029559355f4"
+   ],
+   "endpoint": "POST /",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/",
+   "response_status": 400,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/c06-card-not-uuid.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c06-card-not-uuid",
+     "sha256": "f9692b053b245cc3b60f426e8f33c4ee60cabe7f76244a7676a1861ead9512bf"
+    },
+    {
+     "path": "logs/c06-card-not-uuid.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c06-card-not-uuid",
+     "sha256": "60c813b28f62b03b8b6328ececa5916e3a33a9ea62a054c5179175cb0682debf"
+    }
+   ],
+   "observation": "card='not-a-uuid' -> 400 Jackson InvalidFormatException (UUID has to be represented by standard 36-char representation); rejected at request binding, no SQL."
+  },
+  {
+   "case_id": "c07-amount-not-decimal",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-f4259ca21b01"
+   ],
+   "endpoint": "POST /",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/",
+   "response_status": 400,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/c07-amount-not-decimal.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c07-amount-not-decimal",
+     "sha256": "8f607b21bd189eedba2753b5a41f1755a903c1037ff8dca74a5e361a454bf838"
+    },
+    {
+     "path": "logs/c07-amount-not-decimal.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c07-amount-not-decimal",
+     "sha256": "a8f2820552804faa988e2bfcf420d6294c34427dc3077bd6f17ed79df545b86f"
+    }
+   ],
+   "observation": "amount='abc' -> 400 Jackson InvalidFormatException for java.math.BigDecimal; rejected at request binding, no SQL."
+  },
+  {
+   "case_id": "c08-amount-scale-3dp",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-7a81073c57bc",
+    "pc-2d38e685b482"
+   ],
+   "endpoint": "POST /",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/",
+   "response_status": 200,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/c08-amount-scale-3dp.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c08-amount-scale-3dp",
+     "sha256": "d5d1a4e1f8cbf8eb18179e5f6888cef6224e4c8d9c0fed0adab072d7fb1f97a0"
+    },
+    {
+     "path": "logs/c08-amount-scale-3dp.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c08-amount-scale-3dp",
+     "sha256": "9e54f925c300e0e1ae543f422b0f702f019466f0ea119fea9a468dcc68d30690"
+    }
+   ],
+   "observation": "amount=1.005 (scale 3) -> 200; bound amount 1.005 and used_limit 11.005 sent to DB; H2 silently rounded (AMOUNT stored 1.01)."
+  },
+  {
+   "case_id": "c09-amount-scale-3dp-down",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-7a81073c57bc",
+    "pc-2d38e685b482"
+   ],
+   "endpoint": "POST /",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/",
+   "response_status": 200,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/c09-amount-scale-3dp-down.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c09-amount-scale-3dp-down",
+     "sha256": "73fee0ddb5f31dc43cbbe93e2ff49c434c5935a7527879eb9c1bc97531174a3a"
+    },
+    {
+     "path": "logs/c09-amount-scale-3dp-down.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c09-amount-scale-3dp-down",
+     "sha256": "3cd9ed89c8be35b709c659438c776c916ba8c414b240ca7d37f15c770d5e6115"
+    }
+   ],
+   "observation": "amount=2.004 -> 200; bound 2.004, used_limit bound 13.014; stored AMOUNT 2.00 and USED_LIMIT 13.01 (H2 rounding, no error)."
+  },
+  {
+   "case_id": "c10-readback-withdrawals",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-7a81073c57bc"
+   ],
+   "endpoint": "GET /",
+   "request_method": "GET",
+   "request_url": "http://127.0.0.1:18207/?cardId=3a3e99f0-5ad9-47fa-961d-d75fab32ef0e",
+   "response_status": 200,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/c10-readback-withdrawals.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c10-readback-withdrawals",
+     "sha256": "705f47e18d36fd6e4ee7f5f6fca37c3f7f94bb7a64f259c7dd4764de6381be9f"
+    },
+    {
+     "path": "logs/c10-readback-withdrawals.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c10-readback-withdrawals",
+     "sha256": "84855e6c48298aafc946583116b5f0b2881633ce101914088144586ec0db40bf"
+    },
+    {
+     "path": "raw/c10-readback-withdrawals.json",
+     "kind": "read-back",
+     "description": "API read-back GET /?cardId=<seed card> returning persisted WITHDRAWAL rows (id, amount, cardId)",
+     "sha256": "705f47e18d36fd6e4ee7f5f6fca37c3f7f94bb7a64f259c7dd4764de6381be9f"
+    }
+   ],
+   "observation": "API read-back shows amounts 10.00, 1.01, 2.00."
+  },
+  {
+   "case_id": "rb-02-after-scale",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-7a81073c57bc",
+    "pc-f4259ca21b01"
+   ],
+   "endpoint": "H2 console /h2-console/query.do",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/h2-console/query.do",
+   "response_status": 200,
+   "reached_persistence": null,
+   "evidence": [
+    {
+     "path": "raw/rb-02-after-scale.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "d63728b78935efce25008e20123936548e8cd4750de2e3fa0249095c179deaa8"
+    }
+   ],
+   "observation": "WITHDRAWAL AMOUNT stored as 1.01 and 2.00 for inputs 1.005/2.004: database rounds excess scale rather than rejecting."
+  },
+  {
+   "case_id": "rb-03-card-after-scale",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-2d38e685b482",
+    "pc-a2c24ce96c78"
+   ],
+   "endpoint": "H2 console /h2-console/query.do",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/h2-console/query.do",
+   "response_status": 200,
+   "reached_persistence": null,
+   "evidence": [
+    {
+     "path": "raw/rb-03-card-after-scale.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "df70dde3185838508897d19ead3ba0d5147f090476d37bca0d5e4bc74c7c6431"
+    }
+   ],
+   "observation": "USED_LIMIT stored 13.01 though 13.014 was bound: database rounding of excess scale."
+  },
+  {
+   "case_id": "c11-amount-precision-overflow",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-7a81073c57bc",
+    "pc-f4259ca21b01"
+   ],
+   "endpoint": "POST /",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/",
+   "response_status": 500,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/c11-amount-precision-overflow.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c11-amount-precision-overflow",
+     "sha256": "30712f4375e1ac89c0a10ecc91d493cdb8fef9df319384502d3d119d987ab75c"
+    },
+    {
+     "path": "logs/c11-amount-precision-overflow.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c11-amount-precision-overflow",
+     "sha256": "fa814da3b020728f0220147d62ce7e0ee1dc6fd10375742acd3f7652d958dacb"
+    }
+   ],
+   "observation": "amount=-12345678901234567 (17 integer digits > 16 allowed by DECIMAL(18,2)); application balance check passes for negatives; INSERT into withdrawal fails with H2 22001 'Value too long for column \"AMOUNT DECIMAL(18, 2) NOT NULL\"'; response 500 generic DataException 'could not execute statement'."
+  },
+  {
+   "case_id": "rb-04-after-amount-overflow",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-7a81073c57bc"
+   ],
+   "endpoint": "H2 console /h2-console/query.do",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/h2-console/query.do",
+   "response_status": 200,
+   "reached_persistence": null,
+   "evidence": [
+    {
+     "path": "raw/rb-04-after-amount-overflow.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "ca6dc71fb75c34fc7cb02bb325601dc700291230f36a402d00423de6180be026"
+    }
+   ],
+   "observation": "No new WITHDRAWAL row after c11."
+  },
+  {
+   "case_id": "rb-05-card-after-amount-overflow",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-2d38e685b482"
+   ],
+   "endpoint": "H2 console /h2-console/query.do",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/h2-console/query.do",
+   "response_status": 200,
+   "reached_persistence": null,
+   "evidence": [
+    {
+     "path": "raw/rb-05-card-after-amount-overflow.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "7cc43a803bd2e826ff760e72a12e3beba16503c76f15920c0f0aed2cb5b1899d"
+    }
+   ],
+   "observation": "USED_LIMIT unchanged (13.01) after c11: transaction rolled back."
+  },
+  {
+   "case_id": "c12-amount-precision-boundary-control",
+   "purpose": "boundary",
+   "target_ids": [
+    "pc-7a81073c57bc",
+    "pc-2d38e685b482",
+    "pc-a2c24ce96c78"
+   ],
+   "endpoint": "POST /",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/",
+   "response_status": 200,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/c12-amount-precision-boundary-control.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c12-amount-precision-boundary-control",
+     "sha256": "8674c755185a052cb6e9186eabf9dcbb8ace8b7720933534a62f2dab782bd8c8"
+    },
+    {
+     "path": "logs/c12-amount-precision-boundary-control.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c12-amount-precision-boundary-control",
+     "sha256": "3425d0a2a67a53d77ebea8f6bb2e427e1b82b59ab2a59bd85d46da5bcb0108fc"
+    }
+   ],
+   "observation": "amount=-9000000000000000 (16 integer digits) -> 200; persisted AMOUNT -9000000000000000.00 and USED_LIMIT -8999999999999986.99 (both within 18,2). Also sets up prerequisite state for c13."
+  },
+  {
+   "case_id": "rb-06-after-boundary-control",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-7a81073c57bc"
+   ],
+   "endpoint": "H2 console /h2-console/query.do",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/h2-console/query.do",
+   "response_status": 200,
+   "reached_persistence": null,
+   "evidence": [
+    {
+     "path": "raw/rb-06-after-boundary-control.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "55351b8de619a8408dd263be2980ac48e0116bac6a7b079698ec5a97d961f027"
+    }
+   ],
+   "observation": "Boundary withdrawal persisted with AMOUNT -9000000000000000.00."
+  },
+  {
+   "case_id": "rb-07-card-after-boundary-control",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-2d38e685b482"
+   ],
+   "endpoint": "H2 console /h2-console/query.do",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/h2-console/query.do",
+   "response_status": 200,
+   "reached_persistence": null,
+   "evidence": [
+    {
+     "path": "raw/rb-07-card-after-boundary-control.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "022ec402ab3870007438a72369999b4507fa50f0ac2d45d7d13b98ac83653054"
+    }
+   ],
+   "observation": "USED_LIMIT -8999999999999986.99."
+  },
+  {
+   "case_id": "c13-used-limit-precision-overflow",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-2d38e685b482",
+    "pc-a2c24ce96c78"
+   ],
+   "endpoint": "POST /",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/",
+   "response_status": 500,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/c13-used-limit-precision-overflow.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c13-used-limit-precision-overflow",
+     "sha256": "e54230f8a133dbcafdc62faa66c9ff44583f81de1e6368fd8d21561c92e0bec4"
+    },
+    {
+     "path": "logs/c13-used-limit-precision-overflow.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c13-used-limit-precision-overflow",
+     "sha256": "283ec550dcaec4f4aad387dc87b345a9d9f10a985376aba747562e992695ac2d"
+    }
+   ],
+   "observation": "Second amount=-9000000000000000 (withdrawal AMOUNT itself fits); computed used_limit -17999999999999986.99 (17 integer digits). INSERT withdrawal succeeded in-transaction, then UPDATE credit_card failed with H2 22001 'Value too long for column \"USED_LIMIT DECIMAL(18, 2) NOT NULL\"'; response 500 generic DataException."
+  },
+  {
+   "case_id": "rb-08-after-used-limit-overflow",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-2d38e685b482"
+   ],
+   "endpoint": "H2 console /h2-console/query.do",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/h2-console/query.do",
+   "response_status": 200,
+   "reached_persistence": null,
+   "evidence": [
+    {
+     "path": "raw/rb-08-after-used-limit-overflow.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "72ece25693194dd4cb5985275c3a52a1f36d8e9f318ca1b8dd7830a164cf5f60"
+    }
+   ],
+   "observation": "No new WITHDRAWAL row: the in-transaction insert was rolled back."
+  },
+  {
+   "case_id": "rb-09-card-after-used-limit-overflow",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-2d38e685b482",
+    "pc-a2c24ce96c78"
+   ],
+   "endpoint": "H2 console /h2-console/query.do",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18207/h2-console/query.do",
+   "response_status": 200,
+   "reached_persistence": null,
+   "evidence": [
+    {
+     "path": "raw/rb-09-card-after-used-limit-overflow.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "03ecf670c924d64e8a57678a3239c9ffdfb1b7255f8841e170b8ad7f53480302"
+    }
+   ],
+   "observation": "USED_LIMIT unchanged at -8999999999999986.99."
+  }
+ ],
+ "results": [
+  {
+   "target_id": "pc-578d46063b01",
+   "target_kind": "constraint",
+   "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "c01-control-valid-withdrawal",
+    "rb-01-after-control"
+   ],
+   "evidence": [
+    {
+     "path": "raw/c01-control-valid-withdrawal.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c01-control-valid-withdrawal",
+     "sha256": "b276884adefa6bcd9c8ac314a378efa3781f21bac6068b9f89652ab40ce23d6a"
+    },
+    {
+     "path": "logs/c01-control-valid-withdrawal.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c01-control-valid-withdrawal",
+     "sha256": "4b2dc65ebb29a0268e5a7afe1dedf9f627dd84419005083fa868e085bdb3de1c"
+    },
+    {
+     "path": "raw/rb-01-after-control.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "9d38a94cd890aa130686b7aecabc039ff28048bc84b4c30a59dbbe0eeed48319"
+    }
+   ],
+   "rationale": "ORM identity declaration (@Id @GeneratedValue UUID on Withdrawal.id) is a structural mapping fact, not a runtime-violable value predicate; Hibernate generates the id (observed generated UUID in insert bind trace) and no request field maps to it.",
+   "confidence": 0.9,
+   "limitations": [
+    "Duplicate-id violation cannot be produced through the API."
+   ]
+  },
+  {
+   "target_id": "pc-c5c47a3dbf1c",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "rb-00-initial",
+    "c01-control-valid-withdrawal"
+   ],
+   "evidence": [
+    {
+     "path": "raw/rb-00-initial.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "b50b1970ff5a9156b55637a3ce5ee3054b6563475295a0bc49becaa514c08499"
+    },
+    {
+     "path": "raw/c01-control-valid-withdrawal.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c01-control-valid-withdrawal",
+     "sha256": "b276884adefa6bcd9c8ac314a378efa3781f21bac6068b9f89652ab40ce23d6a"
+    },
+    {
+     "path": "logs/c01-control-valid-withdrawal.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c01-control-valid-withdrawal",
+     "sha256": "4b2dc65ebb29a0268e5a7afe1dedf9f627dd84419005083fa868e085bdb3de1c"
+    }
+   ],
+   "rationale": "CREDIT_CARD.INITIAL_LIMIT NOT NULL cannot be violated via API. No public endpoint creates or modifies CREDIT_CARD rows other than the computed USED_LIMIT update; the only card is seeded by data.sql and INITIAL_LIMIT is re-bound from the loaded entity (10000.00) on every update.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-73e8caf08064",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "c01-control-valid-withdrawal",
+    "c03-amount-null"
+   ],
+   "evidence": [
+    {
+     "path": "raw/c01-control-valid-withdrawal.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c01-control-valid-withdrawal",
+     "sha256": "b276884adefa6bcd9c8ac314a378efa3781f21bac6068b9f89652ab40ce23d6a"
+    },
+    {
+     "path": "logs/c01-control-valid-withdrawal.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c01-control-valid-withdrawal",
+     "sha256": "4b2dc65ebb29a0268e5a7afe1dedf9f627dd84419005083fa868e085bdb3de1c"
+    },
+    {
+     "path": "raw/c03-amount-null.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c03-amount-null",
+     "sha256": "0c8249f13a53c02896f3dc90e55c2f5c8ca1cd5da8e518a769a43b1bcef38e38"
+    },
+    {
+     "path": "logs/c03-amount-null.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c03-amount-null",
+     "sha256": "8a571e5f1080ffe58406be93af32473fa7a8ca0d1e2ac19044388b6a9af86b60"
+    }
+   ],
+   "rationale": "USED_LIMIT is always computed as usedLimit.add(amount) from a non-null seed (0); it can never become null. Supplying amount=null (c03) fails with NullPointerException in the domain balance check before any write, so USED_LIMIT=null is not reachable through the API.",
+   "confidence": 0.85,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-3f13f3893d75",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "rb-00-initial",
+    "c01-control-valid-withdrawal"
+   ],
+   "evidence": [
+    {
+     "path": "raw/rb-00-initial.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "b50b1970ff5a9156b55637a3ce5ee3054b6563475295a0bc49becaa514c08499"
+    },
+    {
+     "path": "raw/c01-control-valid-withdrawal.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c01-control-valid-withdrawal",
+     "sha256": "b276884adefa6bcd9c8ac314a378efa3781f21bac6068b9f89652ab40ce23d6a"
+    },
+    {
+     "path": "logs/c01-control-valid-withdrawal.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c01-control-valid-withdrawal",
+     "sha256": "4b2dc65ebb29a0268e5a7afe1dedf9f627dd84419005083fa868e085bdb3de1c"
+    }
+   ],
+   "rationale": "CREDIT_CARD.INITIAL_LIMIT precision/scale 18/2 cannot be exercised. No public endpoint creates or modifies CREDIT_CARD rows other than the computed USED_LIMIT update; the only card is seeded by data.sql and INITIAL_LIMIT is re-bound from the loaded entity (10000.00) on every update.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-2d38e685b482",
+   "target_kind": "constraint",
+   "outcome": "DATABASE_ENFORCED_UNHANDLED",
+   "exact_predicate_confirmed": true,
+   "observed_enforcement": "database",
+   "application_layer_implemented": false,
+   "response_handling": "unhandled",
+   "case_ids": [
+    "c12-amount-precision-boundary-control",
+    "c13-used-limit-precision-overflow",
+    "rb-08-after-used-limit-overflow",
+    "rb-09-card-after-used-limit-overflow",
+    "c08-amount-scale-3dp",
+    "c09-amount-scale-3dp-down",
+    "rb-03-card-after-scale"
+   ],
+   "evidence": [
+    {
+     "path": "raw/c12-amount-precision-boundary-control.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c12-amount-precision-boundary-control",
+     "sha256": "8674c755185a052cb6e9186eabf9dcbb8ace8b7720933534a62f2dab782bd8c8"
+    },
+    {
+     "path": "logs/c12-amount-precision-boundary-control.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c12-amount-precision-boundary-control",
+     "sha256": "3425d0a2a67a53d77ebea8f6bb2e427e1b82b59ab2a59bd85d46da5bcb0108fc"
+    },
+    {
+     "path": "raw/c13-used-limit-precision-overflow.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c13-used-limit-precision-overflow",
+     "sha256": "e54230f8a133dbcafdc62faa66c9ff44583f81de1e6368fd8d21561c92e0bec4"
+    },
+    {
+     "path": "logs/c13-used-limit-precision-overflow.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c13-used-limit-precision-overflow",
+     "sha256": "283ec550dcaec4f4aad387dc87b345a9d9f10a985376aba747562e992695ac2d"
+    },
+    {
+     "path": "raw/rb-08-after-used-limit-overflow.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "72ece25693194dd4cb5985275c3a52a1f36d8e9f318ca1b8dd7830a164cf5f60"
+    },
+    {
+     "path": "raw/rb-09-card-after-used-limit-overflow.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "03ecf670c924d64e8a57678a3239c9ffdfb1b7255f8841e170b8ad7f53480302"
+    },
+    {
+     "path": "raw/c08-amount-scale-3dp.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c08-amount-scale-3dp",
+     "sha256": "d5d1a4e1f8cbf8eb18179e5f6888cef6224e4c8d9c0fed0adab072d7fb1f97a0"
+    },
+    {
+     "path": "logs/c08-amount-scale-3dp.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c08-amount-scale-3dp",
+     "sha256": "9e54f925c300e0e1ae543f422b0f702f019466f0ea119fea9a468dcc68d30690"
+    },
+    {
+     "path": "raw/c09-amount-scale-3dp-down.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c09-amount-scale-3dp-down",
+     "sha256": "73fee0ddb5f31dc43cbbe93e2ff49c434c5935a7527879eb9c1bc97531174a3a"
+    },
+    {
+     "path": "logs/c09-amount-scale-3dp-down.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c09-amount-scale-3dp-down",
+     "sha256": "3cd9ed89c8be35b709c659438c776c916ba8c414b240ca7d37f15c770d5e6115"
+    },
+    {
+     "path": "raw/rb-03-card-after-scale.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "df70dde3185838508897d19ead3ba0d5147f090476d37bca0d5e4bc74c7c6431"
+    }
+   ],
+   "rationale": "With the withdrawal amount itself in range, the computed USED_LIMIT -17999999999999986.99 exceeded DECIMAL(18,2); H2 rejected the UPDATE (22001 Value too long for column USED_LIMIT DECIMAL(18, 2)), the transaction rolled back (read-back unchanged, no withdrawal row) and the client received a generic 500 DataException. Boundary control at 16 integer digits was accepted. The application has no precision check (negative amounts pass the balance check).",
+   "confidence": 0.9,
+   "limitations": [
+    "Excess scale is not rejected: H2 1.4.197 silently rounds (13.014 bound -> 13.01 stored), so only the precision half of the predicate is enforced as a rejection."
+   ]
+  },
+  {
+   "target_id": "pc-78f815ebd8bd",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "rb-00-initial"
+   ],
+   "evidence": [
+    {
+     "path": "raw/rb-00-initial.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "b50b1970ff5a9156b55637a3ce5ee3054b6563475295a0bc49becaa514c08499"
+    }
+   ],
+   "rationale": "CREDIT_CARD.ID primary key cannot be violated: there is no card-creation endpoint and the card id in requests is only used for lookup (findById).",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-c029559355f4",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "rb-00-initial",
+    "c06-card-not-uuid"
+   ],
+   "evidence": [
+    {
+     "path": "raw/rb-00-initial.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "b50b1970ff5a9156b55637a3ce5ee3054b6563475295a0bc49becaa514c08499"
+    },
+    {
+     "path": "raw/c06-card-not-uuid.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c06-card-not-uuid",
+     "sha256": "f9692b053b245cc3b60f426e8f33c4ee60cabe7f76244a7676a1861ead9512bf"
+    },
+    {
+     "path": "logs/c06-card-not-uuid.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c06-card-not-uuid",
+     "sha256": "60c813b28f62b03b8b6328ececa5916e3a33a9ea62a054c5179175cb0682debf"
+    }
+   ],
+   "rationale": "No API writes CREDIT_CARD.ID. A non-UUID card reference is rejected by Jackson binding (c06), but that is a lookup parameter, not a write to CREDIT_CARD.ID.",
+   "confidence": 0.85,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-3baf2fef4297",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "rb-00-initial",
+    "c01-control-valid-withdrawal"
+   ],
+   "evidence": [
+    {
+     "path": "raw/rb-00-initial.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "b50b1970ff5a9156b55637a3ce5ee3054b6563475295a0bc49becaa514c08499"
+    },
+    {
+     "path": "raw/c01-control-valid-withdrawal.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c01-control-valid-withdrawal",
+     "sha256": "b276884adefa6bcd9c8ac314a378efa3781f21bac6068b9f89652ab40ce23d6a"
+    },
+    {
+     "path": "logs/c01-control-valid-withdrawal.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c01-control-valid-withdrawal",
+     "sha256": "4b2dc65ebb29a0268e5a7afe1dedf9f627dd84419005083fa868e085bdb3de1c"
+    }
+   ],
+   "rationale": "CREDIT_CARD.INITIAL_LIMIT type DECIMAL(18,2) cannot be exercised. No public endpoint creates or modifies CREDIT_CARD rows other than the computed USED_LIMIT update; the only card is seeded by data.sql and INITIAL_LIMIT is re-bound from the loaded entity (10000.00) on every update.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-a2c24ce96c78",
+   "target_kind": "constraint",
+   "outcome": "DATABASE_ENFORCED_UNHANDLED",
+   "exact_predicate_confirmed": true,
+   "observed_enforcement": "database",
+   "application_layer_implemented": false,
+   "response_handling": "unhandled",
+   "case_ids": [
+    "c12-amount-precision-boundary-control",
+    "c13-used-limit-precision-overflow",
+    "rb-09-card-after-used-limit-overflow",
+    "rb-03-card-after-scale"
+   ],
+   "evidence": [
+    {
+     "path": "raw/c12-amount-precision-boundary-control.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c12-amount-precision-boundary-control",
+     "sha256": "8674c755185a052cb6e9186eabf9dcbb8ace8b7720933534a62f2dab782bd8c8"
+    },
+    {
+     "path": "logs/c12-amount-precision-boundary-control.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c12-amount-precision-boundary-control",
+     "sha256": "3425d0a2a67a53d77ebea8f6bb2e427e1b82b59ab2a59bd85d46da5bcb0108fc"
+    },
+    {
+     "path": "raw/c13-used-limit-precision-overflow.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c13-used-limit-precision-overflow",
+     "sha256": "e54230f8a133dbcafdc62faa66c9ff44583f81de1e6368fd8d21561c92e0bec4"
+    },
+    {
+     "path": "logs/c13-used-limit-precision-overflow.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c13-used-limit-precision-overflow",
+     "sha256": "283ec550dcaec4f4aad387dc87b345a9d9f10a985376aba747562e992695ac2d"
+    },
+    {
+     "path": "raw/rb-09-card-after-used-limit-overflow.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "03ecf670c924d64e8a57678a3239c9ffdfb1b7255f8841e170b8ad7f53480302"
+    },
+    {
+     "path": "raw/rb-03-card-after-scale.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "df70dde3185838508897d19ead3ba0d5147f090476d37bca0d5e4bc74c7c6431"
+    }
+   ],
+   "rationale": "USED_LIMIT is a Java BigDecimal computed server-side, so only out-of-range numeric values can violate DECIMAL(18,2); such a value was rejected by H2 (22001) on UPDATE credit_card and surfaced as a generic 500.",
+   "confidence": 0.85,
+   "limitations": [
+    "Non-numeric values cannot be supplied for USED_LIMIT; excess scale is silently rounded by H2."
+   ]
+  },
+  {
+   "target_id": "pc-d422ab0eead2",
+   "target_kind": "constraint",
+   "outcome": "INCONCLUSIVE_PRE_PERSISTENCE_FAILURE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": true,
+   "response_handling": "unhandled",
+   "case_ids": [
+    "c05-card-nonexistent-fk",
+    "c01-control-valid-withdrawal"
+   ],
+   "evidence": [
+    {
+     "path": "raw/c05-card-nonexistent-fk.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c05-card-nonexistent-fk",
+     "sha256": "ad3eb6779a4d943e67fd2c88f4767829ea30543608125da5d99771834d30ff52"
+    },
+    {
+     "path": "logs/c05-card-nonexistent-fk.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c05-card-nonexistent-fk",
+     "sha256": "46a4e13ca09ea2ff86f0b08383da517eddf46d638a9bbb8ebb9e387ef2de659c"
+    },
+    {
+     "path": "raw/c01-control-valid-withdrawal.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c01-control-valid-withdrawal",
+     "sha256": "b276884adefa6bcd9c8ac314a378efa3781f21bac6068b9f89652ab40ce23d6a"
+    },
+    {
+     "path": "logs/c01-control-valid-withdrawal.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c01-control-valid-withdrawal",
+     "sha256": "4b2dc65ebb29a0268e5a7afe1dedf9f627dd84419005083fa868e085bdb3de1c"
+    }
+   ],
+   "rationale": "The application implements an explicit existence check: WithdrawalProcess calls findById(...).orElseThrow and throws IllegalStateException 'Cannot find card with id ...' before any INSERT. The SQL trace (c05) shows only the SELECT. The failure surfaces as an unhandled HTTP 500 Internal Server Error, not a client-error rejection, so it counts as a pre-persistence failure, not an elegant application rejection. The database FK was never reached.",
+   "confidence": 0.9,
+   "limitations": [
+    "Database FK enforcement itself was not reached/observed.",
+    "Reclassified from APPLICATION_REJECTED: the pre-persistence rejection returns a generic HTTP 500 rather than an elegant client error, and the database constraint could not be reached through the API because of the application-side guard."
+   ]
+  },
+  {
+   "target_id": "pc-73e9479cc046",
+   "target_kind": "constraint",
+   "outcome": "INCONCLUSIVE_PRE_PERSISTENCE_FAILURE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": true,
+   "response_handling": "unhandled",
+   "case_ids": [
+    "c03-amount-null",
+    "c01-control-valid-withdrawal"
+   ],
+   "evidence": [
+    {
+     "path": "raw/c03-amount-null.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c03-amount-null",
+     "sha256": "0c8249f13a53c02896f3dc90e55c2f5c8ca1cd5da8e518a769a43b1bcef38e38"
+    },
+    {
+     "path": "logs/c03-amount-null.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c03-amount-null",
+     "sha256": "8a571e5f1080ffe58406be93af32473fa7a8ca0d1e2ac19044388b6a9af86b60"
+    },
+    {
+     "path": "raw/c01-control-valid-withdrawal.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c01-control-valid-withdrawal",
+     "sha256": "b276884adefa6bcd9c8ac314a378efa3781f21bac6068b9f89652ab40ce23d6a"
+    },
+    {
+     "path": "logs/c01-control-valid-withdrawal.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c01-control-valid-withdrawal",
+     "sha256": "4b2dc65ebb29a0268e5a7afe1dedf9f627dd84419005083fa868e085bdb3de1c"
+    }
+   ],
+   "rationale": "amount=null never reaches the INSERT. CreditCard.withdraw evaluates availableBalance().compareTo(null), which throws a NullPointerException, and the client gets a generic 500 'No message available'. The SQL trace shows no write. This is an accidental failure before persistence, not a deliberate not-null rejection, and the DB NOT NULL was never reached.",
+   "confidence": 0.75,
+   "limitations": [
+    "Rejection is an accidental NPE, not a deliberate not-null check; DB NOT NULL was not reached.",
+    "Reclassified from APPLICATION_REJECTED: the pre-persistence rejection returns a generic HTTP 500 rather than an elegant client error, and the database constraint could not be reached through the API because of the application-side guard."
+   ]
+  },
+  {
+   "target_id": "pc-c93d051c414e",
+   "target_kind": "constraint",
+   "outcome": "INCONCLUSIVE_PRE_PERSISTENCE_FAILURE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": true,
+   "response_handling": "unhandled",
+   "case_ids": [
+    "c04-card-null",
+    "c01-control-valid-withdrawal"
+   ],
+   "evidence": [
+    {
+     "path": "raw/c04-card-null.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c04-card-null",
+     "sha256": "d078f3d406274d5d57370fda6e974bb84e151cb05ea6a8fa3133616efe68d410"
+    },
+    {
+     "path": "logs/c04-card-null.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c04-card-null",
+     "sha256": "e7507ee61822adfc22df9e96f9db2600020fe7db62b1cf4b2d102c6e7d889e10"
+    },
+    {
+     "path": "raw/c01-control-valid-withdrawal.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c01-control-valid-withdrawal",
+     "sha256": "b276884adefa6bcd9c8ac314a378efa3781f21bac6068b9f89652ab40ce23d6a"
+    },
+    {
+     "path": "logs/c01-control-valid-withdrawal.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c01-control-valid-withdrawal",
+     "sha256": "4b2dc65ebb29a0268e5a7afe1dedf9f627dd84419005083fa868e085bdb3de1c"
+    }
+   ],
+   "rationale": "card=null fails in Spring Data findById(null) with IllegalArgumentException 'The given id must not be null!' before any write, and the client gets a generic HTTP 500. The DB NOT NULL on WITHDRAWAL.CARD_ID was never reached, because persisted CARD_ID is always copied from a loaded card id.",
+   "confidence": 0.8,
+   "limitations": [
+    "Framework-level argument check rather than explicit app validation; DB NOT NULL not reached.",
+    "Reclassified from APPLICATION_REJECTED: the pre-persistence rejection returns a generic HTTP 500 rather than an elegant client error, and the database constraint could not be reached through the API because of the application-side guard."
+   ]
+  },
+  {
+   "target_id": "pc-7a81073c57bc",
+   "target_kind": "constraint",
+   "outcome": "DATABASE_ENFORCED_UNHANDLED",
+   "exact_predicate_confirmed": true,
+   "observed_enforcement": "database",
+   "application_layer_implemented": false,
+   "response_handling": "unhandled",
+   "case_ids": [
+    "c11-amount-precision-overflow",
+    "rb-04-after-amount-overflow",
+    "rb-05-card-after-amount-overflow",
+    "c12-amount-precision-boundary-control",
+    "rb-06-after-boundary-control",
+    "c08-amount-scale-3dp",
+    "c09-amount-scale-3dp-down",
+    "c10-readback-withdrawals",
+    "rb-02-after-scale"
+   ],
+   "evidence": [
+    {
+     "path": "raw/c11-amount-precision-overflow.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c11-amount-precision-overflow",
+     "sha256": "30712f4375e1ac89c0a10ecc91d493cdb8fef9df319384502d3d119d987ab75c"
+    },
+    {
+     "path": "logs/c11-amount-precision-overflow.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c11-amount-precision-overflow",
+     "sha256": "fa814da3b020728f0220147d62ce7e0ee1dc6fd10375742acd3f7652d958dacb"
+    },
+    {
+     "path": "raw/rb-04-after-amount-overflow.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "ca6dc71fb75c34fc7cb02bb325601dc700291230f36a402d00423de6180be026"
+    },
+    {
+     "path": "raw/rb-05-card-after-amount-overflow.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "7cc43a803bd2e826ff760e72a12e3beba16503c76f15920c0f0aed2cb5b1899d"
+    },
+    {
+     "path": "raw/c12-amount-precision-boundary-control.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c12-amount-precision-boundary-control",
+     "sha256": "8674c755185a052cb6e9186eabf9dcbb8ace8b7720933534a62f2dab782bd8c8"
+    },
+    {
+     "path": "logs/c12-amount-precision-boundary-control.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c12-amount-precision-boundary-control",
+     "sha256": "3425d0a2a67a53d77ebea8f6bb2e427e1b82b59ab2a59bd85d46da5bcb0108fc"
+    },
+    {
+     "path": "raw/rb-06-after-boundary-control.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "55351b8de619a8408dd263be2980ac48e0116bac6a7b079698ec5a97d961f027"
+    },
+    {
+     "path": "raw/c08-amount-scale-3dp.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c08-amount-scale-3dp",
+     "sha256": "d5d1a4e1f8cbf8eb18179e5f6888cef6224e4c8d9c0fed0adab072d7fb1f97a0"
+    },
+    {
+     "path": "logs/c08-amount-scale-3dp.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c08-amount-scale-3dp",
+     "sha256": "9e54f925c300e0e1ae543f422b0f702f019466f0ea119fea9a468dcc68d30690"
+    },
+    {
+     "path": "raw/c09-amount-scale-3dp-down.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c09-amount-scale-3dp-down",
+     "sha256": "73fee0ddb5f31dc43cbbe93e2ff49c434c5935a7527879eb9c1bc97531174a3a"
+    },
+    {
+     "path": "logs/c09-amount-scale-3dp-down.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c09-amount-scale-3dp-down",
+     "sha256": "3cd9ed89c8be35b709c659438c776c916ba8c414b240ca7d37f15c770d5e6115"
+    },
+    {
+     "path": "raw/c10-readback-withdrawals.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c10-readback-withdrawals",
+     "sha256": "705f47e18d36fd6e4ee7f5f6fca37c3f7f94bb7a64f259c7dd4764de6381be9f"
+    },
+    {
+     "path": "logs/c10-readback-withdrawals.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c10-readback-withdrawals",
+     "sha256": "84855e6c48298aafc946583116b5f0b2881633ce101914088144586ec0db40bf"
+    },
+    {
+     "path": "raw/rb-02-after-scale.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "d63728b78935efce25008e20123936548e8cd4750de2e3fa0249095c179deaa8"
+    },
+    {
+     "path": "raw/c10-readback-withdrawals.json",
+     "kind": "read-back",
+     "description": "API read-back GET /?cardId=<seed card> returning persisted WITHDRAWAL rows (id, amount, cardId)",
+     "sha256": "705f47e18d36fd6e4ee7f5f6fca37c3f7f94bb7a64f259c7dd4764de6381be9f"
+    }
+   ],
+   "rationale": "amount -12345678901234567 passed the application balance check (negative amounts allowed) and reached INSERT into withdrawal, where H2 raised 22001 'Value too long for column AMOUNT DECIMAL(18, 2)'; transaction rolled back (no row) and client got generic 500 DataException. Boundary value with 16 integer digits was accepted and persisted.",
+   "confidence": 0.9,
+   "limitations": [
+    "Excess scale is silently rounded by H2 (1.005 -> 1.01, 2.004 -> 2.00) rather than rejected; the scale part of the predicate is enforced only as a DB-side coercion, not by the application."
+   ]
+  },
+  {
+   "target_id": "pc-20303ffe4698",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "c01-control-valid-withdrawal",
+    "rb-01-after-control"
+   ],
+   "evidence": [
+    {
+     "path": "raw/c01-control-valid-withdrawal.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c01-control-valid-withdrawal",
+     "sha256": "b276884adefa6bcd9c8ac314a378efa3781f21bac6068b9f89652ab40ce23d6a"
+    },
+    {
+     "path": "logs/c01-control-valid-withdrawal.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c01-control-valid-withdrawal",
+     "sha256": "4b2dc65ebb29a0268e5a7afe1dedf9f627dd84419005083fa868e085bdb3de1c"
+    },
+    {
+     "path": "raw/rb-01-after-control.json",
+     "kind": "read-back",
+     "description": "H2 console SQL read-back of persisted rows",
+     "sha256": "9d38a94cd890aa130686b7aecabc039ff28048bc84b4c30a59dbbe0eeed48319"
+    }
+   ],
+   "rationale": "WITHDRAWAL.ID is generated by Hibernate (@GeneratedValue UUID); WithdrawalCommand has no id field, so a duplicate primary key cannot be requested.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-f4259ca21b01",
+   "target_kind": "constraint",
+   "outcome": "APPLICATION_REJECTED",
+   "exact_predicate_confirmed": true,
+   "observed_enforcement": "application",
+   "application_layer_implemented": true,
+   "response_handling": "elegant",
+   "case_ids": [
+    "c07-amount-not-decimal",
+    "c11-amount-precision-overflow",
+    "c01-control-valid-withdrawal"
+   ],
+   "evidence": [
+    {
+     "path": "raw/c07-amount-not-decimal.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c07-amount-not-decimal",
+     "sha256": "8f607b21bd189eedba2753b5a41f1755a903c1037ff8dca74a5e361a454bf838"
+    },
+    {
+     "path": "logs/c07-amount-not-decimal.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c07-amount-not-decimal",
+     "sha256": "a8f2820552804faa988e2bfcf420d6294c34427dc3077bd6f17ed79df545b86f"
+    },
+    {
+     "path": "raw/c11-amount-precision-overflow.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c11-amount-precision-overflow",
+     "sha256": "30712f4375e1ac89c0a10ecc91d493cdb8fef9df319384502d3d119d987ab75c"
+    },
+    {
+     "path": "logs/c11-amount-precision-overflow.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c11-amount-precision-overflow",
+     "sha256": "fa814da3b020728f0220147d62ce7e0ee1dc6fd10375742acd3f7652d958dacb"
+    },
+    {
+     "path": "raw/c01-control-valid-withdrawal.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c01-control-valid-withdrawal",
+     "sha256": "b276884adefa6bcd9c8ac314a378efa3781f21bac6068b9f89652ab40ce23d6a"
+    },
+    {
+     "path": "logs/c01-control-valid-withdrawal.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c01-control-valid-withdrawal",
+     "sha256": "4b2dc65ebb29a0268e5a7afe1dedf9f627dd84419005083fa868e085bdb3de1c"
+    }
+   ],
+   "rationale": "A non-decimal amount ('abc') is rejected by Jackson binding into java.math.BigDecimal with 400 Bad Request and a descriptive message before persistence. Numeric values out of the DECIMAL(18,2) range are not checked by the application and are rejected by the database (c11, see pc-7a81073c57bc).",
+   "confidence": 0.8,
+   "limitations": [
+    "Precision/scale aspects of DECIMAL(18,2) are enforced by the database (unhandled 500) or silently rounded, not by the application."
+   ]
+  },
+  {
+   "target_id": "pc-a96b949d55f3",
+   "target_kind": "constraint",
+   "outcome": "APPLICATION_REJECTED",
+   "exact_predicate_confirmed": true,
+   "observed_enforcement": "application",
+   "application_layer_implemented": true,
+   "response_handling": "elegant",
+   "case_ids": [
+    "c06-card-not-uuid",
+    "c01-control-valid-withdrawal"
+   ],
+   "evidence": [
+    {
+     "path": "raw/c06-card-not-uuid.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c06-card-not-uuid",
+     "sha256": "f9692b053b245cc3b60f426e8f33c4ee60cabe7f76244a7676a1861ead9512bf"
+    },
+    {
+     "path": "logs/c06-card-not-uuid.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c06-card-not-uuid",
+     "sha256": "60c813b28f62b03b8b6328ececa5916e3a33a9ea62a054c5179175cb0682debf"
+    },
+    {
+     "path": "raw/c01-control-valid-withdrawal.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c01-control-valid-withdrawal",
+     "sha256": "b276884adefa6bcd9c8ac314a378efa3781f21bac6068b9f89652ab40ce23d6a"
+    },
+    {
+     "path": "logs/c01-control-valid-withdrawal.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c01-control-valid-withdrawal",
+     "sha256": "4b2dc65ebb29a0268e5a7afe1dedf9f627dd84419005083fa868e085bdb3de1c"
+    }
+   ],
+   "rationale": "A non-UUID card value is rejected by Jackson binding into java.util.UUID with 400 Bad Request before any SQL; CARD_ID values written are always UUIDs of a loaded card.",
+   "confidence": 0.85,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-9d6bb68ddecd",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "c01-control-valid-withdrawal"
+   ],
+   "evidence": [
+    {
+     "path": "raw/c01-control-valid-withdrawal.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c01-control-valid-withdrawal",
+     "sha256": "b276884adefa6bcd9c8ac314a378efa3781f21bac6068b9f89652ab40ce23d6a"
+    },
+    {
+     "path": "logs/c01-control-valid-withdrawal.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c01-control-valid-withdrawal",
+     "sha256": "4b2dc65ebb29a0268e5a7afe1dedf9f627dd84419005083fa868e085bdb3de1c"
+    }
+   ],
+   "rationale": "WITHDRAWAL.ID is always a Hibernate-generated java.util.UUID; no client input reaches it.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "dep-6b92cefdf4cd",
+   "target_kind": "dependency",
+   "outcome": "INCONCLUSIVE_PRE_PERSISTENCE_FAILURE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": true,
+   "response_handling": "unhandled",
+   "case_ids": [
+    "c05-card-nonexistent-fk",
+    "c01-control-valid-withdrawal"
+   ],
+   "evidence": [
+    {
+     "path": "raw/c05-card-nonexistent-fk.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c05-card-nonexistent-fk",
+     "sha256": "ad3eb6779a4d943e67fd2c88f4767829ea30543608125da5d99771834d30ff52"
+    },
+    {
+     "path": "logs/c05-card-nonexistent-fk.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c05-card-nonexistent-fk",
+     "sha256": "46a4e13ca09ea2ff86f0b08383da517eddf46d638a9bbb8ebb9e387ef2de659c"
+    },
+    {
+     "path": "raw/c01-control-valid-withdrawal.json",
+     "kind": "http-exchange",
+     "description": "Full HTTP exchange for c01-control-valid-withdrawal",
+     "sha256": "b276884adefa6bcd9c8ac314a378efa3781f21bac6068b9f89652ab40ce23d6a"
+    },
+    {
+     "path": "logs/c01-control-valid-withdrawal.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice (Hibernate SQL + bind trace, exceptions) for c01-control-valid-withdrawal",
+     "sha256": "4b2dc65ebb29a0268e5a7afe1dedf9f627dd84419005083fa868e085bdb3de1c"
+    }
+   ],
+   "rationale": "This is the same FK WITHDRAWAL.CARD_ID -> CREDIT_CARD.ID as pc-d422ab0eead2. A nonexistent card is stopped by the explicit lookup plus IllegalStateException before the INSERT, but it surfaces as an unhandled HTTP 500, so the outcome is a pre-persistence failure. The DB FK was never reached. The valid control persisted card_id referencing the seeded card.",
+   "confidence": 0.9,
+   "limitations": [
+    "Database FK enforcement itself not reached.",
+    "Reclassified from APPLICATION_REJECTED: the pre-persistence rejection returns a generic HTTP 500 rather than an elegant client error, and the database constraint could not be reached through the API because of the application-side guard."
+   ]
+  }
+ ],
+ "warnings": [
+  "Targets were extracted with schema_context_id dbctx-2c246b7230ae (in-one-class/src/main/resources/schema.sql); deployed schema is exactly this file on H2 1.4.197.",
+  "H2 silently rounds values with scale > 2 for DECIMAL(18,2) columns instead of rejecting them.",
+  "The application accepts negative withdrawal amounts (balance check only), which is how precision overflows were reached; this is an app-logic weakness, not part of the extracted predicates.",
+  "Read-back used the H2 web console that the application itself exposes (spring.h2.console.enabled=true) on the permitted port.",
+  "Four targets (pc-d422ab0eead2, dep-6b92cefdf4cd, pc-73e9479cc046, pc-c93d051c414e) were reclassified as INCONCLUSIVE_PRE_PERSISTENCE_FAILURE. Their violations are stopped before persistence but surface as generic HTTP 500 errors."
+ ]
+}

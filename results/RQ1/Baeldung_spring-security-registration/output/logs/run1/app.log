@@ -1,0 +1,257 @@
+web - 2026-09-29 02:35:38,192 [background-preinit] INFO  o.h.v.i.u.Version - HV000001: Hibernate Validator 8.0.0.Final
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+web - 2026-09-29 02:35:38,242 [main] INFO  c.b.Application - Starting Application using Java 17.0.15 with PID 926088 (/artifact/results/RQ1/Baeldung_spring-security-registration/Baeldung_spring-security-registration-20260929T063401Z-2d6e2ecf/application/target/classes started by anonymous in /artifact/results/RQ1/Baeldung_spring-security-registration/Baeldung_spring-security-registration-20260929T063401Z-2d6e2ecf/application)
+web - 2026-09-29 02:35:38,243 [main] DEBUG c.b.Application - Running with Spring Boot v3.1.0, Spring v6.0.9
+web - 2026-09-29 02:35:38,243 [main] INFO  c.b.Application - The following 1 profile is active: "dev"
+web - 2026-09-29 02:35:39,331 [main] INFO  o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-127.0.0.1-18206"]
+web - 2026-09-29 02:35:39,331 [main] INFO  o.a.c.c.StandardService - Starting service [Tomcat]
+web - 2026-09-29 02:35:39,331 [main] INFO  o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.8]
+web - 2026-09-29 02:35:39,401 [main] INFO  o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+web - 2026-09-29 02:35:39,498 [main] INFO  o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+web - 2026-09-29 02:35:39,523 [main] INFO  o.h.Version - HHH000412: Hibernate ORM core version 6.2.2.Final
+web - 2026-09-29 02:35:39,525 [main] INFO  o.h.c.Environment - HHH000406: Using bytecode reflection optimizer
+web - 2026-09-29 02:35:39,592 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
+web - 2026-09-29 02:35:39,663 [main] INFO  c.z.h.HikariDataSource - HikariPool-1 - Starting...
+web - 2026-09-29 02:35:39,786 [main] INFO  c.z.h.p.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:registration_02 user=SA
+web - 2026-09-29 02:35:39,787 [main] INFO  c.z.h.HikariDataSource - HikariPool-1 - Start completed.
+web - 2026-09-29 02:35:39,808 [main] INFO  o.h.o.dialect - HHH035001: Using dialect: org.hibernate.dialect.H2Dialect, version: 2.1.214
+web - 2026-09-29 02:35:39,974 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
+web - 2026-09-29 02:35:40,390 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+web - 2026-09-29 02:35:40,402 [main] DEBUG o.h.SQL - create table device_metadata (id bigint not null, device_details varchar(255), last_logged_in timestamp(6), location varchar(255), user_id bigint, primary key (id))
+web - 2026-09-29 02:35:40,406 [main] DEBUG o.h.SQL - create table new_location_token (id bigint not null, token varchar(255), user_location_id bigint not null, primary key (id))
+web - 2026-09-29 02:35:40,406 [main] DEBUG o.h.SQL - create table password_reset_token (id bigint not null, expiry_date timestamp(6), token varchar(255), user_id bigint not null, primary key (id))
+web - 2026-09-29 02:35:40,407 [main] DEBUG o.h.SQL - create table privilege (id bigint not null, name varchar(255), primary key (id))
+web - 2026-09-29 02:35:40,407 [main] DEBUG o.h.SQL - create table role (id bigint not null, name varchar(255), primary key (id))
+web - 2026-09-29 02:35:40,408 [main] DEBUG o.h.SQL - create table roles_privileges (role_id bigint not null, privilege_id bigint not null)
+web - 2026-09-29 02:35:40,408 [main] DEBUG o.h.SQL - create table user_account (id bigint not null, email varchar(255), enabled boolean not null, first_name varchar(255), is_using2fa boolean not null, last_name varchar(255), password varchar(60), secret varchar(255), primary key (id))
+web - 2026-09-29 02:35:40,409 [main] DEBUG o.h.SQL - create table user_location (id bigint not null, country varchar(255), enabled boolean not null, user_id bigint not null, primary key (id))
+web - 2026-09-29 02:35:40,409 [main] DEBUG o.h.SQL - create table users_roles (user_id bigint not null, role_id bigint not null)
+web - 2026-09-29 02:35:40,410 [main] DEBUG o.h.SQL - create table verification_token (id bigint not null, expiry_date timestamp(6), token varchar(255), user_id bigint not null, primary key (id))
+web - 2026-09-29 02:35:40,411 [main] DEBUG o.h.SQL - alter table if exists new_location_token drop constraint if exists UK_o0yhxr0s5vnv32rv2b157mhbm
+web - 2026-09-29 02:35:40,411 [main] DEBUG o.h.SQL - alter table if exists new_location_token add constraint UK_o0yhxr0s5vnv32rv2b157mhbm unique (user_location_id)
+web - 2026-09-29 02:35:40,412 [main] DEBUG o.h.SQL - alter table if exists password_reset_token drop constraint if exists UK_f90ivichjaokvmovxpnlm5nin
+web - 2026-09-29 02:35:40,412 [main] DEBUG o.h.SQL - alter table if exists password_reset_token add constraint UK_f90ivichjaokvmovxpnlm5nin unique (user_id)
+web - 2026-09-29 02:35:40,413 [main] DEBUG o.h.SQL - alter table if exists verification_token drop constraint if exists UK_q6jibbenp7o9v6tq178xg88hg
+web - 2026-09-29 02:35:40,413 [main] DEBUG o.h.SQL - alter table if exists verification_token add constraint UK_q6jibbenp7o9v6tq178xg88hg unique (user_id)
+web - 2026-09-29 02:35:40,415 [main] DEBUG o.h.SQL - create sequence device_metadata_seq start with 1 increment by 50
+web - 2026-09-29 02:35:40,416 [main] DEBUG o.h.SQL - create sequence new_location_token_seq start with 1 increment by 50
+web - 2026-09-29 02:35:40,417 [main] DEBUG o.h.SQL - create sequence password_reset_token_seq start with 1 increment by 50
+web - 2026-09-29 02:35:40,417 [main] DEBUG o.h.SQL - create sequence privilege_seq start with 1 increment by 50
+web - 2026-09-29 02:35:40,417 [main] DEBUG o.h.SQL - create sequence role_seq start with 1 increment by 50
+web - 2026-09-29 02:35:40,417 [main] DEBUG o.h.SQL - create sequence user_account_seq start with 1 increment by 50
+web - 2026-09-29 02:35:40,417 [main] DEBUG o.h.SQL - create sequence user_location_seq start with 1 increment by 50
+web - 2026-09-29 02:35:40,417 [main] DEBUG o.h.SQL - create sequence verification_token_seq start with 1 increment by 50
+web - 2026-09-29 02:35:40,418 [main] DEBUG o.h.SQL - alter table if exists new_location_token add constraint FKt4d61xu4ompo2fy5upb033mwm foreign key (user_location_id) references user_location
+web - 2026-09-29 02:35:40,420 [main] DEBUG o.h.SQL - alter table if exists password_reset_token add constraint FKns9q9f0f318uaoxiqn6lka9ux foreign key (user_id) references user_account
+web - 2026-09-29 02:35:40,421 [main] DEBUG o.h.SQL - alter table if exists roles_privileges add constraint FK5yjwxw2gvfyu76j3rgqwo685u foreign key (privilege_id) references privilege
+web - 2026-09-29 02:35:40,422 [main] DEBUG o.h.SQL - alter table if exists roles_privileges add constraint FK9h2vewsqh8luhfq71xokh4who foreign key (role_id) references role
+web - 2026-09-29 02:35:40,423 [main] DEBUG o.h.SQL - alter table if exists user_location add constraint FKewiig159t5fn9jt50sra34adr foreign key (user_id) references user_account
+web - 2026-09-29 02:35:40,424 [main] DEBUG o.h.SQL - alter table if exists users_roles add constraint FKt4v0rrweyk393bdgt107vdx0x foreign key (role_id) references role
+web - 2026-09-29 02:35:40,425 [main] DEBUG o.h.SQL - alter table if exists users_roles add constraint FKci4mdvg1fmo9eqmwno1y9o0fa foreign key (user_id) references user_account
+web - 2026-09-29 02:35:40,425 [main] DEBUG o.h.SQL - alter table if exists verification_token add constraint FK_VERIFY_USER foreign key (user_id) references user_account
+web - 2026-09-29 02:35:41,168 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+web - 2026-09-29 02:35:41,387 [main] WARN  o.s.s.c.a.w.b.WebSecurity - You are asking Spring Security to ignore Ant [pattern='/resources/**', /h2/**]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+web - 2026-09-29 02:35:41,490 [main] INFO  o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-127.0.0.1-18206"]
+web - 2026-09-29 02:35:41,554 [main] DEBUG o.h.SQL - select p1_0.id,p1_0.name from privilege p1_0 where p1_0.name=?
+web - 2026-09-29 02:35:41,555 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [READ_PRIVILEGE]
+web - 2026-09-29 02:35:41,561 [main] DEBUG o.h.SQL - select next value for privilege_seq
+web - 2026-09-29 02:35:41,576 [main] DEBUG o.h.SQL - insert into privilege (name,id) values (?,?)
+web - 2026-09-29 02:35:41,577 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [READ_PRIVILEGE]
+web - 2026-09-29 02:35:41,577 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [1]
+web - 2026-09-29 02:35:41,578 [main] DEBUG o.h.SQL - select p1_0.id,p1_0.name from privilege p1_0 where p1_0.name=?
+web - 2026-09-29 02:35:41,579 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [WRITE_PRIVILEGE]
+web - 2026-09-29 02:35:41,579 [main] DEBUG o.h.SQL - select next value for privilege_seq
+web - 2026-09-29 02:35:41,580 [main] DEBUG o.h.SQL - insert into privilege (name,id) values (?,?)
+web - 2026-09-29 02:35:41,580 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [WRITE_PRIVILEGE]
+web - 2026-09-29 02:35:41,580 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [2]
+web - 2026-09-29 02:35:41,580 [main] DEBUG o.h.SQL - select p1_0.id,p1_0.name from privilege p1_0 where p1_0.name=?
+web - 2026-09-29 02:35:41,581 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [CHANGE_PASSWORD_PRIVILEGE]
+web - 2026-09-29 02:35:41,582 [main] DEBUG o.h.SQL - select r1_0.id,r1_0.name from role r1_0 where r1_0.name=?
+web - 2026-09-29 02:35:41,582 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [ROLE_ADMIN]
+web - 2026-09-29 02:35:41,582 [main] DEBUG o.h.SQL - select next value for role_seq
+web - 2026-09-29 02:35:41,587 [main] DEBUG o.h.SQL - insert into privilege (name,id) values (?,?)
+web - 2026-09-29 02:35:41,587 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [CHANGE_PASSWORD_PRIVILEGE]
+web - 2026-09-29 02:35:41,587 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [3]
+web - 2026-09-29 02:35:41,588 [main] DEBUG o.h.SQL - insert into role (name,id) values (?,?)
+web - 2026-09-29 02:35:41,588 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [ROLE_ADMIN]
+web - 2026-09-29 02:35:41,588 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [1]
+web - 2026-09-29 02:35:41,590 [main] DEBUG o.h.SQL - insert into roles_privileges (role_id,privilege_id) values (?,?)
+web - 2026-09-29 02:35:41,590 [main] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:35:41,590 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [1]
+web - 2026-09-29 02:35:41,590 [main] DEBUG o.h.SQL - insert into roles_privileges (role_id,privilege_id) values (?,?)
+web - 2026-09-29 02:35:41,590 [main] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:35:41,590 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [2]
+web - 2026-09-29 02:35:41,590 [main] DEBUG o.h.SQL - insert into roles_privileges (role_id,privilege_id) values (?,?)
+web - 2026-09-29 02:35:41,590 [main] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:35:41,590 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [3]
+web - 2026-09-29 02:35:41,591 [main] DEBUG o.h.SQL - select r1_0.id,r1_0.name from role r1_0 where r1_0.name=?
+web - 2026-09-29 02:35:41,591 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [ROLE_USER]
+web - 2026-09-29 02:35:41,591 [main] DEBUG o.h.SQL - select next value for role_seq
+web - 2026-09-29 02:35:41,594 [main] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,u1_0.secret from user_account u1_0 where u1_0.email=?
+web - 2026-09-29 02:35:41,594 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [test@test.com]
+web - 2026-09-29 02:35:41,717 [main] DEBUG o.h.SQL - select next value for user_account_seq
+web - 2026-09-29 02:35:41,719 [main] DEBUG o.h.SQL - insert into role (name,id) values (?,?)
+web - 2026-09-29 02:35:41,719 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [ROLE_USER]
+web - 2026-09-29 02:35:41,719 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [2]
+web - 2026-09-29 02:35:41,719 [main] DEBUG o.h.SQL - insert into user_account (email,enabled,first_name,is_using2fa,last_name,password,secret,id) values (?,?,?,?,?,?,?,?)
+web - 2026-09-29 02:35:41,720 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [test@test.com]
+web - 2026-09-29 02:35:41,720 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BOOLEAN] - [true]
+web - 2026-09-29 02:35:41,720 [main] TRACE o.h.o.j.bind - binding parameter [3] as [VARCHAR] - [Test]
+web - 2026-09-29 02:35:41,720 [main] TRACE o.h.o.j.bind - binding parameter [4] as [BOOLEAN] - [false]
+web - 2026-09-29 02:35:41,720 [main] TRACE o.h.o.j.bind - binding parameter [5] as [VARCHAR] - [Test]
+web - 2026-09-29 02:35:41,720 [main] TRACE o.h.o.j.bind - binding parameter [6] as [VARCHAR] - [$2a$11$Uiec8mUaXp8THxML3XxmLOhCwOqE3PmVEp9o8/AHEzrJON124S5qy]
+web - 2026-09-29 02:35:41,720 [main] TRACE o.h.o.j.bind - binding parameter [7] as [VARCHAR] - [MVV7KRRE3VHWCVYC]
+web - 2026-09-29 02:35:41,720 [main] TRACE o.h.o.j.bind - binding parameter [8] as [BIGINT] - [1]
+web - 2026-09-29 02:35:41,720 [main] DEBUG o.h.SQL - insert into roles_privileges (role_id,privilege_id) values (?,?)
+web - 2026-09-29 02:35:41,720 [main] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [2]
+web - 2026-09-29 02:35:41,720 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [1]
+web - 2026-09-29 02:35:41,720 [main] DEBUG o.h.SQL - insert into roles_privileges (role_id,privilege_id) values (?,?)
+web - 2026-09-29 02:35:41,720 [main] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [2]
+web - 2026-09-29 02:35:41,720 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [3]
+web - 2026-09-29 02:35:41,721 [main] DEBUG o.h.SQL - insert into users_roles (user_id,role_id) values (?,?)
+web - 2026-09-29 02:35:41,721 [main] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:35:41,721 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [1]
+web - 2026-09-29 02:35:41,723 [main] INFO  c.b.Application - Started Application in 3.729 seconds (process running for 4.089)
+web - 2026-09-29 02:35:43,130 [http-nio-127.0.0.1-18206-exec-1] INFO  o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+web - 2026-09-29 02:36:14,276 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,u1_0.secret from user_account u1_0 where u1_0.email=?
+web - 2026-09-29 02:36:14,276 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [test@test.com]
+web - 2026-09-29 02:36:14,283 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - select r1_0.user_id,r1_1.id,r1_1.name from users_roles r1_0 join role r1_1 on r1_1.id=r1_0.role_id where r1_0.user_id=?
+web - 2026-09-29 02:36:14,283 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:36:14,407 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,u1_0.secret from user_account u1_0 where u1_0.email=?
+web - 2026-09-29 02:36:14,407 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [test@test.com]
+web - 2026-09-29 02:36:14,408 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - select r1_0.user_id,r1_1.id,r1_1.name from users_roles r1_0 join role r1_1 on r1_1.id=r1_0.role_id where r1_0.user_id=?
+web - 2026-09-29 02:36:14,408 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:36:14,409 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - select p1_0.role_id,p1_1.id,p1_1.name from roles_privileges p1_0 join privilege p1_1 on p1_1.id=p1_0.privilege_id where p1_0.role_id=?
+web - 2026-09-29 02:36:14,409 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:36:14,526 [http-nio-127.0.0.1-18206-exec-2] DEBUG c.b.s.g.CustomAuthenticationProvider - Authenticated user
+web - 2026-09-29 02:36:14,537 [http-nio-127.0.0.1-18206-exec-2] DEBUG c.b.s.CustomRememberMeServices - Did not send remember-me cookie (principal did not set parameter 'remember-me')
+web - 2026-09-29 02:36:14,537 [http-nio-127.0.0.1-18206-exec-2] DEBUG c.b.s.CustomRememberMeServices - Remember-me login not requested.
+web - 2026-09-29 02:36:26,643 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,u1_0.secret from user_account u1_0 where u1_0.email=?
+web - 2026-09-29 02:36:26,644 [http-nio-127.0.0.1-18206-exec-7] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [test@test.com]
+web - 2026-09-29 02:36:26,644 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.h.SQL - select r1_0.user_id,r1_1.id,r1_1.name from users_roles r1_0 join role r1_1 on r1_1.id=r1_0.role_id where r1_0.user_id=?
+web - 2026-09-29 02:36:26,644 [http-nio-127.0.0.1-18206-exec-7] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:36:26,645 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,u1_0.secret from user_account u1_0 where u1_0.email=?
+web - 2026-09-29 02:36:26,645 [http-nio-127.0.0.1-18206-exec-7] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [test@test.com]
+web - 2026-09-29 02:36:26,646 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.h.SQL - select r1_0.user_id,r1_1.id,r1_1.name from users_roles r1_0 join role r1_1 on r1_1.id=r1_0.role_id where r1_0.user_id=?
+web - 2026-09-29 02:36:26,646 [http-nio-127.0.0.1-18206-exec-7] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:36:26,646 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.h.SQL - select p1_0.role_id,p1_1.id,p1_1.name from roles_privileges p1_0 join privilege p1_1 on p1_1.id=p1_0.privilege_id where p1_0.role_id=?
+web - 2026-09-29 02:36:26,646 [http-nio-127.0.0.1-18206-exec-7] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:36:26,763 [http-nio-127.0.0.1-18206-exec-7] DEBUG c.b.s.g.CustomAuthenticationProvider - Authenticated user
+web - 2026-09-29 02:36:26,764 [http-nio-127.0.0.1-18206-exec-7] DEBUG c.b.s.CustomRememberMeServices - Did not send remember-me cookie (principal did not set parameter 'remember-me')
+web - 2026-09-29 02:36:26,764 [http-nio-127.0.0.1-18206-exec-7] DEBUG c.b.s.CustomRememberMeServices - Remember-me login not requested.
+web - 2026-09-29 02:36:27,216 [http-nio-127.0.0.1-18206-exec-10] DEBUG c.b.w.c.RegistrationRestController - Registering user account with information: UserDto [firstName=Pv, lastName=Check, email=pv.control@example.test, isUsing2FA=false, role=null]
+web - 2026-09-29 02:36:27,217 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,u1_0.secret from user_account u1_0 where u1_0.email=?
+web - 2026-09-29 02:36:27,218 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [pv.control@example.test]
+web - 2026-09-29 02:36:27,336 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select r1_0.id,r1_0.name from role r1_0 where r1_0.name=?
+web - 2026-09-29 02:36:27,336 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [ROLE_USER]
+web - 2026-09-29 02:36:27,337 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select next value for user_account_seq
+web - 2026-09-29 02:36:27,337 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - insert into user_account (email,enabled,first_name,is_using2fa,last_name,password,secret,id) values (?,?,?,?,?,?,?,?)
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [pv.control@example.test]
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [2] as [BOOLEAN] - [false]
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [3] as [VARCHAR] - [Pv]
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [4] as [BOOLEAN] - [false]
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [5] as [VARCHAR] - [Check]
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [6] as [VARCHAR] - [$2a$11$KyqKuFc7OkxKSZnXuaTV5u1H2nr8TUi25EVEAziwwEl1QDZJOvnrC]
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [7] as [VARCHAR] - [J5DXJT5FRS36UYU2]
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [8] as [BIGINT] - [2]
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - insert into users_roles (user_id,role_id) values (?,?)
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [2]
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [2]
+web - 2026-09-29 02:36:27,341 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select next value for verification_token_seq
+web - 2026-09-29 02:36:27,342 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - insert into verification_token (expiry_date,token,user_id,id) values (?,?,?,?)
+web - 2026-09-29 02:36:27,342 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [TIMESTAMP] - [2026-09-30 02:36:27.34]
+web - 2026-09-29 02:36:27,342 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [2] as [VARCHAR] - [b4578745-f41a-4112-9347-7c7f696a564c]
+web - 2026-09-29 02:36:27,343 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [3] as [BIGINT] - [2]
+web - 2026-09-29 02:36:27,343 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [4] as [BIGINT] - [1]
+web - 2026-09-29 02:36:27,496 [http-nio-127.0.0.1-18206-exec-1] INFO  o.a.c.h.Http11Processor - Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+j.l.IllegalArgumentException: Invalid character found in method name [0x160x030x030x010xb30x010x000x010xaf0x030x030xfa0x820x900xdaC0xc50xf40xa40xc50xa90xcc0xe20xe10xeaj}w0x9d0x8e0x820xeea0xbc0xe20x8eU0x920x100x02/0xa60x91 ]. HTTP method names must be tokens
+	at o.a.c.h.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:407)
+	at o.a.c.h.Http11Processor.service(Http11Processor.java:263)
+	at o.a.c.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at o.a.c.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+	at o.a.t.u.n.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	... 5 frames truncated
+web - 2026-09-29 02:36:27,503 [http-nio-127.0.0.1-18206-exec-10] ERROR c.b.w.e.RestResponseEntityExceptionHandler - 500 Status Code
+o.s.m.MailSendException: Mail server connection failed. Failed messages: jakarta.mail.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206;
+  nested exception is:
+	javax.net.ssl.SSLException: Unsupported or unrecognized SSL message
+	at o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:448)
+	at o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:323)
+	at o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:312)
+	at c.b.r.l.RegistrationListener.confirmRegistration(RegistrationListener.java:43)
+	at c.b.r.l.RegistrationListener.onApplicationEvent(RegistrationListener.java:34)
+	... 96 frames truncated
+Caused by: j.m.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206
+	at c.s.m.s.SMTPTransport.openServer(SMTPTransport.java:2261)
+	at c.s.m.s.SMTPTransport.protocolConnect(SMTPTransport.java:754)
+	at j.m.Service.connect(Service.java:342)
+	at o.s.m.j.JavaMailSenderImpl.connectTransport(JavaMailSenderImpl.java:518)
+	at o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:437)
+	... 100 common frames omitted
+Caused by: j.n.s.SSLException: Unsupported or unrecognized SSL message
+	at s.s.s.SSLSocketInputRecord.handleUnknownRecord(SSLSocketInputRecord.java:457)
+	at s.s.s.SSLSocketInputRecord.decode(SSLSocketInputRecord.java:175)
+	at s.s.s.SSLTransport.decode(SSLTransport.java:111)
+	at s.s.s.SSLSocketImpl.decode(SSLSocketImpl.java:1510)
+	at s.s.s.SSLSocketImpl.readHandshakeRecord(SSLSocketImpl.java:1425)
+	... 6 frames truncated
+	... 104 common frames omitted
+web - 2026-09-29 02:36:27,926 [http-nio-127.0.0.1-18206-exec-2] DEBUG c.b.w.c.RegistrationRestController - Registering user account with information: UserDto [firstName=Pv, lastName=Check, email=pv.b30@example.test, isUsing2FA=false, role=null]
+web - 2026-09-29 02:36:27,928 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,u1_0.secret from user_account u1_0 where u1_0.email=?
+web - 2026-09-29 02:36:27,928 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [pv.b30@example.test]
+web - 2026-09-29 02:36:28,046 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - select r1_0.id,r1_0.name from role r1_0 where r1_0.name=?
+web - 2026-09-29 02:36:28,046 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [ROLE_USER]
+web - 2026-09-29 02:36:28,047 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - insert into user_account (email,enabled,first_name,is_using2fa,last_name,password,secret,id) values (?,?,?,?,?,?,?,?)
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [pv.b30@example.test]
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [2] as [BOOLEAN] - [false]
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [3] as [VARCHAR] - [Pv]
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [4] as [BOOLEAN] - [false]
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [5] as [VARCHAR] - [Check]
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [6] as [VARCHAR] - [$2a$11$nzhR/ar/57ntEV1rhgu5WuA7cPn4TfGm6J5hLbtRMUI4q2gsKz4WK]
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [7] as [VARCHAR] - [E2I3BXOCZKAXPSRX]
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [8] as [BIGINT] - [3]
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - insert into users_roles (user_id,role_id) values (?,?)
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [3]
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [2]
+web - 2026-09-29 02:36:28,050 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - select next value for verification_token_seq
+web - 2026-09-29 02:36:28,050 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - insert into verification_token (expiry_date,token,user_id,id) values (?,?,?,?)
+web - 2026-09-29 02:36:28,050 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [TIMESTAMP] - [2026-09-30 02:36:28.05]
+web - 2026-09-29 02:36:28,050 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [2] as [VARCHAR] - [fc1712c8-a89c-4a13-8513-ca73676dfae3]
+web - 2026-09-29 02:36:28,050 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [3] as [BIGINT] - [3]
+web - 2026-09-29 02:36:28,051 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [4] as [BIGINT] - [2]
+web - 2026-09-29 02:36:28,055 [http-nio-127.0.0.1-18206-exec-2] ERROR c.b.w.e.RestResponseEntityExceptionHandler - 500 Status Code
+o.s.m.MailSendException: Mail server connection failed. Failed messages: jakarta.mail.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206;
+  nested exception is:
+	javax.net.ssl.SSLException: Unsupported or unrecognized SSL message
+	at o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:448)
+	at o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:323)
+	at o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:312)
+	at c.b.r.l.RegistrationListener.confirmRegistration(RegistrationListener.java:43)
+	at c.b.r.l.RegistrationListener.onApplicationEvent(RegistrationListener.java:34)
+	... 96 frames truncated
+Caused by: j.m.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206
+	at c.s.m.s.SMTPTransport.openServer(SMTPTransport.java:2261)
+	at c.s.m.s.SMTPTransport.protocolConnect(SMTPTransport.java:754)
+	at j.m.Service.connect(Service.java:342)
+	at o.s.m.j.JavaMailSenderImpl.connectTransport(JavaMailSenderImpl.java:518)
+	at o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:437)
+	... 100 common frames omitted
+Caused by: j.n.s.SSLException: Unsupported or unrecognized SSL message
+	at s.s.s.SSLSocketInputRecord.handleUnknownRecord(SSLSocketInputRecord.java:457)
+	at s.s.s.SSLSocketInputRecord.decode(SSLSocketInputRecord.java:175)
+	at s.s.s.SSLTransport.decode(SSLTransport.java:111)
+	at s.s.s.SSLSocketImpl.decode(SSLSocketImpl.java:1510)
+	at s.s.s.SSLSocketImpl.readHandshakeRecord(SSLSocketImpl.java:1425)
+	... 6 frames truncated
+	... 104 common frames omitted
+web - 2026-09-29 02:36:47,205 [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+web - 2026-09-29 02:36:47,206 [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.

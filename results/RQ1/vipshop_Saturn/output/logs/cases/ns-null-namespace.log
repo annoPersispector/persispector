@@ -1,0 +1,5 @@
+[2026-09-29 20:19:32.456] [INFO] [http-nio-127.0.0.1-18205-exec-5] [AUDITLOG] >>> REST API:[create] path:[/rest/v1/namespaces] is called by IP:[127.0.0.1], result is failed.
+[2026-09-29 20:19:32.457] [WARN] [http-nio-127.0.0.1-18205-exec-5] [c.v.s.j.c.controller.rest.AbstractRestController] >>> Exception happens while calling REST API:Invalid request. Missing parameter: {namespace}
+[2026-09-29 20:19:32.487] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==>  Preparing: select id, property, value from sys_config where id in (select max(id) from sys_config where property in ( ? ) group by property) 
+[2026-09-29 20:19:32.487] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==> Parameters: REFRESH_REGISTRY_CENTER_UUID(String)
+[2026-09-29 20:19:32.488] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> <==      Total: 1

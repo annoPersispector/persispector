@@ -1,0 +1,16 @@
+2026-09-29T06:53:21.860040Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2026-09-29T06:53:21.860450Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.0.42-0ubuntu0.20.04.1) initializing of server in progress as process 934817
+2026-09-29T06:53:21.885702Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-09-29T06:53:22.438147Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-09-29T06:53:23.609144Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+2026-09-29T06:53:23.805676Z 6 [Warning] [MY-013360] [Server] Plugin mysql_native_password reported: ''mysql_native_password' is deprecated and will be removed in a future release. Please use caching_sha2_password instead'
+2026-09-29T06:53:27.515193Z 0 [Warning] [MY-010097] [Server] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2026-09-29T06:53:27.515239Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2026-09-29T06:53:27.515259Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.42-0ubuntu0.20.04.1) starting as process 934895
+2026-09-29T06:53:27.522146Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-09-29T06:53:27.748572Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-09-29T06:53:27.975875Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-09-29T06:53:27.975939Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-09-29T06:53:27.978762Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/tmp' in the path is accessible to all OS users. Consider choosing a different directory.
+2026-09-29T06:53:28.004715Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.42-0ubuntu0.20.04.1'  socket: '/tmp/ymysql/mysql.sock'  port: 0  (Ubuntu).
+2026-09-29T06:53:35.403745Z 8 [Warning] [MY-013360] [Server] Plugin mysql_native_password reported: ''mysql_native_password' is deprecated and will be removed in a future release. Please use caching_sha2_password instead'

@@ -1,0 +1,28 @@
+{
+ "case_id": "A09b-readback-tags",
+ "purpose": "read-back",
+ "target_ids": [
+  "pc-0f438b438a43"
+ ],
+ "request": {
+  "method": "GET",
+  "url": "http://127.0.0.1:18208/tags",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "body": null
+ },
+ "response": {
+  "status": 200,
+  "body": {
+   "tags": [
+    "alpha",
+    "beta",
+    "gamma",
+    "delta",
+    "gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
+   ]
+  }
+ },
+ "note": ""
+}

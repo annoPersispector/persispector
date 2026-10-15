@@ -1,0 +1,20 @@
+# Table references in application Java/XML sources (excluding frontend)
+./cloud/cloud-message-service/src/main/java/com/funtl/myshop/plus/cloud/producer/MessageProducer.java:37:    public boolean sendAdminLoginLog(UmsAdminLoginLogDTO dto) {
+./cloud/cloud-message-api/src/main/java/com/funtl/myshop/plus/cloud/api/MessageService.java:7:    boolean sendAdminLoginLog(UmsAdminLoginLogDTO umsAdminLoginLogDTO);
+./business/business-oauth2-service/src/main/java/com/funtl/myshop/plus/business/configure/AuthorizationServerConfiguration.java:34:import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
+./business/business-oauth2-service/src/main/java/com/funtl/myshop/plus/business/configure/AuthorizationServerConfiguration.java:36:import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
+./business/business-oauth2-service/src/main/java/com/funtl/myshop/plus/business/configure/AuthorizationServerConfiguration.java:78://        return new JdbcTokenStore(dataSource());
+./business/business-oauth2-service/src/main/java/com/funtl/myshop/plus/business/configure/AuthorizationServerConfiguration.java:79:        return new RedisTokenStore(redisConnectionFactory);
+./business/business-oauth2-service/src/main/java/com/funtl/myshop/plus/business/configure/AuthorizationServerConfiguration.java:85:        return new JdbcClientDetailsService(dataSource());
+./business/business-oauth2-service/src/main/java/com/funtl/myshop/plus/business/controller/LoginController.java:117:            sendAdminLoginLog(userDetails.getUsername(), request);
+./business/business-oauth2-service/src/main/java/com/funtl/myshop/plus/business/controller/LoginController.java:174:    private void sendAdminLoginLog(String username, HttpServletRequest request) {
+./business/business-oauth2-service/src/main/java/com/funtl/myshop/plus/business/controller/LoginController.java:181:            String address = UserAgentUtils.getIpInfo(ip).getCity();
+./business/business-oauth2-service/src/main/java/com/funtl/myshop/plus/business/controller/LoginController.java:190:            messageService.sendAdminLoginLog(dto);
+./commons/commons-utils/src/main/java/com/funtl/myshop/plus/commons/utils/UserAgentUtils.java:79:    public static IpInfo getIpInfo(String ip) {
+./commons/commons-utils/src/main/java/com/funtl/myshop/plus/commons/utils/UserAgentUtils.java:85:            URL url = new URL("http://ip.taobao.com/service/getIpInfo.php?ip=" + ip);
+./provider/provider-admin-login-log-service/src/main/java/com/funtl/myshop/plus/provider/mapper/UmsAdminLoginLogMapper.java:6:public interface UmsAdminLoginLogMapper extends MyMapper<UmsAdminLoginLog> {
+./provider/provider-admin-service/src/main/java/com/funtl/myshop/plus/provider/mapper/UmsAdminMapper.java:6:public interface UmsAdminMapper extends MyMapper<UmsAdmin> {
+./provider/provider-admin-login-log-api/src/main/java/com/funtl/myshop/plus/provider/domain/UmsAdminLoginLog.java:25:@Table(name = "ums_admin_login_log")
+./provider/provider-admin-api/src/main/java/com/funtl/myshop/plus/provider/domain/UmsAdmin.java:25:@Table(name = "ums_admin")
+./message/message-admin-login-log/src/main/java/com/funtl/myshop/plus/message/consumer/AdminLoginLogReceive.java:7:import org.springframework.cloud.stream.annotation.StreamListener;
+./message/message-admin-login-log/src/main/java/com/funtl/myshop/plus/message/consumer/AdminLoginLogReceive.java:16:    @StreamListener("admin-login-log-topic")

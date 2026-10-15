@@ -1,0 +1,37 @@
+{
+ "case_id": "sc-update-len-value-2001",
+ "purpose": "violation",
+ "target_hint": [
+  "sys_config.value length"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/configs/console/update",
+  "headers": {
+   "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+  },
+  "body": {
+   "key": "PV_TEST_A",
+   "value": "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+  },
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:19:45 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"status\":1,\"message\":\"\\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \\\"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\\\u5c5e\\\\u6027\\\\u503c')\\\": \\\"'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww... (2001)\\\"; SQL statement:\\nupdate sys_config\\n        set property = ?, value = ?\\n        where id = ? [22001-192]\\n### The error may involve com.vip.saturn.job.console.mybatis.repository.SystemConfigRepository.updateById-Inline\\n### The error occurred while setting parameters\\n### SQL: update sys_config         set property = ?, value = ?         where id = ?\\n### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \\\"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\\\u5c5e\\\\u6027\\\\u503c')\\\": \\\"'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww... (2001)\\\"; SQL statement:\\nupdate sys_config\\n        set property = ?, value = ?\\n        where id = ? [22001-192]\\n; SQL []; Value too long for column \\\"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\\\u5c5e\\\\u6027\\\\u503c')\\\": \\\"'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww... (2001)\\\"; SQL statement:\\nupdate sys_config\\n        set property = ?, value = ?\\n        where id = ? [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \\\"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\\\u5c5e\\\\u6027\\\\u503c')\\\": \\\"'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww... (2001)\\\"; SQL statement:\\nupdate sys_config\\n        set property = ?, value = ?\\n        where id = ? [22001-192]\",\"obj\":\"\"}",
+  "json": {
+   "status": 1,
+   "message": "\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u503c')\": \"'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww... (2001)\"; SQL statement:\nupdate sys_config\n        set property = ?, value = ?\n        where id = ? [22001-192]\n### The error may involve com.vip.saturn.job.console.mybatis.repository.SystemConfigRepository.updateById-Inline\n### The error occurred while setting parameters\n### SQL: update sys_config         set property = ?, value = ?         where id = ?\n### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u503c')\": \"'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww... (2001)\"; SQL statement:\nupdate sys_config\n        set property = ?, value = ?\n        where id = ? [22001-192]\n; SQL []; Value too long for column \"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u503c')\": \"'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww... (2001)\"; SQL statement:\nupdate sys_config\n        set property = ?, value = ?\n        where id = ? [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u503c')\": \"'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww... (2001)\"; SQL statement:\nupdate sys_config\n        set property = ?, value = ?\n        where id = ? [22001-192]",
+   "obj": ""
+  }
+ },
+ "elapsed_seconds": 0.006,
+ "timestamp": "2026-09-29T20:19:46-0400"
+}

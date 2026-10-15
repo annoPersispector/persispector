@@ -1,0 +1,33 @@
+{
+  "case_id": "R03-readback-users-roles",
+  "kind": "read-back",
+  "channel": "H2 web console /h2/query.do (SELECT only)",
+  "sql": "SELECT UR.USER_ID, U.EMAIL, UR.ROLE_ID, R.NAME FROM USERS_ROLES UR JOIN USER_ACCOUNT U ON U.ID=UR.USER_ID JOIN ROLE R ON R.ID=UR.ROLE_ID ORDER BY UR.USER_ID",
+  "status": 200,
+  "rows": [
+    [
+      "USER_ID",
+      "EMAIL",
+      "ROLE_ID",
+      "NAME"
+    ],
+    [
+      "1",
+      "test@test.com",
+      "1",
+      "ROLE_ADMIN"
+    ],
+    [
+      "2",
+      "pv.control@example.test",
+      "2",
+      "ROLE_USER"
+    ],
+    [
+      "3",
+      "pv.b30@example.test",
+      "2",
+      "ROLE_USER"
+    ]
+  ]
+}

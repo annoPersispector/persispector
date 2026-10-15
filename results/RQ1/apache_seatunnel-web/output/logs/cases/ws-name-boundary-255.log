@@ -1,0 +1,23 @@
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@fd6c718] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@604439977 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 4, 1, <<BLOB>>, 1, 2026-09-29 04:32:04.687, 2026-09-29 04:32:04.687, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@fd6c718]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@74c27685] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1760829433 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,workspace_name,description,create_time,update_time FROM workspace WHERE (workspace_name = ?)
+==> Parameters: nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn(String)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@74c27685]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@54018711] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1264236419 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: INSERT INTO workspace ( id, workspace_name, description ) VALUES ( ?, ?, ? )
+==> Parameters: 23198761614496(Long), nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn(String), ok(String)
+<==    Updates: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@54018711]

@@ -1,0 +1,11 @@
+2026-09-29 12:15:25.798  INFO 1156472 --- [20882-thread-19] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Starting...
+2026-09-29 12:15:25.950  INFO 1156472 --- [20882-thread-19] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Start completed.
+2026-09-29 12:15:25.954 DEBUG 1156472 --- [20882-thread-19] c.f.m.p.p.m.U.selectOneByExample         : ==>  Preparing: SELECT id,username,`password`,icon,email,nick_name,note,create_time,login_time,`status` FROM ums_admin WHERE ( ( username = ? ) ) 
+2026-09-29 12:15:25.967 DEBUG 1156472 --- [20882-thread-19] c.f.m.p.p.m.U.selectOneByExample         : ==> Parameters: pv121525ok(String)
+2026-09-29 12:15:25.976 DEBUG 1156472 --- [20882-thread-19] c.f.m.p.p.m.U.selectOneByExample         : <==      Total: 0
+2026-09-29 12:15:26.116 DEBUG 1156472 --- [20882-thread-20] c.f.m.p.p.mapper.UmsAdminMapper.insert   : ==>  Preparing: INSERT INTO ums_admin ( id,username,`password`,icon,email,nick_name,note,create_time,login_time,`status` ) VALUES( ?,?,?,?,?,?,?,?,?,? ) 
+2026-09-29 12:15:26.117 DEBUG 1156472 --- [20882-thread-20] c.f.m.p.p.mapper.UmsAdminMapper.insert   : ==> Parameters: null, pv121525ok(String), $2a$10$d5GKU85xYGA5Cjm371AplOgO419NpvY7ubIAGHe7CbIXnM9XCnsEq(String), http://x/i.png(String), a@b.c(String), nick(String), n(String), 2026-09-29 12:15:26.044(Timestamp), 2026-09-29 12:15:26.044(Timestamp), 1(Integer)
+2026-09-29 12:15:26.123 DEBUG 1156472 --- [20882-thread-20] c.f.m.p.p.mapper.UmsAdminMapper.insert   : <==    Updates: 1
+2026-09-29 12:15:26.127 DEBUG 1156472 --- [20882-thread-21] c.f.m.p.p.m.U.selectOneByExample         : ==>  Preparing: SELECT id,username,`password`,icon,email,nick_name,note,create_time,login_time,`status` FROM ums_admin WHERE ( ( username = ? ) ) 
+2026-09-29 12:15:26.127 DEBUG 1156472 --- [20882-thread-21] c.f.m.p.p.m.U.selectOneByExample         : ==> Parameters: pv121525ok(String)
+2026-09-29 12:15:26.129 DEBUG 1156472 --- [20882-thread-21] c.f.m.p.p.m.U.selectOneByExample         : <==      Total: 1

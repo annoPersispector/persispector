@@ -1,0 +1,3 @@
+[2026-09-29 20:19:43.489] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==>  Preparing: select id, property, value from sys_config where id in (select max(id) from sys_config where property in ( ? ) group by property) 
+[2026-09-29 20:19:43.489] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==> Parameters: REFRESH_REGISTRY_CENTER_UUID(String)
+[2026-09-29 20:19:43.489] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> <==      Total: 1

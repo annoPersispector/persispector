@@ -1,0 +1,4 @@
+[2026-09-29 20:19:30.793] [DEBUG] [http-nio-127.0.0.1-18205-exec-1] [c.v.s.j.c.mybatis.repository.UserRepository.select] >>> ==>  Preparing: SELECT `user_name`, `password`, `real_name`, `employee_id`, `email`, `created_by`, `create_time`, `last_updated_by`, `last_update_time`, `is_deleted` FROM `user` WHERE `user_name` = ? AND `is_deleted` = '0' 
+[2026-09-29 20:19:30.793] [DEBUG] [http-nio-127.0.0.1-18205-exec-1] [c.v.s.j.c.mybatis.repository.UserRepository.select] >>> ==> Parameters: admin(String)
+[2026-09-29 20:19:30.794] [DEBUG] [http-nio-127.0.0.1-18205-exec-1] [c.v.s.j.c.mybatis.repository.UserRepository.select] >>> <==      Total: 1
+[2026-09-29 20:19:30.794] [INFO] [http-nio-127.0.0.1-18205-exec-1] [AUDITLOG] >>> admin() was login where ip=127.0.0.1 

@@ -1,0 +1,47 @@
+{
+  "case_id": "vt2-update-tbname-len-64",
+  "purpose": "violation",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/virtual_table/23198791691936",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "datasourceId": "23198791306016",
+      "databaseName": "vdb",
+      "tableName": "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+      "description": "d",
+      "tableFields": [
+        {
+          "fieldName": "id",
+          "fieldType": "INT",
+          "nullable": false,
+          "primaryKey": true
+        }
+      ],
+      "databaseProperties": {
+        "k": "v"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:36:07 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 99999,
+      "msg": "Unknown exception. \n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLDataException: Value too long for column \"virtual_table_name CHARACTER VARYING(63)\": \"'WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW' (64)\"; SQL statement:\nUPDATE t_st_virtual_table  SET datasource_id=?, virtual_database_name=?, virtual_table_name=?, table_fields=?, description=?, virtual_table_config=?,  update_user_id=?,  update_time=?, workspace_id=?  WHERE id=? [22001-214]\n### The error may exist in org/apache/seatunnel/app/dal/mapper/VirtualTableMapper.java (best guess)\n### The error may involve org.apache.seatunnel.app.dal.mapper.VirtualTableMapper.updateById-Inline\n### The error occurred while setting parameters\n### SQL: UPDATE t_st_virtual_table  SET datasource_id=?, virtual_database_name=?, virtual_table_name=?, table_fields=?, description=?, virtual_table_config=?,  update_user_id=?,  update_time=?, workspace_id=?  WHERE id=?\n### Cause: org.h2.jdbc.JdbcSQLDataException: Value too long for column \"virtual_table_name CHARACTER VARYING(63)\": \"'WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW' (64)\"; SQL statement:\nUPDATE t_st_virtual_table  SET datasource_id=?, virtual_database_name=?, virtual_table_name=?, table_fields=?, description=?, virtual_table_config=?,  update_user_id=?,  update_time=?, workspace_id=?  WHERE id=? [22001-214]\n; Value too long for column \"virtual_table_name CHARACTER VARYING(63)\": \"'WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW' (64)\"; SQL statement:\nUPDATE t_st_virtual_table  SET datasource_id=?, virtual_database_name=?, virtual_table_name=?, table_fields=?, description=?, virtual_table_config=?,  update_user_id=?,  update_time=?, workspace_id=?  WHERE id=? [22001-214]; nested exception is org.h2.jdbc.JdbcSQLDataException: Value too long for column \"virtual_table_name CHARACTER VARYING(63)\": \"'WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW' (64)\"; SQL statement:\nUPDATE t_st_virtual_table  SET datasource_id=?, virtual_database_name=?, virtual_table_name=?, table_fields=?, description=?, virtual_table_config=?,  update_user_id=?,  update_time=?, workspace_id=?  WHERE id=? [22001-214]",
+      "data": null,
+      "failed": true,
+      "success": false
+    }
+  },
+  "log_slice": "logs/cases/vt2-update-tbname-len-64.log"
+}

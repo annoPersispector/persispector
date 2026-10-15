@@ -1,0 +1,33 @@
+{
+  "case_id": "C10-resend-verification-token",
+  "note": "control: regenerate verification token (update path of VerificationToken.user association)",
+  "timestamp": "2026-09-29T06:37:38Z",
+  "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:18206/user/resendRegistrationToken?token=f09e0c1d-959b-4506-b6c0-3322b9427d97",
+    "headers": {
+      "User-Agent": "python-requests/2.31.0",
+      "Accept-Encoding": "gzip, deflate, br",
+      "Accept": "*/*",
+      "Connection": "keep-alive"
+    },
+    "form": {}
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "X-XSS-Protection": "0",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "Pragma": "no-cache",
+      "Expires": "0",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Transfer-Encoding": "chunked",
+      "Date": "Tue, 29 Sep 2026 06:37:38 GMT",
+      "Connection": "close"
+    },
+    "body": "{\"message\":\"Error Occurred\",\"error\":\"InternalError\"}"
+  },
+  "correlated_log": "web - 2026-09-29 02:37:38,963 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.s.w.s.DispatcherServlet - GET \"/user/resendRegistrationToken?token=f09e0c1d-959b-4506-b6c0-3322b9427d97\", parameters={masked}\nweb - 2026-09-29 02:37:38,964 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select v1_0.id,v1_0.expiry_date,v1_0.token,v1_0.user_id from verification_token v1_0 where v1_0.token=?\nweb - 2026-09-29 02:37:38,965 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [f09e0c1d-959b-4506-b6c0-3322b9427d97]\nweb - 2026-09-29 02:37:38,965 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,r1_0.user_id,r1_1.id,r1_1.name,u1_0.secret from user_account u1_0 left join (users_roles r1_0 join role r1_1 on r1_1.id=r1_0.role_id) on u1_0.id=r1_0.user_id where u1_0.id=?\nweb - 2026-09-29 02:37:38,966 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [3]\nweb - 2026-09-29 02:37:38,967 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - update verification_token set expiry_date=?,token=?,user_id=? where id=?\nweb - 2026-09-29 02:37:38,967 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [TIMESTAMP] - [Wed Sep 30 02:37:38 EDT 2026]\nweb - 2026-09-29 02:37:38,967 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [2] as [VARCHAR] - [530edeea-8dfb-4397-86cd-5bdb4f2b2585]\nweb - 2026-09-29 02:37:38,967 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [3] as [BIGINT] - [3]\nweb - 2026-09-29 02:37:38,967 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [4] as [BIGINT] - [2]\nweb - 2026-09-29 02:37:38,968 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select v1_0.id,v1_0.expiry_date,v1_0.token,v1_0.user_id from verification_token v1_0 where v1_0.token=?\nweb - 2026-09-29 02:37:38,968 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [530edeea-8dfb-4397-86cd-5bdb4f2b2585]\nweb - 2026-09-29 02:37:38,972 [http-nio-127.0.0.1-18206-exec-10] ERROR c.b.w.e.RestResponseEntityExceptionHandler - 500 Status Code\no.s.m.MailSendException: Mail server connection failed. Failed messages: jakarta.mail.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206;\n  nested exception is:\n\tjavax.net.ssl.SSLException: Unsupported or unrecognized SSL message\n\tat o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:448)\n\tat o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:323)\n\tat o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:312)\n\tat c.b.w.c.RegistrationRestController.resendRegistrationToken(RegistrationRestController.java:72)\n\tat j.i.r.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java)\n\t... 88 frames truncated\nCaused by: j.m.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206\n\tat c.s.m.s.SMTPTransport.openServer(SMTPTransport.java:2261)\n\tat c.s.m.s.SMTPTransport.protocolConnect(SMTPTransport.java:754)\n\tat j.m.Service.connect(Service.java:342)\n\tat o.s.m.j.JavaMailSenderImpl.connectTransport(JavaMailSenderImpl.java:518)\n\tat o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:437)\n\t... 92 common frames omitted\nCaused by: j.n.s.SSLException: Unsupported or unrecognized SSL message\n\tat s.s.s.SSLSocketInputRecord.handleUnknownRecord(SSLSocketInputRecord.java:457)\n\tat s.s.s.SSLSocketInputRecord.decode(SSLSocketInputRecord.java:175)\n\tat s.s.s.SSLTransport.decode(SSLTransport.java:111)\n\tat s.s.s.SSLSocketImpl.decode(SSLSocketImpl.java:1510)\n\tat s.s.s.SSLSocketImpl.readHandshakeRecord(SSLSocketImpl.java:1425)\n\t... 6 frames truncated\n\t... 96 common frames omitted\nweb - 2026-09-29 02:37:38,973 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.s.w.s.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR\n"
+}

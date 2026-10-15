@@ -1,0 +1,984 @@
+[
+ {
+  "case_id": "C01-control-valid",
+  "purpose": "control",
+  "target_ids": [
+   "pc-c82aa238dd70",
+   "pc-9b7836344020",
+   "pc-06d6fa8e45f7",
+   "pc-892ebfa4030e"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 200,
+  "reached_persistence": true,
+  "evidence": [
+   {
+    "path": "raw/C01-control-valid.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/C01-control-valid.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/C01-control-valid.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/C01-control-valid.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 200; body={\"code\":200,\"message\":\"用户注册成功\",\"data\":{\"id\":5,\"username\":\"pv121525ok\",\"password\":\"$2a$10$d5GKU85xYGA5Cjm371AplOgO419NpvY7ubIAGHe7CbIXnM9XCnsEq\",\"icon\":\"http://x/i.png\",\"email\":\"a@b.c\",\"nickName\":\"nick\",\"note\":\"n\",\"createTime\":\"2026-09-30 00:15:26\",\"loginTime\":\"2026-09-30 00:15:26\",\"status\":1}}; insert_statement_reached=True; sql_errors=[]"
+ },
+ {
+  "case_id": "C01-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-c82aa238dd70"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/C01-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "id\tusername\tpassword\tpw_len\ticon_len\temail_len\tnick_len\tnote_len\tcreate_time\tlogin_time\tstatus\n5\tpv121525ok\t$2a$10$d5GKU85xYGA5Cjm371AplOgO419NpvY7ubIAGHe7CbIXnM9XCnsEq\t60\t14\t5\t4\t1\t2026-09-30 00:15:26\t2026-09-30 00:15:26\t1"
+ },
+ {
+  "case_id": "C02-boundary-max-lengths",
+  "purpose": "boundary",
+  "target_ids": [
+   "pc-c82aa238dd70",
+   "pc-9b7836344020",
+   "pc-d50de559463c",
+   "pc-e43967957866",
+   "pc-06d6fa8e45f7",
+   "pc-892ebfa4030e",
+   "pc-07d96eea81e8",
+   "pc-5963beda89f5",
+   "pc-2b498cc952d3",
+   "pc-fac4a3c36dd7"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 200,
+  "reached_persistence": true,
+  "evidence": [
+   {
+    "path": "raw/C02-boundary-max-lengths.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/C02-boundary-max-lengths.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/C02-boundary-max-lengths.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/C02-boundary-max-lengths.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 200; body={\"code\":200,\"message\":\"用户注册成功\",\"data\":{\"id\":6,\"username\":\"pv121525bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"password\":\"$2a$10$qxjVzjRtChd1OYCUoggw5./dcCKbiWV6IS17bzL740v1npntU90l2\",\"icon\":\"iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii; insert_statement_reached=True; sql_errors=[]"
+ },
+ {
+  "case_id": "C02-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-c82aa238dd70",
+   "pc-d50de559463c",
+   "pc-06d6fa8e45f7",
+   "pc-07d96eea81e8",
+   "pc-2b498cc952d3"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/C02-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "id\tusername\tpassword\tpw_len\ticon_len\temail_len\tnick_len\tnote_len\tcreate_time\tlogin_time\tstatus\n6\tpv121525bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\t$2a$10$qxjVzjRtChd1OYCUoggw5./dcCKbiWV6IS17bzL740v1npntU90l2\t60\t500\t100\t200\t500\t2026-09-30 00:15:27\t2026-09-30 00:15:27\t0"
+ },
+ {
+  "case_id": "V01-username-65",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-c82aa238dd70",
+   "pc-9b7836344020"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 500,
+  "reached_persistence": true,
+  "evidence": [
+   {
+    "path": "raw/V01-username-65.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V01-username-65.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V01-username-65.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V01-username-65.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 500; body={\"timestamp\":\"2026-09-30 00:15:28\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"org.springframework.dao.DataIntegrityViolationException: \\n### Error updating database.  Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'username' at row 1\\n### The error may involve com.funtl.myshop.plus.provider.mapper.UmsAdminMapper.insert-Inline\\n### Th; insert_statement_reached=True; sql_errors=[\"### Error updating database.  Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'username' at row 1\", \"### Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'username' at row 1\"]"
+ },
+ {
+  "case_id": "V01-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-c82aa238dd70",
+   "pc-9b7836344020"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V01-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V02-icon-501",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-d50de559463c",
+   "pc-e43967957866"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 500,
+  "reached_persistence": true,
+  "evidence": [
+   {
+    "path": "raw/V02-icon-501.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V02-icon-501.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V02-icon-501.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V02-icon-501.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 500; body={\"timestamp\":\"2026-09-30 00:15:29\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"org.springframework.dao.DataIntegrityViolationException: \\n### Error updating database.  Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'icon' at row 1\\n### The error may involve com.funtl.myshop.plus.provider.mapper.UmsAdminMapper.insert-Inline\\n### The er; insert_statement_reached=True; sql_errors=[\"### Error updating database.  Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'icon' at row 1\", \"### Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'icon' at row 1\"]"
+ },
+ {
+  "case_id": "V02-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-d50de559463c",
+   "pc-e43967957866"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V02-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V03-email-101",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-06d6fa8e45f7",
+   "pc-892ebfa4030e"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 500,
+  "reached_persistence": true,
+  "evidence": [
+   {
+    "path": "raw/V03-email-101.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V03-email-101.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V03-email-101.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V03-email-101.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 500; body={\"timestamp\":\"2026-09-30 00:15:30\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"org.springframework.dao.DataIntegrityViolationException: \\n### Error updating database.  Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'email' at row 1\\n### The error may involve com.funtl.myshop.plus.provider.mapper.UmsAdminMapper.insert-Inline\\n### The e; insert_statement_reached=True; sql_errors=[\"### Error updating database.  Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'email' at row 1\", \"### Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'email' at row 1\"]"
+ },
+ {
+  "case_id": "V03-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-06d6fa8e45f7",
+   "pc-892ebfa4030e"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V03-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V04-nickname-201",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-07d96eea81e8",
+   "pc-5963beda89f5"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 500,
+  "reached_persistence": true,
+  "evidence": [
+   {
+    "path": "raw/V04-nickname-201.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V04-nickname-201.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V04-nickname-201.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V04-nickname-201.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 500; body={\"timestamp\":\"2026-09-30 00:15:31\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"org.springframework.dao.DataIntegrityViolationException: \\n### Error updating database.  Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'nick_name' at row 1\\n### The error may involve com.funtl.myshop.plus.provider.mapper.UmsAdminMapper.insert-Inline\\n### T; insert_statement_reached=True; sql_errors=[\"### Error updating database.  Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'nick_name' at row 1\", \"### Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'nick_name' at row 1\"]"
+ },
+ {
+  "case_id": "V04-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-07d96eea81e8",
+   "pc-5963beda89f5"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V04-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V05-note-501",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-2b498cc952d3",
+   "pc-fac4a3c36dd7"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 500,
+  "reached_persistence": true,
+  "evidence": [
+   {
+    "path": "raw/V05-note-501.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V05-note-501.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V05-note-501.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V05-note-501.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 500; body={\"timestamp\":\"2026-09-30 00:15:32\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"org.springframework.dao.DataIntegrityViolationException: \\n### Error updating database.  Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'note' at row 1\\n### The error may involve com.funtl.myshop.plus.provider.mapper.UmsAdminMapper.insert-Inline\\n### The er; insert_statement_reached=True; sql_errors=[\"### Error updating database.  Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'note' at row 1\", \"### Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'note' at row 1\"]"
+ },
+ {
+  "case_id": "V05-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-2b498cc952d3",
+   "pc-fac4a3c36dd7"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V05-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V06-password-100",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-c94103dbb013",
+   "pc-4025353f3429"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 200,
+  "reached_persistence": true,
+  "evidence": [
+   {
+    "path": "raw/V06-password-100.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V06-password-100.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V06-password-100.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V06-password-100.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 200; body={\"code\":200,\"message\":\"用户注册成功\",\"data\":{\"id\":7,\"username\":\"pv121525pw\",\"password\":\"$2a$10$c6GwS4S7Mw7OGa3fy2vjqOl4Z5rTXWiPf9WLXQeDuhaSgQamL1Eta\",\"icon\":null,\"email\":null,\"nickName\":null,\"note\":null,\"createTime\":\"2026-09-30 00:15:34\",\"loginTime\":\"2026-09-30 00:15:34\",\"status\":0}}; insert_statement_reached=True; sql_errors=[]"
+ },
+ {
+  "case_id": "V06-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-c94103dbb013",
+   "pc-4025353f3429"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V06-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "id\tusername\tpassword\tpw_len\ticon_len\temail_len\tnick_len\tnote_len\tcreate_time\tlogin_time\tstatus\n7\tpv121525pw\t$2a$10$c6GwS4S7Mw7OGa3fy2vjqOl4Z5rTXWiPf9WLXQeDuhaSgQamL1Eta\t60\tNULL\tNULL\tNULL\tNULL\t2026-09-30 00:15:34\t2026-09-30 00:15:34\t0"
+ },
+ {
+  "case_id": "V07-id-duplicate-pk",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-830c39ccfb6b"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 500,
+  "reached_persistence": true,
+  "evidence": [
+   {
+    "path": "raw/V07-id-duplicate-pk.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V07-id-duplicate-pk.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V07-id-duplicate-pk.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V07-id-duplicate-pk.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 500; body={\"timestamp\":\"2026-09-30 00:15:35\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"org.springframework.dao.DuplicateKeyException: \\n### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'ums_admin.PRIMARY'\\n### The error may involve com.funtl.myshop.plus.provider.mapper.UmsAdminMapper.insert-Inline\\n### The error occurred while ; insert_statement_reached=True; sql_errors=[\"### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'ums_admin.PRIMARY'\", \"### Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'ums_admin.PRIMARY'\"]"
+ },
+ {
+  "case_id": "V07-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-830c39ccfb6b"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V07-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V08-id-null",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-566dafe4ec19"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 200,
+  "reached_persistence": true,
+  "evidence": [
+   {
+    "path": "raw/V08-id-null.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V08-id-null.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V08-id-null.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V08-id-null.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 200; body={\"code\":200,\"message\":\"用户注册成功\",\"data\":{\"id\":8,\"username\":\"pv121525nullid\",\"password\":\"$2a$10$hEhTiX.9GekUL.skNsVKsOOU0NZ42mtn.Byd5uxNkcsLhlo0rk/2u\",\"icon\":null,\"email\":null,\"nickName\":null,\"note\":null,\"createTime\":\"2026-09-30 00:15:36\",\"loginTime\":\"2026-09-30 00:15:36\",\"status\":0}}; insert_statement_reached=True; sql_errors=[]"
+ },
+ {
+  "case_id": "V08-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-566dafe4ec19"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V08-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "id\tusername\tpassword\tpw_len\ticon_len\temail_len\tnick_len\tnote_len\tcreate_time\tlogin_time\tstatus\n8\tpv121525nullid\t$2a$10$hEhTiX.9GekUL.skNsVKsOOU0NZ42mtn.Byd5uxNkcsLhlo0rk/2u\t60\tNULL\tNULL\tNULL\tNULL\t2026-09-30 00:15:36\t2026-09-30 00:15:36\t0"
+ },
+ {
+  "case_id": "V09-id-over-bigint",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-4077068a2bf5"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 400,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/V09-id-over-bigint.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V09-id-over-bigint.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V09-id-over-bigint.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V09-id-over-bigint.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 400; body={\"timestamp\":\"2026-09-30 00:15:37\",\"status\":400,\"error\":\"Bad Request\",\"message\":\"JSON parse error: Numeric value (9223372036854775808) out of range of long; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Numeric value (9223372036854775808) out of range of long\\n at [Source: (PushbackInputStream); line: 1, column: 8] (through reference chain: com.funtl.myshop.plus.provider; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "V09-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-4077068a2bf5"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V09-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V10-id-non-integer",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-4077068a2bf5"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 400,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/V10-id-non-integer.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V10-id-non-integer.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V10-id-non-integer.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V10-id-non-integer.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 400; body={\"timestamp\":\"2026-09-30 00:15:38\",\"status\":400,\"error\":\"Bad Request\",\"message\":\"JSON parse error: Cannot deserialize value of type `java.lang.Long` from String \\\"abc\\\": not a valid Long value; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.lang.Long` from String \\\"abc\\\": not a valid Long value\\n at [Source: (PushbackInputStrea; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "C03-id-bigint-max",
+  "purpose": "boundary",
+  "target_ids": [
+   "pc-4077068a2bf5"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 200,
+  "reached_persistence": true,
+  "evidence": [
+   {
+    "path": "raw/C03-id-bigint-max.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/C03-id-bigint-max.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/C03-id-bigint-max.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/C03-id-bigint-max.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 200; body={\"code\":200,\"message\":\"用户注册成功\",\"data\":{\"id\":9223372036854775000,\"username\":\"pv121525maxid\",\"password\":\"$2a$10$jF.oOCxKkzf26sjhgucFreACndbaQS.IfukTL.GO/V/L7iJ9vZsSS\",\"icon\":null,\"email\":null,\"nickName\":null,\"note\":null,\"createTime\":\"2026-09-30 00:15:39\",\"loginTime\":\"2026-09-30 00:15:39\",\"status\":0}}; insert_statement_reached=True; sql_errors=[]"
+ },
+ {
+  "case_id": "C03-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-4077068a2bf5"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/C03-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "id\tusername\tpassword\tpw_len\ticon_len\temail_len\tnick_len\tnote_len\tcreate_time\tlogin_time\tstatus\n9223372036854775000\tpv121525maxid\t$2a$10$jF.oOCxKkzf26sjhgucFreACndbaQS.IfukTL.GO/V/L7iJ9vZsSS\t60\tNULL\tNULL\tNULL\tNULL\t2026-09-30 00:15:39\t2026-09-30 00:15:39\t0"
+ },
+ {
+  "case_id": "V11-status-over-int",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-bcab32ac6f64"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 400,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/V11-status-over-int.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V11-status-over-int.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V11-status-over-int.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V11-status-over-int.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 400; body={\"timestamp\":\"2026-09-30 00:15:40\",\"status\":400,\"error\":\"Bad Request\",\"message\":\"JSON parse error: Numeric value (2147483648) out of range of int; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Numeric value (2147483648) out of range of int\\n at [Source: (PushbackInputStream); line: 1, column: 60] (through reference chain: com.funtl.myshop.plus.provider.domain.UmsAdmin[\\\"; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "V11-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-bcab32ac6f64"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V11-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V12-status-non-integer",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-bcab32ac6f64"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 400,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/V12-status-non-integer.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V12-status-non-integer.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V12-status-non-integer.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V12-status-non-integer.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 400; body={\"timestamp\":\"2026-09-30 00:15:41\",\"status\":400,\"error\":\"Bad Request\",\"message\":\"JSON parse error: Cannot deserialize value of type `java.lang.Integer` from String \\\"x\\\": not a valid Integer value; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.lang.Integer` from String \\\"x\\\": not a valid Integer value\\n at [Source: (PushbackIn; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "C04-status-int-max-display-width",
+  "purpose": "boundary",
+  "target_ids": [
+   "pc-bcab32ac6f64"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 200,
+  "reached_persistence": true,
+  "evidence": [
+   {
+    "path": "raw/C04-status-int-max-display-width.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/C04-status-int-max-display-width.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/C04-status-int-max-display-width.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/C04-status-int-max-display-width.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 200; body={\"code\":200,\"message\":\"用户注册成功\",\"data\":{\"id\":9223372036854775001,\"username\":\"pv121525st3\",\"password\":\"$2a$10$0vSPxqbr3yiml/AaUgjWkuoH1qU/JglrRdWP7B1/rB5yDBc/JKUpq\",\"icon\":null,\"email\":null,\"nickName\":null,\"note\":null,\"createTime\":\"2026-09-30 00:15:42\",\"loginTime\":\"2026-09-30 00:15:42\",\"status\":2147483647}}; insert_statement_reached=True; sql_errors=[]"
+ },
+ {
+  "case_id": "C04-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-bcab32ac6f64"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/C04-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "id\tusername\tpassword\tpw_len\ticon_len\temail_len\tnick_len\tnote_len\tcreate_time\tlogin_time\tstatus\n9223372036854775001\tpv121525st3\t$2a$10$0vSPxqbr3yiml/AaUgjWkuoH1qU/JglrRdWP7B1/rB5yDBc/JKUpq\t60\tNULL\tNULL\tNULL\tNULL\t2026-09-30 00:15:42\t2026-09-30 00:15:42\t2147483647"
+ },
+ {
+  "case_id": "V13-createtime-loginTime-out-of-range",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-4b80a8cb1221",
+   "pc-f2ed0251561b"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 200,
+  "reached_persistence": true,
+  "evidence": [
+   {
+    "path": "raw/V13-createtime-loginTime-out-of-range.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V13-createtime-loginTime-out-of-range.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V13-createtime-loginTime-out-of-range.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V13-createtime-loginTime-out-of-range.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 200; body={\"code\":200,\"message\":\"用户注册成功\",\"data\":{\"id\":9223372036854775002,\"username\":\"pv121525dt\",\"password\":\"$2a$10$zPyVIcEEKvGtmEge.sCO.e1LO6LPt/U5DsE9jwm.6y.7594C2MSOW\",\"icon\":null,\"email\":null,\"nickName\":null,\"note\":null,\"createTime\":\"2026-09-30 00:15:43\",\"loginTime\":\"2026-09-30 00:15:43\",\"status\":0}}; insert_statement_reached=True; sql_errors=[]"
+ },
+ {
+  "case_id": "V13-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-4b80a8cb1221",
+   "pc-f2ed0251561b"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V13-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "id\tusername\tpassword\tpw_len\ticon_len\temail_len\tnick_len\tnote_len\tcreate_time\tlogin_time\tstatus\n9223372036854775002\tpv121525dt\t$2a$10$zPyVIcEEKvGtmEge.sCO.e1LO6LPt/U5DsE9jwm.6y.7594C2MSOW\t60\tNULL\tNULL\tNULL\tNULL\t2026-09-30 00:15:43\t2026-09-30 00:15:43\t0"
+ },
+ {
+  "case_id": "V14-createtime-garbage",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-4b80a8cb1221",
+   "pc-f2ed0251561b"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 400,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/V14-createtime-garbage.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V14-createtime-garbage.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V14-createtime-garbage.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V14-createtime-garbage.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 400; body={\"timestamp\":\"2026-09-30 00:15:44\",\"status\":400,\"error\":\"Bad Request\",\"message\":\"JSON parse error: Cannot deserialize value of type `java.util.Date` from String \\\"not-a-date\\\": expected format \\\"yyyy-MM-dd HH:mm:ss\\\"; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.util.Date` from String \\\"not-a-date\\\": expected format \\\"yyyy-MM; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "V14-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-4b80a8cb1221",
+   "pc-f2ed0251561b"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V14-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ }
+]

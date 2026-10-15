@@ -1,0 +1,31 @@
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7de36a16] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1053385066 wrapping conn3: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 10, 1, <<BLOB>>, 1, 2026-09-29 04:33:25.366, 2026-09-29 04:33:25.366, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7de36a16]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7992433f] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@335989526 wrapping conn3: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id , create_time, update_time from t_st_job_definition WHERE workspace_id = ? and name LIKE concat('%', ?, '%') order by update_time desc
+==> Parameters: 1(Long), jc_job(String)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7992433f]
+Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7253a05a]
+JDBC Connection [HikariProxyConnection@1812233507 wrapping conn3: url=jdbc:h2:mem:seatunnel user=SA] will be managed by Spring
+==>  Preparing: insert into `t_st_job_definition` ( id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id ) values (?, ?, ?,?, ?, ?, ?)
+==> Parameters: 23198772738848(Long), jc_job(String), d(String), DATA_INTEGRATION(String), 1(Integer), 1(Integer), 1(Long)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7253a05a]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7253a05a] from current transaction
+==>  Preparing: INSERT INTO t_st_job_version ( id, name, job_id, job_mode, engine_name, engine_version, create_user_id, update_user_id, workspace_id ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? )
+==> Parameters: 23198772738848(Long), 1.0(String), 23198772738848(Long), BATCH(String), SeaTunnel(String), 2.3.11(String), 1(Integer), 1(Integer), 1(Long)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7253a05a]
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7253a05a]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7253a05a]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7253a05a]

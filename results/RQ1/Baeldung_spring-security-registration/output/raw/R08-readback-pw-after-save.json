@@ -1,0 +1,21 @@
+{
+  "case_id": "R08-readback-pw-after-save",
+  "kind": "read-back",
+  "channel": "H2 web console /h2/query.do (SELECT only)",
+  "sql": "SELECT ID, EMAIL, LENGTH(PASSWORD), PASSWORD FROM USER_ACCOUNT WHERE EMAIL='pv.control@example.test'",
+  "status": 200,
+  "rows": [
+    [
+      "ID",
+      "EMAIL",
+      "CHAR_LENGTH(PASSWORD)",
+      "PASSWORD"
+    ],
+    [
+      "2",
+      "pv.control@example.test",
+      "60",
+      "$2a$11$iI8TTa16IIvxUXKmX2x3je.buCA6iFWWKDJHChANjCZpelSFgf1IO"
+    ]
+  ]
+}

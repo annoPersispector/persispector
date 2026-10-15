@@ -1,0 +1,38 @@
+{
+  "case_id": "CC-06-boundary-duplicate-id-case-variant",
+  "purpose": "boundary",
+  "target_ids": [
+    "pc-82610b8aefc0",
+    "pc-5a7d64fe7c3a"
+  ],
+  "timestamp": "2026-09-29T12:27:18-0400",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18204/canaryConfig?configurationAccountName=sql-account",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "cfgcase",
+      "applications": [
+        "verifapp"
+      ],
+      "metrics": [],
+      "classifier": {
+        "groupWeights": {}
+      },
+      "judge": {
+        "name": "NetflixACAJudge-v1.0",
+        "judgeConfigurations": {}
+      },
+      "configVersion": "1",
+      "id": "CC-VALID-001"
+    }
+  },
+  "response": {
+    "status": 400,
+    "body": "{\"message\":\"Canary config 'CC-VALID-001' already exists.\"}"
+  },
+  "readback_sql": "SELECT id, JSON_UNQUOTE(JSON_EXTRACT(content,'$.name')) AS name FROM canary_config WHERE id='cc-valid-001'",
+  "readback_result": "id\tname\ncc-valid-001\tcfgvalid"
+}

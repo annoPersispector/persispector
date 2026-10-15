@@ -1,0 +1,21 @@
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3a2d91ed] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1937823352 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 4, 1, <<BLOB>>, 1, 2026-09-29 04:32:04.687, 2026-09-29 04:32:04.687, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3a2d91ed]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7bfe790e] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@439371217 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,workspace_name,description,create_time,update_time FROM workspace
+==> Parameters: 
+<==    Columns: id, workspace_name, description, create_time, update_time
+<==        Row: 1, default, default workspace, 2026-09-29 04:30:32.242, 2026-09-29 04:30:32.242
+<==        Row: 23198761561120, ws_ctrl, ctrl, 2026-09-29 04:32:04.698, 2026-09-29 04:32:04.698
+<==        Row: 23198761614496, nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn, ok, 2026-09-29 04:32:05.116, 2026-09-29 04:32:05.116
+<==        Row: 23198761726880, ws_desc255, ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd, 2026-09-29 04:32:05.993, 2026-09-29 04:32:05.993
+<==      Total: 4
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7bfe790e]

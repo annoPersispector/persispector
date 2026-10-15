@@ -1,0 +1,41 @@
+{
+ "case_id": "job-stream-setup-passive-4",
+ "purpose": "setup",
+ "target_hint": [
+  "job_config.down_stream length"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/namespaces/mydomain/jobs/jobs",
+  "headers": {
+   "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+  },
+  "body": {
+   "jobName": "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",
+   "jobType": "PASSIVE_JAVA_JOB",
+   "jobClass": "demo.DemoJavaJob",
+   "cron": "",
+   "shardingTotalCount": "1",
+   "shardingItemParameters": "0=0",
+   "description": "pv"
+  }
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:15:58 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"status\":0,\"message\":\"\",\"obj\":\"\"}",
+  "json": {
+   "status": 0,
+   "message": "",
+   "obj": ""
+  }
+ },
+ "elapsed_seconds": 0.032,
+ "timestamp": "2026-09-29T20:15:59-0400"
+}

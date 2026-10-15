@@ -1,0 +1,34 @@
+{
+  "case_id": "r2-ws-update-name-len-256",
+  "purpose": "violation",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/workspace/update/23198793140768",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "workspaceName": "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ",
+      "description": "d"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:36:11 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 99999,
+      "msg": "Unknown exception. \n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLDataException: Value too long for column \"workspace_name CHARACTER VARYING(255)\": \"'QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ... (256)\"; SQL statement:\nUPDATE workspace  SET workspace_name=?, description=?, create_time=?, update_time=?  WHERE id=? [22001-214]\n### The error may exist in org/apache/seatunnel/app/dal/mapper/WorkspaceMapper.java (best guess)\n### The error may involve org.apache.seatunnel.app.dal.mapper.WorkspaceMapper.updateById-Inline\n### The error occurred while setting parameters\n### SQL: UPDATE workspace  SET workspace_name=?, description=?, create_time=?, update_time=?  WHERE id=?\n### Cause: org.h2.jdbc.JdbcSQLDataException: Value too long for column \"workspace_name CHARACTER VARYING(255)\": \"'QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ... (256)\"; SQL statement:\nUPDATE workspace  SET workspace_name=?, description=?, create_time=?, update_time=?  WHERE id=? [22001-214]\n; Value too long for column \"workspace_name CHARACTER VARYING(255)\": \"'QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ... (256)\"; SQL statement:\nUPDATE workspace  SET workspace_name=?, description=?, create_time=?, update_time=?  WHERE id=? [22001-214]; nested exception is org.h2.jdbc.JdbcSQLDataException: Value too long for column \"workspace_name CHARACTER VARYING(255)\": \"'QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ... (256)\"; SQL statement:\nUPDATE workspace  SET workspace_name=?, description=?, create_time=?, update_time=?  WHERE id=? [22001-214]",
+      "data": null,
+      "failed": true,
+      "success": false
+    }
+  },
+  "log_slice": "logs/cases/r2-ws-update-name-len-256.log"
+}

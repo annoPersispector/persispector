@@ -1,0 +1,22 @@
+{
+  "case_id": "MS-02-violation-null-content",
+  "purpose": "violation",
+  "target_ids": [
+    "pc-2b8c47e5d7bd"
+  ],
+  "timestamp": "2026-09-29T12:27:29-0400",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18204/metricSetList?accountName=sql-account",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "null"
+  },
+  "response": {
+    "status": 400,
+    "body": ""
+  },
+  "readback_sql": "SELECT COUNT(*) AS n FROM metric_sets",
+  "readback_result": "n\n1"
+}

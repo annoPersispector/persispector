@@ -1,0 +1,2 @@
+2026-09-29 12:15:37.155  WARN 1157854 --- [.1-18205-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Numeric value (9223372036854775808) out of range of long; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Numeric value (9223372036854775808) out of range of long
+ at [Source: (PushbackInputStream); line: 1, column: 8] (through reference chain: com.funtl.myshop.plus.provider.domain.UmsAdmin["id"])]

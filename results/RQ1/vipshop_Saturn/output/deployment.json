@@ -1,0 +1,150 @@
+{
+ "schema_version": "persistence-runtime-verification-v2",
+ "application": "vipshop_Saturn",
+ "source_revision": null,
+ "isolated_application_path": "/artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application",
+ "build_system": "Maven 3.9.9 (multi-module; built modules: saturn-job, saturn-integrate, saturn-job-sharding, saturn-console-api, saturn-console-web, saturn-console)",
+ "java_version": "OpenJDK 1.8 (/usr/lib/jvm/java-8-openjdk-amd64) for build and runtime; project targets Java 1.7",
+ "runtime_database": "H2 1.4.192 embedded in-memory (jdbc:h2:mem:testdb), initialised by SaturnConsoleApp -Dsaturn.embeddedDb=true from db/h2/global.sql ('SET MODE MySQL'), db/h2/schema.sql and db/h2/data.sql",
+ "schema_context_id": "dbctx-fe653de54ee4",
+ "base_urls": [
+  "http://127.0.0.1:18205"
+ ],
+ "ports": [
+  18205,
+  2181
+ ],
+ "health_checks": [
+  "GET http://127.0.0.1:18205/rest/v1/mydomain/jobs -> 200 (polled after start; see raw/health-check.json)",
+  "Embedded ZooKeeper 127.0.0.1:2181 session established by the console (logs/console-stdout.log)"
+ ],
+ "commands": [
+  {
+   "purpose": "build (attempt 1, aborted: saturn-console-web npm install failed with CERT_HAS_EXPIRED against registry.npm.taobao.org)",
+   "command": "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 mvn -q -B clean package -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -pl saturn-console -am",
+   "working_directory": "/artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application",
+   "exit_code": null
+  },
+  {
+   "purpose": "build (attempt 2, frontend npm exec steps skipped; REST/GUI JSON APIs do not need the web bundle)",
+   "command": "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 mvn -B clean package -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dexec.skip=true -pl saturn-console -am",
+   "working_directory": "/artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application",
+   "exit_code": 0
+  },
+  {
+   "purpose": "start console (embedded ZK 2181 + embedded H2, HTTP 127.0.0.1:18205, MyBatis SQL DEBUG trace) inside a private unprivileged user+network namespace",
+   "command": "sh scripts/start-console-netns.sh  # unshare -rn; java -Dsaturn.embeddedZk=true -Dsaturn.embeddedDb=true -Dserver.port=18205 -Dserver.address=127.0.0.1 -Dlogging.level.com.vip.saturn.job.console.mybatis.repository=DEBUG -jar saturn-console/target/saturn-console-master-SNAPSHOT-exec.jar",
+   "working_directory": "/artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/output",
+   "exit_code": 0
+  },
+  {
+   "purpose": "health check (inside the namespace)",
+   "command": "sh scripts/nsrun.sh curl -s http://127.0.0.1:18205/rest/v1/mydomain/jobs",
+   "working_directory": "/artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/output",
+   "exit_code": 0
+  },
+  {
+   "purpose": "verification campaigns",
+   "command": "sh scripts/nsrun.sh python3 scripts/campaign_jobs.py; sh scripts/nsrun.sh python3 scripts/campaign_other.py; sh scripts/nsrun.sh python3 scripts/campaign_extra.py",
+   "working_directory": "/artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/output",
+   "exit_code": 0
+  },
+  {
+   "purpose": "offline H2 semantics check (bundled h2-1.4.192.jar, in-memory, no network)",
+   "command": "java -cp .:h2-1.4.192.jar T; java -cp .:h2-1.4.192.jar S ../application/saturn-console/src/main/resources/db/h2/schema.sql  (sources in scripts/T.java, scripts/S.java)",
+   "working_directory": "/tmp/pvh2",
+   "exit_code": 0
+  },
+  {
+   "purpose": "stop console (both runs)",
+   "command": "kill $(cat logs/netns-holder.pid)",
+   "working_directory": "/artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/output",
+   "exit_code": 0
+  },
+  {
+   "purpose": "generate result bundle",
+   "command": "python3 scripts/build_deployment.py && python3 scripts/build_results.py",
+   "working_directory": "/artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/output",
+   "exit_code": 0
+  }
+ ],
+ "patches": [],
+ "logs": [
+  {
+   "path": "logs/build-attempt1-npm-cert-failure.log",
+   "kind": "deployment-log",
+   "description": "First build attempt: npm install certificate failure in saturn-console-web",
+   "sha256": "70e635cfbf6ae150c08b272dd95a6dcd939a818f508cb76fa82d59c0282471da"
+  },
+  {
+   "path": "logs/build.log",
+   "kind": "deployment-log",
+   "description": "Successful Maven build with -Dexec.skip=true",
+   "sha256": "a160d3ec6b52f6e0993e034358b415f2951755e03ad8dcab47827ad9fae97589"
+  },
+  {
+   "path": "logs/console-stdout.log",
+   "kind": "application-log",
+   "description": "Console stdout (traced run) including MyBatis SQL DEBUG trace, audit log and errors",
+   "sha256": "88583e851bb0c6d8c8373b89642ff491d7adcd94d9e9d97663c676068c16e35f"
+  },
+  {
+   "path": "logs/console/saturn.console.log",
+   "kind": "application-log",
+   "description": "Console application log file (traced run)",
+   "sha256": "69e2033d623246b711a392285d37f78f5f219fabec2df7411f99ca6962a97d94"
+  },
+  {
+   "path": "logs/console/saturn.console-error.log",
+   "kind": "application-log",
+   "description": "Console error log file (traced run)",
+   "sha256": "97595ac6a0ad3940b26967d834736517e5cd0215f109e12dbbf63c15d78a2d5d"
+  },
+  {
+   "path": "logs/console/saturn.console-audit.log",
+   "kind": "application-log",
+   "description": "Console audit log file (traced run)",
+   "sha256": "add0948a924e776031521cc888c0b01abeea3730d542c61205aba8453dbbf02e"
+  },
+  {
+   "path": "logs/h2-1.4.192-null-default-semantics.log",
+   "kind": "database-log",
+   "description": "Offline H2 1.4.192 NULL/NOT NULL semantics under plain and MySQL mode",
+   "sha256": "bd99e7e48daba76e2f3c9c72f9a302b3ba21507c69a2be62c43cae3afc96d929"
+  },
+  {
+   "path": "logs/campaign_jobs.out",
+   "kind": "other",
+   "description": "Campaign summary: job_config",
+   "sha256": "4e4688d77e1bfe1b56943dc6b49b613a91f96d99767062d769c3190f969a1118"
+  },
+  {
+   "path": "logs/campaign_other.out",
+   "kind": "other",
+   "description": "Campaign summary: namespace/zk cluster/sys_config/user_role",
+   "sha256": "9c3279f9c0752da877523b571a4c2689a014db2adfc41a8970aba60ecca51a9b"
+  },
+  {
+   "path": "logs/campaign_extra.out",
+   "kind": "other",
+   "description": "Campaign summary: gap-filling cases",
+   "sha256": "7df9e9976c33f30a0a1fb5431e7d3f8872ba91fd098478f634ddb48f8fe8bc59"
+  },
+  {
+   "path": "logs/npmrc-after-upstream-npm-config-sh.txt",
+   "kind": "other",
+   "description": "Contents of ~/.npmrc after the upstream npm-config.sh ran during build attempt 1 (not reverted; see notes)",
+   "sha256": "21a2b4ae7c29304eb901fce98927430e37f3eefe2b554c7ad2c86e62873176e1"
+  }
+ ],
+ "cleanup_performed": true,
+ "notes": [
+  "No source patches were applied. The only build deviation is -Dexec.skip=true, which skips saturn-console-web's npm-config/npm install/npm run build exec steps (the frontend bundle is not needed for API verification).",
+  "Ports 18205 and 2181 on the host loopback were already held by a stale Saturn console (pid 1193521) left running by an earlier, unrelated verification run in .../vipshop_Saturn-20260929T171756Z-8d43935c. It was not stopped or used. This run's console was started in a private unprivileged user+network namespace (unshare -rn) with its own loopback, so it bound 127.0.0.1:18205 and 127.0.0.1:2181 there without conflict; all requests were issued from inside that namespace via nsenter (scripts/nsrun.sh).",
+  "The console was started twice: run 1 (evidence archived under raw/run1-no-sqltrace) and run 2 with MyBatis DEBUG SQL tracing. Both produced the same outcomes; results cite run 2. Each start used a fresh in-memory H2 database.",
+  "Both console processes started by this run were stopped (verified with kill -0); no process started by this run remains. The stale console pid 1193521 from the other run is still running, untouched.",
+  "Side effect outside the workspace: during build attempt 1 the upstream saturn-console-web/npm-config.sh ran 'npm config set registry https://registry.npm.taobao.org' and 'npm config set sass_binary_site ...', which rewrote ~/.npmrc (mtime 2026-09-29 20:10:44). Reverting it was denied by the sandbox permission policy, so it was left as-is. The user should restore their npm registry setting (e.g. 'npm config delete registry; npm config delete sass_binary_site').",
+  "H2 runs in MODE MySQL (db/h2/global.sql). In H2 1.4.192 this makes NULL on NOT NULL columns be stored as ''/0 instead of rejected, which weakens the declared NOT NULL predicates at runtime.",
+  "Authentication/authorization are disabled by default (application.properties). The admin/admin seed account was logged in to obtain a session user name; one case deliberately used an anonymous session."
+ ]
+}

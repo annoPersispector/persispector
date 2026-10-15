@@ -1,0 +1,39 @@
+{
+  "case_id": "jc-control",
+  "purpose": "control",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/job/config/23198772738848",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "name": "jc_job",
+      "description": "upd",
+      "env": {
+        "job.mode": "BATCH",
+        "parallelism": 1
+      },
+      "engine": "SeaTunnel"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:33:32 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 0,
+      "msg": null,
+      "data": null,
+      "failed": false,
+      "success": true
+    }
+  },
+  "log_slice": "logs/cases/jc-control.log"
+}

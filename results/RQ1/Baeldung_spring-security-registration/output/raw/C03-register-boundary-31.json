@@ -1,0 +1,41 @@
+{
+  "case_id": "C03-register-boundary-31",
+  "note": "boundary: 31-char raw password (first length rejected by application validator)",
+  "timestamp": "2026-09-29T06:37:35Z",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18206/user/registration",
+    "headers": {
+      "User-Agent": "python-requests/2.31.0",
+      "Accept-Encoding": "gzip, deflate, br",
+      "Accept": "*/*",
+      "Connection": "keep-alive",
+      "Content-Length": "173",
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    "form": {
+      "firstName": "Pv",
+      "lastName": "Check",
+      "email": "pv.b31@example.test",
+      "password": "Kp7#mQ2$vLr9!Tw4@Zc8^Hn5&Bd3*GK",
+      "matchingPassword": "Kp7#mQ2$vLr9!Tw4@Zc8^Hn5&Bd3*GK"
+    }
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "X-XSS-Protection": "0",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "Pragma": "no-cache",
+      "Expires": "0",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json",
+      "Transfer-Encoding": "chunked",
+      "Date": "Tue, 29 Sep 2026 06:37:35 GMT",
+      "Connection": "close"
+    },
+    "body": "{\"type\":\"about:blank\",\"title\":\"Bad Request\",\"status\":400,\"detail\":\"Invalid request content.\",\"instance\":\"/user/registration\"}"
+  },
+  "correlated_log": "web - 2026-09-29 02:37:35,797 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.DispatcherServlet - POST \"/user/registration\", parameters={masked}\nweb - 2026-09-29 02:37:35,817 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.DispatcherServlet - Completed 400 BAD_REQUEST\n"
+}

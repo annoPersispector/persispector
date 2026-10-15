@@ -1,0 +1,35 @@
+{
+ "case_id": "ns-len-zkcluster-256",
+ "purpose": "violation",
+ "target_hint": [
+  "namespace_zkcluster_mapping.zk_cluster_key length"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "body": {
+   "namespace": "pvns3",
+   "zkCluster": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+  },
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 400,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:17:08 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"message\":\"Fail to create new namespace {pvns3} for reason {not found zkclusterzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz}\"}",
+  "json": {
+   "message": "Fail to create new namespace {pvns3} for reason {not found zkclusterzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz}"
+  }
+ },
+ "elapsed_seconds": 0.006,
+ "timestamp": "2026-09-29T20:17:09-0400"
+}

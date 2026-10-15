@@ -1,0 +1,41 @@
+{
+  "case_id": "C04-register-violation-100",
+  "note": "violation: 100-char raw password",
+  "timestamp": "2026-09-29T06:36:28Z",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18206/user/registration",
+    "headers": {
+      "User-Agent": "python-requests/2.31.0",
+      "Accept-Encoding": "gzip, deflate, br",
+      "Accept": "*/*",
+      "Connection": "keep-alive",
+      "Content-Length": "376",
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    "form": {
+      "firstName": "Pv",
+      "lastName": "Check",
+      "email": "pv.v100@example.test",
+      "password": "Kp7#mQ2$vLr9!Tw4@Zc8^Hn5&Bd3*GKp7#mQ2$vLr9!Tw4@Zc8^Hn5&Bd3*GKp7#mQ2$vLr9!Tw4@Zc8^Hn5&Bd3*GKp7#mQ2$vL",
+      "matchingPassword": "Kp7#mQ2$vLr9!Tw4@Zc8^Hn5&Bd3*GKp7#mQ2$vLr9!Tw4@Zc8^Hn5&Bd3*GKp7#mQ2$vLr9!Tw4@Zc8^Hn5&Bd3*GKp7#mQ2$vL"
+    }
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "X-XSS-Protection": "0",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "Pragma": "no-cache",
+      "Expires": "0",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/problem+json",
+      "Transfer-Encoding": "chunked",
+      "Date": "Tue, 29 Sep 2026 06:36:28 GMT",
+      "Connection": "close"
+    },
+    "body": "{\"type\":\"about:blank\",\"title\":\"Bad Request\",\"status\":400,\"detail\":\"Invalid request content.\",\"instance\":\"/user/registration\"}"
+  },
+  "correlated_log": ""
+}

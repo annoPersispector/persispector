@@ -1,0 +1,30 @@
+{
+  "case_id": "CA-07-violation-null-id",
+  "purpose": "violation",
+  "target_ids": [
+    "pc-3c41052834d2"
+  ],
+  "timestamp": "2026-09-29T12:27:27-0400",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18204/canaryResultArchive?storageAccountName=sql-account",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "application": "nullidapp",
+      "pipelineId": "p",
+      "stageStatus": {
+        "s1": "succeeded"
+      },
+      "complete": true,
+      "status": "succeeded"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"pipelineId\":\"4b929a4c-f5c9-466b-b6ec-1d8ab9a159cb\"}"
+  },
+  "readback_sql": "SELECT id, CHAR_LENGTH(id) AS id_len FROM canary_archive WHERE JSON_UNQUOTE(JSON_EXTRACT(content,'$.application'))='nullidapp'",
+  "readback_result": "id\tid_len\n4b929a4c-f5c9-466b-b6ec-1d8ab9a159cb\t36"
+}

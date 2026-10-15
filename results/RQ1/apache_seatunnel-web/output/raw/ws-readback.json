@@ -1,0 +1,60 @@
+{
+  "case_id": "ws-readback",
+  "purpose": "read-back",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/workspace/list",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:32:07 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 0,
+      "msg": null,
+      "data": [
+        {
+          "id": 1,
+          "workspaceName": "default",
+          "description": "default workspace",
+          "createTime": "2026-09-29 08:30:32",
+          "updateTime": "2026-09-29 08:30:32"
+        },
+        {
+          "id": 23198761561120,
+          "workspaceName": "ws_ctrl",
+          "description": "ctrl",
+          "createTime": "2026-09-29 08:32:04",
+          "updateTime": "2026-09-29 08:32:04"
+        },
+        {
+          "id": 23198761614496,
+          "workspaceName": "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+          "description": "ok",
+          "createTime": "2026-09-29 08:32:05",
+          "updateTime": "2026-09-29 08:32:05"
+        },
+        {
+          "id": 23198761726880,
+          "workspaceName": "ws_desc255",
+          "description": "ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+          "createTime": "2026-09-29 08:32:05",
+          "updateTime": "2026-09-29 08:32:05"
+        }
+      ],
+      "failed": false,
+      "success": true
+    }
+  },
+  "log_slice": "logs/cases/ws-readback.log"
+}

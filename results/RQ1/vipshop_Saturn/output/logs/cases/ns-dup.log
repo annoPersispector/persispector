@@ -1,0 +1,5 @@
+[2026-09-29 20:19:32.048] [DEBUG] [http-nio-127.0.0.1-18205-exec-4] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==>  Preparing: select id, is_deleted, create_time, created_by, last_update_time, last_updated_by, namespace, bus_id, content from namespace_info where namespace = ? limit 0,1 
+[2026-09-29 20:19:32.048] [DEBUG] [http-nio-127.0.0.1-18205-exec-4] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==> Parameters: pvns1(String)
+[2026-09-29 20:19:32.048] [DEBUG] [http-nio-127.0.0.1-18205-exec-4] [c.v.s.j.c.m.r.N.selectByNamespace] >>> <==      Total: 1
+[2026-09-29 20:19:32.049] [INFO] [http-nio-127.0.0.1-18205-exec-4] [AUDITLOG] >>> REST API:[create] path:[/rest/v1/namespaces] is called by IP:[127.0.0.1], result is failed.
+[2026-09-29 20:19:32.050] [WARN] [http-nio-127.0.0.1-18205-exec-4] [c.v.s.j.c.controller.rest.AbstractRestController] >>> Exception happens while calling REST API:Invalid request. Namespace: {pvns1} already existed

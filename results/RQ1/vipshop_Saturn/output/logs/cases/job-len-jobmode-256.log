@@ -1,0 +1,442 @@
+[2026-09-29 20:19:19.376] [DEBUG] [http-nio-127.0.0.1-18205-exec-4] [c.v.s.j.c.m.r.C.findConfigsByNamespace] >>> ==>  Preparing: select id, job_name, job_class, sharding_total_count, load_level, job_degree, enabled_report, local_mode, use_serial, use_disprefer_list, time_zone, cron, prefer_list, pause_period_date, pause_period_time, sharding_item_parameters, job_parameter, process_count_interval_seconds, failover, dependencies, groups, description, timeout_4_alarm_seconds, timeout_seconds, show_normal_log, channel_name, job_type, queue_name, create_by, create_time, last_update_by, last_update_time, namespace, zk_list,is_enabled,job_mode,custom_context,rerun, up_stream, down_stream, disable_timeout_seconds from job_config where namespace = ? 
+[2026-09-29 20:19:19.376] [DEBUG] [http-nio-127.0.0.1-18205-exec-4] [c.v.s.j.c.m.r.C.findConfigsByNamespace] >>> ==> Parameters: mydomain(String)
+[2026-09-29 20:19:19.377] [DEBUG] [http-nio-127.0.0.1-18205-exec-4] [c.v.s.j.c.m.r.C.findConfigsByNamespace] >>> <==      Total: 3
+[2026-09-29 20:19:19.378] [DEBUG] [http-nio-127.0.0.1-18205-exec-4] [c.v.s.j.c.m.r.C.findConfigByNamespaceAndJobName] >>> ==>  Preparing: select id, job_name, job_class, sharding_total_count, load_level, job_degree, enabled_report, local_mode, use_serial, use_disprefer_list, time_zone, cron, prefer_list, pause_period_date, pause_period_time, sharding_item_parameters, job_parameter, process_count_interval_seconds, failover, dependencies, groups, description, timeout_4_alarm_seconds, timeout_seconds, show_normal_log, channel_name, job_type, queue_name, create_by, create_time, last_update_by, last_update_time, namespace, zk_list,is_enabled,job_mode,custom_context,rerun, up_stream, down_stream, disable_timeout_seconds from job_config where namespace = ? and job_name = ? limit 0,1 
+[2026-09-29 20:19:19.378] [DEBUG] [http-nio-127.0.0.1-18205-exec-4] [c.v.s.j.c.m.r.C.findConfigByNamespaceAndJobName] >>> ==> Parameters: mydomain(String), pvjm1(String)
+[2026-09-29 20:19:19.378] [DEBUG] [http-nio-127.0.0.1-18205-exec-4] [c.v.s.j.c.m.r.C.findConfigByNamespaceAndJobName] >>> <==      Total: 0
+[2026-09-29 20:19:19.379] [DEBUG] [http-nio-127.0.0.1-18205-exec-4] [c.v.s.j.c.m.r.CurrentJobConfigRepository.insert] >>> ==>  Preparing: insert into job_config (job_name, job_class, sharding_total_count, load_level, job_degree, enabled_report, local_mode, use_serial, use_disprefer_list, time_zone, cron, prefer_list, pause_period_date, pause_period_time, sharding_item_parameters, job_parameter, process_count_interval_seconds, failover, dependencies, groups, description, timeout_4_alarm_seconds, timeout_seconds, show_normal_log, channel_name, job_type, queue_name, create_by, create_time, last_update_by, last_update_time, namespace, zk_list,is_enabled,job_mode,custom_context, rerun, up_stream, down_stream, disable_timeout_seconds ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?, ?, ?, ?, ?, ? ) 
+[2026-09-29 20:19:19.379] [DEBUG] [http-nio-127.0.0.1-18205-exec-4] [c.v.s.j.c.m.r.CurrentJobConfigRepository.insert] >>> ==> Parameters: pvjm1(String), demo.DemoJavaJob(String), 1(Integer), 1(Integer), 0(Integer), true(Boolean), false(Boolean), false(Boolean), true(Boolean), Asia/Shanghai(String), 0/30 * * * * ?(String), (String), (String), (String), 0=0(String), (String), 300(Integer), true(Boolean), (String), (String), pv(String), 0(Integer), 0(Integer), false(Boolean), (String), JAVA_JOB(String), (String), admin(String), 2026-09-29 20:19:19.379(Timestamp), admin(String), 2026-09-29 20:19:19.379(Timestamp), mydomain(String), null, false(Boolean), mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm(String), {}(String), false(Boolean), (String), (String), 0(Integer)
+[2026-09-29 20:19:19.380] [INFO] [http-nio-127.0.0.1-18205-exec-4] [AUDITLOG] >>> GUI API:[createJob] path:[/console/namespaces/mydomain/jobs/jobs] is called by User:[admin] with IP:[127.0.0.1], result is failed. Context info:{namespace=mydomain}.
+[2026-09-29 20:19:19.381] [ERROR] [http-nio-127.0.0.1-18205-exec-4] [c.v.s.j.c.controller.gui.AbstractGUIController] >>> exception happens inside GUI controller operation:
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column "JOB_MODE VARCHAR(255) DEFAULT NULL COMMENT STRINGDECODE('\u4f5c\u4e1a\u6a21\u5f0f')": "'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm... (256)"; SQL statement:
+insert into job_config (job_name, job_class,
+        sharding_total_count, load_level, job_degree, enabled_report, local_mode, use_serial, use_disprefer_list,
+        time_zone, cron, prefer_list, pause_period_date,
+        pause_period_time, sharding_item_parameters,
+        job_parameter, process_count_interval_seconds,
+        failover, dependencies, groups, description,
+        timeout_4_alarm_seconds, timeout_seconds, show_normal_log, channel_name,
+        job_type, queue_name, create_by,
+        create_time, last_update_by, last_update_time,
+        namespace, zk_list,is_enabled,job_mode,custom_context,
+        rerun, up_stream, down_stream, disable_timeout_seconds
+        )
+        values (?, ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?, ?,
+        ?,?,
+        ?, ?,
+        ?, ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?, ?, ?,
+        ?, ?,?,?,
+        ?, ?, ?, ?,
+        ?
+        ) [22001-192]
+### The error may involve com.vip.saturn.job.console.mybatis.repository.CurrentJobConfigRepository.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into job_config (job_name, job_class,         sharding_total_count, load_level, job_degree, enabled_report, local_mode, use_serial, use_disprefer_list,         time_zone, cron, prefer_list, pause_period_date,         pause_period_time, sharding_item_parameters,         job_parameter, process_count_interval_seconds,         failover, dependencies, groups, description,         timeout_4_alarm_seconds, timeout_seconds, show_normal_log, channel_name,         job_type, queue_name, create_by,         create_time, last_update_by, last_update_time,         namespace, zk_list,is_enabled,job_mode,custom_context,         rerun, up_stream, down_stream, disable_timeout_seconds         )         values (?, ?,         ?, ?, ?,         ?,         ?, ?, ?,         ?, ?,         ?,?,         ?, ?,         ?, ?,         ?, ?, ?,         ?,         ?, ?, ?,         ?,         ?, ?, ?,         ?, ?, ?,         ?, ?,?,?,         ?, ?, ?, ?,         ?         )
+### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column "JOB_MODE VARCHAR(255) DEFAULT NULL COMMENT STRINGDECODE('\u4f5c\u4e1a\u6a21\u5f0f')": "'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm... (256)"; SQL statement:
+insert into job_config (job_name, job_class,
+        sharding_total_count, load_level, job_degree, enabled_report, local_mode, use_serial, use_disprefer_list,
+        time_zone, cron, prefer_list, pause_period_date,
+        pause_period_time, sharding_item_parameters,
+        job_parameter, process_count_interval_seconds,
+        failover, dependencies, groups, description,
+        timeout_4_alarm_seconds, timeout_seconds, show_normal_log, channel_name,
+        job_type, queue_name, create_by,
+        create_time, last_update_by, last_update_time,
+        namespace, zk_list,is_enabled,job_mode,custom_context,
+        rerun, up_stream, down_stream, disable_timeout_seconds
+        )
+        values (?, ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?, ?,
+        ?,?,
+        ?, ?,
+        ?, ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?, ?, ?,
+        ?, ?,?,?,
+        ?, ?, ?, ?,
+        ?
+        ) [22001-192]
+; SQL []; Value too long for column "JOB_MODE VARCHAR(255) DEFAULT NULL COMMENT STRINGDECODE('\u4f5c\u4e1a\u6a21\u5f0f')": "'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm... (256)"; SQL statement:
+insert into job_config (job_name, job_class,
+        sharding_total_count, load_level, job_degree, enabled_report, local_mode, use_serial, use_disprefer_list,
+        time_zone, cron, prefer_list, pause_period_date,
+        pause_period_time, sharding_item_parameters,
+        job_parameter, process_count_interval_seconds,
+        failover, dependencies, groups, description,
+        timeout_4_alarm_seconds, timeout_seconds, show_normal_log, channel_name,
+        job_type, queue_name, create_by,
+        create_time, last_update_by, last_update_time,
+        namespace, zk_list,is_enabled,job_mode,custom_context,
+        rerun, up_stream, down_stream, disable_timeout_seconds
+        )
+        values (?, ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?, ?,
+        ?,?,
+        ?, ?,
+        ?, ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?, ?, ?,
+        ?, ?,?,?,
+        ?, ?, ?, ?,
+        ?
+        ) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column "JOB_MODE VARCHAR(255) DEFAULT NULL COMMENT STRINGDECODE('\u4f5c\u4e1a\u6a21\u5f0f')": "'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm... (256)"; SQL statement:
+insert into job_config (job_name, job_class,
+        sharding_total_count, load_level, job_degree, enabled_report, local_mode, use_serial, use_disprefer_list,
+        time_zone, cron, prefer_list, pause_period_date,
+        pause_period_time, sharding_item_parameters,
+        job_parameter, process_count_interval_seconds,
+        failover, dependencies, groups, description,
+        timeout_4_alarm_seconds, timeout_seconds, show_normal_log, channel_name,
+        job_type, queue_name, create_by,
+        create_time, last_update_by, last_update_time,
+        namespace, zk_list,is_enabled,job_mode,custom_context,
+        rerun, up_stream, down_stream, disable_timeout_seconds
+        )
+        values (?, ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?, ?,
+        ?,?,
+        ?, ?,
+        ?, ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?, ?, ?,
+        ?, ?,?,?,
+        ?, ?, ?, ?,
+        ?
+        ) [22001-192]
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column "JOB_MODE VARCHAR(255) DEFAULT NULL COMMENT STRINGDECODE('\u4f5c\u4e1a\u6a21\u5f0f')": "'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm... (256)"; SQL statement:
+insert into job_config (job_name, job_class,
+        sharding_total_count, load_level, job_degree, enabled_report, local_mode, use_serial, use_disprefer_list,
+        time_zone, cron, prefer_list, pause_period_date,
+        pause_period_time, sharding_item_parameters,
+        job_parameter, process_count_interval_seconds,
+        failover, dependencies, groups, description,
+        timeout_4_alarm_seconds, timeout_seconds, show_normal_log, channel_name,
+        job_type, queue_name, create_by,
+        create_time, last_update_by, last_update_time,
+        namespace, zk_list,is_enabled,job_mode,custom_context,
+        rerun, up_stream, down_stream, disable_timeout_seconds
+        )
+        values (?, ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?, ?,
+        ?,?,
+        ?, ?,
+        ?, ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?, ?, ?,
+        ?, ?,?,?,
+        ?, ?, ?, ?,
+        ?
+        ) [22001-192]
+### The error may involve com.vip.saturn.job.console.mybatis.repository.CurrentJobConfigRepository.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into job_config (job_name, job_class,         sharding_total_count, load_level, job_degree, enabled_report, local_mode, use_serial, use_disprefer_list,         time_zone, cron, prefer_list, pause_period_date,         pause_period_time, sharding_item_parameters,         job_parameter, process_count_interval_seconds,         failover, dependencies, groups, description,         timeout_4_alarm_seconds, timeout_seconds, show_normal_log, channel_name,         job_type, queue_name, create_by,         create_time, last_update_by, last_update_time,         namespace, zk_list,is_enabled,job_mode,custom_context,         rerun, up_stream, down_stream, disable_timeout_seconds         )         values (?, ?,         ?, ?, ?,         ?,         ?, ?, ?,         ?, ?,         ?,?,         ?, ?,         ?, ?,         ?, ?, ?,         ?,         ?, ?, ?,         ?,         ?, ?, ?,         ?, ?, ?,         ?, ?,?,?,         ?, ?, ?, ?,         ?         )
+### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column "JOB_MODE VARCHAR(255) DEFAULT NULL COMMENT STRINGDECODE('\u4f5c\u4e1a\u6a21\u5f0f')": "'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm... (256)"; SQL statement:
+insert into job_config (job_name, job_class,
+        sharding_total_count, load_level, job_degree, enabled_report, local_mode, use_serial, use_disprefer_list,
+        time_zone, cron, prefer_list, pause_period_date,
+        pause_period_time, sharding_item_parameters,
+        job_parameter, process_count_interval_seconds,
+        failover, dependencies, groups, description,
+        timeout_4_alarm_seconds, timeout_seconds, show_normal_log, channel_name,
+        job_type, queue_name, create_by,
+        create_time, last_update_by, last_update_time,
+        namespace, zk_list,is_enabled,job_mode,custom_context,
+        rerun, up_stream, down_stream, disable_timeout_seconds
+        )
+        values (?, ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?, ?,
+        ?,?,
+        ?, ?,
+        ?, ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?, ?, ?,
+        ?, ?,?,?,
+        ?, ?, ?, ?,
+        ?
+        ) [22001-192]
+; SQL []; Value too long for column "JOB_MODE VARCHAR(255) DEFAULT NULL COMMENT STRINGDECODE('\u4f5c\u4e1a\u6a21\u5f0f')": "'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm... (256)"; SQL statement:
+insert into job_config (job_name, job_class,
+        sharding_total_count, load_level, job_degree, enabled_report, local_mode, use_serial, use_disprefer_list,
+        time_zone, cron, prefer_list, pause_period_date,
+        pause_period_time, sharding_item_parameters,
+        job_parameter, process_count_interval_seconds,
+        failover, dependencies, groups, description,
+        timeout_4_alarm_seconds, timeout_seconds, show_normal_log, channel_name,
+        job_type, queue_name, create_by,
+        create_time, last_update_by, last_update_time,
+        namespace, zk_list,is_enabled,job_mode,custom_context,
+        rerun, up_stream, down_stream, disable_timeout_seconds
+        )
+        values (?, ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?, ?,
+        ?,?,
+        ?, ?,
+        ?, ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?, ?, ?,
+        ?, ?,?,?,
+        ?, ?, ?, ?,
+        ?
+        ) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column "JOB_MODE VARCHAR(255) DEFAULT NULL COMMENT STRINGDECODE('\u4f5c\u4e1a\u6a21\u5f0f')": "'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm... (256)"; SQL statement:
+insert into job_config (job_name, job_class,
+        sharding_total_count, load_level, job_degree, enabled_report, local_mode, use_serial, use_disprefer_list,
+        time_zone, cron, prefer_list, pause_period_date,
+        pause_period_time, sharding_item_parameters,
+        job_parameter, process_count_interval_seconds,
+        failover, dependencies, groups, description,
+        timeout_4_alarm_seconds, timeout_seconds, show_normal_log, channel_name,
+        job_type, queue_name, create_by,
+        create_time, last_update_by, last_update_time,
+        namespace, zk_list,is_enabled,job_mode,custom_context,
+        rerun, up_stream, down_stream, disable_timeout_seconds
+        )
+        values (?, ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?, ?,
+        ?,?,
+        ?, ?,
+        ?, ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?, ?, ?,
+        ?, ?,?,?,
+        ?, ?, ?, ?,
+        ?
+        ) [22001-192]
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:243)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:74)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:421)
+	at com.sun.proxy.$Proxy73.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:254)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:51)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:52)
+	at com.sun.proxy.$Proxy77.insert(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:333)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:136)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:213)
+	at com.sun.proxy.$Proxy78.insert(Unknown Source)
+	at com.vip.saturn.job.console.mybatis.service.impl.CurrentJobConfigServiceImpl.create(CurrentJobConfigServiceImpl.java:51)
+	at com.vip.saturn.job.console.mybatis.service.impl.CurrentJobConfigServiceImpl$$FastClassBySpringCGLIB$$fb5df8e2.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:720)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:280)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:655)
+	at com.vip.saturn.job.console.mybatis.service.impl.CurrentJobConfigServiceImpl$$EnhancerBySpringCGLIB$$8343d15d.create(<generated>)
+	at com.vip.saturn.job.console.service.impl.JobServiceImpl.addOrCopyJob(JobServiceImpl.java:950)
+	at com.vip.saturn.job.console.service.impl.JobServiceImpl.addJob(JobServiceImpl.java:905)
+	at com.vip.saturn.job.console.service.impl.JobServiceImpl$$FastClassBySpringCGLIB$$9a3a600.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:720)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:280)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:655)
+	at com.vip.saturn.job.console.service.impl.JobServiceImpl$$EnhancerBySpringCGLIB$$a8c2fb77.addJob(<generated>)
+	at com.vip.saturn.job.console.controller.gui.JobOverviewController.createJob(JobOverviewController.java:404)
+	at com.vip.saturn.job.console.controller.gui.JobOverviewController$$FastClassBySpringCGLIB$$2b90dafa.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:720)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:85)
+	at com.vip.saturn.job.console.aop.aspect.AuditLogAspect.logAuditInfo(AuditLogAspect.java:60)
+	at sun.reflect.GeneratedMethodAccessor223.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:629)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:618)
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:168)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:655)
+	at com.vip.saturn.job.console.controller.gui.JobOverviewController$$EnhancerBySpringCGLIB$$df9fe9c6.createJob(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:114)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:230)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at com.vip.saturn.job.console.filter.AuthenticationFilter.doFilter(AuthenticationFilter.java:38)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:87)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:108)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:522)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:349)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:1110)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:785)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1425)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: org.h2.jdbc.JdbcSQLException: Value too long for column "JOB_MODE VARCHAR(255) DEFAULT NULL COMMENT STRINGDECODE('\u4f5c\u4e1a\u6a21\u5f0f')": "'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm... (256)"; SQL statement:
+insert into job_config (job_name, job_class,
+        sharding_total_count, load_level, job_degree, enabled_report, local_mode, use_serial, use_disprefer_list,
+        time_zone, cron, prefer_list, pause_period_date,
+        pause_period_time, sharding_item_parameters,
+        job_parameter, process_count_interval_seconds,
+        failover, dependencies, groups, description,
+        timeout_4_alarm_seconds, timeout_seconds, show_normal_log, channel_name,
+        job_type, queue_name, create_by,
+        create_time, last_update_by, last_update_time,
+        namespace, zk_list,is_enabled,job_mode,custom_context,
+        rerun, up_stream, down_stream, disable_timeout_seconds
+        )
+        values (?, ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?, ?,
+        ?,?,
+        ?, ?,
+        ?, ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?,
+        ?, ?, ?,
+        ?, ?, ?,
+        ?, ?,?,?,
+        ?, ?, ?, ?,
+        ?
+        ) [22001-192]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.table.Column.validateConvertUpdateSequence(Column.java:335)
+	at org.h2.table.Table.validateConvertUpdateSequence(Table.java:784)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:151)
+	at org.h2.command.dml.Insert.update(Insert.java:114)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:98)
+	at org.h2.command.Command.executeUpdate(Command.java:258)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:201)
+	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:494)
+	at sun.reflect.GeneratedMethodAccessor94.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:62)
+	at com.sun.proxy.$Proxy84.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:44)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:69)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:48)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:105)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:71)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:152)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:141)
+	at sun.reflect.GeneratedMethodAccessor226.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:408)
+	... 114 common frames omitted
+[2026-09-29 20:19:19.486] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==>  Preparing: select id, property, value from sys_config where id in (select max(id) from sys_config where property in ( ? ) group by property) 
+[2026-09-29 20:19:19.486] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==> Parameters: REFRESH_REGISTRY_CENTER_UUID(String)
+[2026-09-29 20:19:19.486] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> <==      Total: 1

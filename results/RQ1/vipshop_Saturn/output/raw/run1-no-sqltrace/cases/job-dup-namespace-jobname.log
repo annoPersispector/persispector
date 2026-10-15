@@ -1,0 +1,2 @@
+[2026-09-29 20:15:46.407] [INFO] [http-nio-127.0.0.1-18205-exec-6] [AUDITLOG] >>> GUI API:[createJob] path:[/console/namespaces/mydomain/jobs/jobs] is called by User:[admin] with IP:[127.0.0.1], result is failed. Context info:{namespace=mydomain}.
+[2026-09-29 20:15:46.415] [WARN] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.controller.gui.AbstractGUIController] >>> bad request while calling GUI API:该作业(pvctl1)已经存在

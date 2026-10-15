@@ -1,0 +1,12 @@
+{
+ "case_id": "R02-violation-race-dup-email",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select email, count(*) from users where email='mailracer@example.com' group by email",
+ "params": [],
+ "rows": [
+  [
+   "mailracer@example.com",
+   1
+  ]
+ ]
+}

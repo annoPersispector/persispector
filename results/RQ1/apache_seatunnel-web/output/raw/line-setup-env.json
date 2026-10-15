@@ -1,0 +1,38 @@
+{
+  "case_id": "line-setup-env",
+  "purpose": "setup",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/job/config/23198776785696",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "name": "task_job",
+      "description": "d",
+      "env": {
+        "job.mode": "BATCH"
+      },
+      "engine": "SeaTunnel"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:34:36 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 0,
+      "msg": null,
+      "data": null,
+      "failed": false,
+      "success": true
+    }
+  },
+  "log_slice": "logs/cases/line-setup-env.log"
+}

@@ -1,0 +1,47 @@
+{
+  "case_id": "vt2-control",
+  "purpose": "control",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/virtual_table/create",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "datasourceId": "23198791306016",
+      "databaseName": "vdb",
+      "tableName": "vt_ctrl",
+      "description": "d",
+      "tableFields": [
+        {
+          "fieldName": "id",
+          "fieldType": "INT",
+          "nullable": false,
+          "primaryKey": true
+        }
+      ],
+      "databaseProperties": {
+        "k": "v"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:36:00 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 0,
+      "msg": null,
+      "data": "23198791691936",
+      "failed": false,
+      "success": true
+    }
+  },
+  "log_slice": "logs/cases/vt2-control.log"
+}

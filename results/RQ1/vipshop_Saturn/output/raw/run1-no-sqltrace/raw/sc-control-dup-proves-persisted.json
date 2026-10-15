@@ -1,0 +1,37 @@
+{
+ "case_id": "sc-control-dup-proves-persisted",
+ "purpose": "read-back",
+ "target_hint": [
+  "sys_config.*"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/configs/console/create",
+  "headers": {
+   "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+  },
+  "body": {
+   "key": "PV_TEST_A",
+   "value": "v2"
+  },
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:17:16 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"status\":1,\"message\":\"systemConfig PV_TEST_A already existed\",\"obj\":\"\"}",
+  "json": {
+   "status": 1,
+   "message": "systemConfig PV_TEST_A already existed",
+   "obj": ""
+  }
+ },
+ "elapsed_seconds": 0.007,
+ "timestamp": "2026-09-29T20:17:17-0400"
+}

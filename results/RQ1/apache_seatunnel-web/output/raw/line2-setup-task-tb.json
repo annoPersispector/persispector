@@ -1,0 +1,41 @@
+{
+  "case_id": "line2-setup-task-tb",
+  "purpose": "setup",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/job/task/23198804288544",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "pluginId": "tb",
+      "name": "tb",
+      "type": "TRANSFORM",
+      "connectorType": "FilterRowKind",
+      "transformOptions": {
+        "exclude_kinds": [
+          "INSERT"
+        ]
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:37:39 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 0,
+      "msg": null,
+      "data": null,
+      "failed": false,
+      "success": true
+    }
+  },
+  "log_slice": "logs/cases/line2-setup-task-tb.log"
+}

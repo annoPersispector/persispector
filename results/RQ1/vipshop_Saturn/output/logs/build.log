@@ -1,0 +1,221 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.vip.saturn:saturn-console-api:jar:master-SNAPSHOT
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: com.fasterxml.jackson.core:jackson-databind:jar -> duplicate declaration of version (?) @ line 126, column 15
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.vip.saturn:saturn-console-web:pom:master-SNAPSHOT
+[WARNING] 'build.plugins.plugin.version' for org.codehaus.mojo:exec-maven-plugin is missing. @ line 15, column 21
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] saturn-job                                                         [pom]
+[INFO] saturn-integrate                                                   [jar]
+[INFO] saturn-job-sharding                                                [jar]
+[INFO] saturn-console-api                                                 [jar]
+[INFO] saturn-console-web                                                 [pom]
+[INFO] saturn-console                                                     [jar]
+[INFO] 
+[INFO] ---------------------< com.vip.saturn:saturn-job >----------------------
+[INFO] Building saturn-job master-SNAPSHOT                                [1/6]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ saturn-job ---
+[INFO] 
+[INFO] --- enforcer:1.0:enforce (enforce-maven) @ saturn-job ---
+[INFO] 
+[INFO] --- javadoc:2.10.3:jar (attach-javadocs) @ saturn-job ---
+[WARNING]  Parameter 'aggregate' (user property 'aggregate') is deprecated: since 2.5. Use the goals <code>javadoc:aggregate</code> and <code>javadoc:test-aggregate</code>
+instead.
+[INFO] Skipping javadoc generation
+[INFO] 
+[INFO] ------------------< com.vip.saturn:saturn-integrate >-------------------
+[INFO] Building saturn-integrate master-SNAPSHOT                          [2/6]
+[INFO]   from saturn-integrate/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ saturn-integrate ---
+[INFO] Deleting /artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application/saturn-integrate/target
+[INFO] 
+[INFO] --- enforcer:1.0:enforce (enforce-maven) @ saturn-integrate ---
+[INFO] 
+[INFO] --- resources:2.7:resources (default-resources) @ saturn-integrate ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application/saturn-integrate/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.3:compile (default-compile) @ saturn-integrate ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 6 source files to /artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application/saturn-integrate/target/classes
+[INFO] 
+[INFO] --- resources:2.7:testResources (default-testResources) @ saturn-integrate ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.3:testCompile (default-testCompile) @ saturn-integrate ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- surefire:2.19.1:test (default-test) @ saturn-integrate ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:2.6:jar (default-jar) @ saturn-integrate ---
+[INFO] Building jar: /artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application/saturn-integrate/target/saturn-integrate-master-SNAPSHOT.jar
+[INFO] 
+[INFO] --- javadoc:2.10.3:jar (attach-javadocs) @ saturn-integrate ---
+[WARNING]  Parameter 'aggregate' (user property 'aggregate') is deprecated: since 2.5. Use the goals <code>javadoc:aggregate</code> and <code>javadoc:test-aggregate</code>
+instead.
+[INFO] Skipping javadoc generation
+[INFO] 
+[INFO] -----------------< com.vip.saturn:saturn-job-sharding >-----------------
+[INFO] Building saturn-job-sharding master-SNAPSHOT                       [3/6]
+[INFO]   from saturn-job-sharding/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ saturn-job-sharding ---
+[INFO] Deleting /artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application/saturn-job-sharding/target
+[INFO] 
+[INFO] --- enforcer:1.0:enforce (enforce-maven) @ saturn-job-sharding ---
+[INFO] 
+[INFO] --- resources:2.7:resources (default-resources) @ saturn-job-sharding ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application/saturn-job-sharding/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.3:compile (default-compile) @ saturn-job-sharding ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 34 source files to /artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application/saturn-job-sharding/target/classes
+[INFO] 
+[INFO] --- resources:2.7:testResources (default-testResources) @ saturn-job-sharding ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.3:testCompile (default-testCompile) @ saturn-job-sharding ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- surefire:2.19.1:test (default-test) @ saturn-job-sharding ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:2.6:jar (default-jar) @ saturn-job-sharding ---
+[INFO] Building jar: /artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application/saturn-job-sharding/target/saturn-job-sharding-master-SNAPSHOT.jar
+[INFO] 
+[INFO] --- javadoc:2.10.3:jar (attach-javadocs) @ saturn-job-sharding ---
+[WARNING]  Parameter 'aggregate' (user property 'aggregate') is deprecated: since 2.5. Use the goals <code>javadoc:aggregate</code> and <code>javadoc:test-aggregate</code>
+instead.
+[INFO] Skipping javadoc generation
+[INFO] 
+[INFO] -----------------< com.vip.saturn:saturn-console-api >------------------
+[INFO] Building saturn-console-api master-SNAPSHOT                        [4/6]
+[INFO]   from saturn-console-api/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ saturn-console-api ---
+[INFO] Deleting /artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application/saturn-console-api/target
+[INFO] 
+[INFO] --- enforcer:1.0:enforce (enforce-maven) @ saturn-console-api ---
+[INFO] 
+[INFO] --- resources:2.7:resources (default-resources) @ saturn-console-api ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 18 resources
+[INFO] 
+[INFO] --- compiler:3.3:compile (default-compile) @ saturn-console-api ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 255 source files to /artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application/saturn-console-api/target/classes
+[INFO] /artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application/saturn-console-api/src/main/java/com/vip/saturn/job/console/response/converter/CustomNullValueMapper.java: Some input files use or override a deprecated API.
+[INFO] /artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application/saturn-console-api/src/main/java/com/vip/saturn/job/console/response/converter/CustomNullValueMapper.java: Recompile with -Xlint:deprecation for details.
+[INFO] /artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application/saturn-console-api/src/main/java/com/vip/saturn/job/console/controller/gui/JobOverviewController.java: Some input files use unchecked or unsafe operations.
+[INFO] /artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application/saturn-console-api/src/main/java/com/vip/saturn/job/console/controller/gui/JobOverviewController.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- resources:2.7:testResources (default-testResources) @ saturn-console-api ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.3:testCompile (default-testCompile) @ saturn-console-api ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- surefire:2.19.1:test (default-test) @ saturn-console-api ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:2.6:jar (default-jar) @ saturn-console-api ---
+[INFO] Building jar: /artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application/saturn-console-api/target/saturn-console-api-master-SNAPSHOT.jar
+[INFO] 
+[INFO] --- javadoc:2.10.3:jar (attach-javadocs) @ saturn-console-api ---
+[WARNING]  Parameter 'aggregate' (user property 'aggregate') is deprecated: since 2.5. Use the goals <code>javadoc:aggregate</code> and <code>javadoc:test-aggregate</code>
+instead.
+[INFO] Skipping javadoc generation
+[INFO] 
+[INFO] -----------------< com.vip.saturn:saturn-console-web >------------------
+[INFO] Building saturn-console-web master-SNAPSHOT                        [5/6]
+[INFO]   from saturn-console-web/pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ saturn-console-web ---
+[INFO] 
+[INFO] --- enforcer:1.0:enforce (enforce-maven) @ saturn-console-web ---
+[INFO] 
+[INFO] --- exec:3.6.4:exec (saturn-web) @ saturn-console-web ---
+[INFO] skipping execute as per configuration
+[INFO] 
+[INFO] --- exec:3.6.4:exec (exec-npm-install) @ saturn-console-web ---
+[INFO] skipping execute as per configuration
+[INFO] 
+[INFO] --- exec:3.6.4:exec (exec-npm-run-build) @ saturn-console-web ---
+[INFO] skipping execute as per configuration
+[INFO] 
+[INFO] --- javadoc:2.10.3:jar (attach-javadocs) @ saturn-console-web ---
+[WARNING]  Parameter 'aggregate' (user property 'aggregate') is deprecated: since 2.5. Use the goals <code>javadoc:aggregate</code> and <code>javadoc:test-aggregate</code>
+instead.
+[INFO] Skipping javadoc generation
+[INFO] 
+[INFO] -------------------< com.vip.saturn:saturn-console >--------------------
+[INFO] Building saturn-console master-SNAPSHOT                            [6/6]
+[INFO]   from saturn-console/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ saturn-console ---
+[INFO] 
+[INFO] --- enforcer:1.0:enforce (enforce-maven) @ saturn-console ---
+[INFO] 
+[INFO] --- resources:2.7:resources (default-resources) @ saturn-console ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 10 resources
+[INFO] 
+[INFO] --- compiler:3.3:compile (default-compile) @ saturn-console ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 3 source files to /artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application/saturn-console/target/classes
+[INFO] 
+[INFO] --- resources:2.7:testResources (default-testResources) @ saturn-console ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.3:testCompile (default-testCompile) @ saturn-console ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- surefire:2.19.1:test (default-test) @ saturn-console ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:2.6:jar (default-jar) @ saturn-console ---
+[INFO] Building jar: /artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application/saturn-console/target/saturn-console-master-SNAPSHOT.jar
+[INFO] 
+[INFO] --- javadoc:2.10.3:jar (attach-javadocs) @ saturn-console ---
+[WARNING]  Parameter 'aggregate' (user property 'aggregate') is deprecated: since 2.5. Use the goals <code>javadoc:aggregate</code> and <code>javadoc:test-aggregate</code>
+instead.
+[INFO] Skipping javadoc generation
+[INFO] 
+[INFO] --- spring-boot:1.4.0.RELEASE:repackage (default) @ saturn-console ---
+[INFO] Layout: JAR
+[INFO] Attaching archive: /artifact/results/RQ1/vipshop_Saturn/vipshop_Saturn-20260930T001004Z-5f747cf5/application/saturn-console/target/saturn-console-master-SNAPSHOT-exec.jar, with classifier: exec
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for saturn-job master-SNAPSHOT:
+[INFO] 
+[INFO] saturn-job ......................................... SUCCESS [  0.556 s]
+[INFO] saturn-integrate ................................... SUCCESS [  0.425 s]
+[INFO] saturn-job-sharding ................................ SUCCESS [  0.373 s]
+[INFO] saturn-console-api ................................. SUCCESS [  0.929 s]
+[INFO] saturn-console-web ................................. SUCCESS [  0.038 s]
+[INFO] saturn-console ..................................... SUCCESS [  0.325 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.789 s
+[INFO] Finished at: 2026-09-29T20:12:59-04:00
+[INFO] ------------------------------------------------------------------------
+EXIT=0

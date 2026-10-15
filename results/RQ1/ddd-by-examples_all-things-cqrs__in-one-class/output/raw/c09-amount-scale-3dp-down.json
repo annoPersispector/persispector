@@ -1,0 +1,20 @@
+{
+ "case_id": "c09-amount-scale-3dp-down",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18207/",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "body": "{\"card\": \"3a3e99f0-5ad9-47fa-961d-d75fab32ef0e\", \"amount\": 2.004}"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Length": "0",
+   "Date": "Tue, 29 Sep 2026 07:51:29 GMT",
+   "Connection": "close"
+  },
+  "body": ""
+ }
+}

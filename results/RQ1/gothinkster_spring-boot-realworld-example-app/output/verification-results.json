@@ -1,0 +1,4287 @@
+{
+ "schema_version": "persistence-runtime-verification-v1",
+ "application": "gothinkster_spring-boot-realworld-example-app",
+ "constraint_report_schema_version": "9",
+ "generated_at": "2026-09-29T07:11:48.013243+00:00",
+ "target_ids": [
+  "pc-f222071f805c",
+  "pc-131115f632ac",
+  "pc-d49a912a6d90",
+  "pc-d88c0fbbf057",
+  "pc-6980a721c659",
+  "pc-2d2ccda522ac",
+  "pc-06107ef0465f",
+  "pc-6329c3a12c81",
+  "pc-1e88e7458c9e",
+  "pc-da8b9f1137fd",
+  "pc-04dbf0d51ea4",
+  "pc-c377652628ae",
+  "pc-d699dbdf4b3e",
+  "pc-0d84cdc3d396",
+  "pc-d129990523ab",
+  "pc-b19e1e34bae0",
+  "pc-072dbddeaefe",
+  "pc-9e02f24b2a6c",
+  "pc-7d99f29ba4e7",
+  "pc-75ef4de72ec5",
+  "pc-5aa87385f7dc",
+  "pc-71f42f2e337f",
+  "pc-faeca1856289",
+  "pc-57bb94b78e9d",
+  "pc-c189f3eedce8",
+  "pc-069a3f7b878b",
+  "pc-f89b841f9c61",
+  "pc-6debfb14cb89",
+  "pc-497d7ea2135e",
+  "pc-e4f422b7bd9e",
+  "pc-c67f6e6d9748",
+  "pc-362711ad41ec",
+  "pc-59b4acfdcefb",
+  "pc-ad355c42c9ff",
+  "pc-c9c555e0317b",
+  "pc-167feb39b136",
+  "pc-4f43e73c8d52",
+  "pc-27a12ece99bb",
+  "pc-bc0d5fb992b2",
+  "pc-f10d889965df",
+  "pc-e611bd7bff61",
+  "pc-72272037e819",
+  "pc-4d37fecbc565",
+  "pc-746aeb1a4ddd",
+  "pc-0f438b438a43",
+  "pc-b85db3b823bb",
+  "pc-bfeaf73023cd",
+  "pc-f48b2f3b0c1a",
+  "pc-c1be97b12e82",
+  "pc-c8a9dc1bd23a",
+  "pc-85386bf33aef",
+  "pc-7eb9fc8bd4f1",
+  "pc-7d88ad2ffba4",
+  "pc-275876295fcf",
+  "pc-e2959e366a6e",
+  "pc-fad10871f26f",
+  "pc-ba6ce5b5fb3c",
+  "pc-74929687d533",
+  "pc-5f35a96467ad",
+  "pc-13b985700d53",
+  "pc-1d857acc85c9",
+  "pc-92f7dc56d6cc",
+  "pc-8cb224baaa01",
+  "pc-b1e1275469d9",
+  "pc-f3b9b0316fe6",
+  "pc-189d767185f3",
+  "pc-d3f4eb122d8c"
+ ],
+ "cases": [
+  {
+   "case_id": "U01-setup-register-alice",
+   "observation": "User alice registered (201); insert into users executed.",
+   "evidence": [
+    {
+     "path": "raw/U01-setup-register-alice.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U01-setup-register-alice",
+     "sha256": "c5039c77bf1100887a476567c1b930146611726c98b53ffa2ffcb51d969c7908"
+    },
+    {
+     "path": "logs/U01-setup-register-alice.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U01-setup-register-alice",
+     "sha256": "d678f3f79f178b9acee1f494f07dc9f0fa8640b19d5e7c74663b801bf7d92690"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "setup",
+   "target_ids": [
+    "pc-d699dbdf4b3e",
+    "pc-0d84cdc3d396"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/users",
+   "endpoint": "POST /users",
+   "response_status": 201
+  },
+  {
+   "case_id": "U02-setup-register-bob",
+   "observation": "User bob registered (201); read-back shows password stored as 60-char bcrypt hash, bio ''.",
+   "evidence": [
+    {
+     "path": "raw/U02-setup-register-bob.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U02-setup-register-bob",
+     "sha256": "90b1d035277aa4f1a8f755b00fe0338467675f4df8d59adee4a4a6cad56b583f"
+    },
+    {
+     "path": "logs/U02-setup-register-bob.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U02-setup-register-bob",
+     "sha256": "350c99086f9212711dec907a7ae9b7df2d523fce348d4b06ed66b7d04627594e"
+    },
+    {
+     "path": "raw/U02-setup-register-bob.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U02-setup-register-bob",
+     "sha256": "c0b0889b357788595610ea267196554c458ce7da02e195be3749211fcded6c04"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "setup",
+   "target_ids": [
+    "pc-d699dbdf4b3e",
+    "pc-0d84cdc3d396"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/users",
+   "endpoint": "POST /users",
+   "response_status": 201
+  },
+  {
+   "case_id": "U03-violation-dup-email-register",
+   "observation": "422 {errors:{email:['duplicated email']}}; DuplicatedEmailValidator rejected before any INSERT (only a SELECT in SQL trace).",
+   "evidence": [
+    {
+     "path": "raw/U03-violation-dup-email-register.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U03-violation-dup-email-register",
+     "sha256": "0001208c956da1758a80427c9cc5c75456cdb4ab3a5ee037031dee6fc30158ae"
+    },
+    {
+     "path": "logs/U03-violation-dup-email-register.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U03-violation-dup-email-register",
+     "sha256": "900d2b52eaa9e2c0ff4d4e981dbf10a3c4f2bacca5e66042e28cfac1d42270fd"
+    }
+   ],
+   "reached_persistence": false,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-d699dbdf4b3e"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/users",
+   "endpoint": "POST /users",
+   "response_status": 422
+  },
+  {
+   "case_id": "U04-violation-dup-username-register",
+   "observation": "422 {errors:{username:['duplicated username']}}; no INSERT issued; read-back shows single 'alice' row.",
+   "evidence": [
+    {
+     "path": "raw/U04-violation-dup-username-register.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U04-violation-dup-username-register",
+     "sha256": "8d5dbfc9a3f98fa950a415833e70e91d81e5d3f3f63f111ef1261d71d5efacba"
+    },
+    {
+     "path": "logs/U04-violation-dup-username-register.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U04-violation-dup-username-register",
+     "sha256": "ae1e65f26f7e523f9d66241bf3c64e8a94027355fb15e8f60d0ec6ba8a4f50ff"
+    },
+    {
+     "path": "raw/U04-violation-dup-username-register.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U04-violation-dup-username-register",
+     "sha256": "d6303c2578f01dbbb08b9133d0f648175df7ee188ce9d587c8e7972383b62582"
+    }
+   ],
+   "reached_persistence": false,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-0d84cdc3d396"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/users",
+   "endpoint": "POST /users",
+   "response_status": 422
+  },
+  {
+   "case_id": "U05-violation-dup-email-update",
+   "observation": "422 {errors:{email:['email already exist']}}; UpdateUserValidator rejected; no UPDATE issued.",
+   "evidence": [
+    {
+     "path": "raw/U05-violation-dup-email-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U05-violation-dup-email-update",
+     "sha256": "c4ef7df513b2ae4587373fc11f3dc78e95ead46e856a845e3b4d23deb824bfbf"
+    },
+    {
+     "path": "logs/U05-violation-dup-email-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U05-violation-dup-email-update",
+     "sha256": "517ca6bcf16114fb06d146fa7228c5d403e37841eb8742b5fb99275d64a73a7c"
+    }
+   ],
+   "reached_persistence": false,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-d699dbdf4b3e"
+   ],
+   "request_method": "PUT",
+   "request_url": "http://127.0.0.1:18208/user",
+   "endpoint": "PUT /user",
+   "response_status": 422
+  },
+  {
+   "case_id": "U06-violation-dup-username-update",
+   "observation": "422 {errors:{username:['username already exist']}}; no UPDATE issued; read-back unchanged.",
+   "evidence": [
+    {
+     "path": "raw/U06-violation-dup-username-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U06-violation-dup-username-update",
+     "sha256": "d0bfda2ffc8dbf48df5d2069e26a9e889e5c2dd3920655af74d1056dbded14dc"
+    },
+    {
+     "path": "logs/U06-violation-dup-username-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U06-violation-dup-username-update",
+     "sha256": "0c505bb4db5ebb66e8f52fc516b279d8b09f3b7179a9d9c6febac2cec7a2cbbc"
+    },
+    {
+     "path": "raw/U06-violation-dup-username-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U06-violation-dup-username-update",
+     "sha256": "07c7b485e852e8a0fe7a9c8bf6319909da7ff99a8b38d8f1e4c0154475c78377"
+    }
+   ],
+   "reached_persistence": false,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-0d84cdc3d396"
+   ],
+   "request_method": "PUT",
+   "request_url": "http://127.0.0.1:18208/user",
+   "endpoint": "PUT /user",
+   "response_status": 422
+  },
+  {
+   "case_id": "U07-violation-username-300",
+   "observation": "Registration with 300-char username returned 201; SQLite read-back length(username)=300.",
+   "evidence": [
+    {
+     "path": "raw/U07-violation-username-300.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U07-violation-username-300",
+     "sha256": "bb9446d56a15226e95f70337cfaba6313e9da4428461f950cfc719981ae47bde"
+    },
+    {
+     "path": "logs/U07-violation-username-300.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U07-violation-username-300",
+     "sha256": "54a49ff92a74279fdbc162deaf66a6d5d17dc0f1eb82964d6b0c520f39a8231b"
+    },
+    {
+     "path": "raw/U07-violation-username-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U07-violation-username-300",
+     "sha256": "4112ff30193f486db3c611d9f8178bb10a78ed5eb6f778c66c7d7102c8a594c4"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-6980a721c659",
+    "pc-c377652628ae"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/users",
+   "endpoint": "POST /users",
+   "response_status": 201
+  },
+  {
+   "case_id": "U08-violation-email-313",
+   "observation": "Registration with 312-char syntactically valid email returned 201; read-back length(email)=312.",
+   "evidence": [
+    {
+     "path": "raw/U08-violation-email-313.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U08-violation-email-313",
+     "sha256": "23d223befa259566ee49bb356d7338f5bd0edcab1d66191386159c907e6c8095"
+    },
+    {
+     "path": "logs/U08-violation-email-313.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U08-violation-email-313",
+     "sha256": "381581391d721c27731b8cb0ab327baa67059a9d7c6ac1032aa6710ecd9442b7"
+    },
+    {
+     "path": "raw/U08-violation-email-313.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U08-violation-email-313",
+     "sha256": "614f04dcb281f529df1c62220dc67846c2a64084f9d311c84c8d5ff3a6d69b80"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-f222071f805c",
+    "pc-6329c3a12c81"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/users",
+   "endpoint": "POST /users",
+   "response_status": 201
+  },
+  {
+   "case_id": "U09-violation-password-300-register",
+   "observation": "Register with 300-char password returned 201; stored value is a 60-char bcrypt hash (application transforms before persisting).",
+   "evidence": [
+    {
+     "path": "raw/U09-violation-password-300-register.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U09-violation-password-300-register",
+     "sha256": "f5add98b4abb33f94bbee0ba9b051b1dc9ca62074cb4f37a5778977b8b0c95cc"
+    },
+    {
+     "path": "logs/U09-violation-password-300-register.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U09-violation-password-300-register",
+     "sha256": "23a9313b4e935b8d0ab3a428ce0c7abd03601bae02247d76be7939fd8866c749"
+    },
+    {
+     "path": "raw/U09-violation-password-300-register.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U09-violation-password-300-register",
+     "sha256": "aac37b549ddb27cc879baf5e3307d33a4d17c2434dec5213fac737e4ba214271"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-d88c0fbbf057",
+    "pc-04dbf0d51ea4"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/users",
+   "endpoint": "POST /users",
+   "response_status": 201
+  },
+  {
+   "case_id": "U10-violation-password-300-update",
+   "observation": "PUT /user with 300-char password returned 200; UserService.updateUser persists the raw value; read-back length(password)=300.",
+   "evidence": [
+    {
+     "path": "raw/U10-violation-password-300-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U10-violation-password-300-update",
+     "sha256": "a03abd27dd7b5afc8dc079fba662a9cce2f383ffa564d81628c997943b4e4b0b"
+    },
+    {
+     "path": "logs/U10-violation-password-300-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U10-violation-password-300-update",
+     "sha256": "e6e500032504f4767635b356317332a85b956df6dd50b74c4b0dda62fcdafba4"
+    },
+    {
+     "path": "raw/U10-violation-password-300-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U10-violation-password-300-update",
+     "sha256": "312523bf1857961f860b8ae341c9972dbf32059f72485e82d9750b161e7279b6"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-d88c0fbbf057",
+    "pc-04dbf0d51ea4"
+   ],
+   "request_method": "PUT",
+   "request_url": "http://127.0.0.1:18208/user",
+   "endpoint": "PUT /user",
+   "response_status": 200
+  },
+  {
+   "case_id": "U11-control-image-short-update",
+   "observation": "Valid short image URL update returned 200.",
+   "evidence": [
+    {
+     "path": "raw/U11-control-image-short-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U11-control-image-short-update",
+     "sha256": "354309d0b14637ef8ecc71f3a47348e3e5ac81cc1736d9bb01e0804edc979472"
+    },
+    {
+     "path": "logs/U11-control-image-short-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U11-control-image-short-update",
+     "sha256": "c2b56e784a9b3c8f05b521494790e193d338b8b5504920bc1139907a43f12c3e"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "control",
+   "target_ids": [
+    "pc-d49a912a6d90",
+    "pc-da8b9f1137fd"
+   ],
+   "request_method": "PUT",
+   "request_url": "http://127.0.0.1:18208/user",
+   "endpoint": "PUT /user",
+   "response_status": 200
+  },
+  {
+   "case_id": "U12-violation-image-604-update",
+   "observation": "PUT /user image of 604 chars returned 200; read-back length(image)=604.",
+   "evidence": [
+    {
+     "path": "raw/U12-violation-image-604-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U12-violation-image-604-update",
+     "sha256": "052225578d93b0f30805fd0eb8b125fb79003099d3625eaecc981bc404eb0578"
+    },
+    {
+     "path": "logs/U12-violation-image-604-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U12-violation-image-604-update",
+     "sha256": "5581c28f279dc7a543f8d75660b274ff74f6686bf1eb4f770974e74b3be57ed0"
+    },
+    {
+     "path": "raw/U12-violation-image-604-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U12-violation-image-604-update",
+     "sha256": "d09d6412a9d9b6f8733777c8c2f10717a5e98308704ab791aac98bc440dbd1df"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-d49a912a6d90",
+    "pc-da8b9f1137fd"
+   ],
+   "request_method": "PUT",
+   "request_url": "http://127.0.0.1:18208/user",
+   "endpoint": "PUT /user",
+   "response_status": 200
+  },
+  {
+   "case_id": "U12b-readback-image-get-user",
+   "observation": "GET /user returns the full 604-char image value.",
+   "evidence": [
+    {
+     "path": "raw/U12b-readback-image-get-user.json",
+     "kind": "read-back",
+     "description": "API read-back (sanitized GET request/response) for U12b-readback-image-get-user",
+     "sha256": "d4ffb4e46bf413a40c7632da10e59fffba233b9c774c728efb73b5d58f62f639"
+    },
+    {
+     "path": "raw/U12-violation-image-604-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back paired with U12b-readback-image-get-user",
+     "sha256": "d09d6412a9d9b6f8733777c8c2f10717a5e98308704ab791aac98bc440dbd1df"
+    },
+    {
+     "path": "logs/U12b-readback-image-get-user.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U12b-readback-image-get-user",
+     "sha256": "9c3ea9fcce2c374896d34f0dc8eb420a38fc8ff55380d1a3bdbb244b18ae516b"
+    }
+   ],
+   "reached_persistence": null,
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-d49a912a6d90",
+    "pc-da8b9f1137fd"
+   ],
+   "request_method": "GET",
+   "request_url": "http://127.0.0.1:18208/user",
+   "endpoint": "GET /user",
+   "response_status": 200
+  },
+  {
+   "case_id": "U13-violation-username-300-update",
+   "observation": "PUT /user username of 300 chars returned 200; read-back length(username)=300.",
+   "evidence": [
+    {
+     "path": "raw/U13-violation-username-300-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U13-violation-username-300-update",
+     "sha256": "58dc6b14f97834007e4774a68891e79d4726239f852fd5129ce8d4a62a7f0ba9"
+    },
+    {
+     "path": "logs/U13-violation-username-300-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U13-violation-username-300-update",
+     "sha256": "55adc1d22a0e6b62671fa62f9e0a6297fe52cb4fa51435c1040df19131509b63"
+    },
+    {
+     "path": "raw/U13-violation-username-300-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U13-violation-username-300-update",
+     "sha256": "2634e8bab8cdbe33aee4e10f81c8e92d83df473e7997133cf8cb09a4317e4622"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-6980a721c659",
+    "pc-c377652628ae"
+   ],
+   "request_method": "PUT",
+   "request_url": "http://127.0.0.1:18208/user",
+   "endpoint": "PUT /user",
+   "response_status": 200
+  },
+  {
+   "case_id": "U14-boundary-bio-nonstring",
+   "observation": "JSON number 12345 for bio coerced by Jackson to string '12345'; stored with typeof=text.",
+   "evidence": [
+    {
+     "path": "raw/U14-boundary-bio-nonstring.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U14-boundary-bio-nonstring",
+     "sha256": "23607fc9a382a8dfe9cd8c89184b0320d01dd08c81d7a7904762efaf91cee1aa"
+    },
+    {
+     "path": "logs/U14-boundary-bio-nonstring.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U14-boundary-bio-nonstring",
+     "sha256": "4dfea10eedc5486855abca8bae3e53d886f87bdf3df0fc6b81fae599e87b6b28"
+    },
+    {
+     "path": "raw/U14-boundary-bio-nonstring.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U14-boundary-bio-nonstring",
+     "sha256": "9b25a0607f75456327a3b5acbde0a8be2c39dc443ffb97096cc6a81cd8e15a6e"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "boundary",
+   "target_ids": [
+    "pc-06107ef0465f"
+   ],
+   "request_method": "PUT",
+   "request_url": "http://127.0.0.1:18208/user",
+   "endpoint": "PUT /user",
+   "response_status": 200
+  },
+  {
+   "case_id": "U15-boundary-bio-long",
+   "observation": "100000-char bio accepted and stored in full (TEXT).",
+   "evidence": [
+    {
+     "path": "raw/U15-boundary-bio-long.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U15-boundary-bio-long",
+     "sha256": "00be856dcdf1620300853f1be5d4f722ce2ada376e1847ebbb96fb21e981c50b"
+    },
+    {
+     "path": "logs/U15-boundary-bio-long.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U15-boundary-bio-long",
+     "sha256": "697d1f56eb26aed822e1853924ef32c2a577c5112ca8ffcee9fb437d7d88a2f1"
+    },
+    {
+     "path": "raw/U15-boundary-bio-long.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U15-boundary-bio-long",
+     "sha256": "775673e254cbc05326069d026b97e5dd64a5b32db6f799dccec5d1f0a14600d8"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "boundary",
+   "target_ids": [
+    "pc-06107ef0465f"
+   ],
+   "request_method": "PUT",
+   "request_url": "http://127.0.0.1:18208/user",
+   "endpoint": "PUT /user",
+   "response_status": 200
+  },
+  {
+   "case_id": "R01-violation-race-dup-username",
+   "observation": "12 concurrent registrations with username 'racer': 1x201, 11x500 generic 'Internal Server Error'; log shows SQLITE_CONSTRAINT_UNIQUE users.username; read-back count=1.",
+   "evidence": [
+    {
+     "path": "raw/R01-violation-race-dup-username.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for R01-violation-race-dup-username",
+     "sha256": "a81a81fc8d37591dd38c087b8042a6d1675efbdde34ec2ca7f76e32ed0e8240f"
+    },
+    {
+     "path": "logs/R01-violation-race-dup-username.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for R01-violation-race-dup-username",
+     "sha256": "da7f17c16984f624399c677cafc1392f23073f504f81b60279b24be2dbb31ba8"
+    },
+    {
+     "path": "raw/R01-violation-race-dup-username.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after R01-violation-race-dup-username",
+     "sha256": "a02299a8a570ef2f3b5b913e12afcd048fe219b897e34e651e9103df2b34ba70"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-0d84cdc3d396"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/users",
+   "endpoint": "POST /users",
+   "response_status": null
+  },
+  {
+   "case_id": "R02-violation-race-dup-email",
+   "observation": "12 concurrent registrations with same email: 1x201, 11x500 generic; log shows SQLITE_CONSTRAINT_UNIQUE users.email; read-back count=1.",
+   "evidence": [
+    {
+     "path": "raw/R02-violation-race-dup-email.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for R02-violation-race-dup-email",
+     "sha256": "2763585f9b14a73ae00a6a66ba63b71d889db43513ffc68abea6c144b5fcd7f6"
+    },
+    {
+     "path": "logs/R02-violation-race-dup-email.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for R02-violation-race-dup-email",
+     "sha256": "cb50d1ffeee4c3e179d0cf9beab9448a4c12cc742a7ec526fdf590ca46ed1d48"
+    },
+    {
+     "path": "raw/R02-violation-race-dup-email.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after R02-violation-race-dup-email",
+     "sha256": "98eed6e0f94cacb99608f67b318e367d10d8da71e8abadceb788395dfe4ca9d7"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-d699dbdf4b3e"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/users",
+   "endpoint": "POST /users",
+   "response_status": null
+  },
+  {
+   "case_id": "A01-setup-article-dup-title",
+   "observation": "Article 'Dup Title' created (slug dup-title) with tags alpha,beta.",
+   "evidence": [
+    {
+     "path": "raw/A01-setup-article-dup-title.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A01-setup-article-dup-title",
+     "sha256": "a32e816c72e937b8888dd6f970eb708ad9cf718457443a6aaeab707682428705"
+    },
+    {
+     "path": "logs/A01-setup-article-dup-title.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A01-setup-article-dup-title",
+     "sha256": "f7489cfe8fef4f7abe38318e8de2100a50bd36aabcced69efc187f17026bf676"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "setup",
+   "target_ids": [
+    "pc-e4f422b7bd9e",
+    "pc-7d99f29ba4e7",
+    "pc-75ef4de72ec5"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/articles",
+   "endpoint": "POST /articles",
+   "response_status": 200
+  },
+  {
+   "case_id": "A02-setup-article-other",
+   "observation": "Article 'Other Title' created; read-back shows 36-char UUID ids and created_at/updated_at stored as INTEGER epoch millis.",
+   "evidence": [
+    {
+     "path": "raw/A02-setup-article-other.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A02-setup-article-other",
+     "sha256": "4abccb3517d94dfd46a954a01c47e0eaad6bbf5eb7f95f4c16d98a9569578306"
+    },
+    {
+     "path": "logs/A02-setup-article-other.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A02-setup-article-other",
+     "sha256": "a7698612237f2ddc7d83b50bec76f48c754d009e06915450e8e14bb07a2088c1"
+    },
+    {
+     "path": "raw/A02-setup-article-other.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A02-setup-article-other",
+     "sha256": "265d22b859988985ae6ee6ffb1eb8fe5878bc835e24b4c9eaf9899d67a09c32c"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "setup",
+   "target_ids": [
+    "pc-e4f422b7bd9e"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/articles",
+   "endpoint": "POST /articles",
+   "response_status": 200
+  },
+  {
+   "case_id": "A03-violation-dup-slug-create",
+   "observation": "422 {errors:{title:['article name exists']}}; DuplicatedArticleValidator rejected before INSERT.",
+   "evidence": [
+    {
+     "path": "raw/A03-violation-dup-slug-create.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A03-violation-dup-slug-create",
+     "sha256": "bdae1602a89d5dee568d03460f46a4ad6043aa88d5361e5019646fc817981543"
+    },
+    {
+     "path": "logs/A03-violation-dup-slug-create.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A03-violation-dup-slug-create",
+     "sha256": "8f6c233f81ab948fb09248ec77544e0da2678801c54ca50cdf22b7523be08498"
+    }
+   ],
+   "reached_persistence": false,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-e4f422b7bd9e"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/articles",
+   "endpoint": "POST /articles",
+   "response_status": 422
+  },
+  {
+   "case_id": "A04-violation-dup-slug-create-variant",
+   "observation": "Title 'DUP title' maps to same slug; 422 'article name exists'.",
+   "evidence": [
+    {
+     "path": "raw/A04-violation-dup-slug-create-variant.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A04-violation-dup-slug-create-variant",
+     "sha256": "66e5fdef06cdd57b55c6f9c2cf317cf61637734fa5a85d936c0fa9a87e14236c"
+    },
+    {
+     "path": "logs/A04-violation-dup-slug-create-variant.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A04-violation-dup-slug-create-variant",
+     "sha256": "4854fcbc40b49a3c20fdc25530eb95c61d58356b4a7afab4f2692cfdbfab7537"
+    }
+   ],
+   "reached_persistence": false,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-e4f422b7bd9e"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/articles",
+   "endpoint": "POST /articles",
+   "response_status": 422
+  },
+  {
+   "case_id": "A05-violation-dup-slug-update",
+   "observation": "PUT /articles/other-title with title 'Dup Title' (no duplicate validator on update) returned generic 500; log shows SQLITE_CONSTRAINT_UNIQUE articles.slug; read-back unchanged.",
+   "evidence": [
+    {
+     "path": "raw/A05-violation-dup-slug-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A05-violation-dup-slug-update",
+     "sha256": "b185fd56cf712839f88513ce061b7be87aeaa79440712930775bfbce8b16173b"
+    },
+    {
+     "path": "logs/A05-violation-dup-slug-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A05-violation-dup-slug-update",
+     "sha256": "bcc363bab0307b3c0006db82937c9615c30c29d92c5fafc1c4978ac7b2a2cfff"
+    },
+    {
+     "path": "raw/A05-violation-dup-slug-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A05-violation-dup-slug-update",
+     "sha256": "041fa0406c14af6a824e81439acf6eda6b8deffc919fd6018cc18f786d7115ba"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-e4f422b7bd9e"
+   ],
+   "request_method": "PUT",
+   "request_url": "http://127.0.0.1:18208/articles/other-title",
+   "endpoint": "PUT /articles/other-title",
+   "response_status": 500
+  },
+  {
+   "case_id": "A05b-readback-other-title",
+   "observation": "GET /articles/other-title still returns original article after failed update.",
+   "evidence": [
+    {
+     "path": "raw/A05b-readback-other-title.json",
+     "kind": "read-back",
+     "description": "API read-back (sanitized GET request/response) for A05b-readback-other-title",
+     "sha256": "849cfbbfee847f298abd2dfd1c35f94261e57b7313e16961a494eda9d4e7909c"
+    },
+    {
+     "path": "raw/A05-violation-dup-slug-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back paired with A05b-readback-other-title",
+     "sha256": "041fa0406c14af6a824e81439acf6eda6b8deffc919fd6018cc18f786d7115ba"
+    },
+    {
+     "path": "logs/A05b-readback-other-title.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A05b-readback-other-title",
+     "sha256": "9f69da4710ba64c518ba681fdb9ac6ec12be8891a118085d9b0d35ea9b5135b8"
+    }
+   ],
+   "reached_persistence": null,
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-e4f422b7bd9e"
+   ],
+   "request_method": "GET",
+   "request_url": "http://127.0.0.1:18208/articles/other-title",
+   "endpoint": "GET /articles/other-title",
+   "response_status": 200
+  },
+  {
+   "case_id": "A06-violation-title-300",
+   "observation": "Article with 300-char title returned 200; read-back length(title)=300, length(slug)=300.",
+   "evidence": [
+    {
+     "path": "raw/A06-violation-title-300.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A06-violation-title-300",
+     "sha256": "c3f7076e93635e726296e403b11cea426edc50babee9004ea1383d07dec9841e"
+    },
+    {
+     "path": "logs/A06-violation-title-300.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A06-violation-title-300",
+     "sha256": "8f3b9ef348940e958f8b0fd49f9a3a950cc93ef6ab7ae1e8deb20f6300dee644"
+    },
+    {
+     "path": "raw/A06-violation-title-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A06-violation-title-300",
+     "sha256": "fa06948465601c0adf7ed6194e1cf548a0209b8058b8b9ed9a0b2f00a6541e9c"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-072dbddeaefe",
+    "pc-f89b841f9c61",
+    "pc-b19e1e34bae0",
+    "pc-069a3f7b878b"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/articles",
+   "endpoint": "POST /articles",
+   "response_status": 200
+  },
+  {
+   "case_id": "A06b-readback-title-300",
+   "observation": "GET by 300-char slug returns the article with full title.",
+   "evidence": [
+    {
+     "path": "raw/A06b-readback-title-300.json",
+     "kind": "read-back",
+     "description": "API read-back (sanitized GET request/response) for A06b-readback-title-300",
+     "sha256": "0cc5e5643c57f061b16ebf3b20f5401667eab4d137b94c6175954eaef0f93cf3"
+    },
+    {
+     "path": "raw/A06-violation-title-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back paired with A06b-readback-title-300",
+     "sha256": "fa06948465601c0adf7ed6194e1cf548a0209b8058b8b9ed9a0b2f00a6541e9c"
+    },
+    {
+     "path": "logs/A06b-readback-title-300.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A06b-readback-title-300",
+     "sha256": "f85b0cfe40685c0721c710e8219eb6dd594b34adc9f72b422d5eb363376d7b29"
+    }
+   ],
+   "reached_persistence": null,
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-072dbddeaefe",
+    "pc-b19e1e34bae0"
+   ],
+   "request_method": "GET",
+   "request_url": "http://127.0.0.1:18208/articles/tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt",
+   "endpoint": "GET /articles/tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt",
+   "response_status": 200
+  },
+  {
+   "case_id": "A07-violation-title-300-update",
+   "observation": "PUT article with 300-char title returned 200; read-back title/slug length 300.",
+   "evidence": [
+    {
+     "path": "raw/A07-violation-title-300-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A07-violation-title-300-update",
+     "sha256": "4d8154aee54791e8f1b9c8574fbb42aa1dd20d47539d33d20992b5e7bd3a89bb"
+    },
+    {
+     "path": "logs/A07-violation-title-300-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A07-violation-title-300-update",
+     "sha256": "d6bcad28618664894c57fb06dc068f87c0b705dfe719795e12ce1abd5977ceec"
+    },
+    {
+     "path": "raw/A07-violation-title-300-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A07-violation-title-300-update",
+     "sha256": "8ff635ef6eb3593f3b81dfcd2d3f4fdd4e23d96a137f9c2ca04f17ff834ad47c"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-072dbddeaefe",
+    "pc-f89b841f9c61",
+    "pc-b19e1e34bae0",
+    "pc-069a3f7b878b"
+   ],
+   "request_method": "PUT",
+   "request_url": "http://127.0.0.1:18208/articles/dup-title",
+   "endpoint": "PUT /articles/dup-title",
+   "response_status": 200
+  },
+  {
+   "case_id": "A08-boundary-desc-body-nonstring",
+   "observation": "description=123 and body=true coerced to '123'/'true' by Jackson; stored as text.",
+   "evidence": [
+    {
+     "path": "raw/A08-boundary-desc-body-nonstring.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A08-boundary-desc-body-nonstring",
+     "sha256": "222093ec779353816704ca440b69b63ce3b133dea874bc4ccf73bf5184ad2fee"
+    },
+    {
+     "path": "logs/A08-boundary-desc-body-nonstring.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A08-boundary-desc-body-nonstring",
+     "sha256": "685ff6677490c46e5fcd1a1bffac8a8fd40c78bcfae7c29979e0fc1cf6c2a517"
+    },
+    {
+     "path": "raw/A08-boundary-desc-body-nonstring.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A08-boundary-desc-body-nonstring",
+     "sha256": "08ef7b7f2a7cdad9fbda0492f3ef12f18bfab52ff450d5b9072d6c58ef2bc72d"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "boundary",
+   "target_ids": [
+    "pc-57bb94b78e9d",
+    "pc-71f42f2e337f"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/articles",
+   "endpoint": "POST /articles",
+   "response_status": 200
+  },
+  {
+   "case_id": "A09-violation-tag-name-300",
+   "observation": "Article with 300-char tag returned 200; tags read-back length(name)=300.",
+   "evidence": [
+    {
+     "path": "raw/A09-violation-tag-name-300.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A09-violation-tag-name-300",
+     "sha256": "89f6547314325ec902c8c8f69620f82b49aa40c75572d859bba0c27f79e9c728"
+    },
+    {
+     "path": "logs/A09-violation-tag-name-300.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A09-violation-tag-name-300",
+     "sha256": "e1800b656fd48d0501c17ef07bd9d425ae7bb1a66a0b0bf1227e1fa0100879ae"
+    },
+    {
+     "path": "raw/A09-violation-tag-name-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A09-violation-tag-name-300",
+     "sha256": "c42560babddadad9b2b4d3eaf9448441970abbfe2197951b190de68985d493cd"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-0f438b438a43",
+    "pc-c1be97b12e82"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/articles",
+   "endpoint": "POST /articles",
+   "response_status": 200
+  },
+  {
+   "case_id": "A09b-readback-tags",
+   "observation": "GET /tags lists the 300-char tag.",
+   "evidence": [
+    {
+     "path": "raw/A09b-readback-tags.json",
+     "kind": "read-back",
+     "description": "API read-back (sanitized GET request/response) for A09b-readback-tags",
+     "sha256": "bff3d8d1132ec79fd23203a43608deabbe36974ad0226cfcaae42f2af79059f2"
+    },
+    {
+     "path": "raw/A09-violation-tag-name-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back paired with A09b-readback-tags",
+     "sha256": "c42560babddadad9b2b4d3eaf9448441970abbfe2197951b190de68985d493cd"
+    },
+    {
+     "path": "logs/A09b-readback-tags.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A09b-readback-tags",
+     "sha256": "d392583cb937681077ad04b3284886b0942e43eb4a60b8089973599c5a61a5cb"
+    }
+   ],
+   "reached_persistence": null,
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-0f438b438a43"
+   ],
+   "request_method": "GET",
+   "request_url": "http://127.0.0.1:18208/tags",
+   "endpoint": "GET /tags",
+   "response_status": 200
+  },
+  {
+   "case_id": "A10-violation-tag-name-null",
+   "observation": "tagList [null] returned generic 500; log shows INSERT into tags with null name and SQLITE_CONSTRAINT_NOTNULL tags.name; no article or null tag persisted.",
+   "evidence": [
+    {
+     "path": "raw/A10-violation-tag-name-null.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A10-violation-tag-name-null",
+     "sha256": "49bc48dae9ac5a0f64fcd743de91b0bb885c0208deaaa8a894cba447249d5f83"
+    },
+    {
+     "path": "logs/A10-violation-tag-name-null.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A10-violation-tag-name-null",
+     "sha256": "e1a6def71e9546e4fe1ddc1c4fdb9e518ae749cc6ba085320db3088f2aec5e7e"
+    },
+    {
+     "path": "raw/A10-violation-tag-name-null.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A10-violation-tag-name-null",
+     "sha256": "8f82a53768a6344f58f4243aec6e2653f5411ae2b65d4ea6f95b68ab70510167"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-b85db3b823bb"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/articles",
+   "endpoint": "POST /articles",
+   "response_status": 500
+  },
+  {
+   "case_id": "A10b-tags-null-check",
+   "observation": "No tags row with NULL name exists.",
+   "evidence": [
+    {
+     "path": "raw/A10b-tags-null-check.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A10b-tags-null-check",
+     "sha256": "08b3ec89bbf8766173ddb9b1cd8b65b533255e04cb185e633d7f7bcdf87d4e7d"
+    }
+   ],
+   "reached_persistence": null,
+   "purpose": "read-back",
+   "target_ids": []
+  },
+  {
+   "case_id": "A11-control-comment",
+   "observation": "Comment created (201); read-back: UUID ids (36 chars), created_at/updated_at INTEGER epoch millis.",
+   "evidence": [
+    {
+     "path": "raw/A11-control-comment.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A11-control-comment",
+     "sha256": "e4e1ce264c27236b2d2620fda1ed495e6af9e683e08d77efe03def5c3a9adfe3"
+    },
+    {
+     "path": "logs/A11-control-comment.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A11-control-comment",
+     "sha256": "f88e93c2677183b8c5ea8fa8488ccbb9c797b3ecef4f343cc15384c1538e494a"
+    },
+    {
+     "path": "raw/A11-control-comment.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A11-control-comment",
+     "sha256": "316b23055883093fc070a2739518f3ccb305dddff737a0d170e39412782154f9"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "control",
+   "target_ids": [
+    "pc-8cb224baaa01",
+    "pc-5f35a96467ad",
+    "pc-13b985700d53"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/articles/other-title/comments",
+   "endpoint": "POST /articles/other-title/comments",
+   "response_status": 201
+  },
+  {
+   "case_id": "A12-boundary-comment-body-nonstring",
+   "observation": "Comment body 42 coerced to '42'; stored as text.",
+   "evidence": [
+    {
+     "path": "raw/A12-boundary-comment-body-nonstring.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A12-boundary-comment-body-nonstring",
+     "sha256": "e28faa67f7d4a8e0b65d4b4f974818247916a455b3711b665a4adb57d5176238"
+    },
+    {
+     "path": "logs/A12-boundary-comment-body-nonstring.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A12-boundary-comment-body-nonstring",
+     "sha256": "f4c1034893d35b1c43862a089e5d6f3cbe862ae1323fb0787fca5f2ec0013b19"
+    },
+    {
+     "path": "raw/A12-boundary-comment-body-nonstring.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A12-boundary-comment-body-nonstring",
+     "sha256": "f5aa5a389e8588a24f27126dc7954d90cd785a7e3bb3eb3ee8ec8927e76582cd"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "boundary",
+   "target_ids": [
+    "pc-8cb224baaa01"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/articles/other-title/comments",
+   "endpoint": "POST /articles/other-title/comments",
+   "response_status": 201
+  },
+  {
+   "case_id": "A13-control-favorite",
+   "observation": "First favorite returned 200; INSERT into article_favorites executed.",
+   "evidence": [
+    {
+     "path": "raw/A13-control-favorite.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A13-control-favorite",
+     "sha256": "aadcfe60576d828a823f65c95f6dc8572a7912a42949ae7c2eaf7805c33db149"
+    },
+    {
+     "path": "logs/A13-control-favorite.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A13-control-favorite",
+     "sha256": "c9758f9adb2a42fca2b6189cb998e8b2af046d784cf5eeab66149eba1399540b"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "control",
+   "target_ids": [
+    "pc-c9c555e0317b"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/articles/other-title/favorite",
+   "endpoint": "POST /articles/other-title/favorite",
+   "response_status": 200
+  },
+  {
+   "case_id": "A14-violation-favorite-duplicate-sequential",
+   "observation": "Second favorite returned 200 but no INSERT issued (find-before-insert); read-back count=1.",
+   "evidence": [
+    {
+     "path": "raw/A14-violation-favorite-duplicate-sequential.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A14-violation-favorite-duplicate-sequential",
+     "sha256": "c689d737bb5500742f32aabe9575f08521c179a313f4abad2de825d6e525e568"
+    },
+    {
+     "path": "logs/A14-violation-favorite-duplicate-sequential.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A14-violation-favorite-duplicate-sequential",
+     "sha256": "ccb8111509642953729294ee111313b10e6a82d9437f720a587951c68d234193"
+    },
+    {
+     "path": "raw/A14-violation-favorite-duplicate-sequential.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A14-violation-favorite-duplicate-sequential",
+     "sha256": "410783575528cb05610b63b3a59fc60cdf0b0b546e2b2d0f7bf8a57e590ffef2"
+    }
+   ],
+   "reached_persistence": false,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-c9c555e0317b"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/articles/other-title/favorite",
+   "endpoint": "POST /articles/other-title/favorite",
+   "response_status": 200
+  },
+  {
+   "case_id": "A15-violation-favorite-duplicate-race",
+   "observation": "12 concurrent favorites of the same article: 8x200, 4x500 generic; log shows SQLITE_CONSTRAINT_PRIMARYKEY on (article_id,user_id); read-back count=1.",
+   "evidence": [
+    {
+     "path": "raw/A15-violation-favorite-duplicate-race.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A15-violation-favorite-duplicate-race",
+     "sha256": "a41484528b9a2d19ab6f52dfba44c4839c95239d9a9e291a456958c2771a38fa"
+    },
+    {
+     "path": "logs/A15-violation-favorite-duplicate-race.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A15-violation-favorite-duplicate-race",
+     "sha256": "44e133b65c35bda976b63585acae74fb2aa7900fc157e310673e862ef6b6feed"
+    },
+    {
+     "path": "raw/A15-violation-favorite-duplicate-race.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A15-violation-favorite-duplicate-race",
+     "sha256": "e1faa065e2c4323496f194f26b43d66ffd4635178e0b6c7234a1c33faf88198f"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "violation",
+   "target_ids": [
+    "pc-c9c555e0317b"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/articles/typed-body/favorite",
+   "endpoint": "POST /articles/typed-body/favorite",
+   "response_status": null
+  },
+  {
+   "case_id": "A16-control-follow",
+   "observation": "Follow created (200); follows row with 36-char server-derived ids.",
+   "evidence": [
+    {
+     "path": "raw/A16-control-follow.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A16-control-follow",
+     "sha256": "b873032356502a605527ceaeabd01f4d6ee4f35ce00f6d25f0ea309311df9195"
+    },
+    {
+     "path": "logs/A16-control-follow.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A16-control-follow",
+     "sha256": "29b33d5c4ce8698bd3d13d4e8df3a4f0c05fe280064ff909f1aaee6a9f2897de"
+    },
+    {
+     "path": "raw/A16-control-follow.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A16-control-follow",
+     "sha256": "ead69aba39bc0d3a720118428beaed1c0017c7688e47aadd478b81817cf8795b"
+    }
+   ],
+   "reached_persistence": true,
+   "purpose": "control",
+   "target_ids": [
+    "pc-f10d889965df",
+    "pc-e611bd7bff61",
+    "pc-27a12ece99bb",
+    "pc-bc0d5fb992b2"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/profiles/longmail/follow",
+   "endpoint": "POST /profiles/longmail/follow",
+   "response_status": 200
+  },
+  {
+   "case_id": "A17-boundary-follow-nonexistent",
+   "observation": "Following unknown user returns 404 before persistence; no NULL follow_id row.",
+   "evidence": [
+    {
+     "path": "raw/A17-boundary-follow-nonexistent.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A17-boundary-follow-nonexistent",
+     "sha256": "076b0fe5e658f00003a2c95a10a1b2859ef8f66c0927a465aa87042e97e5fdc8"
+    },
+    {
+     "path": "logs/A17-boundary-follow-nonexistent.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A17-boundary-follow-nonexistent",
+     "sha256": "0d3851e5655c0ee5a3e43e5089e7b5b479196d3a242258337af58c2288c11294"
+    },
+    {
+     "path": "raw/A17-boundary-follow-nonexistent.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A17-boundary-follow-nonexistent",
+     "sha256": "4d7274ce41f3184ab5bebd8a0bff6ba75949504e18a8223f12ba2382435ac8e2"
+    }
+   ],
+   "reached_persistence": false,
+   "purpose": "boundary",
+   "target_ids": [
+    "pc-f10d889965df"
+   ],
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18208/profiles/nobody/follow",
+   "endpoint": "POST /profiles/nobody/follow",
+   "response_status": 404
+  },
+  {
+   "case_id": "A18-article-tags-readback",
+   "observation": "article_tags rows contain 36-char UUIDs, no NULL tag_id.",
+   "evidence": [
+    {
+     "path": "raw/A18-article-tags-readback.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A18-article-tags-readback",
+     "sha256": "79e9315046b5365fac39e5ddf97afd7abe9ed26b29dbe831b7fe0922e0f287b4"
+    }
+   ],
+   "reached_persistence": null,
+   "purpose": "read-back",
+   "target_ids": []
+  }
+ ],
+ "results": [
+  {
+   "target_id": "pc-f222071f805c",
+   "target_kind": "constraint",
+   "outcome": "NO_OBSERVED_ENFORCEMENT",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "none",
+   "application_layer_implemented": false,
+   "response_handling": "accepted",
+   "case_ids": [
+    "U08-violation-email-313"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U08-violation-email-313.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U08-violation-email-313",
+     "sha256": "23d223befa259566ee49bb356d7338f5bd0edcab1d66191386159c907e6c8095"
+    },
+    {
+     "path": "logs/U08-violation-email-313.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U08-violation-email-313",
+     "sha256": "381581391d721c27731b8cb0ab327baa67059a9d7c6ac1032aa6710ecd9442b7"
+    },
+    {
+     "path": "raw/U08-violation-email-313.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U08-violation-email-313",
+     "sha256": "614f04dcb281f529df1c62220dc67846c2a64084f9d311c84c8d5ff3a6d69b80"
+    }
+   ],
+   "rationale": "Predicate 'users.email has length 255'. A 312-char email that satisfies @Email (64-char local part, 63-char domain labels) was accepted (201) and persisted in full. @Email bounds label lengths but not total length <=255. Deployed variant is SQLite 3.36 (sqlite-jdbc 3.36.0.3) with the V1 Flyway migration; SQLite ignores VARCHAR(n) length declarations (type affinity TEXT), so the length/type predicate is not enforced by the deployed database.",
+   "confidence": 0.9,
+   "limitations": [
+    "Only the register path was exercised for email length; update path uses the same @Email annotation."
+   ]
+  },
+  {
+   "target_id": "pc-131115f632ac",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "U02-setup-register-bob"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U02-setup-register-bob.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U02-setup-register-bob",
+     "sha256": "90b1d035277aa4f1a8f755b00fe0338467675f4df8d59adee4a4a6cad56b583f"
+    },
+    {
+     "path": "logs/U02-setup-register-bob.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U02-setup-register-bob",
+     "sha256": "350c99086f9212711dec907a7ae9b7df2d523fce348d4b06ed66b7d04627594e"
+    },
+    {
+     "path": "raw/U02-setup-register-bob.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U02-setup-register-bob",
+     "sha256": "c0b0889b357788595610ea267196554c458ce7da02e195be3749211fcded6c04"
+    }
+   ],
+   "rationale": "Predicate 'users.id has length 255'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-d49a912a6d90",
+   "target_kind": "constraint",
+   "outcome": "NO_OBSERVED_ENFORCEMENT",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "none",
+   "application_layer_implemented": false,
+   "response_handling": "accepted",
+   "case_ids": [
+    "U11-control-image-short-update",
+    "U12-violation-image-604-update",
+    "U12b-readback-image-get-user"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U11-control-image-short-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U11-control-image-short-update",
+     "sha256": "354309d0b14637ef8ecc71f3a47348e3e5ac81cc1736d9bb01e0804edc979472"
+    },
+    {
+     "path": "logs/U11-control-image-short-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U11-control-image-short-update",
+     "sha256": "c2b56e784a9b3c8f05b521494790e193d338b8b5504920bc1139907a43f12c3e"
+    },
+    {
+     "path": "raw/U12-violation-image-604-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U12-violation-image-604-update",
+     "sha256": "052225578d93b0f30805fd0eb8b125fb79003099d3625eaecc981bc404eb0578"
+    },
+    {
+     "path": "logs/U12-violation-image-604-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U12-violation-image-604-update",
+     "sha256": "5581c28f279dc7a543f8d75660b274ff74f6686bf1eb4f770974e74b3be57ed0"
+    },
+    {
+     "path": "raw/U12-violation-image-604-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U12-violation-image-604-update",
+     "sha256": "d09d6412a9d9b6f8733777c8c2f10717a5e98308704ab791aac98bc440dbd1df"
+    },
+    {
+     "path": "raw/U12b-readback-image-get-user.json",
+     "kind": "read-back",
+     "description": "API read-back (sanitized GET request/response) for U12b-readback-image-get-user",
+     "sha256": "d4ffb4e46bf413a40c7632da10e59fffba233b9c774c728efb73b5d58f62f639"
+    },
+    {
+     "path": "raw/U12-violation-image-604-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back paired with U12b-readback-image-get-user",
+     "sha256": "d09d6412a9d9b6f8733777c8c2f10717a5e98308704ab791aac98bc440dbd1df"
+    },
+    {
+     "path": "logs/U12b-readback-image-get-user.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U12b-readback-image-get-user",
+     "sha256": "9c3ea9fcce2c374896d34f0dc8eb420a38fc8ff55380d1a3bdbb244b18ae516b"
+    }
+   ],
+   "rationale": "Predicate 'users.image has length 511'. 604-char image accepted by PUT /user and persisted/returned in full (length 604 > 511). No application size check. Deployed variant is SQLite 3.36 (sqlite-jdbc 3.36.0.3) with the V1 Flyway migration; SQLite ignores VARCHAR(n) length declarations (type affinity TEXT), so the length/type predicate is not enforced by the deployed database.",
+   "confidence": 0.95,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-d88c0fbbf057",
+   "target_kind": "constraint",
+   "outcome": "NO_OBSERVED_ENFORCEMENT",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "none",
+   "application_layer_implemented": false,
+   "response_handling": "accepted",
+   "case_ids": [
+    "U09-violation-password-300-register",
+    "U10-violation-password-300-update"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U09-violation-password-300-register.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U09-violation-password-300-register",
+     "sha256": "f5add98b4abb33f94bbee0ba9b051b1dc9ca62074cb4f37a5778977b8b0c95cc"
+    },
+    {
+     "path": "logs/U09-violation-password-300-register.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U09-violation-password-300-register",
+     "sha256": "23a9313b4e935b8d0ab3a428ce0c7abd03601bae02247d76be7939fd8866c749"
+    },
+    {
+     "path": "raw/U09-violation-password-300-register.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U09-violation-password-300-register",
+     "sha256": "aac37b549ddb27cc879baf5e3307d33a4d17c2434dec5213fac737e4ba214271"
+    },
+    {
+     "path": "raw/U10-violation-password-300-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U10-violation-password-300-update",
+     "sha256": "a03abd27dd7b5afc8dc079fba662a9cce2f383ffa564d81628c997943b4e4b0b"
+    },
+    {
+     "path": "logs/U10-violation-password-300-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U10-violation-password-300-update",
+     "sha256": "e6e500032504f4767635b356317332a85b956df6dd50b74c4b0dda62fcdafba4"
+    },
+    {
+     "path": "raw/U10-violation-password-300-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U10-violation-password-300-update",
+     "sha256": "312523bf1857961f860b8ae341c9972dbf32059f72485e82d9750b161e7279b6"
+    }
+   ],
+   "rationale": "Predicate 'users.password has length 255'. On register the password is bcrypt-encoded to 60 chars (application transformation, so the column never sees >255 there). On PUT /user the raw password is persisted without encoding (application bug), and a 300-char value was stored in full (read-back length 300). Deployed variant is SQLite 3.36 (sqlite-jdbc 3.36.0.3) with the V1 Flyway migration; SQLite ignores VARCHAR(n) length declarations (type affinity TEXT), so the length/type predicate is not enforced by the deployed database.",
+   "confidence": 0.9,
+   "limitations": [
+    "Register path alone would be APPLICATION_TRANSFORMED; the update path demonstrates the predicate is not enforced."
+   ]
+  },
+  {
+   "target_id": "pc-6980a721c659",
+   "target_kind": "constraint",
+   "outcome": "NO_OBSERVED_ENFORCEMENT",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "none",
+   "application_layer_implemented": false,
+   "response_handling": "accepted",
+   "case_ids": [
+    "U07-violation-username-300",
+    "U13-violation-username-300-update"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U07-violation-username-300.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U07-violation-username-300",
+     "sha256": "bb9446d56a15226e95f70337cfaba6313e9da4428461f950cfc719981ae47bde"
+    },
+    {
+     "path": "logs/U07-violation-username-300.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U07-violation-username-300",
+     "sha256": "54a49ff92a74279fdbc162deaf66a6d5d17dc0f1eb82964d6b0c520f39a8231b"
+    },
+    {
+     "path": "raw/U07-violation-username-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U07-violation-username-300",
+     "sha256": "4112ff30193f486db3c611d9f8178bb10a78ed5eb6f778c66c7d7102c8a594c4"
+    },
+    {
+     "path": "raw/U13-violation-username-300-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U13-violation-username-300-update",
+     "sha256": "58dc6b14f97834007e4774a68891e79d4726239f852fd5129ce8d4a62a7f0ba9"
+    },
+    {
+     "path": "logs/U13-violation-username-300-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U13-violation-username-300-update",
+     "sha256": "55adc1d22a0e6b62671fa62f9e0a6297fe52cb4fa51435c1040df19131509b63"
+    },
+    {
+     "path": "raw/U13-violation-username-300-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U13-violation-username-300-update",
+     "sha256": "2634e8bab8cdbe33aee4e10f81c8e92d83df473e7997133cf8cb09a4317e4622"
+    }
+   ],
+   "rationale": "Predicate 'users.username has length 255'. 300-char usernames accepted via POST /users and PUT /user and persisted in full (read-back length 300). RegisterParam has only @NotBlank; no @Size. Deployed variant is SQLite 3.36 (sqlite-jdbc 3.36.0.3) with the V1 Flyway migration; SQLite ignores VARCHAR(n) length declarations (type affinity TEXT), so the length/type predicate is not enforced by the deployed database.",
+   "confidence": 0.95,
+   "limitations": [
+    "On a strict-length database (e.g. MySQL strict/PostgreSQL) this would be DB-enforced; only SQLite was deployed."
+   ]
+  },
+  {
+   "target_id": "pc-2d2ccda522ac",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "U02-setup-register-bob"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U02-setup-register-bob.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U02-setup-register-bob",
+     "sha256": "90b1d035277aa4f1a8f755b00fe0338467675f4df8d59adee4a4a6cad56b583f"
+    },
+    {
+     "path": "logs/U02-setup-register-bob.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U02-setup-register-bob",
+     "sha256": "350c99086f9212711dec907a7ae9b7df2d523fce348d4b06ed66b7d04627594e"
+    },
+    {
+     "path": "raw/U02-setup-register-bob.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U02-setup-register-bob",
+     "sha256": "c0b0889b357788595610ea267196554c458ce7da02e195be3749211fcded6c04"
+    }
+   ],
+   "rationale": "Predicate 'users.id identifies a row'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-06107ef0465f",
+   "target_kind": "constraint",
+   "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "U14-boundary-bio-nonstring",
+    "U15-boundary-bio-long"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U14-boundary-bio-nonstring.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U14-boundary-bio-nonstring",
+     "sha256": "23607fc9a382a8dfe9cd8c89184b0320d01dd08c81d7a7904762efaf91cee1aa"
+    },
+    {
+     "path": "logs/U14-boundary-bio-nonstring.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U14-boundary-bio-nonstring",
+     "sha256": "4dfea10eedc5486855abca8bae3e53d886f87bdf3df0fc6b81fae599e87b6b28"
+    },
+    {
+     "path": "raw/U14-boundary-bio-nonstring.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U14-boundary-bio-nonstring",
+     "sha256": "9b25a0607f75456327a3b5acbde0a8be2c39dc443ffb97096cc6a81cd8e15a6e"
+    },
+    {
+     "path": "raw/U15-boundary-bio-long.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U15-boundary-bio-long",
+     "sha256": "00be856dcdf1620300853f1be5d4f722ce2ada376e1847ebbb96fb21e981c50b"
+    },
+    {
+     "path": "logs/U15-boundary-bio-long.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U15-boundary-bio-long",
+     "sha256": "697d1f56eb26aed822e1853924ef32c2a577c5112ca8ffcee9fb437d7d88a2f1"
+    },
+    {
+     "path": "raw/U15-boundary-bio-long.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U15-boundary-bio-long",
+     "sha256": "775673e254cbc05326069d026b97e5dd64a5b32db6f799dccec5d1f0a14600d8"
+    }
+   ],
+   "rationale": "Predicate 'users.bio has type TEXT'. Unbounded TEXT type has no violating string value reachable from JSON; non-string JSON (number) is coerced to a string by Jackson and a 100000-char bio is stored as text. The type declaration is structural.",
+   "confidence": 0.85,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-6329c3a12c81",
+   "target_kind": "constraint",
+   "outcome": "NO_OBSERVED_ENFORCEMENT",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "none",
+   "application_layer_implemented": false,
+   "response_handling": "accepted",
+   "case_ids": [
+    "U08-violation-email-313"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U08-violation-email-313.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U08-violation-email-313",
+     "sha256": "23d223befa259566ee49bb356d7338f5bd0edcab1d66191386159c907e6c8095"
+    },
+    {
+     "path": "logs/U08-violation-email-313.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U08-violation-email-313",
+     "sha256": "381581391d721c27731b8cb0ab327baa67059a9d7c6ac1032aa6710ecd9442b7"
+    },
+    {
+     "path": "raw/U08-violation-email-313.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U08-violation-email-313",
+     "sha256": "614f04dcb281f529df1c62220dc67846c2a64084f9d311c84c8d5ff3a6d69b80"
+    }
+   ],
+   "rationale": "Predicate 'users.email has type VARCHAR(255)'. A 312-char email that satisfies @Email (64-char local part, 63-char domain labels) was accepted (201) and persisted in full. @Email bounds label lengths but not total length <=255. Deployed variant is SQLite 3.36 (sqlite-jdbc 3.36.0.3) with the V1 Flyway migration; SQLite ignores VARCHAR(n) length declarations (type affinity TEXT), so the length/type predicate is not enforced by the deployed database.",
+   "confidence": 0.9,
+   "limitations": [
+    "Only the register path was exercised for email length; update path uses the same @Email annotation."
+   ]
+  },
+  {
+   "target_id": "pc-1e88e7458c9e",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "U02-setup-register-bob"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U02-setup-register-bob.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U02-setup-register-bob",
+     "sha256": "90b1d035277aa4f1a8f755b00fe0338467675f4df8d59adee4a4a6cad56b583f"
+    },
+    {
+     "path": "logs/U02-setup-register-bob.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U02-setup-register-bob",
+     "sha256": "350c99086f9212711dec907a7ae9b7df2d523fce348d4b06ed66b7d04627594e"
+    },
+    {
+     "path": "raw/U02-setup-register-bob.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U02-setup-register-bob",
+     "sha256": "c0b0889b357788595610ea267196554c458ce7da02e195be3749211fcded6c04"
+    }
+   ],
+   "rationale": "Predicate 'users.id has type VARCHAR(255)'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-da8b9f1137fd",
+   "target_kind": "constraint",
+   "outcome": "NO_OBSERVED_ENFORCEMENT",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "none",
+   "application_layer_implemented": false,
+   "response_handling": "accepted",
+   "case_ids": [
+    "U11-control-image-short-update",
+    "U12-violation-image-604-update",
+    "U12b-readback-image-get-user"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U11-control-image-short-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U11-control-image-short-update",
+     "sha256": "354309d0b14637ef8ecc71f3a47348e3e5ac81cc1736d9bb01e0804edc979472"
+    },
+    {
+     "path": "logs/U11-control-image-short-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U11-control-image-short-update",
+     "sha256": "c2b56e784a9b3c8f05b521494790e193d338b8b5504920bc1139907a43f12c3e"
+    },
+    {
+     "path": "raw/U12-violation-image-604-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U12-violation-image-604-update",
+     "sha256": "052225578d93b0f30805fd0eb8b125fb79003099d3625eaecc981bc404eb0578"
+    },
+    {
+     "path": "logs/U12-violation-image-604-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U12-violation-image-604-update",
+     "sha256": "5581c28f279dc7a543f8d75660b274ff74f6686bf1eb4f770974e74b3be57ed0"
+    },
+    {
+     "path": "raw/U12-violation-image-604-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U12-violation-image-604-update",
+     "sha256": "d09d6412a9d9b6f8733777c8c2f10717a5e98308704ab791aac98bc440dbd1df"
+    },
+    {
+     "path": "raw/U12b-readback-image-get-user.json",
+     "kind": "read-back",
+     "description": "API read-back (sanitized GET request/response) for U12b-readback-image-get-user",
+     "sha256": "d4ffb4e46bf413a40c7632da10e59fffba233b9c774c728efb73b5d58f62f639"
+    },
+    {
+     "path": "raw/U12-violation-image-604-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back paired with U12b-readback-image-get-user",
+     "sha256": "d09d6412a9d9b6f8733777c8c2f10717a5e98308704ab791aac98bc440dbd1df"
+    },
+    {
+     "path": "logs/U12b-readback-image-get-user.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U12b-readback-image-get-user",
+     "sha256": "9c3ea9fcce2c374896d34f0dc8eb420a38fc8ff55380d1a3bdbb244b18ae516b"
+    }
+   ],
+   "rationale": "Predicate 'users.image has type VARCHAR(511)'. 604-char image accepted by PUT /user and persisted/returned in full (length 604 > 511). No application size check. Deployed variant is SQLite 3.36 (sqlite-jdbc 3.36.0.3) with the V1 Flyway migration; SQLite ignores VARCHAR(n) length declarations (type affinity TEXT), so the length/type predicate is not enforced by the deployed database.",
+   "confidence": 0.95,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-04dbf0d51ea4",
+   "target_kind": "constraint",
+   "outcome": "NO_OBSERVED_ENFORCEMENT",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "none",
+   "application_layer_implemented": false,
+   "response_handling": "accepted",
+   "case_ids": [
+    "U09-violation-password-300-register",
+    "U10-violation-password-300-update"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U09-violation-password-300-register.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U09-violation-password-300-register",
+     "sha256": "f5add98b4abb33f94bbee0ba9b051b1dc9ca62074cb4f37a5778977b8b0c95cc"
+    },
+    {
+     "path": "logs/U09-violation-password-300-register.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U09-violation-password-300-register",
+     "sha256": "23a9313b4e935b8d0ab3a428ce0c7abd03601bae02247d76be7939fd8866c749"
+    },
+    {
+     "path": "raw/U09-violation-password-300-register.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U09-violation-password-300-register",
+     "sha256": "aac37b549ddb27cc879baf5e3307d33a4d17c2434dec5213fac737e4ba214271"
+    },
+    {
+     "path": "raw/U10-violation-password-300-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U10-violation-password-300-update",
+     "sha256": "a03abd27dd7b5afc8dc079fba662a9cce2f383ffa564d81628c997943b4e4b0b"
+    },
+    {
+     "path": "logs/U10-violation-password-300-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U10-violation-password-300-update",
+     "sha256": "e6e500032504f4767635b356317332a85b956df6dd50b74c4b0dda62fcdafba4"
+    },
+    {
+     "path": "raw/U10-violation-password-300-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U10-violation-password-300-update",
+     "sha256": "312523bf1857961f860b8ae341c9972dbf32059f72485e82d9750b161e7279b6"
+    }
+   ],
+   "rationale": "Predicate 'users.password has type VARCHAR(255)'. On register the password is bcrypt-encoded to 60 chars (application transformation, so the column never sees >255 there). On PUT /user the raw password is persisted without encoding (application bug), and a 300-char value was stored in full (read-back length 300). Deployed variant is SQLite 3.36 (sqlite-jdbc 3.36.0.3) with the V1 Flyway migration; SQLite ignores VARCHAR(n) length declarations (type affinity TEXT), so the length/type predicate is not enforced by the deployed database.",
+   "confidence": 0.9,
+   "limitations": [
+    "Register path alone would be APPLICATION_TRANSFORMED; the update path demonstrates the predicate is not enforced."
+   ]
+  },
+  {
+   "target_id": "pc-c377652628ae",
+   "target_kind": "constraint",
+   "outcome": "NO_OBSERVED_ENFORCEMENT",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "none",
+   "application_layer_implemented": false,
+   "response_handling": "accepted",
+   "case_ids": [
+    "U07-violation-username-300",
+    "U13-violation-username-300-update"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U07-violation-username-300.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U07-violation-username-300",
+     "sha256": "bb9446d56a15226e95f70337cfaba6313e9da4428461f950cfc719981ae47bde"
+    },
+    {
+     "path": "logs/U07-violation-username-300.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U07-violation-username-300",
+     "sha256": "54a49ff92a74279fdbc162deaf66a6d5d17dc0f1eb82964d6b0c520f39a8231b"
+    },
+    {
+     "path": "raw/U07-violation-username-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U07-violation-username-300",
+     "sha256": "4112ff30193f486db3c611d9f8178bb10a78ed5eb6f778c66c7d7102c8a594c4"
+    },
+    {
+     "path": "raw/U13-violation-username-300-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U13-violation-username-300-update",
+     "sha256": "58dc6b14f97834007e4774a68891e79d4726239f852fd5129ce8d4a62a7f0ba9"
+    },
+    {
+     "path": "logs/U13-violation-username-300-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U13-violation-username-300-update",
+     "sha256": "55adc1d22a0e6b62671fa62f9e0a6297fe52cb4fa51435c1040df19131509b63"
+    },
+    {
+     "path": "raw/U13-violation-username-300-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U13-violation-username-300-update",
+     "sha256": "2634e8bab8cdbe33aee4e10f81c8e92d83df473e7997133cf8cb09a4317e4622"
+    }
+   ],
+   "rationale": "Predicate 'users.username has type VARCHAR(255)'. 300-char usernames accepted via POST /users and PUT /user and persisted in full (read-back length 300). RegisterParam has only @NotBlank; no @Size. Deployed variant is SQLite 3.36 (sqlite-jdbc 3.36.0.3) with the V1 Flyway migration; SQLite ignores VARCHAR(n) length declarations (type affinity TEXT), so the length/type predicate is not enforced by the deployed database.",
+   "confidence": 0.95,
+   "limitations": [
+    "On a strict-length database (e.g. MySQL strict/PostgreSQL) this would be DB-enforced; only SQLite was deployed."
+   ]
+  },
+  {
+   "target_id": "pc-d699dbdf4b3e",
+   "target_kind": "constraint",
+   "outcome": "APPLICATION_REJECTED",
+   "exact_predicate_confirmed": true,
+   "observed_enforcement": "application",
+   "application_layer_implemented": true,
+   "response_handling": "elegant",
+   "case_ids": [
+    "U01-setup-register-alice",
+    "U03-violation-dup-email-register",
+    "U05-violation-dup-email-update",
+    "R02-violation-race-dup-email"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U01-setup-register-alice.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U01-setup-register-alice",
+     "sha256": "c5039c77bf1100887a476567c1b930146611726c98b53ffa2ffcb51d969c7908"
+    },
+    {
+     "path": "logs/U01-setup-register-alice.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U01-setup-register-alice",
+     "sha256": "d678f3f79f178b9acee1f494f07dc9f0fa8640b19d5e7c74663b801bf7d92690"
+    },
+    {
+     "path": "raw/U03-violation-dup-email-register.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U03-violation-dup-email-register",
+     "sha256": "0001208c956da1758a80427c9cc5c75456cdb4ab3a5ee037031dee6fc30158ae"
+    },
+    {
+     "path": "logs/U03-violation-dup-email-register.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U03-violation-dup-email-register",
+     "sha256": "900d2b52eaa9e2c0ff4d4e981dbf10a3c4f2bacca5e66042e28cfac1d42270fd"
+    },
+    {
+     "path": "raw/U05-violation-dup-email-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U05-violation-dup-email-update",
+     "sha256": "c4ef7df513b2ae4587373fc11f3dc78e95ead46e856a845e3b4d23deb824bfbf"
+    },
+    {
+     "path": "logs/U05-violation-dup-email-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U05-violation-dup-email-update",
+     "sha256": "517ca6bcf16114fb06d146fa7228c5d403e37841eb8742b5fb99275d64a73a7c"
+    },
+    {
+     "path": "raw/R02-violation-race-dup-email.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for R02-violation-race-dup-email",
+     "sha256": "2763585f9b14a73ae00a6a66ba63b71d889db43513ffc68abea6c144b5fcd7f6"
+    },
+    {
+     "path": "logs/R02-violation-race-dup-email.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for R02-violation-race-dup-email",
+     "sha256": "cb50d1ffeee4c3e179d0cf9beab9448a4c12cc742a7ec526fdf590ca46ed1d48"
+    },
+    {
+     "path": "raw/R02-violation-race-dup-email.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after R02-violation-race-dup-email",
+     "sha256": "98eed6e0f94cacb99608f67b318e367d10d8da71e8abadceb788395dfe4ca9d7"
+    }
+   ],
+   "rationale": "Predicate 'users.email must be unique'. Sequential duplicate emails are rejected by DuplicatedEmailValidator/UpdateUserValidator with 422 field errors and no INSERT/UPDATE. The check is non-atomic: under 12 concurrent registrations the DB UNIQUE constraint rejected 11 inserts (SQLITE_CONSTRAINT_UNIQUE users.email) and the app returned generic 500s, so the database is the effective backstop and its rejection is unhandled.",
+   "confidence": 0.95,
+   "limitations": [
+    "Case-sensitivity: both app lookup and SQLite UNIQUE are byte-exact; case variants were not tested."
+   ]
+  },
+  {
+   "target_id": "pc-0d84cdc3d396",
+   "target_kind": "constraint",
+   "outcome": "APPLICATION_REJECTED",
+   "exact_predicate_confirmed": true,
+   "observed_enforcement": "application",
+   "application_layer_implemented": true,
+   "response_handling": "elegant",
+   "case_ids": [
+    "U01-setup-register-alice",
+    "U04-violation-dup-username-register",
+    "U06-violation-dup-username-update",
+    "R01-violation-race-dup-username"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U01-setup-register-alice.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U01-setup-register-alice",
+     "sha256": "c5039c77bf1100887a476567c1b930146611726c98b53ffa2ffcb51d969c7908"
+    },
+    {
+     "path": "logs/U01-setup-register-alice.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U01-setup-register-alice",
+     "sha256": "d678f3f79f178b9acee1f494f07dc9f0fa8640b19d5e7c74663b801bf7d92690"
+    },
+    {
+     "path": "raw/U04-violation-dup-username-register.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U04-violation-dup-username-register",
+     "sha256": "8d5dbfc9a3f98fa950a415833e70e91d81e5d3f3f63f111ef1261d71d5efacba"
+    },
+    {
+     "path": "logs/U04-violation-dup-username-register.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U04-violation-dup-username-register",
+     "sha256": "ae1e65f26f7e523f9d66241bf3c64e8a94027355fb15e8f60d0ec6ba8a4f50ff"
+    },
+    {
+     "path": "raw/U04-violation-dup-username-register.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U04-violation-dup-username-register",
+     "sha256": "d6303c2578f01dbbb08b9133d0f648175df7ee188ce9d587c8e7972383b62582"
+    },
+    {
+     "path": "raw/U06-violation-dup-username-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for U06-violation-dup-username-update",
+     "sha256": "d0bfda2ffc8dbf48df5d2069e26a9e889e5c2dd3920655af74d1056dbded14dc"
+    },
+    {
+     "path": "logs/U06-violation-dup-username-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for U06-violation-dup-username-update",
+     "sha256": "0c505bb4db5ebb66e8f52fc516b279d8b09f3b7179a9d9c6febac2cec7a2cbbc"
+    },
+    {
+     "path": "raw/U06-violation-dup-username-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after U06-violation-dup-username-update",
+     "sha256": "07c7b485e852e8a0fe7a9c8bf6319909da7ff99a8b38d8f1e4c0154475c78377"
+    },
+    {
+     "path": "raw/R01-violation-race-dup-username.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for R01-violation-race-dup-username",
+     "sha256": "a81a81fc8d37591dd38c087b8042a6d1675efbdde34ec2ca7f76e32ed0e8240f"
+    },
+    {
+     "path": "logs/R01-violation-race-dup-username.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for R01-violation-race-dup-username",
+     "sha256": "da7f17c16984f624399c677cafc1392f23073f504f81b60279b24be2dbb31ba8"
+    },
+    {
+     "path": "raw/R01-violation-race-dup-username.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after R01-violation-race-dup-username",
+     "sha256": "a02299a8a570ef2f3b5b913e12afcd048fe219b897e34e651e9103df2b34ba70"
+    }
+   ],
+   "rationale": "Predicate 'users.username must be unique'. Sequential duplicate usernames rejected by DuplicatedUsernameValidator/UpdateUserValidator (422, no INSERT/UPDATE). Under concurrency the DB UNIQUE constraint rejected 11/12 inserts (SQLITE_CONSTRAINT_UNIQUE users.username) surfaced as generic 500 (unhandled).",
+   "confidence": 0.95,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-d129990523ab",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A02-setup-article-other"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A02-setup-article-other.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A02-setup-article-other",
+     "sha256": "4abccb3517d94dfd46a954a01c47e0eaad6bbf5eb7f95f4c16d98a9569578306"
+    },
+    {
+     "path": "logs/A02-setup-article-other.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A02-setup-article-other",
+     "sha256": "a7698612237f2ddc7d83b50bec76f48c754d009e06915450e8e14bb07a2088c1"
+    },
+    {
+     "path": "raw/A02-setup-article-other.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A02-setup-article-other",
+     "sha256": "265d22b859988985ae6ee6ffb1eb8fe5878bc835e24b4c9eaf9899d67a09c32c"
+    }
+   ],
+   "rationale": "Predicate 'articles.id has length 255'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-b19e1e34bae0",
+   "target_kind": "constraint",
+   "outcome": "NO_OBSERVED_ENFORCEMENT",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "none",
+   "application_layer_implemented": false,
+   "response_handling": "accepted",
+   "case_ids": [
+    "A06-violation-title-300",
+    "A06b-readback-title-300",
+    "A07-violation-title-300-update"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A06-violation-title-300.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A06-violation-title-300",
+     "sha256": "c3f7076e93635e726296e403b11cea426edc50babee9004ea1383d07dec9841e"
+    },
+    {
+     "path": "logs/A06-violation-title-300.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A06-violation-title-300",
+     "sha256": "8f3b9ef348940e958f8b0fd49f9a3a950cc93ef6ab7ae1e8deb20f6300dee644"
+    },
+    {
+     "path": "raw/A06-violation-title-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A06-violation-title-300",
+     "sha256": "fa06948465601c0adf7ed6194e1cf548a0209b8058b8b9ed9a0b2f00a6541e9c"
+    },
+    {
+     "path": "raw/A06b-readback-title-300.json",
+     "kind": "read-back",
+     "description": "API read-back (sanitized GET request/response) for A06b-readback-title-300",
+     "sha256": "0cc5e5643c57f061b16ebf3b20f5401667eab4d137b94c6175954eaef0f93cf3"
+    },
+    {
+     "path": "raw/A06-violation-title-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back paired with A06b-readback-title-300",
+     "sha256": "fa06948465601c0adf7ed6194e1cf548a0209b8058b8b9ed9a0b2f00a6541e9c"
+    },
+    {
+     "path": "logs/A06b-readback-title-300.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A06b-readback-title-300",
+     "sha256": "f85b0cfe40685c0721c710e8219eb6dd594b34adc9f72b422d5eb363376d7b29"
+    },
+    {
+     "path": "raw/A07-violation-title-300-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A07-violation-title-300-update",
+     "sha256": "4d8154aee54791e8f1b9c8574fbb42aa1dd20d47539d33d20992b5e7bd3a89bb"
+    },
+    {
+     "path": "logs/A07-violation-title-300-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A07-violation-title-300-update",
+     "sha256": "d6bcad28618664894c57fb06dc068f87c0b705dfe719795e12ce1abd5977ceec"
+    },
+    {
+     "path": "raw/A07-violation-title-300-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A07-violation-title-300-update",
+     "sha256": "8ff635ef6eb3593f3b81dfcd2d3f4fdd4e23d96a137f9c2ca04f17ff834ad47c"
+    }
+   ],
+   "rationale": "Predicate 'articles.slug has length 255'. 300-char title (and derived 300-char slug) accepted on create and update and persisted in full (read-back length 300). Deployed variant is SQLite 3.36 (sqlite-jdbc 3.36.0.3) with the V1 Flyway migration; SQLite ignores VARCHAR(n) length declarations (type affinity TEXT), so the length/type predicate is not enforced by the deployed database.",
+   "confidence": 0.95,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-072dbddeaefe",
+   "target_kind": "constraint",
+   "outcome": "NO_OBSERVED_ENFORCEMENT",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "none",
+   "application_layer_implemented": false,
+   "response_handling": "accepted",
+   "case_ids": [
+    "A06-violation-title-300",
+    "A06b-readback-title-300",
+    "A07-violation-title-300-update"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A06-violation-title-300.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A06-violation-title-300",
+     "sha256": "c3f7076e93635e726296e403b11cea426edc50babee9004ea1383d07dec9841e"
+    },
+    {
+     "path": "logs/A06-violation-title-300.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A06-violation-title-300",
+     "sha256": "8f3b9ef348940e958f8b0fd49f9a3a950cc93ef6ab7ae1e8deb20f6300dee644"
+    },
+    {
+     "path": "raw/A06-violation-title-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A06-violation-title-300",
+     "sha256": "fa06948465601c0adf7ed6194e1cf548a0209b8058b8b9ed9a0b2f00a6541e9c"
+    },
+    {
+     "path": "raw/A06b-readback-title-300.json",
+     "kind": "read-back",
+     "description": "API read-back (sanitized GET request/response) for A06b-readback-title-300",
+     "sha256": "0cc5e5643c57f061b16ebf3b20f5401667eab4d137b94c6175954eaef0f93cf3"
+    },
+    {
+     "path": "raw/A06-violation-title-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back paired with A06b-readback-title-300",
+     "sha256": "fa06948465601c0adf7ed6194e1cf548a0209b8058b8b9ed9a0b2f00a6541e9c"
+    },
+    {
+     "path": "logs/A06b-readback-title-300.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A06b-readback-title-300",
+     "sha256": "f85b0cfe40685c0721c710e8219eb6dd594b34adc9f72b422d5eb363376d7b29"
+    },
+    {
+     "path": "raw/A07-violation-title-300-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A07-violation-title-300-update",
+     "sha256": "4d8154aee54791e8f1b9c8574fbb42aa1dd20d47539d33d20992b5e7bd3a89bb"
+    },
+    {
+     "path": "logs/A07-violation-title-300-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A07-violation-title-300-update",
+     "sha256": "d6bcad28618664894c57fb06dc068f87c0b705dfe719795e12ce1abd5977ceec"
+    },
+    {
+     "path": "raw/A07-violation-title-300-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A07-violation-title-300-update",
+     "sha256": "8ff635ef6eb3593f3b81dfcd2d3f4fdd4e23d96a137f9c2ca04f17ff834ad47c"
+    }
+   ],
+   "rationale": "Predicate 'articles.title has length 255'. 300-char title (and derived 300-char slug) accepted on create and update and persisted in full (read-back length 300). Deployed variant is SQLite 3.36 (sqlite-jdbc 3.36.0.3) with the V1 Flyway migration; SQLite ignores VARCHAR(n) length declarations (type affinity TEXT), so the length/type predicate is not enforced by the deployed database.",
+   "confidence": 0.95,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-9e02f24b2a6c",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A02-setup-article-other"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A02-setup-article-other.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A02-setup-article-other",
+     "sha256": "4abccb3517d94dfd46a954a01c47e0eaad6bbf5eb7f95f4c16d98a9569578306"
+    },
+    {
+     "path": "logs/A02-setup-article-other.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A02-setup-article-other",
+     "sha256": "a7698612237f2ddc7d83b50bec76f48c754d009e06915450e8e14bb07a2088c1"
+    },
+    {
+     "path": "raw/A02-setup-article-other.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A02-setup-article-other",
+     "sha256": "265d22b859988985ae6ee6ffb1eb8fe5878bc835e24b4c9eaf9899d67a09c32c"
+    }
+   ],
+   "rationale": "Predicate 'articles.user_id has length 255'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-7d99f29ba4e7",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A02-setup-article-other"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A02-setup-article-other.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A02-setup-article-other",
+     "sha256": "4abccb3517d94dfd46a954a01c47e0eaad6bbf5eb7f95f4c16d98a9569578306"
+    },
+    {
+     "path": "logs/A02-setup-article-other.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A02-setup-article-other",
+     "sha256": "a7698612237f2ddc7d83b50bec76f48c754d009e06915450e8e14bb07a2088c1"
+    },
+    {
+     "path": "raw/A02-setup-article-other.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A02-setup-article-other",
+     "sha256": "265d22b859988985ae6ee6ffb1eb8fe5878bc835e24b4c9eaf9899d67a09c32c"
+    }
+   ],
+   "rationale": "Predicate 'articles.created_at must not be null'. Timestamp is set server-side from new DateTime() in the domain constructor and bound non-null by DateTimeHandler; no API input controls it. Read-back shows SQLite stores it as INTEGER epoch millis (storage class integer), i.e. the declared TIMESTAMP type is not enforced by SQLite, but this cannot be driven from the API.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-75ef4de72ec5",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A02-setup-article-other"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A02-setup-article-other.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A02-setup-article-other",
+     "sha256": "4abccb3517d94dfd46a954a01c47e0eaad6bbf5eb7f95f4c16d98a9569578306"
+    },
+    {
+     "path": "logs/A02-setup-article-other.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A02-setup-article-other",
+     "sha256": "a7698612237f2ddc7d83b50bec76f48c754d009e06915450e8e14bb07a2088c1"
+    },
+    {
+     "path": "raw/A02-setup-article-other.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A02-setup-article-other",
+     "sha256": "265d22b859988985ae6ee6ffb1eb8fe5878bc835e24b4c9eaf9899d67a09c32c"
+    }
+   ],
+   "rationale": "Predicate 'articles.updated_at must not be null'. Timestamp is set server-side from new DateTime() in the domain constructor and bound non-null by DateTimeHandler; no API input controls it. Read-back shows SQLite stores it as INTEGER epoch millis (storage class integer), i.e. the declared TIMESTAMP type is not enforced by SQLite, but this cannot be driven from the API.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-5aa87385f7dc",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A02-setup-article-other"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A02-setup-article-other.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A02-setup-article-other",
+     "sha256": "4abccb3517d94dfd46a954a01c47e0eaad6bbf5eb7f95f4c16d98a9569578306"
+    },
+    {
+     "path": "logs/A02-setup-article-other.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A02-setup-article-other",
+     "sha256": "a7698612237f2ddc7d83b50bec76f48c754d009e06915450e8e14bb07a2088c1"
+    },
+    {
+     "path": "raw/A02-setup-article-other.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A02-setup-article-other",
+     "sha256": "265d22b859988985ae6ee6ffb1eb8fe5878bc835e24b4c9eaf9899d67a09c32c"
+    }
+   ],
+   "rationale": "Predicate 'articles.id identifies a row'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-71f42f2e337f",
+   "target_kind": "constraint",
+   "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A08-boundary-desc-body-nonstring"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A08-boundary-desc-body-nonstring.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A08-boundary-desc-body-nonstring",
+     "sha256": "222093ec779353816704ca440b69b63ce3b133dea874bc4ccf73bf5184ad2fee"
+    },
+    {
+     "path": "logs/A08-boundary-desc-body-nonstring.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A08-boundary-desc-body-nonstring",
+     "sha256": "685ff6677490c46e5fcd1a1bffac8a8fd40c78bcfae7c29979e0fc1cf6c2a517"
+    },
+    {
+     "path": "raw/A08-boundary-desc-body-nonstring.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A08-boundary-desc-body-nonstring",
+     "sha256": "08ef7b7f2a7cdad9fbda0492f3ef12f18bfab52ff450d5b9072d6c58ef2bc72d"
+    }
+   ],
+   "rationale": "Predicate 'articles.body has type TEXT'. TEXT columns without length bound; non-string JSON values are coerced to strings by Jackson and stored as text. No runtime-violating value exists.",
+   "confidence": 0.85,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-faeca1856289",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A02-setup-article-other"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A02-setup-article-other.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A02-setup-article-other",
+     "sha256": "4abccb3517d94dfd46a954a01c47e0eaad6bbf5eb7f95f4c16d98a9569578306"
+    },
+    {
+     "path": "logs/A02-setup-article-other.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A02-setup-article-other",
+     "sha256": "a7698612237f2ddc7d83b50bec76f48c754d009e06915450e8e14bb07a2088c1"
+    },
+    {
+     "path": "raw/A02-setup-article-other.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A02-setup-article-other",
+     "sha256": "265d22b859988985ae6ee6ffb1eb8fe5878bc835e24b4c9eaf9899d67a09c32c"
+    }
+   ],
+   "rationale": "Predicate 'articles.created_at has type TIMESTAMP'. Timestamp is set server-side from new DateTime() in the domain constructor and bound non-null by DateTimeHandler; no API input controls it. Read-back shows SQLite stores it as INTEGER epoch millis (storage class integer), i.e. the declared TIMESTAMP type is not enforced by SQLite, but this cannot be driven from the API.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-57bb94b78e9d",
+   "target_kind": "constraint",
+   "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A08-boundary-desc-body-nonstring"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A08-boundary-desc-body-nonstring.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A08-boundary-desc-body-nonstring",
+     "sha256": "222093ec779353816704ca440b69b63ce3b133dea874bc4ccf73bf5184ad2fee"
+    },
+    {
+     "path": "logs/A08-boundary-desc-body-nonstring.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A08-boundary-desc-body-nonstring",
+     "sha256": "685ff6677490c46e5fcd1a1bffac8a8fd40c78bcfae7c29979e0fc1cf6c2a517"
+    },
+    {
+     "path": "raw/A08-boundary-desc-body-nonstring.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A08-boundary-desc-body-nonstring",
+     "sha256": "08ef7b7f2a7cdad9fbda0492f3ef12f18bfab52ff450d5b9072d6c58ef2bc72d"
+    }
+   ],
+   "rationale": "Predicate 'articles.description has type TEXT'. TEXT columns without length bound; non-string JSON values are coerced to strings by Jackson and stored as text. No runtime-violating value exists.",
+   "confidence": 0.85,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-c189f3eedce8",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A02-setup-article-other"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A02-setup-article-other.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A02-setup-article-other",
+     "sha256": "4abccb3517d94dfd46a954a01c47e0eaad6bbf5eb7f95f4c16d98a9569578306"
+    },
+    {
+     "path": "logs/A02-setup-article-other.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A02-setup-article-other",
+     "sha256": "a7698612237f2ddc7d83b50bec76f48c754d009e06915450e8e14bb07a2088c1"
+    },
+    {
+     "path": "raw/A02-setup-article-other.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A02-setup-article-other",
+     "sha256": "265d22b859988985ae6ee6ffb1eb8fe5878bc835e24b4c9eaf9899d67a09c32c"
+    }
+   ],
+   "rationale": "Predicate 'articles.id has type VARCHAR(255)'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-069a3f7b878b",
+   "target_kind": "constraint",
+   "outcome": "NO_OBSERVED_ENFORCEMENT",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "none",
+   "application_layer_implemented": false,
+   "response_handling": "accepted",
+   "case_ids": [
+    "A06-violation-title-300",
+    "A06b-readback-title-300",
+    "A07-violation-title-300-update"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A06-violation-title-300.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A06-violation-title-300",
+     "sha256": "c3f7076e93635e726296e403b11cea426edc50babee9004ea1383d07dec9841e"
+    },
+    {
+     "path": "logs/A06-violation-title-300.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A06-violation-title-300",
+     "sha256": "8f3b9ef348940e958f8b0fd49f9a3a950cc93ef6ab7ae1e8deb20f6300dee644"
+    },
+    {
+     "path": "raw/A06-violation-title-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A06-violation-title-300",
+     "sha256": "fa06948465601c0adf7ed6194e1cf548a0209b8058b8b9ed9a0b2f00a6541e9c"
+    },
+    {
+     "path": "raw/A06b-readback-title-300.json",
+     "kind": "read-back",
+     "description": "API read-back (sanitized GET request/response) for A06b-readback-title-300",
+     "sha256": "0cc5e5643c57f061b16ebf3b20f5401667eab4d137b94c6175954eaef0f93cf3"
+    },
+    {
+     "path": "raw/A06-violation-title-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back paired with A06b-readback-title-300",
+     "sha256": "fa06948465601c0adf7ed6194e1cf548a0209b8058b8b9ed9a0b2f00a6541e9c"
+    },
+    {
+     "path": "logs/A06b-readback-title-300.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A06b-readback-title-300",
+     "sha256": "f85b0cfe40685c0721c710e8219eb6dd594b34adc9f72b422d5eb363376d7b29"
+    },
+    {
+     "path": "raw/A07-violation-title-300-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A07-violation-title-300-update",
+     "sha256": "4d8154aee54791e8f1b9c8574fbb42aa1dd20d47539d33d20992b5e7bd3a89bb"
+    },
+    {
+     "path": "logs/A07-violation-title-300-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A07-violation-title-300-update",
+     "sha256": "d6bcad28618664894c57fb06dc068f87c0b705dfe719795e12ce1abd5977ceec"
+    },
+    {
+     "path": "raw/A07-violation-title-300-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A07-violation-title-300-update",
+     "sha256": "8ff635ef6eb3593f3b81dfcd2d3f4fdd4e23d96a137f9c2ca04f17ff834ad47c"
+    }
+   ],
+   "rationale": "Predicate 'articles.slug has type VARCHAR(255)'. 300-char title (and derived 300-char slug) accepted on create and update and persisted in full (read-back length 300). Deployed variant is SQLite 3.36 (sqlite-jdbc 3.36.0.3) with the V1 Flyway migration; SQLite ignores VARCHAR(n) length declarations (type affinity TEXT), so the length/type predicate is not enforced by the deployed database.",
+   "confidence": 0.95,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-f89b841f9c61",
+   "target_kind": "constraint",
+   "outcome": "NO_OBSERVED_ENFORCEMENT",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "none",
+   "application_layer_implemented": false,
+   "response_handling": "accepted",
+   "case_ids": [
+    "A06-violation-title-300",
+    "A06b-readback-title-300",
+    "A07-violation-title-300-update"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A06-violation-title-300.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A06-violation-title-300",
+     "sha256": "c3f7076e93635e726296e403b11cea426edc50babee9004ea1383d07dec9841e"
+    },
+    {
+     "path": "logs/A06-violation-title-300.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A06-violation-title-300",
+     "sha256": "8f3b9ef348940e958f8b0fd49f9a3a950cc93ef6ab7ae1e8deb20f6300dee644"
+    },
+    {
+     "path": "raw/A06-violation-title-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A06-violation-title-300",
+     "sha256": "fa06948465601c0adf7ed6194e1cf548a0209b8058b8b9ed9a0b2f00a6541e9c"
+    },
+    {
+     "path": "raw/A06b-readback-title-300.json",
+     "kind": "read-back",
+     "description": "API read-back (sanitized GET request/response) for A06b-readback-title-300",
+     "sha256": "0cc5e5643c57f061b16ebf3b20f5401667eab4d137b94c6175954eaef0f93cf3"
+    },
+    {
+     "path": "raw/A06-violation-title-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back paired with A06b-readback-title-300",
+     "sha256": "fa06948465601c0adf7ed6194e1cf548a0209b8058b8b9ed9a0b2f00a6541e9c"
+    },
+    {
+     "path": "logs/A06b-readback-title-300.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A06b-readback-title-300",
+     "sha256": "f85b0cfe40685c0721c710e8219eb6dd594b34adc9f72b422d5eb363376d7b29"
+    },
+    {
+     "path": "raw/A07-violation-title-300-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A07-violation-title-300-update",
+     "sha256": "4d8154aee54791e8f1b9c8574fbb42aa1dd20d47539d33d20992b5e7bd3a89bb"
+    },
+    {
+     "path": "logs/A07-violation-title-300-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A07-violation-title-300-update",
+     "sha256": "d6bcad28618664894c57fb06dc068f87c0b705dfe719795e12ce1abd5977ceec"
+    },
+    {
+     "path": "raw/A07-violation-title-300-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A07-violation-title-300-update",
+     "sha256": "8ff635ef6eb3593f3b81dfcd2d3f4fdd4e23d96a137f9c2ca04f17ff834ad47c"
+    }
+   ],
+   "rationale": "Predicate 'articles.title has type VARCHAR(255)'. 300-char title (and derived 300-char slug) accepted on create and update and persisted in full (read-back length 300). Deployed variant is SQLite 3.36 (sqlite-jdbc 3.36.0.3) with the V1 Flyway migration; SQLite ignores VARCHAR(n) length declarations (type affinity TEXT), so the length/type predicate is not enforced by the deployed database.",
+   "confidence": 0.95,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-6debfb14cb89",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A02-setup-article-other"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A02-setup-article-other.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A02-setup-article-other",
+     "sha256": "4abccb3517d94dfd46a954a01c47e0eaad6bbf5eb7f95f4c16d98a9569578306"
+    },
+    {
+     "path": "logs/A02-setup-article-other.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A02-setup-article-other",
+     "sha256": "a7698612237f2ddc7d83b50bec76f48c754d009e06915450e8e14bb07a2088c1"
+    },
+    {
+     "path": "raw/A02-setup-article-other.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A02-setup-article-other",
+     "sha256": "265d22b859988985ae6ee6ffb1eb8fe5878bc835e24b4c9eaf9899d67a09c32c"
+    }
+   ],
+   "rationale": "Predicate 'articles.updated_at has type TIMESTAMP'. Timestamp is set server-side from new DateTime() in the domain constructor and bound non-null by DateTimeHandler; no API input controls it. Read-back shows SQLite stores it as INTEGER epoch millis (storage class integer), i.e. the declared TIMESTAMP type is not enforced by SQLite, but this cannot be driven from the API.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-497d7ea2135e",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A02-setup-article-other"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A02-setup-article-other.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A02-setup-article-other",
+     "sha256": "4abccb3517d94dfd46a954a01c47e0eaad6bbf5eb7f95f4c16d98a9569578306"
+    },
+    {
+     "path": "logs/A02-setup-article-other.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A02-setup-article-other",
+     "sha256": "a7698612237f2ddc7d83b50bec76f48c754d009e06915450e8e14bb07a2088c1"
+    },
+    {
+     "path": "raw/A02-setup-article-other.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A02-setup-article-other",
+     "sha256": "265d22b859988985ae6ee6ffb1eb8fe5878bc835e24b4c9eaf9899d67a09c32c"
+    }
+   ],
+   "rationale": "Predicate 'articles.user_id has type VARCHAR(255)'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-e4f422b7bd9e",
+   "target_kind": "constraint",
+   "outcome": "DATABASE_ENFORCED_UNHANDLED",
+   "exact_predicate_confirmed": true,
+   "observed_enforcement": "database",
+   "application_layer_implemented": false,
+   "response_handling": "unhandled",
+   "case_ids": [
+    "A01-setup-article-dup-title",
+    "A02-setup-article-other",
+    "A03-violation-dup-slug-create",
+    "A04-violation-dup-slug-create-variant",
+    "A05-violation-dup-slug-update",
+    "A05b-readback-other-title"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A01-setup-article-dup-title.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A01-setup-article-dup-title",
+     "sha256": "a32e816c72e937b8888dd6f970eb708ad9cf718457443a6aaeab707682428705"
+    },
+    {
+     "path": "logs/A01-setup-article-dup-title.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A01-setup-article-dup-title",
+     "sha256": "f7489cfe8fef4f7abe38318e8de2100a50bd36aabcced69efc187f17026bf676"
+    },
+    {
+     "path": "raw/A02-setup-article-other.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A02-setup-article-other",
+     "sha256": "4abccb3517d94dfd46a954a01c47e0eaad6bbf5eb7f95f4c16d98a9569578306"
+    },
+    {
+     "path": "logs/A02-setup-article-other.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A02-setup-article-other",
+     "sha256": "a7698612237f2ddc7d83b50bec76f48c754d009e06915450e8e14bb07a2088c1"
+    },
+    {
+     "path": "raw/A02-setup-article-other.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A02-setup-article-other",
+     "sha256": "265d22b859988985ae6ee6ffb1eb8fe5878bc835e24b4c9eaf9899d67a09c32c"
+    },
+    {
+     "path": "raw/A03-violation-dup-slug-create.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A03-violation-dup-slug-create",
+     "sha256": "bdae1602a89d5dee568d03460f46a4ad6043aa88d5361e5019646fc817981543"
+    },
+    {
+     "path": "logs/A03-violation-dup-slug-create.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A03-violation-dup-slug-create",
+     "sha256": "8f6c233f81ab948fb09248ec77544e0da2678801c54ca50cdf22b7523be08498"
+    },
+    {
+     "path": "raw/A04-violation-dup-slug-create-variant.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A04-violation-dup-slug-create-variant",
+     "sha256": "66e5fdef06cdd57b55c6f9c2cf317cf61637734fa5a85d936c0fa9a87e14236c"
+    },
+    {
+     "path": "logs/A04-violation-dup-slug-create-variant.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A04-violation-dup-slug-create-variant",
+     "sha256": "4854fcbc40b49a3c20fdc25530eb95c61d58356b4a7afab4f2692cfdbfab7537"
+    },
+    {
+     "path": "raw/A05-violation-dup-slug-update.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A05-violation-dup-slug-update",
+     "sha256": "b185fd56cf712839f88513ce061b7be87aeaa79440712930775bfbce8b16173b"
+    },
+    {
+     "path": "logs/A05-violation-dup-slug-update.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A05-violation-dup-slug-update",
+     "sha256": "bcc363bab0307b3c0006db82937c9615c30c29d92c5fafc1c4978ac7b2a2cfff"
+    },
+    {
+     "path": "raw/A05-violation-dup-slug-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A05-violation-dup-slug-update",
+     "sha256": "041fa0406c14af6a824e81439acf6eda6b8deffc919fd6018cc18f786d7115ba"
+    },
+    {
+     "path": "raw/A05b-readback-other-title.json",
+     "kind": "read-back",
+     "description": "API read-back (sanitized GET request/response) for A05b-readback-other-title",
+     "sha256": "849cfbbfee847f298abd2dfd1c35f94261e57b7313e16961a494eda9d4e7909c"
+    },
+    {
+     "path": "raw/A05-violation-dup-slug-update.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back paired with A05b-readback-other-title",
+     "sha256": "041fa0406c14af6a824e81439acf6eda6b8deffc919fd6018cc18f786d7115ba"
+    },
+    {
+     "path": "logs/A05b-readback-other-title.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A05b-readback-other-title",
+     "sha256": "9f69da4710ba64c518ba681fdb9ac6ec12be8891a118085d9b0d35ea9b5135b8"
+    }
+   ],
+   "rationale": "Predicate 'articles.slug must be unique'. On create, DuplicatedArticleValidator rejects a duplicate slug with 422. On update (PUT /articles/{slug}) UpdateArticleParam has no duplicate check; renaming 'Other Title' to 'Dup Title' reached UPDATE articles and SQLite raised SQLITE_CONSTRAINT_UNIQUE articles.slug, returned as generic 500; read-back shows no change. Application layer implements the predicate only on the create path.",
+   "confidence": 0.95,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-c67f6e6d9748",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A13-control-favorite"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A13-control-favorite.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A13-control-favorite",
+     "sha256": "aadcfe60576d828a823f65c95f6dc8572a7912a42949ae7c2eaf7805c33db149"
+    },
+    {
+     "path": "logs/A13-control-favorite.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A13-control-favorite",
+     "sha256": "c9758f9adb2a42fca2b6189cb998e8b2af046d784cf5eeab66149eba1399540b"
+    }
+   ],
+   "rationale": "Predicate 'article_favorites.article_id has length 255'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate. article_id comes from the article resolved by slug (404 if missing) and user_id from the JWT user.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-362711ad41ec",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A13-control-favorite"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A13-control-favorite.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A13-control-favorite",
+     "sha256": "aadcfe60576d828a823f65c95f6dc8572a7912a42949ae7c2eaf7805c33db149"
+    },
+    {
+     "path": "logs/A13-control-favorite.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A13-control-favorite",
+     "sha256": "c9758f9adb2a42fca2b6189cb998e8b2af046d784cf5eeab66149eba1399540b"
+    }
+   ],
+   "rationale": "Predicate 'article_favorites.user_id has length 255'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate. article_id comes from the article resolved by slug (404 if missing) and user_id from the JWT user.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-59b4acfdcefb",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A13-control-favorite"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A13-control-favorite.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A13-control-favorite",
+     "sha256": "aadcfe60576d828a823f65c95f6dc8572a7912a42949ae7c2eaf7805c33db149"
+    },
+    {
+     "path": "logs/A13-control-favorite.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A13-control-favorite",
+     "sha256": "c9758f9adb2a42fca2b6189cb998e8b2af046d784cf5eeab66149eba1399540b"
+    }
+   ],
+   "rationale": "Predicate 'article_favorites.article_id must not be null'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate. article_id comes from the article resolved by slug (404 if missing) and user_id from the JWT user.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-ad355c42c9ff",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A13-control-favorite"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A13-control-favorite.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A13-control-favorite",
+     "sha256": "aadcfe60576d828a823f65c95f6dc8572a7912a42949ae7c2eaf7805c33db149"
+    },
+    {
+     "path": "logs/A13-control-favorite.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A13-control-favorite",
+     "sha256": "c9758f9adb2a42fca2b6189cb998e8b2af046d784cf5eeab66149eba1399540b"
+    }
+   ],
+   "rationale": "Predicate 'article_favorites.user_id must not be null'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate. article_id comes from the article resolved by slug (404 if missing) and user_id from the JWT user.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-c9c555e0317b",
+   "target_kind": "constraint",
+   "outcome": "DATABASE_ENFORCED_UNHANDLED",
+   "exact_predicate_confirmed": true,
+   "observed_enforcement": "database",
+   "application_layer_implemented": false,
+   "response_handling": "unhandled",
+   "case_ids": [
+    "A13-control-favorite",
+    "A14-violation-favorite-duplicate-sequential",
+    "A15-violation-favorite-duplicate-race"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A13-control-favorite.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A13-control-favorite",
+     "sha256": "aadcfe60576d828a823f65c95f6dc8572a7912a42949ae7c2eaf7805c33db149"
+    },
+    {
+     "path": "logs/A13-control-favorite.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A13-control-favorite",
+     "sha256": "c9758f9adb2a42fca2b6189cb998e8b2af046d784cf5eeab66149eba1399540b"
+    },
+    {
+     "path": "raw/A14-violation-favorite-duplicate-sequential.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A14-violation-favorite-duplicate-sequential",
+     "sha256": "c689d737bb5500742f32aabe9575f08521c179a313f4abad2de825d6e525e568"
+    },
+    {
+     "path": "logs/A14-violation-favorite-duplicate-sequential.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A14-violation-favorite-duplicate-sequential",
+     "sha256": "ccb8111509642953729294ee111313b10e6a82d9437f720a587951c68d234193"
+    },
+    {
+     "path": "raw/A14-violation-favorite-duplicate-sequential.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A14-violation-favorite-duplicate-sequential",
+     "sha256": "410783575528cb05610b63b3a59fc60cdf0b0b546e2b2d0f7bf8a57e590ffef2"
+    },
+    {
+     "path": "raw/A15-violation-favorite-duplicate-race.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A15-violation-favorite-duplicate-race",
+     "sha256": "a41484528b9a2d19ab6f52dfba44c4839c95239d9a9e291a456958c2771a38fa"
+    },
+    {
+     "path": "logs/A15-violation-favorite-duplicate-race.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A15-violation-favorite-duplicate-race",
+     "sha256": "44e133b65c35bda976b63585acae74fb2aa7900fc157e310673e862ef6b6feed"
+    },
+    {
+     "path": "raw/A15-violation-favorite-duplicate-race.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A15-violation-favorite-duplicate-race",
+     "sha256": "e1faa065e2c4323496f194f26b43d66ffd4635178e0b6c7234a1c33faf88198f"
+    }
+   ],
+   "rationale": "Predicate 'Columns article_id, user_id identify a row'. Sequentially, MyBatisArticleFavoriteRepository.save skips the INSERT when a row exists (idempotent 200, no rejection). Under 12 concurrent favorite requests, 4 INSERTs reached SQLite and failed with SQLITE_CONSTRAINT_PRIMARYKEY (article_favorites.article_id,user_id), surfaced as generic 500; read-back count=1. The repository's non-atomic check-then-insert only deduplicates sequential requests (it does not reject them) and does not enforce the key under concurrency, so it is not counted as application-layer enforcement.",
+   "confidence": 0.9,
+   "limitations": [
+    "Number of requests hitting the DB constraint depends on timing."
+   ]
+  },
+  {
+   "target_id": "pc-167feb39b136",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A13-control-favorite"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A13-control-favorite.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A13-control-favorite",
+     "sha256": "aadcfe60576d828a823f65c95f6dc8572a7912a42949ae7c2eaf7805c33db149"
+    },
+    {
+     "path": "logs/A13-control-favorite.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A13-control-favorite",
+     "sha256": "c9758f9adb2a42fca2b6189cb998e8b2af046d784cf5eeab66149eba1399540b"
+    }
+   ],
+   "rationale": "Predicate 'article_favorites.article_id has type VARCHAR(255)'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate. article_id comes from the article resolved by slug (404 if missing) and user_id from the JWT user.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-4f43e73c8d52",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A13-control-favorite"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A13-control-favorite.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A13-control-favorite",
+     "sha256": "aadcfe60576d828a823f65c95f6dc8572a7912a42949ae7c2eaf7805c33db149"
+    },
+    {
+     "path": "logs/A13-control-favorite.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A13-control-favorite",
+     "sha256": "c9758f9adb2a42fca2b6189cb998e8b2af046d784cf5eeab66149eba1399540b"
+    }
+   ],
+   "rationale": "Predicate 'article_favorites.user_id has type VARCHAR(255)'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate. article_id comes from the article resolved by slug (404 if missing) and user_id from the JWT user.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-27a12ece99bb",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A16-control-follow",
+    "A17-boundary-follow-nonexistent"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A16-control-follow.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A16-control-follow",
+     "sha256": "b873032356502a605527ceaeabd01f4d6ee4f35ce00f6d25f0ea309311df9195"
+    },
+    {
+     "path": "logs/A16-control-follow.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A16-control-follow",
+     "sha256": "29b33d5c4ce8698bd3d13d4e8df3a4f0c05fe280064ff909f1aaee6a9f2897de"
+    },
+    {
+     "path": "raw/A16-control-follow.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A16-control-follow",
+     "sha256": "ead69aba39bc0d3a720118428beaed1c0017c7688e47aadd478b81817cf8795b"
+    },
+    {
+     "path": "raw/A17-boundary-follow-nonexistent.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A17-boundary-follow-nonexistent",
+     "sha256": "076b0fe5e658f00003a2c95a10a1b2859ef8f66c0927a465aa87042e97e5fdc8"
+    },
+    {
+     "path": "logs/A17-boundary-follow-nonexistent.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A17-boundary-follow-nonexistent",
+     "sha256": "0d3851e5655c0ee5a3e43e5089e7b5b479196d3a242258337af58c2288c11294"
+    },
+    {
+     "path": "raw/A17-boundary-follow-nonexistent.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A17-boundary-follow-nonexistent",
+     "sha256": "4d7274ce41f3184ab5bebd8a0bff6ba75949504e18a8223f12ba2382435ac8e2"
+    }
+   ],
+   "rationale": "Predicate 'follows.follow_id has length 255'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate. follow_id is the resolved profile's id (unknown username -> 404 before persistence); user_id is the authenticated user.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-bc0d5fb992b2",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A16-control-follow",
+    "A17-boundary-follow-nonexistent"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A16-control-follow.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A16-control-follow",
+     "sha256": "b873032356502a605527ceaeabd01f4d6ee4f35ce00f6d25f0ea309311df9195"
+    },
+    {
+     "path": "logs/A16-control-follow.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A16-control-follow",
+     "sha256": "29b33d5c4ce8698bd3d13d4e8df3a4f0c05fe280064ff909f1aaee6a9f2897de"
+    },
+    {
+     "path": "raw/A16-control-follow.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A16-control-follow",
+     "sha256": "ead69aba39bc0d3a720118428beaed1c0017c7688e47aadd478b81817cf8795b"
+    },
+    {
+     "path": "raw/A17-boundary-follow-nonexistent.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A17-boundary-follow-nonexistent",
+     "sha256": "076b0fe5e658f00003a2c95a10a1b2859ef8f66c0927a465aa87042e97e5fdc8"
+    },
+    {
+     "path": "logs/A17-boundary-follow-nonexistent.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A17-boundary-follow-nonexistent",
+     "sha256": "0d3851e5655c0ee5a3e43e5089e7b5b479196d3a242258337af58c2288c11294"
+    },
+    {
+     "path": "raw/A17-boundary-follow-nonexistent.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A17-boundary-follow-nonexistent",
+     "sha256": "4d7274ce41f3184ab5bebd8a0bff6ba75949504e18a8223f12ba2382435ac8e2"
+    }
+   ],
+   "rationale": "Predicate 'follows.user_id has length 255'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate. follow_id is the resolved profile's id (unknown username -> 404 before persistence); user_id is the authenticated user.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-f10d889965df",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A16-control-follow",
+    "A17-boundary-follow-nonexistent"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A16-control-follow.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A16-control-follow",
+     "sha256": "b873032356502a605527ceaeabd01f4d6ee4f35ce00f6d25f0ea309311df9195"
+    },
+    {
+     "path": "logs/A16-control-follow.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A16-control-follow",
+     "sha256": "29b33d5c4ce8698bd3d13d4e8df3a4f0c05fe280064ff909f1aaee6a9f2897de"
+    },
+    {
+     "path": "raw/A16-control-follow.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A16-control-follow",
+     "sha256": "ead69aba39bc0d3a720118428beaed1c0017c7688e47aadd478b81817cf8795b"
+    },
+    {
+     "path": "raw/A17-boundary-follow-nonexistent.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A17-boundary-follow-nonexistent",
+     "sha256": "076b0fe5e658f00003a2c95a10a1b2859ef8f66c0927a465aa87042e97e5fdc8"
+    },
+    {
+     "path": "logs/A17-boundary-follow-nonexistent.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A17-boundary-follow-nonexistent",
+     "sha256": "0d3851e5655c0ee5a3e43e5089e7b5b479196d3a242258337af58c2288c11294"
+    },
+    {
+     "path": "raw/A17-boundary-follow-nonexistent.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A17-boundary-follow-nonexistent",
+     "sha256": "4d7274ce41f3184ab5bebd8a0bff6ba75949504e18a8223f12ba2382435ac8e2"
+    }
+   ],
+   "rationale": "Predicate 'follows.follow_id must not be null'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate. follow_id is the resolved profile's id (unknown username -> 404 before persistence); user_id is the authenticated user.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-e611bd7bff61",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A16-control-follow",
+    "A17-boundary-follow-nonexistent"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A16-control-follow.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A16-control-follow",
+     "sha256": "b873032356502a605527ceaeabd01f4d6ee4f35ce00f6d25f0ea309311df9195"
+    },
+    {
+     "path": "logs/A16-control-follow.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A16-control-follow",
+     "sha256": "29b33d5c4ce8698bd3d13d4e8df3a4f0c05fe280064ff909f1aaee6a9f2897de"
+    },
+    {
+     "path": "raw/A16-control-follow.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A16-control-follow",
+     "sha256": "ead69aba39bc0d3a720118428beaed1c0017c7688e47aadd478b81817cf8795b"
+    },
+    {
+     "path": "raw/A17-boundary-follow-nonexistent.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A17-boundary-follow-nonexistent",
+     "sha256": "076b0fe5e658f00003a2c95a10a1b2859ef8f66c0927a465aa87042e97e5fdc8"
+    },
+    {
+     "path": "logs/A17-boundary-follow-nonexistent.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A17-boundary-follow-nonexistent",
+     "sha256": "0d3851e5655c0ee5a3e43e5089e7b5b479196d3a242258337af58c2288c11294"
+    },
+    {
+     "path": "raw/A17-boundary-follow-nonexistent.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A17-boundary-follow-nonexistent",
+     "sha256": "4d7274ce41f3184ab5bebd8a0bff6ba75949504e18a8223f12ba2382435ac8e2"
+    }
+   ],
+   "rationale": "Predicate 'follows.user_id must not be null'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate. follow_id is the resolved profile's id (unknown username -> 404 before persistence); user_id is the authenticated user.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-72272037e819",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A16-control-follow",
+    "A17-boundary-follow-nonexistent"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A16-control-follow.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A16-control-follow",
+     "sha256": "b873032356502a605527ceaeabd01f4d6ee4f35ce00f6d25f0ea309311df9195"
+    },
+    {
+     "path": "logs/A16-control-follow.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A16-control-follow",
+     "sha256": "29b33d5c4ce8698bd3d13d4e8df3a4f0c05fe280064ff909f1aaee6a9f2897de"
+    },
+    {
+     "path": "raw/A16-control-follow.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A16-control-follow",
+     "sha256": "ead69aba39bc0d3a720118428beaed1c0017c7688e47aadd478b81817cf8795b"
+    },
+    {
+     "path": "raw/A17-boundary-follow-nonexistent.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A17-boundary-follow-nonexistent",
+     "sha256": "076b0fe5e658f00003a2c95a10a1b2859ef8f66c0927a465aa87042e97e5fdc8"
+    },
+    {
+     "path": "logs/A17-boundary-follow-nonexistent.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A17-boundary-follow-nonexistent",
+     "sha256": "0d3851e5655c0ee5a3e43e5089e7b5b479196d3a242258337af58c2288c11294"
+    },
+    {
+     "path": "raw/A17-boundary-follow-nonexistent.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A17-boundary-follow-nonexistent",
+     "sha256": "4d7274ce41f3184ab5bebd8a0bff6ba75949504e18a8223f12ba2382435ac8e2"
+    }
+   ],
+   "rationale": "Predicate 'follows.follow_id has type VARCHAR(255)'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate. follow_id is the resolved profile's id (unknown username -> 404 before persistence); user_id is the authenticated user.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-4d37fecbc565",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A16-control-follow",
+    "A17-boundary-follow-nonexistent"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A16-control-follow.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A16-control-follow",
+     "sha256": "b873032356502a605527ceaeabd01f4d6ee4f35ce00f6d25f0ea309311df9195"
+    },
+    {
+     "path": "logs/A16-control-follow.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A16-control-follow",
+     "sha256": "29b33d5c4ce8698bd3d13d4e8df3a4f0c05fe280064ff909f1aaee6a9f2897de"
+    },
+    {
+     "path": "raw/A16-control-follow.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A16-control-follow",
+     "sha256": "ead69aba39bc0d3a720118428beaed1c0017c7688e47aadd478b81817cf8795b"
+    },
+    {
+     "path": "raw/A17-boundary-follow-nonexistent.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A17-boundary-follow-nonexistent",
+     "sha256": "076b0fe5e658f00003a2c95a10a1b2859ef8f66c0927a465aa87042e97e5fdc8"
+    },
+    {
+     "path": "logs/A17-boundary-follow-nonexistent.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A17-boundary-follow-nonexistent",
+     "sha256": "0d3851e5655c0ee5a3e43e5089e7b5b479196d3a242258337af58c2288c11294"
+    },
+    {
+     "path": "raw/A17-boundary-follow-nonexistent.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A17-boundary-follow-nonexistent",
+     "sha256": "4d7274ce41f3184ab5bebd8a0bff6ba75949504e18a8223f12ba2382435ac8e2"
+    }
+   ],
+   "rationale": "Predicate 'follows.user_id has type VARCHAR(255)'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate. follow_id is the resolved profile's id (unknown username -> 404 before persistence); user_id is the authenticated user.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-746aeb1a4ddd",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A09-violation-tag-name-300"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A09-violation-tag-name-300.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A09-violation-tag-name-300",
+     "sha256": "89f6547314325ec902c8c8f69620f82b49aa40c75572d859bba0c27f79e9c728"
+    },
+    {
+     "path": "logs/A09-violation-tag-name-300.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A09-violation-tag-name-300",
+     "sha256": "e1800b656fd48d0501c17ef07bd9d425ae7bb1a66a0b0bf1227e1fa0100879ae"
+    },
+    {
+     "path": "raw/A09-violation-tag-name-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A09-violation-tag-name-300",
+     "sha256": "c42560babddadad9b2b4d3eaf9448441970abbfe2197951b190de68985d493cd"
+    }
+   ],
+   "rationale": "Predicate 'tags.id has length 255'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-0f438b438a43",
+   "target_kind": "constraint",
+   "outcome": "NO_OBSERVED_ENFORCEMENT",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "none",
+   "application_layer_implemented": false,
+   "response_handling": "accepted",
+   "case_ids": [
+    "A09-violation-tag-name-300",
+    "A09b-readback-tags"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A09-violation-tag-name-300.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A09-violation-tag-name-300",
+     "sha256": "89f6547314325ec902c8c8f69620f82b49aa40c75572d859bba0c27f79e9c728"
+    },
+    {
+     "path": "logs/A09-violation-tag-name-300.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A09-violation-tag-name-300",
+     "sha256": "e1800b656fd48d0501c17ef07bd9d425ae7bb1a66a0b0bf1227e1fa0100879ae"
+    },
+    {
+     "path": "raw/A09-violation-tag-name-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A09-violation-tag-name-300",
+     "sha256": "c42560babddadad9b2b4d3eaf9448441970abbfe2197951b190de68985d493cd"
+    },
+    {
+     "path": "raw/A09b-readback-tags.json",
+     "kind": "read-back",
+     "description": "API read-back (sanitized GET request/response) for A09b-readback-tags",
+     "sha256": "bff3d8d1132ec79fd23203a43608deabbe36974ad0226cfcaae42f2af79059f2"
+    },
+    {
+     "path": "raw/A09-violation-tag-name-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back paired with A09b-readback-tags",
+     "sha256": "c42560babddadad9b2b4d3eaf9448441970abbfe2197951b190de68985d493cd"
+    },
+    {
+     "path": "logs/A09b-readback-tags.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A09b-readback-tags",
+     "sha256": "d392583cb937681077ad04b3284886b0942e43eb4a60b8089973599c5a61a5cb"
+    }
+   ],
+   "rationale": "Predicate 'tags.name has length 255'. 300-char tag name accepted on article create and persisted/listed in full. Deployed variant is SQLite 3.36 (sqlite-jdbc 3.36.0.3) with the V1 Flyway migration; SQLite ignores VARCHAR(n) length declarations (type affinity TEXT), so the length/type predicate is not enforced by the deployed database.",
+   "confidence": 0.95,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-b85db3b823bb",
+   "target_kind": "constraint",
+   "outcome": "DATABASE_ENFORCED_UNHANDLED",
+   "exact_predicate_confirmed": true,
+   "observed_enforcement": "database",
+   "application_layer_implemented": false,
+   "response_handling": "unhandled",
+   "case_ids": [
+    "A10-violation-tag-name-null",
+    "A10b-tags-null-check"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A10-violation-tag-name-null.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A10-violation-tag-name-null",
+     "sha256": "49bc48dae9ac5a0f64fcd743de91b0bb885c0208deaaa8a894cba447249d5f83"
+    },
+    {
+     "path": "logs/A10-violation-tag-name-null.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A10-violation-tag-name-null",
+     "sha256": "e1a6def71e9546e4fe1ddc1c4fdb9e518ae749cc6ba085320db3088f2aec5e7e"
+    },
+    {
+     "path": "raw/A10-violation-tag-name-null.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A10-violation-tag-name-null",
+     "sha256": "8f82a53768a6344f58f4243aec6e2653f5411ae2b65d4ea6f95b68ab70510167"
+    },
+    {
+     "path": "raw/A10b-tags-null-check.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A10b-tags-null-check",
+     "sha256": "08b3ec89bbf8766173ddb9b1cd8b65b533255e04cb185e633d7f7bcdf87d4e7d"
+    }
+   ],
+   "rationale": "Predicate 'tags.name must not be null'. tagList [null] passes NewArticleParam validation; INSERT into tags with NULL name reached SQLite, which raised SQLITE_CONSTRAINT_NOTNULL tags.name; response was generic 500; transaction rolled back (no article/tag row).",
+   "confidence": 0.95,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-bfeaf73023cd",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A09-violation-tag-name-300"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A09-violation-tag-name-300.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A09-violation-tag-name-300",
+     "sha256": "89f6547314325ec902c8c8f69620f82b49aa40c75572d859bba0c27f79e9c728"
+    },
+    {
+     "path": "logs/A09-violation-tag-name-300.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A09-violation-tag-name-300",
+     "sha256": "e1800b656fd48d0501c17ef07bd9d425ae7bb1a66a0b0bf1227e1fa0100879ae"
+    },
+    {
+     "path": "raw/A09-violation-tag-name-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A09-violation-tag-name-300",
+     "sha256": "c42560babddadad9b2b4d3eaf9448441970abbfe2197951b190de68985d493cd"
+    }
+   ],
+   "rationale": "Predicate 'tags.id identifies a row'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-f48b2f3b0c1a",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A09-violation-tag-name-300"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A09-violation-tag-name-300.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A09-violation-tag-name-300",
+     "sha256": "89f6547314325ec902c8c8f69620f82b49aa40c75572d859bba0c27f79e9c728"
+    },
+    {
+     "path": "logs/A09-violation-tag-name-300.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A09-violation-tag-name-300",
+     "sha256": "e1800b656fd48d0501c17ef07bd9d425ae7bb1a66a0b0bf1227e1fa0100879ae"
+    },
+    {
+     "path": "raw/A09-violation-tag-name-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A09-violation-tag-name-300",
+     "sha256": "c42560babddadad9b2b4d3eaf9448441970abbfe2197951b190de68985d493cd"
+    }
+   ],
+   "rationale": "Predicate 'tags.id has type VARCHAR(255)'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-c1be97b12e82",
+   "target_kind": "constraint",
+   "outcome": "NO_OBSERVED_ENFORCEMENT",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "none",
+   "application_layer_implemented": false,
+   "response_handling": "accepted",
+   "case_ids": [
+    "A09-violation-tag-name-300",
+    "A09b-readback-tags"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A09-violation-tag-name-300.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A09-violation-tag-name-300",
+     "sha256": "89f6547314325ec902c8c8f69620f82b49aa40c75572d859bba0c27f79e9c728"
+    },
+    {
+     "path": "logs/A09-violation-tag-name-300.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A09-violation-tag-name-300",
+     "sha256": "e1800b656fd48d0501c17ef07bd9d425ae7bb1a66a0b0bf1227e1fa0100879ae"
+    },
+    {
+     "path": "raw/A09-violation-tag-name-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A09-violation-tag-name-300",
+     "sha256": "c42560babddadad9b2b4d3eaf9448441970abbfe2197951b190de68985d493cd"
+    },
+    {
+     "path": "raw/A09b-readback-tags.json",
+     "kind": "read-back",
+     "description": "API read-back (sanitized GET request/response) for A09b-readback-tags",
+     "sha256": "bff3d8d1132ec79fd23203a43608deabbe36974ad0226cfcaae42f2af79059f2"
+    },
+    {
+     "path": "raw/A09-violation-tag-name-300.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back paired with A09b-readback-tags",
+     "sha256": "c42560babddadad9b2b4d3eaf9448441970abbfe2197951b190de68985d493cd"
+    },
+    {
+     "path": "logs/A09b-readback-tags.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A09b-readback-tags",
+     "sha256": "d392583cb937681077ad04b3284886b0942e43eb4a60b8089973599c5a61a5cb"
+    }
+   ],
+   "rationale": "Predicate 'tags.name has type VARCHAR(255)'. 300-char tag name accepted on article create and persisted/listed in full. Deployed variant is SQLite 3.36 (sqlite-jdbc 3.36.0.3) with the V1 Flyway migration; SQLite ignores VARCHAR(n) length declarations (type affinity TEXT), so the length/type predicate is not enforced by the deployed database.",
+   "confidence": 0.95,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-c8a9dc1bd23a",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A18-article-tags-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A18-article-tags-readback.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A18-article-tags-readback",
+     "sha256": "79e9315046b5365fac39e5ddf97afd7abe9ed26b29dbe831b7fe0922e0f287b4"
+    }
+   ],
+   "rationale": "Predicate 'article_tags.article_id has length 255'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate. article_tags values are the new article's UUID and the found/created tag's UUID.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-85386bf33aef",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A18-article-tags-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A18-article-tags-readback.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A18-article-tags-readback",
+     "sha256": "79e9315046b5365fac39e5ddf97afd7abe9ed26b29dbe831b7fe0922e0f287b4"
+    }
+   ],
+   "rationale": "Predicate 'article_tags.tag_id has length 255'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate. article_tags values are the new article's UUID and the found/created tag's UUID.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-7eb9fc8bd4f1",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A18-article-tags-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A18-article-tags-readback.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A18-article-tags-readback",
+     "sha256": "79e9315046b5365fac39e5ddf97afd7abe9ed26b29dbe831b7fe0922e0f287b4"
+    }
+   ],
+   "rationale": "Predicate 'article_tags.article_id must not be null'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate. article_tags values are the new article's UUID and the found/created tag's UUID.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-7d88ad2ffba4",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A18-article-tags-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A18-article-tags-readback.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A18-article-tags-readback",
+     "sha256": "79e9315046b5365fac39e5ddf97afd7abe9ed26b29dbe831b7fe0922e0f287b4"
+    }
+   ],
+   "rationale": "Predicate 'article_tags.tag_id must not be null'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate. article_tags values are the new article's UUID and the found/created tag's UUID.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-275876295fcf",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A18-article-tags-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A18-article-tags-readback.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A18-article-tags-readback",
+     "sha256": "79e9315046b5365fac39e5ddf97afd7abe9ed26b29dbe831b7fe0922e0f287b4"
+    }
+   ],
+   "rationale": "Predicate 'article_tags.article_id has type VARCHAR(255)'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate. article_tags values are the new article's UUID and the found/created tag's UUID.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-e2959e366a6e",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A18-article-tags-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A18-article-tags-readback.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A18-article-tags-readback",
+     "sha256": "79e9315046b5365fac39e5ddf97afd7abe9ed26b29dbe831b7fe0922e0f287b4"
+    }
+   ],
+   "rationale": "Predicate 'article_tags.tag_id has type VARCHAR(255)'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate. article_tags values are the new article's UUID and the found/created tag's UUID.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-fad10871f26f",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A11-control-comment"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A11-control-comment.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A11-control-comment",
+     "sha256": "e4e1ce264c27236b2d2620fda1ed495e6af9e683e08d77efe03def5c3a9adfe3"
+    },
+    {
+     "path": "logs/A11-control-comment.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A11-control-comment",
+     "sha256": "f88e93c2677183b8c5ea8fa8488ccbb9c797b3ecef4f343cc15384c1538e494a"
+    },
+    {
+     "path": "raw/A11-control-comment.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A11-control-comment",
+     "sha256": "316b23055883093fc070a2739518f3ccb305dddff737a0d170e39412782154f9"
+    }
+   ],
+   "rationale": "Predicate 'comments.article_id has length 255'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-ba6ce5b5fb3c",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A11-control-comment"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A11-control-comment.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A11-control-comment",
+     "sha256": "e4e1ce264c27236b2d2620fda1ed495e6af9e683e08d77efe03def5c3a9adfe3"
+    },
+    {
+     "path": "logs/A11-control-comment.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A11-control-comment",
+     "sha256": "f88e93c2677183b8c5ea8fa8488ccbb9c797b3ecef4f343cc15384c1538e494a"
+    },
+    {
+     "path": "raw/A11-control-comment.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A11-control-comment",
+     "sha256": "316b23055883093fc070a2739518f3ccb305dddff737a0d170e39412782154f9"
+    }
+   ],
+   "rationale": "Predicate 'comments.id has length 255'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-74929687d533",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A11-control-comment"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A11-control-comment.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A11-control-comment",
+     "sha256": "e4e1ce264c27236b2d2620fda1ed495e6af9e683e08d77efe03def5c3a9adfe3"
+    },
+    {
+     "path": "logs/A11-control-comment.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A11-control-comment",
+     "sha256": "f88e93c2677183b8c5ea8fa8488ccbb9c797b3ecef4f343cc15384c1538e494a"
+    },
+    {
+     "path": "raw/A11-control-comment.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A11-control-comment",
+     "sha256": "316b23055883093fc070a2739518f3ccb305dddff737a0d170e39412782154f9"
+    }
+   ],
+   "rationale": "Predicate 'comments.user_id has length 255'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-5f35a96467ad",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A11-control-comment"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A11-control-comment.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A11-control-comment",
+     "sha256": "e4e1ce264c27236b2d2620fda1ed495e6af9e683e08d77efe03def5c3a9adfe3"
+    },
+    {
+     "path": "logs/A11-control-comment.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A11-control-comment",
+     "sha256": "f88e93c2677183b8c5ea8fa8488ccbb9c797b3ecef4f343cc15384c1538e494a"
+    },
+    {
+     "path": "raw/A11-control-comment.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A11-control-comment",
+     "sha256": "316b23055883093fc070a2739518f3ccb305dddff737a0d170e39412782154f9"
+    }
+   ],
+   "rationale": "Predicate 'comments.created_at must not be null'. Timestamp is set server-side from new DateTime() in the domain constructor and bound non-null by DateTimeHandler; no API input controls it. Read-back shows SQLite stores it as INTEGER epoch millis (storage class integer), i.e. the declared TIMESTAMP type is not enforced by SQLite, but this cannot be driven from the API.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-13b985700d53",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A11-control-comment"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A11-control-comment.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A11-control-comment",
+     "sha256": "e4e1ce264c27236b2d2620fda1ed495e6af9e683e08d77efe03def5c3a9adfe3"
+    },
+    {
+     "path": "logs/A11-control-comment.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A11-control-comment",
+     "sha256": "f88e93c2677183b8c5ea8fa8488ccbb9c797b3ecef4f343cc15384c1538e494a"
+    },
+    {
+     "path": "raw/A11-control-comment.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A11-control-comment",
+     "sha256": "316b23055883093fc070a2739518f3ccb305dddff737a0d170e39412782154f9"
+    }
+   ],
+   "rationale": "Predicate 'comments.updated_at must not be null'. Timestamp is set server-side from new DateTime() in the domain constructor and bound non-null by DateTimeHandler; no API input controls it. Read-back shows SQLite stores it as INTEGER epoch millis (storage class integer), i.e. the declared TIMESTAMP type is not enforced by SQLite, but this cannot be driven from the API.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-1d857acc85c9",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A11-control-comment"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A11-control-comment.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A11-control-comment",
+     "sha256": "e4e1ce264c27236b2d2620fda1ed495e6af9e683e08d77efe03def5c3a9adfe3"
+    },
+    {
+     "path": "logs/A11-control-comment.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A11-control-comment",
+     "sha256": "f88e93c2677183b8c5ea8fa8488ccbb9c797b3ecef4f343cc15384c1538e494a"
+    },
+    {
+     "path": "raw/A11-control-comment.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A11-control-comment",
+     "sha256": "316b23055883093fc070a2739518f3ccb305dddff737a0d170e39412782154f9"
+    }
+   ],
+   "rationale": "Predicate 'comments.id identifies a row'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-92f7dc56d6cc",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A11-control-comment"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A11-control-comment.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A11-control-comment",
+     "sha256": "e4e1ce264c27236b2d2620fda1ed495e6af9e683e08d77efe03def5c3a9adfe3"
+    },
+    {
+     "path": "logs/A11-control-comment.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A11-control-comment",
+     "sha256": "f88e93c2677183b8c5ea8fa8488ccbb9c797b3ecef4f343cc15384c1538e494a"
+    },
+    {
+     "path": "raw/A11-control-comment.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A11-control-comment",
+     "sha256": "316b23055883093fc070a2739518f3ccb305dddff737a0d170e39412782154f9"
+    }
+   ],
+   "rationale": "Predicate 'comments.article_id has type VARCHAR(255)'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-8cb224baaa01",
+   "target_kind": "constraint",
+   "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A11-control-comment",
+    "A12-boundary-comment-body-nonstring"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A11-control-comment.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A11-control-comment",
+     "sha256": "e4e1ce264c27236b2d2620fda1ed495e6af9e683e08d77efe03def5c3a9adfe3"
+    },
+    {
+     "path": "logs/A11-control-comment.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A11-control-comment",
+     "sha256": "f88e93c2677183b8c5ea8fa8488ccbb9c797b3ecef4f343cc15384c1538e494a"
+    },
+    {
+     "path": "raw/A11-control-comment.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A11-control-comment",
+     "sha256": "316b23055883093fc070a2739518f3ccb305dddff737a0d170e39412782154f9"
+    },
+    {
+     "path": "raw/A12-boundary-comment-body-nonstring.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A12-boundary-comment-body-nonstring",
+     "sha256": "e28faa67f7d4a8e0b65d4b4f974818247916a455b3711b665a4adb57d5176238"
+    },
+    {
+     "path": "logs/A12-boundary-comment-body-nonstring.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A12-boundary-comment-body-nonstring",
+     "sha256": "f4c1034893d35b1c43862a089e5d6f3cbe862ae1323fb0787fca5f2ec0013b19"
+    },
+    {
+     "path": "raw/A12-boundary-comment-body-nonstring.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A12-boundary-comment-body-nonstring",
+     "sha256": "f5aa5a389e8588a24f27126dc7954d90cd785a7e3bb3eb3ee8ec8927e76582cd"
+    }
+   ],
+   "rationale": "Predicate 'comments.body has type TEXT'. Unbounded TEXT; numeric JSON body coerced to string and stored as text. No violating value reachable.",
+   "confidence": 0.85,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-b1e1275469d9",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A11-control-comment"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A11-control-comment.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A11-control-comment",
+     "sha256": "e4e1ce264c27236b2d2620fda1ed495e6af9e683e08d77efe03def5c3a9adfe3"
+    },
+    {
+     "path": "logs/A11-control-comment.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A11-control-comment",
+     "sha256": "f88e93c2677183b8c5ea8fa8488ccbb9c797b3ecef4f343cc15384c1538e494a"
+    },
+    {
+     "path": "raw/A11-control-comment.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A11-control-comment",
+     "sha256": "316b23055883093fc070a2739518f3ccb305dddff737a0d170e39412782154f9"
+    }
+   ],
+   "rationale": "Predicate 'comments.created_at has type TIMESTAMP'. Timestamp is set server-side from new DateTime() in the domain constructor and bound non-null by DateTimeHandler; no API input controls it. Read-back shows SQLite stores it as INTEGER epoch millis (storage class integer), i.e. the declared TIMESTAMP type is not enforced by SQLite, but this cannot be driven from the API.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-f3b9b0316fe6",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A11-control-comment"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A11-control-comment.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A11-control-comment",
+     "sha256": "e4e1ce264c27236b2d2620fda1ed495e6af9e683e08d77efe03def5c3a9adfe3"
+    },
+    {
+     "path": "logs/A11-control-comment.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A11-control-comment",
+     "sha256": "f88e93c2677183b8c5ea8fa8488ccbb9c797b3ecef4f343cc15384c1538e494a"
+    },
+    {
+     "path": "raw/A11-control-comment.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A11-control-comment",
+     "sha256": "316b23055883093fc070a2739518f3ccb305dddff737a0d170e39412782154f9"
+    }
+   ],
+   "rationale": "Predicate 'comments.id has type VARCHAR(255)'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-189d767185f3",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A11-control-comment"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A11-control-comment.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A11-control-comment",
+     "sha256": "e4e1ce264c27236b2d2620fda1ed495e6af9e683e08d77efe03def5c3a9adfe3"
+    },
+    {
+     "path": "logs/A11-control-comment.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A11-control-comment",
+     "sha256": "f88e93c2677183b8c5ea8fa8488ccbb9c797b3ecef4f343cc15384c1538e494a"
+    },
+    {
+     "path": "raw/A11-control-comment.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A11-control-comment",
+     "sha256": "316b23055883093fc070a2739518f3ccb305dddff737a0d170e39412782154f9"
+    }
+   ],
+   "rationale": "Predicate 'comments.updated_at has type TIMESTAMP'. Timestamp is set server-side from new DateTime() in the domain constructor and bound non-null by DateTimeHandler; no API input controls it. Read-back shows SQLite stores it as INTEGER epoch millis (storage class integer), i.e. the declared TIMESTAMP type is not enforced by SQLite, but this cannot be driven from the API.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-d3f4eb122d8c",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "A11-control-comment"
+   ],
+   "evidence": [
+    {
+     "path": "raw/A11-control-comment.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response for A11-control-comment",
+     "sha256": "e4e1ce264c27236b2d2620fda1ed495e6af9e683e08d77efe03def5c3a9adfe3"
+    },
+    {
+     "path": "logs/A11-control-comment.log",
+     "kind": "sql-trace",
+     "description": "Correlated application log slice with MyBatis SQL trace for A11-control-comment",
+     "sha256": "f88e93c2677183b8c5ea8fa8488ccbb9c797b3ecef4f343cc15384c1538e494a"
+    },
+    {
+     "path": "raw/A11-control-comment.readback.json",
+     "kind": "read-back",
+     "description": "Direct SQLite read-back after A11-control-comment",
+     "sha256": "316b23055883093fc070a2739518f3ccb305dddff737a0d170e39412782154f9"
+    }
+   ],
+   "rationale": "Predicate 'comments.user_id has type VARCHAR(255)'. Value is generated server-side (UUID.randomUUID(), 36 chars) or derived from an authenticated/resolved entity id; no public REST/GraphQL input controls it, so it cannot be made to violate the predicate.",
+   "confidence": 0.9,
+   "limitations": []
+  }
+ ],
+ "warnings": [
+  "Deployed database is SQLite (the only variant configured by the project); VARCHAR length/type declarations are not enforced by SQLite, so length/type outcomes are specific to this variant.",
+  "PUT /user persists the raw (unhashed) password; test values only were used and hashes/tokens are redacted in raw exchanges.",
+  "GraphQL (DGS) mutations were not exercised; REST endpoints share the same services/repositories."
+ ]
+}

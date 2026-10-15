@@ -1,0 +1,24 @@
+{
+ "case_id": "A02-setup-article-other",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select slug, length(id), typeof(created_at), created_at, typeof(updated_at), updated_at from articles",
+ "params": [],
+ "rows": [
+  [
+   "dup-title",
+   36,
+   "integer",
+   1790665716514,
+   "integer",
+   1790665716514
+  ],
+  [
+   "other-title",
+   36,
+   "integer",
+   1790665716894,
+   "integer",
+   1790665716894
+  ]
+ ]
+}

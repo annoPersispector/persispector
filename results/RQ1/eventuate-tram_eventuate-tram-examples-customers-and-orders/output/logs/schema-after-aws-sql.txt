@@ -1,0 +1,83 @@
+-- schema applied from aws-fargate-terraform/{1,2}.initialize-database.sql into MySQL 8.0.42, database eventuate CHARACTER SET latin1
+*************************** 1. row ***************************
+       Table: events
+Create Table: CREATE TABLE `events` (
+  `event_id` varchar(1000) NOT NULL,
+  `event_type` varchar(1000) DEFAULT NULL,
+  `event_data` varchar(1000) NOT NULL,
+  `entity_type` varchar(1000) NOT NULL,
+  `entity_id` varchar(1000) NOT NULL,
+  `triggering_event` varchar(1000) DEFAULT NULL,
+  `metadata` varchar(1000) DEFAULT NULL,
+  `published` tinyint DEFAULT '0',
+  PRIMARY KEY (`event_id`),
+  KEY `events_idx` (`entity_type`,`entity_id`,`event_id`),
+  KEY `events_published_idx` (`published`,`event_id`),
+  KEY `entities_idx` (`entity_type`,`entity_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+*************************** 1. row ***************************
+       Table: entities
+Create Table: CREATE TABLE `entities` (
+  `entity_type` varchar(1000) NOT NULL,
+  `entity_id` varchar(1000) NOT NULL,
+  `entity_version` varchar(1000) NOT NULL,
+  PRIMARY KEY (`entity_type`,`entity_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+*************************** 1. row ***************************
+       Table: snapshots
+Create Table: CREATE TABLE `snapshots` (
+  `entity_type` varchar(1000) NOT NULL,
+  `entity_id` varchar(1000) NOT NULL,
+  `entity_version` varchar(1000) NOT NULL,
+  `snapshot_type` varchar(1000) NOT NULL,
+  `snapshot_json` varchar(1000) NOT NULL,
+  `triggering_events` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`entity_type`,`entity_id`,`entity_version`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+*************************** 1. row ***************************
+       Table: cdc_monitoring
+Create Table: CREATE TABLE `cdc_monitoring` (
+  `reader_id` varchar(1000) NOT NULL,
+  `last_time` bigint DEFAULT NULL,
+  PRIMARY KEY (`reader_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+*************************** 1. row ***************************
+       Table: message
+Create Table: CREATE TABLE `message` (
+  `id` varchar(767) NOT NULL,
+  `destination` varchar(1000) NOT NULL,
+  `headers` varchar(1000) NOT NULL,
+  `payload` varchar(1000) NOT NULL,
+  `published` smallint DEFAULT '0',
+  `creation_time` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `message_published_idx` (`published`,`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+*************************** 1. row ***************************
+       Table: received_messages
+Create Table: CREATE TABLE `received_messages` (
+  `consumer_id` varchar(767) NOT NULL,
+  `message_id` varchar(767) NOT NULL,
+  `creation_time` bigint DEFAULT NULL,
+  PRIMARY KEY (`consumer_id`,`message_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+*************************** 1. row ***************************
+       Table: offset_store
+Create Table: CREATE TABLE `offset_store` (
+  `client_name` varchar(255) NOT NULL,
+  `serialized_offset` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`client_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+*************************** 1. row ***************************
+       Table: message
+Create Table: CREATE TABLE `message` (
+  `id` varchar(767) NOT NULL,
+  `destination` varchar(1000) NOT NULL,
+  `headers` varchar(1000) NOT NULL,
+  `payload` varchar(1000) NOT NULL,
+  `published` smallint DEFAULT '0',
+  `creation_time` bigint DEFAULT NULL,
+  `message_partition` smallint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `message_published_idx` (`published`,`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1

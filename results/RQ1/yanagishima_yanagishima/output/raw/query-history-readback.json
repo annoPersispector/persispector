@@ -1,0 +1,30 @@
+{
+  "case_id": "query-history-readback",
+  "purpose": "read-back",
+  "target_ids": [],
+  "note": "",
+  "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:18209/queryHistoryUser?datasource=docker-presto&engine=presto",
+    "headers": {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "some.auth.header": "alice"
+    },
+    "form": null,
+    "param_lengths": {
+      "datasource": 13,
+      "engine": 6
+    },
+    "header_lengths": {
+      "Content-Type": 33,
+      "some.auth.header": 5
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"headers\":[\"Id\",\"Query\",\"Time\",\"rawDataSize\",\"engine\",\"finishedTime\",\"linenumber\",\"status\"],\"hit\":0,\"total\":0,\"results\":[]}"
+  },
+  "readback_sql": "SELECT COUNT(*) query_rows FROM query; SELECT COUNT(*) session_property_rows FROM session_property;",
+  "readback_result": "+------------+\n| query_rows |\n+------------+\n|          0 |\n+------------+\n+-----------------------+\n| session_property_rows |\n+-----------------------+\n|                     0 |\n+-----------------------+",
+  "log_excerpt_path": "logs/cases/query-history-readback.log"
+}

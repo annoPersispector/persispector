@@ -1,0 +1,10 @@
+t	id	len	jt	created_at	updated_at
+canary_config	a14c712e-8fb6-4493-a918-536e37b0ad62	36	OBJECT	2026-09-29 12:27:21	2026-09-29 12:27:21
+canary_config	cc-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa	255	OBJECT	2026-09-29 12:27:17	2026-09-29 12:27:17
+canary_config	cc-valid-001	12	OBJECT	2026-09-29 12:27:20	2026-09-29 12:27:20
+canary_config	f439d0b1-7f78-49cb-9250-0ec0c9e6a6bc	36	OBJECT	2026-09-29 12:27:20	2026-09-29 12:27:20
+canary_archive	4b929a4c-f5c9-466b-b6ec-1d8ab9a159cb	36	OBJECT	2026-09-29 12:27:27	2026-09-29 12:27:27
+canary_archive	ca-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa	255	OBJECT	2026-09-29 12:27:24	2026-09-29 12:27:24
+canary_archive	ca-valid-001	12	OBJECT	2026-09-29 12:27:26	2026-09-29 12:27:26
+metric_sets	2d48be40-abd8-40f3-ae73-ab1682c1c3e3	36	ARRAY	2026-09-29 12:27:29	2026-09-29 12:27:29
+metric_set_pairs	81251910-c49f-44d9-8b0e-cb974af438d3	36	ARRAY	2026-09-29 12:27:30	2026-09-29 12:27:30

@@ -1,0 +1,75 @@
+{
+ "case_id": "ns-all-readback",
+ "purpose": "read-back",
+ "target_hint": [
+  "namespace_info.*"
+ ],
+ "note": "",
+ "request": {
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/console/namespaces/detail",
+  "headers": {},
+  "body": null,
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:19:35 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"status\":0,\"message\":\"\",\"obj\":[{\"name\":\"业务组\",\"zkAddressList\":\"localhost:2181\",\"namespace\":\"mydomain\",\"zkAlias\":\"集群1\",\"zkClusterKey\":\"cluster1\",\"digest\":\"\",\"nameAndNamespace\":\"业务组/mydomain\",\"sysAdmin\":\"\",\"techAdmin\":\"\",\"degree\":\"\",\"version\":\"\",\"container\":\"\"},{\"name\":\"\",\"zkAddressList\":\"localhost:2181\",\"namespace\":\"pvns1\",\"zkAlias\":\"集群1\",\"zkClusterKey\":\"cluster1\",\"digest\":\"\",\"nameAndNamespace\":\"/pvns1\",\"sysAdmin\":\"\",\"techAdmin\":\"\",\"degree\":\"\",\"version\":\"\",\"container\":\"\"},{\"name\":\"\",\"zkAddressList\":\"localhost:2181\",\"namespace\":\"\",\"zkAlias\":\"集群1\",\"zkClusterKey\":\"cluster1\",\"digest\":\"\",\"nameAndNamespace\":\"/\",\"sysAdmin\":\"\",\"techAdmin\":\"\",\"degree\":\"\",\"version\":\"\",\"container\":\"\"}]}",
+  "json": {
+   "status": 0,
+   "message": "",
+   "obj": [
+    {
+     "name": "业务组",
+     "zkAddressList": "localhost:2181",
+     "namespace": "mydomain",
+     "zkAlias": "集群1",
+     "zkClusterKey": "cluster1",
+     "digest": "",
+     "nameAndNamespace": "业务组/mydomain",
+     "sysAdmin": "",
+     "techAdmin": "",
+     "degree": "",
+     "version": "",
+     "container": ""
+    },
+    {
+     "name": "",
+     "zkAddressList": "localhost:2181",
+     "namespace": "pvns1",
+     "zkAlias": "集群1",
+     "zkClusterKey": "cluster1",
+     "digest": "",
+     "nameAndNamespace": "/pvns1",
+     "sysAdmin": "",
+     "techAdmin": "",
+     "degree": "",
+     "version": "",
+     "container": ""
+    },
+    {
+     "name": "",
+     "zkAddressList": "localhost:2181",
+     "namespace": "",
+     "zkAlias": "集群1",
+     "zkClusterKey": "cluster1",
+     "digest": "",
+     "nameAndNamespace": "/",
+     "sysAdmin": "",
+     "techAdmin": "",
+     "degree": "",
+     "version": "",
+     "container": ""
+    }
+   ]
+  }
+ },
+ "elapsed_seconds": 0.008,
+ "timestamp": "2026-09-29T20:19:36-0400"
+}

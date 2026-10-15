@@ -1,0 +1,30 @@
+{
+  "case_id": "CA-06-update-same-id",
+  "purpose": "boundary",
+  "target_ids": [
+    "pc-000a33b9c80b"
+  ],
+  "timestamp": "2026-09-29T12:27:26-0400",
+  "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:18204/canaryResultArchive/ca-valid-001?storageAccountName=sql-account",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "application": "updatedapp",
+      "pipelineId": "p",
+      "stageStatus": {
+        "s1": "succeeded"
+      },
+      "complete": true,
+      "status": "succeeded"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"pipelineId\":\"ca-valid-001\"}"
+  },
+  "readback_sql": "SELECT id, JSON_UNQUOTE(JSON_EXTRACT(content,'$.application')) AS application, (SELECT COUNT(*) FROM canary_archive WHERE id='ca-valid-001') AS n FROM canary_archive WHERE id='ca-valid-001'",
+  "readback_result": "id\tapplication\tn\nca-valid-001\tupdatedapp\t1"
+}

@@ -1,0 +1,133 @@
+{
+ "case_id": "U11-violation-username-duplicate-concurrent",
+ "username": "race_138f2f",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18201/jifa-api/user",
+  "body": "12 concurrent JSON bodies {name, username=race_138f2f, password=<RSA-ENCRYPTED>}"
+ },
+ "responses": [
+  {
+   "status": 500,
+   "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"Unique index or primary key violation: \\\"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\\\"; SQL statement:\\ninsert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]\"}",
+   "authorization_header_present": false
+  },
+  {
+   "status": 200,
+   "body": "",
+   "authorization_header_present": true
+  },
+  {
+   "status": 500,
+   "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"Unique index or primary key violation: \\\"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\\\"; SQL statement:\\ninsert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]\"}",
+   "authorization_header_present": false
+  },
+  {
+   "status": 500,
+   "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"Unique index or primary key violation: \\\"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\\\"; SQL statement:\\ninsert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]\"}",
+   "authorization_header_present": false
+  },
+  {
+   "status": 500,
+   "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"Unique index or primary key violation: \\\"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\\\"; SQL statement:\\ninsert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]\"}",
+   "authorization_header_present": false
+  },
+  {
+   "status": 500,
+   "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"Unique index or primary key violation: \\\"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\\\"; SQL statement:\\ninsert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]\"}",
+   "authorization_header_present": false
+  },
+  {
+   "status": 500,
+   "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"Unique index or primary key violation: \\\"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\\\"; SQL statement:\\ninsert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]\"}",
+   "authorization_header_present": false
+  },
+  {
+   "status": 500,
+   "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"Unique index or primary key violation: \\\"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\\\"; SQL statement:\\ninsert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]\"}",
+   "authorization_header_present": false
+  },
+  {
+   "status": 500,
+   "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"Unique index or primary key violation: \\\"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\\\"; SQL statement:\\ninsert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]\"}",
+   "authorization_header_present": false
+  },
+  {
+   "status": 500,
+   "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"Unique index or primary key violation: \\\"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\\\"; SQL statement:\\ninsert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]\"}",
+   "authorization_header_present": false
+  },
+  {
+   "status": 500,
+   "body": "{\"errorCode\":\"USERNAME_EXISTS\",\"message\":\"Username exists\"}",
+   "authorization_header_present": false
+  },
+  {
+   "status": 500,
+   "body": "{\"errorCode\":\"USERNAME_EXISTS\",\"message\":\"Username exists\"}",
+   "authorization_header_present": false
+  }
+ ],
+ "correlated_log_lines": [
+  "2026-09-29T11:18:39.510-04:00 DEBUG 1126360 --- [.1-18201-exec-6] org.hibernate.SQL                        : insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)",
+  "Hibernate: insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)",
+  "2026-09-29T11:18:39.514-04:00 DEBUG 1126360 --- [.1-18201-exec-5] org.hibernate.SQL                        : insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)",
+  "Hibernate: insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)",
+  "2026-09-29T11:18:39.515-04:00  WARN 1126360 --- [.1-18201-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 23505, SQLState: 23505",
+  "2026-09-29T11:18:39.516-04:00 ERROR 1126360 --- [.1-18201-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : Unique index or primary key violation: \"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\"; SQL statement:",
+  "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]",
+  "2026-09-29T11:18:39.516-04:00 DEBUG 1126360 --- [1-18201-exec-10] org.hibernate.SQL                        : insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)",
+  "Hibernate: insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)",
+  "2026-09-29T11:18:39.517-04:00  WARN 1126360 --- [1-18201-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 23505, SQLState: 23505",
+  "2026-09-29T11:18:39.517-04:00 ERROR 1126360 --- [1-18201-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : Unique index or primary key violation: \"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\"; SQL statement:",
+  "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]",
+  "2026-09-29T11:18:39.517-04:00 DEBUG 1126360 --- [.1-18201-exec-9] org.hibernate.SQL                        : insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)",
+  "Hibernate: insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)",
+  "2026-09-29T11:18:39.519-04:00  WARN 1126360 --- [.1-18201-exec-9] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 23505, SQLState: 23505",
+  "2026-09-29T11:18:39.519-04:00 ERROR 1126360 --- [.1-18201-exec-9] o.h.engine.jdbc.spi.SqlExceptionHelper   : Unique index or primary key violation: \"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\"; SQL statement:",
+  "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]",
+  "org.springframework.dao.DataIntegrityViolationException: could not execute statement [Unique index or primary key violation: \"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\"; SQL statement:",
+  "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]] [insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)]; SQL [insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)]; constraint [PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B]",
+  "Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement [Unique index or primary key violation: \"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\"; SQL statement:",
+  "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]] [insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)]",
+  "\tat org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.5.3.Final.jar!/:6.5.3.Final]",
+  "Caused by: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: \"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\"; SQL statement:",
+  "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]",
+  "2026-09-29T11:18:39.528-04:00 ERROR 1126360 --- [1-18201-exec-11] o.e.j.s.c.GlobalExceptionHandler         : Username exists",
+  "org.springframework.dao.DataIntegrityViolationException: could not execute statement [Unique index or primary key violation: \"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\"; SQL statement:",
+  "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]] [insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)]; SQL [insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)]; constraint [PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B]",
+  "Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement [Unique index or primary key violation: \"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\"; SQL statement:",
+  "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]] [insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)]",
+  "\tat org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.5.3.Final.jar!/:6.5.3.Final]",
+  "Caused by: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: \"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\"; SQL statement:",
+  "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]",
+  "org.springframework.dao.DataIntegrityViolationException: could not execute statement [Unique index or primary key violation: \"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\"; SQL statement:",
+  "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]] [insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)]; SQL [insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)]; constraint [PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B]",
+  "Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement [Unique index or primary key violation: \"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\"; SQL statement:",
+  "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]] [insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)]",
+  "\tat org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.5.3.Final.jar!/:6.5.3.Final]",
+  "Caused by: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: \"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\"; SQL statement:",
+  "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]",
+  "2026-09-29T11:18:39.538-04:00 ERROR 1126360 --- [1-18201-exec-12] o.e.j.s.c.GlobalExceptionHandler         : Username exists",
+  "2026-09-29T11:18:39.555-04:00 DEBUG 1126360 --- [.1-18201-exec-1] org.hibernate.SQL                        : insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)",
+  "Hibernate: insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)",
+  "2026-09-29T11:18:39.555-04:00 DEBUG 1126360 --- [.1-18201-exec-8] org.hibernate.SQL                        : insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)",
+  "Hibernate: insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)",
+  "2026-09-29T11:18:39.556-04:00  WARN 1126360 --- [.1-18201-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 23505, SQLState: 23505",
+  "2026-09-29T11:18:39.556-04:00 ERROR 1126360 --- [.1-18201-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : Unique index or primary key violation: \"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\"; SQL statement:",
+  "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]",
+  "2026-09-29T11:18:39.557-04:00  WARN 1126360 --- [.1-18201-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 23505, SQLState: 23505",
+  "2026-09-29T11:18:39.557-04:00 ERROR 1126360 --- [.1-18201-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : Unique index or primary key violation: \"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\"; SQL statement:",
+  "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]",
+  "org.springframework.dao.DataIntegrityViolationException: could not execute statement [Unique index or primary key violation: \"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\"; SQL statement:",
+  "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]] [insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)]; SQL [insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)]; constraint [PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B]",
+  "Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement [Unique index or primary key violation: \"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\"; SQL statement:",
+  "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]] [insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)]",
+  "\tat org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.5.3.Final.jar!/:6.5.3.Final]",
+  "Caused by: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: \"PUBLIC.UKH9N534IK0PAA1RW5EOX0VML8T_INDEX_B ON PUBLIC.LOGIN_DATA(USERNAME NULLS FIRST) VALUES ( /* 8 */ 'race_138f2f' )\"; SQL statement:",
+  "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23505-220]",
+  "2026-09-29T11:18:39.562-04:00 DEBUG 1126360 --- [.1-18201-exec-7] org.hibernate.SQL                        : insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)",
+  "Hibernate: insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)",
+  "2026-09-29T11:18:39.562-04:00 DEBUG 1126360 --- [.1-18201-exec-4] org.hibernate.SQL                        : insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)"
+ ]
+}

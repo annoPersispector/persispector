@@ -1,0 +1,53 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.4/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Path for java installation '/usr/lib/jvm/openjdk-11' (Common Linux Locations) does not contain a java executable
+Path for java installation '/usr/lib/jvm/openjdk-17' (Common Linux Locations) does not contain a java executable
+> Task :common:compileJava
+> Task :analysis:compileJava
+> Task :analysis:processResources NO-SOURCE
+> Task :analysis:classes
+> Task :analysis:jar
+> Task :common:processResources NO-SOURCE
+> Task :common:classes
+> Task :common:jar
+> Task :server:processResources
+> Task :server:compileJava
+> Task :server:classes
+> Task :server:resolveMainClassName
+> Task :analysis:gc-log:compileJava
+> Task :analysis:gc-log:processResources
+> Task :analysis:gc-log:classes
+> Task :analysis:gc-log:jar
+> Task :analysis:jfr:compileJava
+> Task :analysis:jfr:processResources
+> Task :analysis:jfr:classes
+> Task :analysis:jfr:jar
+> Task :analysis:thread-dump:compileJava
+> Task :analysis:thread-dump:processResources
+> Task :analysis:thread-dump:classes
+> Task :analysis:thread-dump:jar
+> Task :analysis:heap-dump:api:compileJava
+> Task :analysis:heap-dump:api:processResources NO-SOURCE
+> Task :analysis:heap-dump:api:classes
+> Task :analysis:heap-dump:api:jar
+> Task :analysis:heap-dump:hook:compileJava
+> Task :analysis:heap-dump:hook:hookPreferences
+> Task :analysis:heap-dump:impl:compileJava
+> Task :analysis:heap-dump:impl:processResources NO-SOURCE
+> Task :analysis:heap-dump:impl:classes
+> Task :analysis:heap-dump:impl:jar
+> Task :analysis:heap-dump:impl:installJar
+> Task :analysis:heap-dump:provider:compileJava
+> Task :analysis:heap-dump:provider:processResources
+> Task :analysis:heap-dump:provider:classes
+> Task :analysis:heap-dump:provider:jar
+> Task :server:bootJar
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.4/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 30s
+27 actionable tasks: 27 executed

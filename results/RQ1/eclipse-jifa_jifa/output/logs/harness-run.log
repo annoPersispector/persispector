@@ -1,0 +1,67 @@
+U01-setup-register-valid 200 
+   WRITE insert into users (admin,created_time,last_modified_time,name,id) values (?,?,?,?,default)
+   WRITE insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)
+U02-readback-login-valid 200 
+U03-violation-username-duplicate 500 {"errorCode":"USERNAME_EXISTS","message":"Username exists"}
+U04-violation-username-null 500 {"errorCode":"INTERNAL_ERROR","message":"NULL not allowed for column \"USERNAME\"; SQL statement:\ninsert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23502-220]"}
+   SQLERR 2026-09-29T11:18:06.570-04:00  WARN 1126360 --- [.1-18201-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 23502, SQLState: 23502
+   SQLERR 2026-09-29T11:18:06.570-04:00 ERROR 1126360 --- [.1-18201-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : NULL not allowed for column "USERNAME"; SQL statement:
+   WRITE insert into users (admin,created_time,last_modified_time,name,id) values (?,?,?,?,default)
+   WRITE insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)
+U05-boundary-username-128 200 
+   WRITE insert into users (admin,created_time,last_modified_time,name,id) values (?,?,?,?,default)
+   WRITE insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)
+U06-violation-username-129 500 {"errorCode":"INTERNAL_ERROR","message":"Value too long for column \"USERNAME CHARACTER VARYING(128)\": \"'c4b4b98xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx... (129)\"; SQL statement:\ninsert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?
+   SQLERR 2026-09-29T11:18:07.953-04:00  WARN 1126360 --- [.1-18201-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 22001, SQLState: 22001
+   SQLERR 2026-09-29T11:18:07.953-04:00 ERROR 1126360 --- [.1-18201-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : Value too long for column "USERNAME CHARACTER VARYING(128)": "'c4b4b98xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx... (129)"; SQL statement:
+   WRITE insert into users (admin,created_time,last_modified_time,name,id) values (?,?,?,?,default)
+   WRITE insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)
+U06b-readback-login-username-129 500 {"errorCode":"USER_NOT_FOUND","message":"User not found"}
+U07-boundary-name-64 200 
+   WRITE insert into users (admin,created_time,last_modified_time,name,id) values (?,?,?,?,default)
+   WRITE insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)
+U08-violation-name-65 500 {"errorCode":"INTERNAL_ERROR","message":"Value too long for column \"NAME CHARACTER VARYING(64)\": \"'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM' (65)\"; SQL statement:\ninsert into users (admin,created_time,last_modified_time,name,id) values (?,?,?,?,default) [22001-220]"}
+   SQLERR 2026-09-29T11:18:09.935-04:00  WARN 1126360 --- [.1-18201-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 22001, SQLState: 22001
+   SQLERR 2026-09-29T11:18:09.935-04:00 ERROR 1126360 --- [.1-18201-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : Value too long for column "NAME CHARACTER VARYING(64)": "'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM' (65)"; SQL statement:
+   WRITE insert into users (admin,created_time,last_modified_time,name,id) values (?,?,?,?,default)
+U08b-readback-login-after-name-65 500 {"errorCode":"USER_NOT_FOUND","message":"User not found"}
+U09-violation-attempt-long-password-100 500 {"errorCode":"ILLEGAL_ARGUMENT","message":"password cannot be more than 72 bytes"}
+U10-control-long-password-70 200 
+   WRITE insert into users (admin,created_time,last_modified_time,name,id) values (?,?,?,?,default)
+   WRITE insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)
+U10b-readback-login-long-password-70 200 
+F01-control-upload-valid 200 1
+   WRITE insert into files (created_time,original_name,size,type,unique_name,user_id,id) values (?,?,?,?,?,?,default)
+F02-readback-file-valid 200 {"id":1,"uniqueName":"6986423c-905a-4ce5-ab85-dac0a5c28695","originalName":"gc-valid.log","type":"GC_LOG","size":19,"createdTime":"2026-09-29 11:18:13"}
+F03-boundary-upload-originalName-256 200 2
+   WRITE insert into files (created_time,original_name,size,type,unique_name,user_id,id) values (?,?,?,?,?,?,default)
+F03b-readback-file-256 200 {"id":2,"uniqueName":"9441b908-dd32-4fe1-b1f3-1f17f2adfe16","originalName":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+F04-violation-upload-originalName-257 500 {"errorCode":"INTERNAL_ERROR","message":"Value too long for column \"ORIGINAL_NAME CHARACTER VARYING(256)\": \"'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz... (257)\"; SQL statement:\ninsert into files (created_time,original_name,size,type,unique_name,user_id,id) 
+   SQLERR 2026-09-29T11:18:15.602-04:00  WARN 1126360 --- [.1-18201-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 22001, SQLState: 22001
+   SQLERR 2026-09-29T11:18:15.602-04:00 ERROR 1126360 --- [.1-18201-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : Value too long for column "ORIGINAL_NAME CHARACTER VARYING(256)": "'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz... (257)"; SQL statement:
+   WRITE insert into files (created_time,original_name,size,type,unique_name,user_id,id) values (?,?,?,?,?,?,default)
+F04b-readback-file-list 200 {"data":[{"id":2,"uniqueName":"9441b908-dd32-4fe1-b1f3-1f17f2adfe16","originalName":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+F05-violation-upload-type-missing 400 {"errorCode":"ILLEGAL_ARGUMENT","message":"Required request parameter 'type' for method parameter type FileType is not present"}
+F06-violation-upload-type-invalid 500 {"errorCode":"INTERNAL_ERROR","message":"No enum constant org.eclipse.jifa.server.enums.FileType.NOT_A_TYPE"}
+T01-control-transfer-text-valid 200 1
+   WRITE insert into transferring_files (created_time,failure_message,last_modified_time,original_name,total_size,transfer_state,transferred_size,type,unique_name,user_i
+   WRITE update transferring_files set failure_message=?,last_modified_time=?,total_size=?,transfer_state=?,transferred_size=?,user_id=? where id=?
+   WRITE insert into files (created_time,original_name,size,type,unique_name,user_id,id) values (?,?,?,?,?,?,default)
+   WRITE update transferring_files set failure_message=?,last_modified_time=?,total_size=?,transfer_state=?,transferred_size=?,user_id=? where id=?
+T02-readback-transfer-progress-valid 200 {"state":"SUCCESS","totalSize":9,"transferredSize":9,"fileId":4}
+T03-violation-transfer-type-null 500 {"errorCode":"INTERNAL_ERROR","message":"Validation failed for argument [0] in public long org.eclipse.jifa.server.controller.FileController.transfer(org.eclipse.jifa.server.domain.dto.FileTransferRequest) throws java.lang.Throwable: [Field error in object 'fileTransferRequest' on field 'type': reje
+T04-violation-transfer-filename-null 500 {"errorCode":"INTERNAL_ERROR","message":"Validation failed for argument [0] in public long org.eclipse.jifa.server.controller.FileController.transfer(org.eclipse.jifa.server.domain.dto.FileTransferRequest) throws java.lang.Throwable: [Field error in object 'fileTransferRequest' on field 'filename': 
+T05-violation-transfer-filename-257 500 {"errorCode":"INTERNAL_ERROR","message":"Value too long for column \"ORIGINAL_NAME CHARACTER VARYING(256)\": \"'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy... (257)\"; SQL statement:\ninsert into transferring_files (created_time,failure_message,last_modified_time,
+   SQLERR 2026-09-29T11:18:22.024-04:00  WARN 1126360 --- [.1-18201-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 22001, SQLState: 22001
+   SQLERR 2026-09-29T11:18:22.024-04:00 ERROR 1126360 --- [.1-18201-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : Value too long for column "ORIGINAL_NAME CHARACTER VARYING(256)": "'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy... (257)"; SQL statement:
+   WRITE insert into transferring_files (created_time,failure_message,last_modified_time,original_name,total_size,transfer_state,transferred_size,type,unique_name,user_i
+T06-boundary-transfer-filename-256 200 3
+   WRITE insert into transferring_files (created_time,failure_message,last_modified_time,original_name,total_size,transfer_state,transferred_size,type,unique_name,user_i
+   WRITE update transferring_files set failure_message=?,last_modified_time=?,total_size=?,transfer_state=?,transferred_size=?,user_id=? where id=?
+   WRITE insert into files (created_time,original_name,size,type,unique_name,user_id,id) values (?,?,?,?,?,?,default)
+   WRITE update transferring_files set failure_message=?,last_modified_time=?,total_size=?,transfer_state=?,transferred_size=?,user_id=? where id=?
+T06b-readback-transfer-progress-256 200 {"state":"SUCCESS","totalSize":1,"transferredSize":1,"fileId":5}
+D01-control-delete-file 200 
+   WRITE insert into deleted_files (created_time,original_created_time,original_name,size,type,unique_name,user_id,id) values (?,?,?,?,?,?,?,default)
+D02-readback-deleted-file 500 {"errorCode":"FILE_NOT_FOUND","message":"File not found"}
+RUN 4b4b98

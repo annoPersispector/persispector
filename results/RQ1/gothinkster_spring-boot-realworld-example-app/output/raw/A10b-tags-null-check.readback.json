@@ -1,0 +1,11 @@
+{
+ "case_id": "A10b-tags-null-check",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select count(*) from tags where name is null",
+ "params": [],
+ "rows": [
+  [
+   0
+  ]
+ ]
+}

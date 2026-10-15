@@ -1,0 +1,47 @@
+{
+  "case_id": "r2-ds-update-readback",
+  "purpose": "read-back",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/datasource/23198791360544",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:35:59 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 0,
+      "msg": null,
+      "data": {
+        "id": "23198791360544",
+        "datasourceName": "ds_other",
+        "pluginName": "JDBC-Mysql",
+        "pluginVersion": "1.0.0",
+        "datasourceConfig": {
+          "url": "jdbc:mysql://127.0.0.1:1/x",
+          "driver": "com.mysql.cj.jdbc.Driver",
+          "user": "u",
+          "password": "p"
+        },
+        "description": "kept-name",
+        "createUserName": null,
+        "updateUserName": null,
+        "createTime": "2026-09-29 08:35:57",
+        "updateTime": "2026-09-29 08:35:59"
+      },
+      "failed": false,
+      "success": true
+    }
+  },
+  "log_slice": "logs/cases/r2-ds-update-readback.log"
+}

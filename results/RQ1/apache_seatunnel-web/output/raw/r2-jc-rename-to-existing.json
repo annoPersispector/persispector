@@ -1,0 +1,38 @@
+{
+  "case_id": "r2-jc-rename-to-existing",
+  "purpose": "violation",
+  "targets": [],
+  "note": "rename job to an existing job name in same workspace via config update",
+  "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/job/config/23198793034784",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "name": "ds_vt_nonexistent_but_ok",
+      "description": "x",
+      "env": {
+        "job.mode": "BATCH"
+      },
+      "engine": "SeaTunnel"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:36:10 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 99999,
+      "msg": "Unknown exception. \n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: \"public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198792820768 */ 'ds_vt_nonexistent_but_ok', CAST(1 AS BIGINT))\"; SQL statement:\nUPDATE t_st_job_definition  SET name=?, description=?,   update_user_id=?       WHERE  (id = ? AND workspace_id = ?) [23505-214]\n### The error may exist in org/apache/seatunnel/app/dal/mapper/JobMapper.java (best guess)\n### The error may involve org.apache.seatunnel.app.dal.mapper.JobMapper.update-Inline\n### The error occurred while setting parameters\n### SQL: UPDATE t_st_job_definition  SET name=?, description=?,   update_user_id=?       WHERE  (id = ? AND workspace_id = ?)\n### Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: \"public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198792820768 */ 'ds_vt_nonexistent_but_ok', CAST(1 AS BIGINT))\"; SQL statement:\nUPDATE t_st_job_definition  SET name=?, description=?,   update_user_id=?       WHERE  (id = ? AND workspace_id = ?) [23505-214]\n; Unique index or primary key violation: \"public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198792820768 */ 'ds_vt_nonexistent_but_ok', CAST(1 AS BIGINT))\"; SQL statement:\nUPDATE t_st_job_definition  SET name=?, description=?,   update_user_id=?       WHERE  (id = ? AND workspace_id = ?) [23505-214]; nested exception is org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: \"public.CONSTRAINT_INDEX_D ON public.t_st_job_definition(name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198792820768 */ 'ds_vt_nonexistent_but_ok', CAST(1 AS BIGINT))\"; SQL statement:\nUPDATE t_st_job_definition  SET name=?, description=?,   update_user_id=?       WHERE  (id = ? AND workspace_id = ?) [23505-214]",
+      "data": null,
+      "failed": true,
+      "success": false
+    }
+  },
+  "log_slice": "logs/cases/r2-jc-rename-to-existing.log"
+}

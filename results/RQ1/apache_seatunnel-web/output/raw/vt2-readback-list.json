@@ -1,0 +1,113 @@
+{
+  "case_id": "vt2-readback-list",
+  "purpose": "read-back",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/virtual_table/list?pluginName=&datasourceName=&pageNo=1&pageSize=50",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:36:08 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 0,
+      "msg": null,
+      "data": {
+        "data": [
+          {
+            "createUserName": "admin",
+            "createTime": "2026-09-29 08:36:06",
+            "updateUserName": "admin",
+            "updateTime": "2026-09-29 08:36:06",
+            "tableId": "23198792547488",
+            "datasourceId": "999999",
+            "datasourceName": null,
+            "databaseName": "vdb",
+            "tableName": "vt_dsbad",
+            "description": "d",
+            "pluginName": null,
+            "createUserId": 1,
+            "updateUserId": 1
+          },
+          {
+            "createUserName": "admin",
+            "createTime": "2026-09-29 08:36:05",
+            "updateUserName": "admin",
+            "updateTime": "2026-09-29 08:36:05",
+            "tableId": "23198792389024",
+            "datasourceId": "23198791306016",
+            "datasourceName": "ds_vt",
+            "databaseName": "vdb",
+            "tableName": "vt_cfgnull",
+            "description": "d",
+            "pluginName": "JDBC-Mysql",
+            "createUserId": 1,
+            "updateUserId": 1
+          },
+          {
+            "createUserName": "admin",
+            "createTime": "2026-09-29 08:36:01",
+            "updateUserName": "admin",
+            "updateTime": "2026-09-29 08:36:01",
+            "tableId": "23198791909536",
+            "datasourceId": "23198791306016",
+            "datasourceName": "ds_vt",
+            "databaseName": "vdb",
+            "tableName": "ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt",
+            "description": "d",
+            "pluginName": "JDBC-Mysql",
+            "createUserId": 1,
+            "updateUserId": 1
+          },
+          {
+            "createUserName": "admin",
+            "createTime": "2026-09-29 08:36:00",
+            "updateUserName": "admin",
+            "updateTime": "2026-09-29 08:36:00",
+            "tableId": "23198791803296",
+            "datasourceId": "23198791306016",
+            "datasourceName": "ds_vt",
+            "databaseName": "ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "tableName": "vt_db63",
+            "description": "d",
+            "pluginName": "JDBC-Mysql",
+            "createUserId": 1,
+            "updateUserId": 1
+          },
+          {
+            "createUserName": "admin",
+            "createTime": "2026-09-29 08:36:00",
+            "updateUserName": "admin",
+            "updateTime": "2026-09-29 08:36:08",
+            "tableId": "23198791691936",
+            "datasourceId": "23198791306016",
+            "datasourceName": "ds_vt",
+            "databaseName": "vdb",
+            "tableName": "vt_ctrl",
+            "description": "d",
+            "pluginName": "JDBC-Mysql",
+            "createUserId": 1,
+            "updateUserId": 1
+          }
+        ],
+        "totalCount": 5,
+        "totalPage": 1,
+        "pageNo": 1,
+        "pageSize": 50
+      },
+      "failed": false,
+      "success": true
+    }
+  },
+  "log_slice": "logs/cases/vt2-readback-list.log"
+}

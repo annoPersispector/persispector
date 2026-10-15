@@ -1,0 +1,39 @@
+{
+  "case_id": "bookmark-violation-query-text-65536",
+  "purpose": "violation",
+  "target_ids": [],
+  "note": "",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18209/bookmark",
+    "headers": {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "some.auth.header": "alice"
+    },
+    "form": {
+      "datasource": "docker-presto",
+      "engine": "presto",
+      "query": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT...<truncated, total 65536 chars>",
+      "title": "t",
+      "snippet": "s"
+    },
+    "param_lengths": {
+      "datasource": 13,
+      "engine": 6,
+      "query": 65536,
+      "title": 1,
+      "snippet": 1
+    },
+    "header_lengths": {
+      "Content-Type": 33,
+      "some.auth.header": 5
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"error\":\"could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.DataException: could not execute statement\",\"bookmark_id\":0}"
+  },
+  "readback_sql": "SELECT bookmark_id, datasource, engine, LENGTH(query) qlen, CHAR_LENGTH(title) tlen, CHAR_LENGTH(snippet) slen, CHAR_LENGTH(user) ulen FROM bookmark ORDER BY bookmark_id",
+  "readback_result": "+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+------+------+------+\n| bookmark_id | datasource                                                                                                                                                                                                                                                       | engine                                                                                                                                                                                                                                                           | qlen  | tlen | slen | ulen |\n+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+------+------+------+\n|           1 | docker-presto                                                                                                                                                                                                                                                    | presto                                                                                                                                                                                                                                                           |     8 |    2 |    2 |    5 |\n|           2 | docker-presto                                                                                                                                                                                                                                                    | presto                                                                                                                                                                                                                                                           |     8 |    2 |    2 |    5 |\n|           3 | dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd | eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee | 65535 |  256 |  256 |  256 |\n+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+------+------+------+",
+  "log_excerpt_path": "logs/cases/bookmark-violation-query-text-65536.log"
+}

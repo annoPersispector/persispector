@@ -1,0 +1,37 @@
+{
+  "case_id": "R05-readback-orphan-check",
+  "kind": "read-back",
+  "channel": "H2 web console /h2/query.do (SELECT only)",
+  "sql": "SELECT 'verification_token' T, COUNT(*) FROM VERIFICATION_TOKEN WHERE USER_ID NOT IN (SELECT ID FROM USER_ACCOUNT) UNION ALL SELECT 'users_roles', COUNT(*) FROM USERS_ROLES WHERE USER_ID NOT IN (SELECT ID FROM USER_ACCOUNT) OR ROLE_ID NOT IN (SELECT ID FROM ROLE) UNION ALL SELECT 'roles_privileges', COUNT(*) FROM ROLES_PRIVILEGES WHERE ROLE_ID NOT IN (SELECT ID FROM ROLE) OR PRIVILEGE_ID NOT IN (SELECT ID FROM PRIVILEGE) UNION ALL SELECT 'user_location', COUNT(*) FROM USER_LOCATION UNION ALL SELECT 'new_location_token', COUNT(*) FROM NEW_LOCATION_TOKEN UNION ALL SELECT 'device_metadata', COUNT(*) FROM DEVICE_METADATA",
+  "status": 200,
+  "rows": [
+    [
+      "T",
+      "COUNT(*)"
+    ],
+    [
+      "verification_token",
+      "0"
+    ],
+    [
+      "users_roles",
+      "0"
+    ],
+    [
+      "roles_privileges",
+      "0"
+    ],
+    [
+      "user_location",
+      "0"
+    ],
+    [
+      "new_location_token",
+      "0"
+    ],
+    [
+      "device_metadata",
+      "0"
+    ]
+  ]
+}

@@ -1,0 +1,1 @@
+2026-09-29T12:00:59.857-04:00 DEBUG 1149134 --- [order-service] [.1-18202-exec-8] org.hibernate.SQL                        : select o1_0.id,o1_0.customer_id,o1_0.amount,o1_0.rejection_reason,o1_0.state,o1_0.version from orders o1_0

@@ -1,0 +1,58 @@
+{
+ "case_id": "A01-setup-article-dup-title",
+ "purpose": "setup",
+ "target_ids": [
+  "pc-e4f422b7bd9e",
+  "pc-7d99f29ba4e7",
+  "pc-75ef4de72ec5"
+ ],
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18208/articles",
+  "headers": {
+   "Content-Type": "application/json",
+   "Authorization": "Token <JWT-REDACTED>"
+  },
+  "body": {
+   "article": {
+    "title": "Dup Title",
+    "description": "desc",
+    "body": "body",
+    "tagList": [
+     "alpha",
+     "beta"
+    ]
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "body": {
+   "article": {
+    "id": "c31f5582-fc29-4260-9f58-950f8da8744e",
+    "slug": "dup-title",
+    "title": "Dup Title",
+    "description": "desc",
+    "body": "body",
+    "favorited": false,
+    "favoritesCount": 0,
+    "createdAt": "2026-09-29T07:08:36.514Z",
+    "updatedAt": "2026-09-29T07:08:36.514Z",
+    "tagList": [
+     "alpha",
+     "beta"
+    ],
+    "cursor": {
+     "data": "2026-09-29T07:08:36.514Z"
+    },
+    "author": {
+     "username": "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv",
+     "bio": "",
+     "image": "https://img.example/iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.png",
+     "following": false
+    }
+   }
+  }
+ },
+ "note": ""
+}

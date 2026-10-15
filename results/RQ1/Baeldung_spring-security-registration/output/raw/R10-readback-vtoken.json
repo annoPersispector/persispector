@@ -1,0 +1,15 @@
+{
+  "case_id": "R10-readback-vtoken",
+  "kind": "read-back",
+  "channel": "H2 web console /h2/query.do (SELECT only)",
+  "sql": "SELECT TOKEN FROM VERIFICATION_TOKEN T JOIN USER_ACCOUNT U ON U.ID=T.USER_ID WHERE U.EMAIL='pv.b30@example.test'",
+  "status": 200,
+  "rows": [
+    [
+      "TOKEN"
+    ],
+    [
+      "f09e0c1d-959b-4506-b6c0-3322b9427d97"
+    ]
+  ]
+}

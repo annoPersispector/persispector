@@ -1,0 +1,43 @@
+{
+  "case_id": "CC-01-control-create",
+  "purpose": "control",
+  "target_ids": [
+    "pc-11859c35fe9a",
+    "pc-697814377ac0",
+    "pc-28c967fd981a",
+    "pc-cd98250264a6",
+    "pc-e3c4f3bbce3b",
+    "pc-03dd49ea23ba",
+    "pc-454b6220f809"
+  ],
+  "timestamp": "2026-09-29T12:27:15-0400",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18204/canaryConfig?configurationAccountName=sql-account",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "cfgvalid",
+      "applications": [
+        "verifapp"
+      ],
+      "metrics": [],
+      "classifier": {
+        "groupWeights": {}
+      },
+      "judge": {
+        "name": "NetflixACAJudge-v1.0",
+        "judgeConfigurations": {}
+      },
+      "configVersion": "1",
+      "id": "cc-valid-001"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"canaryConfigId\":\"cc-valid-001\"}"
+  },
+  "readback_sql": "SELECT id, CHAR_LENGTH(id) AS id_len, JSON_VALID(content) AS json_valid, JSON_TYPE(content) AS json_type, created_at, updated_at FROM canary_config WHERE id ='cc-valid-001'",
+  "readback_result": "id\tid_len\tjson_valid\tjson_type\tcreated_at\tupdated_at\ncc-valid-001\t12\t1\tOBJECT\t2026-09-29 12:27:15\t2026-09-29 12:27:15"
+}

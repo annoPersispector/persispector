@@ -1,0 +1,1 @@
+2026-09-29T12:00:57.685-04:00  WARN 1149134 --- [order-service] [.1-18202-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Number value length (1441) exceeds the maximum allowed (1000, from `StreamReadConstraints.getMaxNumberLength()`)]

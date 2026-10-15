@@ -1,0 +1,4 @@
+-- MySQL read-back executed immediately after the request
+-- SQL: SELECT id, CHAR_LENGTH(id) AS id_len, JSON_VALID(content) AS json_valid, JSON_TYPE(content) AS json_type, created_at, updated_at FROM canary_config WHERE id ='cc-valid-001'
+id	id_len	json_valid	json_type	created_at	updated_at
+cc-valid-001	12	1	OBJECT	2026-09-29 12:27:15	2026-09-29 12:27:15

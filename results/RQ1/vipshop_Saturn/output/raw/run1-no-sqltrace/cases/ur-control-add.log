@@ -1,0 +1,1 @@
+[2026-09-29 20:17:20.881] [INFO] [http-nio-127.0.0.1-18205-exec-9] [AUDITLOG] >>> GUI API:[addUserRoles] path:[/console/authorizationManage/addUserRoles] is called by User:[admin] with IP:[127.0.0.1], result is success. Context info:{userNames=guest, roleKey=namespace_developer, namespaces=pvns1, needApproval=false}.

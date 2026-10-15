@@ -1,0 +1,13 @@
+{
+ "case_id": "A09-violation-tag-name-300",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select length(name), typeof(name), length(id) from tags where name like 'gggg%'",
+ "params": [],
+ "rows": [
+  [
+   300,
+   "text",
+   36
+  ]
+ ]
+}

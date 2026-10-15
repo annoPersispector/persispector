@@ -1,0 +1,14 @@
+{
+ "case_id": "A18-article-tags-readback",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select length(article_id), length(tag_id), typeof(tag_id), sum(tag_id is null) from article_tags group by 1,2,3",
+ "params": [],
+ "rows": [
+  [
+   36,
+   36,
+   "text",
+   0
+  ]
+ ]
+}

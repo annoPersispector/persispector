@@ -1,0 +1,2 @@
+[2026-09-29 20:17:09.347] [INFO] [http-nio-127.0.0.1-18205-exec-1] [AUDITLOG] >>> GUI API:[createNamespace] path:[/console/namespaces] is called by User:[admin] with IP:[127.0.0.1], result is failed. Context info:{namespace=pvns1, zkClusterKey=cluster1}.
+[2026-09-29 20:17:09.347] [ERROR] [http-nio-127.0.0.1-18205-exec-1] [c.v.s.j.c.controller.gui.AbstractGUIController] >>> internal server error happens while calling GUI API:Invalid request. Namespace: {pvns1} already existed

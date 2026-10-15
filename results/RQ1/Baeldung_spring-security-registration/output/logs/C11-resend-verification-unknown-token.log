@@ -1,0 +1,12 @@
+web - 2026-09-29 02:37:39,382 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.DispatcherServlet - GET "/user/resendRegistrationToken?token=00000000-0000-0000-0000-000000000000", parameters={masked}
+web - 2026-09-29 02:37:39,385 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - select v1_0.id,v1_0.expiry_date,v1_0.token,v1_0.user_id from verification_token v1_0 where v1_0.token=?
+web - 2026-09-29 02:37:39,385 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [00000000-0000-0000-0000-000000000000]
+web - 2026-09-29 02:37:39,387 [http-nio-127.0.0.1-18206-exec-2] ERROR c.b.w.e.RestResponseEntityExceptionHandler - 500 Status Code
+j.l.NullPointerException: Cannot invoke "com.baeldung.persistence.model.VerificationToken.updateToken(String)" because "vToken" is null
+	at c.b.s.UserService.generateNewVerificationToken(UserService.java:145)
+	at j.i.r.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java)
+	at j.i.r.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at j.i.r.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at j.l.r.Method.invoke(Method.java:569)
+	... 101 frames truncated
+web - 2026-09-29 02:37:39,389 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR

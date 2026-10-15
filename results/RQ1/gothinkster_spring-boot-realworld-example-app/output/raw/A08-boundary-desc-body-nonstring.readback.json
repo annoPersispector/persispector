@@ -1,0 +1,14 @@
+{
+ "case_id": "A08-boundary-desc-body-nonstring",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select description, typeof(description), body, typeof(body) from articles where slug='typed-body'",
+ "params": [],
+ "rows": [
+  [
+   "123",
+   "text",
+   "true",
+   "text"
+  ]
+ ]
+}

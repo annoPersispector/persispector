@@ -1,0 +1,36 @@
+2026-09-29 12:14:22.984 ERROR 1156891 --- [.1-18205-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.apache.dubbo.rpc.RpcException: Failed to invoke remote method: get, provider: dubbo://127.0.0.1:20882/com.funtl.myshop.plus.provider.api.UmsAdminService?application=business-reg&check=false&generic=false&interface=com.funtl.myshop.plus.provider.api.UmsAdminService&lazy=false&pid=1156891&qos.enable=false&reference.filter=-sentinel.dubbo.consumer.filter&register.ip=127.0.1.1&remote.application=&revision=0.0.1-SNAPSHOT&side=consumer&sticky=false, cause: org.apache.dubbo.remoting.RemotingException: org.apache.dubbo.remoting.RemotingException: Not found exported service: com.funtl.myshop.plus.provider.api.UmsAdminService:20882 in [com.funtl.myshop.plus.provider.api.UmsAdminService:1.0.0:20882, com.funtl.myshop.plus.provider.api.EchoService:1.0.0:20882], may be version or group mismatch , channel: consumer: /127.0.0.1:37474 --> provider: /127.0.1.1:20882, message:RpcInvocation [methodName=get, parameterTypes=[class java.lang.String], arguments=[pv121422ok], attachments={path=com.funtl.myshop.plus.provider.api.UmsAdminService, input=279, dubboApplication=business-reg, dubbo=2.0.2, interface=com.funtl.myshop.plus.provider.api.UmsAdminService, version=0.0.0}]
+org.apache.dubbo.remoting.RemotingException: Not found exported service: com.funtl.myshop.plus.provider.api.UmsAdminService:20882 in [com.funtl.myshop.plus.provider.api.UmsAdminService:1.0.0:20882, com.funtl.myshop.plus.provider.api.EchoService:1.0.0:20882], may be version or group mismatch , channel: consumer: /127.0.0.1:37474 --> provider: /127.0.1.1:20882, message:RpcInvocation [methodName=get, parameterTypes=[class java.lang.String], arguments=[pv121422ok], attachments={path=com.funtl.myshop.plus.provider.api.UmsAdminService, input=279, dubboApplication=business-reg, dubbo=2.0.2, interface=com.funtl.myshop.plus.provider.api.UmsAdminService, version=0.0.0}]
+	at org.apache.dubbo.rpc.protocol.dubbo.DubboProtocol.getInvoker(DubboProtocol.java:266)
+	at org.apache.dubbo.rpc.protocol.dubbo.DubboProtocol$1.reply(DubboProtocol.java:127)
+	at org.apache.dubbo.remoting.exchange.support.header.HeaderExchangeHandler.handleRequest(HeaderExchangeHandler.java:102)
+	at org.apache.dubbo.remoting.exchange.support.header.HeaderExchangeHandler.received(HeaderExchangeHandler.java:193)
+	at org.apache.dubbo.remoting.transport.DecodeHandler.received(DecodeHandler.java:51)
+	at org.apache.dubbo.remoting.transport.dispatcher.ChannelEventRunnable.run(ChannelEventRunnable.java:57)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+] with root cause
+
+org.apache.dubbo.remoting.RemotingException: org.apache.dubbo.remoting.RemotingException: Not found exported service: com.funtl.myshop.plus.provider.api.UmsAdminService:20882 in [com.funtl.myshop.plus.provider.api.UmsAdminService:1.0.0:20882, com.funtl.myshop.plus.provider.api.EchoService:1.0.0:20882], may be version or group mismatch , channel: consumer: /127.0.0.1:37474 --> provider: /127.0.1.1:20882, message:RpcInvocation [methodName=get, parameterTypes=[class java.lang.String], arguments=[pv121422ok], attachments={path=com.funtl.myshop.plus.provider.api.UmsAdminService, input=279, dubboApplication=business-reg, dubbo=2.0.2, interface=com.funtl.myshop.plus.provider.api.UmsAdminService, version=0.0.0}]
+org.apache.dubbo.remoting.RemotingException: Not found exported service: com.funtl.myshop.plus.provider.api.UmsAdminService:20882 in [com.funtl.myshop.plus.provider.api.UmsAdminService:1.0.0:20882, com.funtl.myshop.plus.provider.api.EchoService:1.0.0:20882], may be version or group mismatch , channel: consumer: /127.0.0.1:37474 --> provider: /127.0.1.1:20882, message:RpcInvocation [methodName=get, parameterTypes=[class java.lang.String], arguments=[pv121422ok], attachments={path=com.funtl.myshop.plus.provider.api.UmsAdminService, input=279, dubboApplication=business-reg, dubbo=2.0.2, interface=com.funtl.myshop.plus.provider.api.UmsAdminService, version=0.0.0}]
+	at org.apache.dubbo.rpc.protocol.dubbo.DubboProtocol.getInvoker(DubboProtocol.java:266)
+	at org.apache.dubbo.rpc.protocol.dubbo.DubboProtocol$1.reply(DubboProtocol.java:127)
+	at org.apache.dubbo.remoting.exchange.support.header.HeaderExchangeHandler.handleRequest(HeaderExchangeHandler.java:102)
+	at org.apache.dubbo.remoting.exchange.support.header.HeaderExchangeHandler.received(HeaderExchangeHandler.java:193)
+	at org.apache.dubbo.remoting.transport.DecodeHandler.received(DecodeHandler.java:51)
+	at org.apache.dubbo.remoting.transport.dispatcher.ChannelEventRunnable.run(ChannelEventRunnable.java:57)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+
+	at org.apache.dubbo.remoting.exchange.support.DefaultFuture.doReceived(DefaultFuture.java:191) ~[dubbo-2.7.3.jar!/:2.7.3]
+	at org.apache.dubbo.remoting.exchange.support.DefaultFuture.received(DefaultFuture.java:153) ~[dubbo-2.7.3.jar!/:2.7.3]
+	at org.apache.dubbo.remoting.exchange.support.DefaultFuture.received(DefaultFuture.java:141) ~[dubbo-2.7.3.jar!/:2.7.3]
+	at org.apache.dubbo.remoting.exchange.support.header.HeaderExchangeHandler.handleResponse(HeaderExchangeHandler.java:62) ~[dubbo-2.7.3.jar!/:2.7.3]
+	at org.apache.dubbo.remoting.exchange.support.header.HeaderExchangeHandler.received(HeaderExchangeHandler.java:199) ~[dubbo-2.7.3.jar!/:2.7.3]
+	at org.apache.dubbo.remoting.transport.DecodeHandler.received(DecodeHandler.java:51) ~[dubbo-2.7.3.jar!/:2.7.3]
+	at org.apache.dubbo.remoting.transport.dispatcher.ChannelEventRunnable.run(ChannelEventRunnable.java:57) ~[dubbo-2.7.3.jar!/:2.7.3]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) ~[na:1.8.0_452]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) ~[na:1.8.0_452]
+	at java.lang.Thread.run(Thread.java:750) [na:1.8.0_452]
+

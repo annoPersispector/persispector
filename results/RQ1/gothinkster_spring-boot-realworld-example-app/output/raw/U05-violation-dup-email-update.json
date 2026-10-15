@@ -1,0 +1,31 @@
+{
+ "case_id": "U05-violation-dup-email-update",
+ "purpose": "violation",
+ "target_ids": [
+  "pc-d699dbdf4b3e"
+ ],
+ "request": {
+  "method": "PUT",
+  "url": "http://127.0.0.1:18208/user",
+  "headers": {
+   "Content-Type": "application/json",
+   "Authorization": "Token <JWT-REDACTED>"
+  },
+  "body": {
+   "user": {
+    "email": "alice@example.com"
+   }
+  }
+ },
+ "response": {
+  "status": 422,
+  "body": {
+   "errors": {
+    "email": [
+     "email already exist"
+    ]
+   }
+  }
+ },
+ "note": ""
+}

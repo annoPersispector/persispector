@@ -1,0 +1,2 @@
+[2026-09-29 20:17:06.068] [INFO] [http-nio-127.0.0.1-18205-exec-3] [AUDITLOG] >>> REST API:[create] path:[/rest/v1/namespaces] is called by IP:[127.0.0.1], result is failed.
+[2026-09-29 20:17:06.068] [WARN] [http-nio-127.0.0.1-18205-exec-3] [c.v.s.j.c.controller.rest.AbstractRestController] >>> Exception happens while calling REST API:Invalid request. Missing parameter: {namespace}

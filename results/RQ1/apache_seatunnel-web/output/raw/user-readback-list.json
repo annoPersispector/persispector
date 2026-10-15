@@ -1,0 +1,92 @@
+{
+  "case_id": "user-readback-list",
+  "purpose": "read-back",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/user?pageNo=1&pageSize=50",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:33:29 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 0,
+      "msg": null,
+      "data": {
+        "data": [
+          {
+            "id": 1,
+            "name": "admin",
+            "token": null,
+            "status": 0,
+            "type": 0,
+            "createTime": "2026-09-29 08:30:32",
+            "updateTime": "2026-09-29 08:30:32"
+          },
+          {
+            "id": 2,
+            "name": "user_ctrl",
+            "token": null,
+            "status": 0,
+            "type": 1,
+            "createTime": "2026-09-29 08:33:25",
+            "updateTime": "2026-09-29 08:33:25"
+          },
+          {
+            "id": 3,
+            "name": "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
+            "token": null,
+            "status": 0,
+            "type": 1,
+            "createTime": "2026-09-29 08:33:25",
+            "updateTime": "2026-09-29 08:33:25"
+          },
+          {
+            "id": 5,
+            "name": "user_pw300",
+            "token": null,
+            "status": 0,
+            "type": 1,
+            "createTime": "2026-09-29 08:33:26",
+            "updateTime": "2026-09-29 08:33:26"
+          },
+          {
+            "id": 7,
+            "name": "user_st200",
+            "token": null,
+            "status": -56,
+            "type": 1,
+            "createTime": "2026-09-29 08:33:28",
+            "updateTime": "2026-09-29 08:33:28"
+          },
+          {
+            "id": 8,
+            "name": "user_ty5",
+            "token": null,
+            "status": 0,
+            "type": 5,
+            "createTime": "2026-09-29 08:33:29",
+            "updateTime": "2026-09-29 08:33:29"
+          }
+        ],
+        "totalCount": 6,
+        "totalPage": 1,
+        "pageNo": 1,
+        "pageSize": 50
+      },
+      "failed": false,
+      "success": true
+    }
+  },
+  "log_slice": "logs/cases/user-readback-list.log"
+}

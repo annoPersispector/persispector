@@ -1,0 +1,8 @@
+2026-09-29T16:15:25.920690Z	   27 Connect	root@localhost on mplus_ums_admin using Socket
+2026-09-29T16:15:25.968330Z	   27 Query	SELECT  id,username,`password`,icon,email,nick_name,note,create_time,login_time,`status`  FROM ums_admin  WHERE (       (  username = 'pv121525ok' ) )
+2026-09-29T16:15:26.052553Z	   28 Connect	root@localhost on mplus_ums_admin using Socket
+2026-09-29T16:15:26.054209Z	   29 Connect	root@localhost on mplus_ums_admin using Socket
+2026-09-29T16:15:26.055604Z	   30 Connect	root@localhost on mplus_ums_admin using Socket
+2026-09-29T16:15:26.056929Z	   31 Connect	root@localhost on mplus_ums_admin using Socket
+2026-09-29T16:15:26.118697Z	   27 Query	INSERT INTO ums_admin  ( id,username,`password`,icon,email,nick_name,note,create_time,login_time,`status` ) VALUES( null,'pv121525ok','$2a$10$d5GKU85xYGA5Cjm371AplOgO419NpvY7ubIAGHe7CbIXnM9XCnsEq','http://x/i.png','a@b.c','nick','n','2026-09-30 00:15:26.044','2026-09-30 00:15:26.044',1 )
+2026-09-29T16:15:26.127854Z	   27 Query	SELECT  id,username,`password`,icon,email,nick_name,note,create_time,login_time,`status`  FROM ums_admin  WHERE (       (  username = 'pv121525ok' ) )

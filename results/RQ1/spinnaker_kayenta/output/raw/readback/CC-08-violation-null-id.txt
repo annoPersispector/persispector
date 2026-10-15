@@ -1,0 +1,4 @@
+-- MySQL read-back executed immediately after the request
+-- SQL: SELECT id, CHAR_LENGTH(id) AS id_len, JSON_UNQUOTE(JSON_EXTRACT(content,'$.id')) AS content_id FROM canary_config WHERE JSON_UNQUOTE(JSON_EXTRACT(content,'$.name'))='cfgnullid'
+id	id_len	content_id
+f439d0b1-7f78-49cb-9250-0ec0c9e6a6bc	36	f439d0b1-7f78-49cb-9250-0ec0c9e6a6bc

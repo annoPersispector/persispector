@@ -1,0 +1,1 @@
+Hibernate: insert into starred_schema (catalog, datasource, engine, `schema`, user) values (?, ?, ?, ?, ?)

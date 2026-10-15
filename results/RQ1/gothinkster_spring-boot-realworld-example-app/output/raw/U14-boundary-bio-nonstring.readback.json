@@ -1,0 +1,13 @@
+{
+ "case_id": "U14-boundary-bio-nonstring",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select username, bio, typeof(bio) from users where username = 'bob'",
+ "params": [],
+ "rows": [
+  [
+   "bob",
+   "12345",
+   "text"
+  ]
+ ]
+}

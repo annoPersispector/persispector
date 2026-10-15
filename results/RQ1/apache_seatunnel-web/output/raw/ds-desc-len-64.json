@@ -1,0 +1,36 @@
+{
+  "case_id": "ds-desc-len-64",
+  "purpose": "violation",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/datasource/create",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "datasourceName": "ds_desc64",
+      "pluginName": "JDBC-Mysql",
+      "description": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "datasourceConfig": "{\"url\": \"jdbc:mysql://127.0.0.1:1/x\", \"driver\": \"com.mysql.cj.jdbc.Driver\", \"user\": \"u\", \"password\": \"p\"}"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:32:23 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 99999,
+      "msg": "Unknown exception. \n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLDataException: Value too long for column \"description CHARACTER VARYING(63)\": \"'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee' (64)\"; SQL statement:\nINSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [22001-214]\n### The error may exist in org/apache/seatunnel/app/dal/mapper/DatasourceMapper.java (best guess)\n### The error may involve org.apache.seatunnel.app.dal.mapper.DatasourceMapper.insert-Inline\n### The error occurred while setting parameters\n### SQL: INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  )\n### Cause: org.h2.jdbc.JdbcSQLDataException: Value too long for column \"description CHARACTER VARYING(63)\": \"'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee' (64)\"; SQL statement:\nINSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [22001-214]\n; Value too long for column \"description CHARACTER VARYING(63)\": \"'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee' (64)\"; SQL statement:\nINSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [22001-214]; nested exception is org.h2.jdbc.JdbcSQLDataException: Value too long for column \"description CHARACTER VARYING(63)\": \"'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee' (64)\"; SQL statement:\nINSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [22001-214]",
+      "data": null,
+      "failed": true,
+      "success": false
+    }
+  },
+  "log_slice": "logs/cases/ds-desc-len-64.log"
+}

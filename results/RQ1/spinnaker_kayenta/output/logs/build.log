@@ -1,0 +1,397 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. See https://docs.gradle.org/7.6.1/userguide/gradle_daemon.html#sec:disabling_the_daemon.
+Daemon will be stopped at the end of the build 
+
+> Configure project :
+Error configuring git repository for idea files: repository not found: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/.git
+
+> Task :kayenta-aws:processResources
+> Task :kayenta-datadog:processResources
+> Task :kayenta-atlas:processResources
+> Task :kayenta-gcs:processResources
+> Task :kayenta-azure:processResources
+> Task :kayenta-blobs:processResources
+> Task :kayenta-newrelic-insights:processResources
+> Task :kayenta-google:processResources
+> Task :kayenta-judge:processResources
+> Task :kayenta-graphite:processResources
+> Task :kayenta-objectstore-configbin:processResources
+> Task :kayenta-influxdb:processResources
+> Task :kayenta-prometheus:processResources
+> Task :kayenta-objectstore-memory:processResources
+> Task :kayenta-s3:processResources
+> Task :kayenta-stackdriver:processResources
+> Task :kayenta-signalfx:processResources
+> Task :kayenta-sql:processResources
+> Task :kayenta-wavefront:processResources
+> Task :kayenta-standalone-canary-analysis:processResources
+> Task :kayenta-web:processResources
+> Task :kayenta-mannwhitney:compileJava
+> Task :kayenta-mannwhitney:compileGroovy NO-SOURCE
+
+> Task :kayenta-orca:compileJava
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-orca/src/main/java/com/netflix/kayenta/orca/controllers/PipelineController.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-orca:compileGroovy NO-SOURCE
+> Task :kayenta-orca:processResources
+> Task :kayenta-orca:classes
+> Task :kayenta-orca:jar
+
+> Task :kayenta-core:compileJava
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-core:compileGroovy NO-SOURCE
+> Task :kayenta-core:processResources NO-SOURCE
+> Task :kayenta-core:classes
+> Task :kayenta-core:jar
+
+> Task :kayenta-aws:compileJava
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-aws/src/main/java/com/netflix/kayenta/aws/config/AwsConfiguration.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-aws/src/main/java/com/netflix/kayenta/aws/config/AwsConfiguration.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-azure:compileJava
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-azure/src/main/java/com/netflix/kayenta/azure/config/AzureConfiguration.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-azure/src/main/java/com/netflix/kayenta/azure/config/AzureConfiguration.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-azure:compileGroovy NO-SOURCE
+> Task :kayenta-azure:classes
+> Task :kayenta-azure:jar
+
+> Task :kayenta-google:compileJava
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-google/src/main/java/com/netflix/kayenta/google/config/GoogleConfiguration.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-google:compileGroovy NO-SOURCE
+> Task :kayenta-google:classes
+
+> Task :kayenta-influxdb:compileJava
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-google:jar
+> Task :kayenta-aws:compileGroovy NO-SOURCE
+> Task :kayenta-aws:classes
+> Task :kayenta-aws:jar
+
+> Task :kayenta-datadog:compileJava
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-datadog/src/main/java/com/netflix/kayenta/datadog/config/DatadogConfiguration.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-influxdb:compileGroovy NO-SOURCE
+> Task :kayenta-influxdb:classes
+> Task :kayenta-datadog:compileGroovy NO-SOURCE
+> Task :kayenta-datadog:classes
+> Task :kayenta-influxdb:jar
+
+> Task :kayenta-graphite:compileJava
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-graphite/src/main/java/com/netflix/kayenta/graphite/controller/GraphiteFetchController.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-datadog:jar
+> Task :kayenta-graphite:compileGroovy NO-SOURCE
+> Task :kayenta-graphite:classes
+> Task :kayenta-graphite:jar
+
+> Task :kayenta-atlas:compileJava
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-atlas/src/main/java/com/netflix/kayenta/atlas/config/AtlasSSEConverter.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-atlas:compileGroovy NO-SOURCE
+> Task :kayenta-atlas:classes
+> Task :kayenta-atlas:jar
+
+> Task :kayenta-blobs:compileJava
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-blobs/src/main/java/com/netflix/kayenta/blobs/storage/BlobsStorageService.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-blobs/src/main/java/com/netflix/kayenta/blobs/storage/BlobsStorageService.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-gcs:compileJava
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-gcs/src/main/java/com/netflix/kayenta/gcs/storage/GcsStorageService.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-gcs/src/main/java/com/netflix/kayenta/gcs/storage/GcsStorageService.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-gcs:compileGroovy NO-SOURCE
+> Task :kayenta-gcs:classes
+> Task :kayenta-gcs:jar
+> Task :kayenta-blobs:compileGroovy NO-SOURCE
+> Task :kayenta-blobs:classes
+> Task :kayenta-blobs:jar
+
+> Task :kayenta-objectstore-memory:compileJava
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-objectstore-memory:compileGroovy NO-SOURCE
+> Task :kayenta-objectstore-memory:classes
+> Task :kayenta-objectstore-memory:jar
+
+> Task :kayenta-objectstore-configbin:compileJava
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-objectstore-configbin/src/main/java/com/netflix/kayenta/configbin/storage/ConfigBinStorageService.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-objectstore-configbin:compileGroovy NO-SOURCE
+> Task :kayenta-objectstore-configbin:classes
+
+> Task :kayenta-s3:compileJava
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-s3/src/main/java/com/netflix/kayenta/s3/storage/S3StorageService.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-s3/src/main/java/com/netflix/kayenta/s3/storage/S3StorageService.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-objectstore-configbin:jar
+> Task :kayenta-s3:compileGroovy NO-SOURCE
+> Task :kayenta-s3:classes
+> Task :kayenta-s3:jar
+
+> Task :kayenta-newrelic-insights:compileJava
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-newrelic-insights/src/main/java/com/netflix/kayenta/newrelic/config/NewRelicConfiguration.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-newrelic-insights:compileGroovy NO-SOURCE
+> Task :kayenta-newrelic-insights:classes
+> Task :kayenta-newrelic-insights:jar
+
+> Task :kayenta-prometheus:compileJava
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-prometheus:compileGroovy NO-SOURCE
+> Task :kayenta-prometheus:classes
+> Task :kayenta-prometheus:jar
+
+> Task :kayenta-sql:compileJava
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-sql:compileGroovy NO-SOURCE
+> Task :kayenta-sql:classes
+> Task :kayenta-sql:jar
+
+> Task :kayenta-signalfx:compileJava
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-signalfx/src/main/java/com/netflix/kayenta/canary/providers/metrics/SignalFxCanaryMetricSetQueryConfig.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-signalfx/src/main/java/com/netflix/kayenta/signalfx/config/SignalFxConfiguration.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-stackdriver:compileJava
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-stackdriver/src/main/java/com/netflix/kayenta/stackdriver/orca/StackdriverFetchTask.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-stackdriver:compileGroovy NO-SOURCE
+> Task :kayenta-stackdriver:classes
+> Task :kayenta-stackdriver:jar
+> Task :kayenta-signalfx:compileGroovy NO-SOURCE
+> Task :kayenta-signalfx:classes
+> Task :kayenta-signalfx:jar
+
+> Task :kayenta-wavefront:compileJava
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-wavefront:compileGroovy NO-SOURCE
+> Task :kayenta-wavefront:classes
+> Task :kayenta-wavefront:jar
+
+> Task :kayenta-standalone-canary-analysis:compileJava
+Note: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-standalone-canary-analysis/src/main/java/com/netflix/kayenta/standalonecanaryanalysis/service/CanaryAnalysisService.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :kayenta-standalone-canary-analysis:compileGroovy NO-SOURCE
+> Task :kayenta-standalone-canary-analysis:classes
+> Task :kayenta-standalone-canary-analysis:jar
+> Task :kayenta-mannwhitney:compileScala
+> Task :kayenta-mannwhitney:processResources NO-SOURCE
+> Task :kayenta-mannwhitney:classes
+> Task :kayenta-mannwhitney:jar
+> Task :kayenta-judge:compileJava NO-SOURCE
+> Task :kayenta-judge:compileGroovy NO-SOURCE
+> Task :kayenta-judge:compileScala
+> Task :kayenta-judge:classes
+> Task :kayenta-judge:jar
+
+> Task :kayenta-web:compileJava
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :kayenta-web:compileGroovy NO-SOURCE
+> Task :kayenta-web:classes
+> Task :kayenta-web:jar
+> Task :kayenta-web:startScripts
+> Task :kayenta-web:installDist
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.6.1/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 29s
+73 actionable tasks: 73 executed
+To honour the JVM settings for this build a single-use Daemon process will be forked. See https://docs.gradle.org/7.6.1/userguide/gradle_daemon.html#sec:disabling_the_daemon.
+Daemon will be stopped at the end of the build 
+
+> Configure project :
+Error configuring git repository for idea files: repository not found: /artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/.git
+
+> Task :kayenta-gcs:processResources UP-TO-DATE
+> Task :kayenta-azure:processResources UP-TO-DATE
+> Task :kayenta-aws:processResources UP-TO-DATE
+> Task :kayenta-datadog:processResources UP-TO-DATE
+> Task :kayenta-atlas:processResources UP-TO-DATE
+> Task :kayenta-blobs:processResources UP-TO-DATE
+> Task :kayenta-google:processResources UP-TO-DATE
+> Task :kayenta-graphite:processResources UP-TO-DATE
+> Task :kayenta-influxdb:processResources UP-TO-DATE
+> Task :kayenta-newrelic-insights:processResources UP-TO-DATE
+> Task :kayenta-judge:processResources UP-TO-DATE
+> Task :kayenta-objectstore-configbin:processResources UP-TO-DATE
+> Task :kayenta-objectstore-memory:processResources UP-TO-DATE
+> Task :kayenta-prometheus:processResources UP-TO-DATE
+> Task :kayenta-s3:processResources UP-TO-DATE
+> Task :kayenta-stackdriver:processResources UP-TO-DATE
+> Task :kayenta-signalfx:processResources UP-TO-DATE
+> Task :kayenta-wavefront:processResources UP-TO-DATE
+> Task :kayenta-sql:processResources UP-TO-DATE
+> Task :kayenta-standalone-canary-analysis:processResources UP-TO-DATE
+> Task :kayenta-web:processResources UP-TO-DATE
+> Task :kayenta-orca:compileJava UP-TO-DATE
+> Task :kayenta-mannwhitney:compileJava UP-TO-DATE
+> Task :kayenta-core:compileJava UP-TO-DATE
+> Task :kayenta-core:compileGroovy NO-SOURCE
+> Task :kayenta-mannwhitney:compileGroovy NO-SOURCE
+> Task :kayenta-orca:compileGroovy NO-SOURCE
+> Task :kayenta-core:processResources NO-SOURCE
+> Task :kayenta-core:classes UP-TO-DATE
+> Task :kayenta-orca:processResources UP-TO-DATE
+> Task :kayenta-orca:classes UP-TO-DATE
+> Task :kayenta-core:jar UP-TO-DATE
+> Task :kayenta-orca:jar UP-TO-DATE
+> Task :kayenta-mannwhitney:compileScala UP-TO-DATE
+> Task :kayenta-mannwhitney:processResources NO-SOURCE
+> Task :kayenta-mannwhitney:classes UP-TO-DATE
+> Task :kayenta-mannwhitney:jar UP-TO-DATE
+> Task :kayenta-judge:compileJava NO-SOURCE
+> Task :kayenta-judge:compileGroovy NO-SOURCE
+> Task :kayenta-graphite:compileJava UP-TO-DATE
+> Task :kayenta-graphite:compileGroovy NO-SOURCE
+> Task :kayenta-graphite:classes UP-TO-DATE
+> Task :kayenta-graphite:jar UP-TO-DATE
+> Task :kayenta-datadog:compileJava UP-TO-DATE
+> Task :kayenta-aws:compileJava UP-TO-DATE
+> Task :kayenta-aws:compileGroovy NO-SOURCE
+> Task :kayenta-aws:classes UP-TO-DATE
+> Task :kayenta-google:compileJava UP-TO-DATE
+> Task :kayenta-aws:jar UP-TO-DATE
+> Task :kayenta-datadog:compileGroovy NO-SOURCE
+> Task :kayenta-datadog:classes UP-TO-DATE
+> Task :kayenta-atlas:compileJava UP-TO-DATE
+> Task :kayenta-datadog:jar UP-TO-DATE
+> Task :kayenta-google:compileGroovy NO-SOURCE
+> Task :kayenta-google:classes UP-TO-DATE
+> Task :kayenta-azure:compileJava UP-TO-DATE
+> Task :kayenta-atlas:compileGroovy NO-SOURCE
+> Task :kayenta-influxdb:compileJava UP-TO-DATE
+> Task :kayenta-influxdb:compileGroovy NO-SOURCE
+> Task :kayenta-influxdb:classes UP-TO-DATE
+> Task :kayenta-atlas:classes UP-TO-DATE
+> Task :kayenta-google:jar UP-TO-DATE
+> Task :kayenta-atlas:jar UP-TO-DATE
+> Task :kayenta-azure:compileGroovy NO-SOURCE
+> Task :kayenta-azure:classes UP-TO-DATE
+> Task :kayenta-judge:compileScala UP-TO-DATE
+> Task :kayenta-judge:classes UP-TO-DATE
+> Task :kayenta-influxdb:jar UP-TO-DATE
+> Task :kayenta-judge:jar UP-TO-DATE
+> Task :kayenta-newrelic-insights:compileJava UP-TO-DATE
+> Task :kayenta-newrelic-insights:compileGroovy NO-SOURCE
+> Task :kayenta-azure:jar UP-TO-DATE
+> Task :kayenta-newrelic-insights:classes UP-TO-DATE
+> Task :kayenta-newrelic-insights:jar UP-TO-DATE
+> Task :kayenta-objectstore-configbin:compileJava UP-TO-DATE
+> Task :kayenta-objectstore-configbin:compileGroovy NO-SOURCE
+> Task :kayenta-objectstore-configbin:classes UP-TO-DATE
+> Task :kayenta-objectstore-configbin:jar UP-TO-DATE
+> Task :kayenta-prometheus:compileJava UP-TO-DATE
+> Task :kayenta-objectstore-memory:compileJava UP-TO-DATE
+> Task :kayenta-prometheus:compileGroovy NO-SOURCE
+> Task :kayenta-prometheus:classes UP-TO-DATE
+> Task :kayenta-prometheus:jar UP-TO-DATE
+> Task :kayenta-s3:compileJava UP-TO-DATE
+> Task :kayenta-gcs:compileJava UP-TO-DATE
+> Task :kayenta-signalfx:compileJava UP-TO-DATE
+> Task :kayenta-objectstore-memory:compileGroovy NO-SOURCE
+> Task :kayenta-gcs:compileGroovy NO-SOURCE
+> Task :kayenta-gcs:classes UP-TO-DATE
+> Task :kayenta-s3:compileGroovy NO-SOURCE
+> Task :kayenta-objectstore-memory:classes UP-TO-DATE
+> Task :kayenta-s3:classes UP-TO-DATE
+> Task :kayenta-signalfx:compileGroovy NO-SOURCE
+> Task :kayenta-signalfx:classes UP-TO-DATE
+> Task :kayenta-s3:jar UP-TO-DATE
+> Task :kayenta-objectstore-memory:jar UP-TO-DATE
+> Task :kayenta-blobs:compileJava UP-TO-DATE
+> Task :kayenta-blobs:compileGroovy NO-SOURCE
+> Task :kayenta-blobs:classes UP-TO-DATE
+> Task :kayenta-gcs:jar UP-TO-DATE
+> Task :kayenta-blobs:jar UP-TO-DATE
+> Task :kayenta-signalfx:jar UP-TO-DATE
+> Task :kayenta-stackdriver:compileJava UP-TO-DATE
+> Task :kayenta-stackdriver:compileGroovy NO-SOURCE
+> Task :kayenta-stackdriver:classes UP-TO-DATE
+> Task :kayenta-stackdriver:jar UP-TO-DATE
+> Task :kayenta-wavefront:compileJava UP-TO-DATE
+> Task :kayenta-standalone-canary-analysis:compileJava UP-TO-DATE
+> Task :kayenta-wavefront:compileGroovy NO-SOURCE
+> Task :kayenta-wavefront:classes UP-TO-DATE
+> Task :kayenta-standalone-canary-analysis:compileGroovy NO-SOURCE
+> Task :kayenta-standalone-canary-analysis:classes UP-TO-DATE
+> Task :kayenta-wavefront:jar UP-TO-DATE
+> Task :kayenta-standalone-canary-analysis:jar UP-TO-DATE
+> Task :kayenta-sql:compileJava
+> Task :kayenta-sql:compileGroovy NO-SOURCE
+> Task :kayenta-sql:classes
+> Task :kayenta-sql:jar
+> Task :kayenta-web:compileJava UP-TO-DATE
+> Task :kayenta-web:compileGroovy NO-SOURCE
+> Task :kayenta-web:classes UP-TO-DATE
+> Task :kayenta-web:jar UP-TO-DATE
+> Task :kayenta-web:startScripts
+> Task :kayenta-web:installDist
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.6.1/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 8s
+73 actionable tasks: 4 executed, 69 up-to-date

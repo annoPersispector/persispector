@@ -1,0 +1,73 @@
+{
+ "schema_version": "persistence-runtime-verification-v1",
+ "application": "gothinkster_spring-boot-realworld-example-app",
+ "source_revision": null,
+ "isolated_application_path": "/artifact/results/RQ1/gothinkster_spring-boot-realworld-example-app/gothinkster_spring-boot-realworld-example-app-20260929T070552Z-beeffd7f/application",
+ "build_system": "Gradle 7.4 (wrapper), Spring Boot 2.6.3",
+ "java_version": "OpenJDK 17.0.15 (/usr/lib/jvm/java-17-openjdk-amd64); source/target compatibility 11",
+ "runtime_database": "SQLite 3.36 via org.xerial:sqlite-jdbc 3.36.0.3, file output/runtime/verify.db, schema from Flyway V1__create_tables.sql",
+ "schema_context_id": "dbctx-9ed09ac67b2d",
+ "base_urls": [
+  "http://127.0.0.1:18208"
+ ],
+ "ports": [
+  18208
+ ],
+ "health_checks": [
+  "GET http://127.0.0.1:18208/tags -> 200 {\"tags\":[]} after startup"
+ ],
+ "commands": [
+  {
+   "purpose": "build",
+   "command": "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 ./gradlew --no-daemon bootJar -x test",
+   "working_directory": "/artifact/results/RQ1/gothinkster_spring-boot-realworld-example-app/gothinkster_spring-boot-realworld-example-app-20260929T070552Z-beeffd7f/application",
+   "exit_code": 0
+  },
+  {
+   "purpose": "start",
+   "command": "java -jar ../../application/build/libs/application-0.0.1-SNAPSHOT.jar --server.port=18208 --server.address=127.0.0.1 --spring.datasource.url=jdbc:sqlite:verify.db --logging.level.io.spring.infrastructure.mybatis=DEBUG > ../logs/app.log 2>&1 &",
+   "working_directory": "/artifact/results/RQ1/gothinkster_spring-boot-realworld-example-app/gothinkster_spring-boot-realworld-example-app-20260929T070552Z-beeffd7f/output/runtime",
+   "exit_code": null
+  },
+  {
+   "purpose": "health-check",
+   "command": "curl -s http://127.0.0.1:18208/tags",
+   "working_directory": "/artifact/results/RQ1/gothinkster_spring-boot-realworld-example-app/gothinkster_spring-boot-realworld-example-app-20260929T070552Z-beeffd7f/output/runtime",
+   "exit_code": 0
+  },
+  {
+   "purpose": "test-cases",
+   "command": "python3 run_users.py && python3 run_race.py users && python3 run_articles.py",
+   "working_directory": "/artifact/results/RQ1/gothinkster_spring-boot-realworld-example-app/gothinkster_spring-boot-realworld-example-app-20260929T070552Z-beeffd7f/output/runtime",
+   "exit_code": 0
+  },
+  {
+   "purpose": "stop",
+   "command": "kill $(cat app.pid)",
+   "working_directory": "/artifact/results/RQ1/gothinkster_spring-boot-realworld-example-app/gothinkster_spring-boot-realworld-example-app-20260929T070552Z-beeffd7f/output/runtime",
+   "exit_code": 0
+  }
+ ],
+ "patches": [],
+ "logs": [
+  {
+   "path": "logs/build.log",
+   "kind": "deployment-log",
+   "description": "Gradle bootJar build output",
+   "sha256": "cbe74481dc0593c1815569851ba8d1e9c367affbfb124c35bffe3ca1019f452e"
+  },
+  {
+   "path": "logs/app.log",
+   "kind": "application-log",
+   "description": "Full application log with MyBatis DEBUG SQL trace",
+   "sha256": "81f1d02d18c8f048fd90f1b34020318324c1f7250397a5555062ed2d7e9fe369"
+  }
+ ],
+ "cleanup_performed": true,
+ "notes": [
+  "No source patches were required.",
+  "Fresh SQLite database file created at startup by Flyway; retained at output/runtime/verify.db for inspection (test data only).",
+  "Application process stopped after testing; port 18208 confirmed free.",
+  "Per-case log slices are under logs/<case-id>.log; DB read-backs under raw/<case-id>.readback.json."
+ ]
+}

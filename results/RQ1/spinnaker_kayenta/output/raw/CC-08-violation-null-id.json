@@ -1,0 +1,36 @@
+{
+  "case_id": "CC-08-violation-null-id",
+  "purpose": "violation",
+  "target_ids": [
+    "pc-03e7ed0064f7"
+  ],
+  "timestamp": "2026-09-29T12:27:20-0400",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18204/canaryConfig?configurationAccountName=sql-account",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "cfgnullid",
+      "applications": [
+        "verifapp"
+      ],
+      "metrics": [],
+      "classifier": {
+        "groupWeights": {}
+      },
+      "judge": {
+        "name": "NetflixACAJudge-v1.0",
+        "judgeConfigurations": {}
+      },
+      "configVersion": "1"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"canaryConfigId\":\"f439d0b1-7f78-49cb-9250-0ec0c9e6a6bc\"}"
+  },
+  "readback_sql": "SELECT id, CHAR_LENGTH(id) AS id_len, JSON_UNQUOTE(JSON_EXTRACT(content,'$.id')) AS content_id FROM canary_config WHERE JSON_UNQUOTE(JSON_EXTRACT(content,'$.name'))='cfgnullid'",
+  "readback_result": "id\tid_len\tcontent_id\nf439d0b1-7f78-49cb-9250-0ec0c9e6a6bc\t36\tf439d0b1-7f78-49cb-9250-0ec0c9e6a6bc"
+}

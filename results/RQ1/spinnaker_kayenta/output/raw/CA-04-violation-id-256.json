@@ -1,0 +1,31 @@
+{
+  "case_id": "CA-04-violation-id-256",
+  "purpose": "violation",
+  "target_ids": [
+    "pc-cf94e5cb7efc",
+    "pc-11859c35fe9a"
+  ],
+  "timestamp": "2026-09-29T12:27:24-0400",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18204/canaryResultArchive?storageAccountName=sql-account&pipelineId=ca-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "application": "verifapp",
+      "pipelineId": "p",
+      "stageStatus": {
+        "s1": "succeeded"
+      },
+      "complete": true,
+      "status": "succeeded"
+    }
+  },
+  "response": {
+    "status": 500,
+    "body": "{\"timestamp\":\"2026-09-29T16:27:24.881+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"exception\":\"org.springframework.dao.DataIntegrityViolationException\",\"message\":\"could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.DataException: could not execute statement\"}"
+  },
+  "readback_sql": "SELECT COUNT(*) AS n_rows_like_256 FROM canary_archive WHERE id LIKE 'ca-bbbb%'",
+  "readback_result": "n_rows_like_256\n0"
+}

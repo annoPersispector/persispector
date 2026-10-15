@@ -1,0 +1,38 @@
+{
+  "case_id": "CC-03-boundary-id-255",
+  "purpose": "boundary",
+  "target_ids": [
+    "pc-900bdfd125e0",
+    "pc-d4dc77dfb22b"
+  ],
+  "timestamp": "2026-09-29T12:27:16-0400",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18204/canaryConfig?configurationAccountName=sql-account",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "cfgvalid",
+      "applications": [
+        "verifapp"
+      ],
+      "metrics": [],
+      "classifier": {
+        "groupWeights": {}
+      },
+      "judge": {
+        "name": "NetflixACAJudge-v1.0",
+        "judgeConfigurations": {}
+      },
+      "configVersion": "1",
+      "id": "cc-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"canaryConfigId\":\"cc-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"}"
+  },
+  "readback_sql": "SELECT id, CHAR_LENGTH(id) AS id_len, JSON_VALID(content) AS json_valid, JSON_TYPE(content) AS json_type, created_at, updated_at FROM canary_config WHERE id LIKE 'cc-aaaa%'",
+  "readback_result": "id\tid_len\tjson_valid\tjson_type\tcreated_at\tupdated_at\ncc-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\t255\t1\tOBJECT\t2026-09-29 12:27:17\t2026-09-29 12:27:17"
+}

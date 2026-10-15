@@ -1,0 +1,45 @@
+{
+ "case_id": "F03-boundary-upload-originalName-256",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18201/jifa-api/files/upload?type=GC_LOG",
+  "headers": {
+   "User-Agent": "python-requests/2.31.0",
+   "Accept-Encoding": "gzip, deflate, br",
+   "Accept": "*/*",
+   "Connection": "keep-alive",
+   "Authorization": "<JWT-REDACTED>",
+   "Content-Length": "437",
+   "Content-Type": "multipart/form-data; boundary=2f387a5d3566c79963fefa9cd3a2fe72"
+  },
+  "body": "multipart: params={'type': 'GC_LOG'} filename='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.log' (len=256) content_len=19"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+   "X-Content-Type-Options": "nosniff",
+   "X-XSS-Protection": "0",
+   "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+   "Pragma": "no-cache",
+   "Expires": "0",
+   "X-Frame-Options": "DENY",
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Tue, 29 Sep 2026 15:18:14 GMT",
+   "Keep-Alive": "timeout=60",
+   "Connection": "keep-alive"
+  },
+  "body": "2"
+ },
+ "correlated_log_lines": [
+  "2026-09-29T11:18:14.384-04:00 DEBUG 1126360 --- [.1-18201-exec-9] org.hibernate.SQL                        : insert into files (created_time,original_name,size,type,unique_name,user_id,id) values (?,?,?,?,?,?,default)",
+  "2026-09-29T11:18:14.384-04:00 TRACE 1126360 --- [.1-18201-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (1:TIMESTAMP) <- [2026-09-29T11:18:14.384444]",
+  "2026-09-29T11:18:14.384-04:00 TRACE 1126360 --- [.1-18201-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.log]",
+  "2026-09-29T11:18:14.384-04:00 TRACE 1126360 --- [.1-18201-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (3:BIGINT) <- [19]",
+  "2026-09-29T11:18:14.384-04:00 TRACE 1126360 --- [.1-18201-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (4:ENUM) <- [GC_LOG]",
+  "2026-09-29T11:18:14.384-04:00 TRACE 1126360 --- [.1-18201-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (5:VARCHAR) <- [9441b908-dd32-4fe1-b1f3-1f17f2adfe16]",
+  "2026-09-29T11:18:14.384-04:00 TRACE 1126360 --- [.1-18201-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (6:BIGINT) <- [2]"
+ ],
+ "extra": null
+}

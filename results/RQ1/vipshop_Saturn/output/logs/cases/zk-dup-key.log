@@ -1,0 +1,5 @@
+[2026-09-29 20:19:37.810] [DEBUG] [http-nio-127.0.0.1-18205-exec-8] [c.v.s.j.c.m.r.Z.selectByClusterKey] >>> ==>  Preparing: select id, create_time, created_by, last_update_time, last_updated_by, zk_cluster_key, alias, connect_string, description from zk_cluster_info where zk_cluster_key = ? limit 0,1 
+[2026-09-29 20:19:37.810] [DEBUG] [http-nio-127.0.0.1-18205-exec-8] [c.v.s.j.c.m.r.Z.selectByClusterKey] >>> ==> Parameters: pvzk1(String)
+[2026-09-29 20:19:37.811] [DEBUG] [http-nio-127.0.0.1-18205-exec-8] [c.v.s.j.c.m.r.Z.selectByClusterKey] >>> <==      Total: 1
+[2026-09-29 20:19:37.812] [INFO] [http-nio-127.0.0.1-18205-exec-8] [AUDITLOG] >>> GUI API:[createZkCluster] path:[/console/zkClusters] is called by User:[admin] with IP:[127.0.0.1], result is failed. Context info:{zkClusterKey=pvzk1, alias=pvalias, connectString=127.0.0.1:2181, description=pv desc}.
+[2026-09-29 20:19:37.812] [WARN] [http-nio-127.0.0.1-18205-exec-8] [c.v.s.j.c.controller.gui.AbstractGUIController] >>> bad request while calling GUI API:ZK cluster[pvzk1]已经存在

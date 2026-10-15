@@ -1,0 +1,78 @@
+[2026-09-29 20:17:06.478] [INFO] [http-nio-127.0.0.1-18205-exec-4] [AUDITLOG] >>> REST API:[create] path:[/rest/v1/namespaces] is called by IP:[127.0.0.1], result is success.
+[2026-09-29 20:17:06.784] [INFO] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> Start refresh RegCenter
+[2026-09-29 20:17:06.785] [INFO] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> the current console cluster:default can do sharding and dashboard to zk clusters:[cluster1, it_cluster]
+[2026-09-29 20:17:06.795] [ERROR] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> java.lang.IllegalArgumentException: Invalid path string "//$SaturnExecutors" caused by empty node name specified @1
+com.vip.saturn.job.console.exception.JobConsoleException: java.lang.IllegalArgumentException: Invalid path string "//$SaturnExecutors" caused by empty node name specified @1
+	at com.vip.saturn.job.console.repository.zookeeper.impl.CuratorRepositoryImpl$CuratorFrameworkOpImpl.checkExists(CuratorRepositoryImpl.java:125)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.initNamespaceZkNodeIfNecessary(RegistryCenterServiceImpl.java:848)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.initOrUpdateNamespace(RegistryCenterServiceImpl.java:431)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.refreshRegistryCenter(RegistryCenterServiceImpl.java:402)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.localRefresh(RegistryCenterServiceImpl.java:241)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.access$000(RegistryCenterServiceImpl.java:71)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl$2$1.run(RegistryCenterServiceImpl.java:218)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.lang.IllegalArgumentException: Invalid path string "//$SaturnExecutors" caused by empty node name specified @1
+	at org.apache.curator.utils.PathUtils.validatePath(PathUtils.java:102)
+	at org.apache.curator.utils.PathUtils.validatePath(PathUtils.java:37)
+	at org.apache.curator.utils.ZKPaths.fixForNamespace(ZKPaths.java:105)
+	at org.apache.curator.framework.imps.NamespaceImpl.fixForNamespace(NamespaceImpl.java:104)
+	at org.apache.curator.framework.imps.CuratorFrameworkImpl.fixForNamespace(CuratorFrameworkImpl.java:594)
+	at org.apache.curator.framework.imps.ExistsBuilderImpl.forPath(ExistsBuilderImpl.java:151)
+	at org.apache.curator.framework.imps.ExistsBuilderImpl.forPath(ExistsBuilderImpl.java:39)
+	at com.vip.saturn.job.console.repository.zookeeper.impl.CuratorRepositoryImpl$CuratorFrameworkOpImpl.checkExists(CuratorRepositoryImpl.java:121)
+	... 11 common frames omitted
+[2026-09-29 20:17:06.796] [ERROR] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> java.lang.IllegalArgumentException: Invalid path string "//$SaturnExecutors/executors" caused by empty node name specified @1
+com.vip.saturn.job.console.exception.JobConsoleException: java.lang.IllegalArgumentException: Invalid path string "//$SaturnExecutors/executors" caused by empty node name specified @1
+	at com.vip.saturn.job.console.repository.zookeeper.impl.CuratorRepositoryImpl$CuratorFrameworkOpImpl.checkExists(CuratorRepositoryImpl.java:125)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.getVersion(RegistryCenterServiceImpl.java:865)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.initOrUpdateNamespace(RegistryCenterServiceImpl.java:447)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.refreshRegistryCenter(RegistryCenterServiceImpl.java:402)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.localRefresh(RegistryCenterServiceImpl.java:241)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl.access$000(RegistryCenterServiceImpl.java:71)
+	at com.vip.saturn.job.console.service.impl.RegistryCenterServiceImpl$2$1.run(RegistryCenterServiceImpl.java:218)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.lang.IllegalArgumentException: Invalid path string "//$SaturnExecutors/executors" caused by empty node name specified @1
+	at org.apache.curator.utils.PathUtils.validatePath(PathUtils.java:102)
+	at org.apache.curator.utils.PathUtils.validatePath(PathUtils.java:37)
+	at org.apache.curator.utils.ZKPaths.fixForNamespace(ZKPaths.java:105)
+	at org.apache.curator.framework.imps.NamespaceImpl.fixForNamespace(NamespaceImpl.java:104)
+	at org.apache.curator.framework.imps.CuratorFrameworkImpl.fixForNamespace(CuratorFrameworkImpl.java:594)
+	at org.apache.curator.framework.imps.ExistsBuilderImpl.forPath(ExistsBuilderImpl.java:151)
+	at org.apache.curator.framework.imps.ExistsBuilderImpl.forPath(ExistsBuilderImpl.java:39)
+	at com.vip.saturn.job.console.repository.zookeeper.impl.CuratorRepositoryImpl$CuratorFrameworkOpImpl.checkExists(CuratorRepositoryImpl.java:121)
+	... 11 common frames omitted
+[2026-09-29 20:17:06.796] [INFO] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> Zkcluster [cluster1] namespace size change from 2 to 3
+[2026-09-29 20:17:06.796] [INFO] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> new zkClusterMap is : {cluster1=ZkCluster{zkClusterKey='cluster1', zkAlias='集群1', zkAddr='localhost:2181', description='', digest='null', offline=false, regCenterConfList=[RegistryCenterConfiguration [name=业务组, zkAddressList=localhost:2181, namespace=mydomain, zkAlias=集群1, zkClusterKey=cluster1, digest=null, nameAndNamespace=业务组/mydomain, sysAdmin=null, techAdmin=null, degree=null, version=, container=null], RegistryCenterConfiguration [name=, zkAddressList=localhost:2181, namespace=pvns1, zkAlias=集群1, zkClusterKey=cluster1, digest=null, nameAndNamespace=/pvns1, sysAdmin=null, techAdmin=null, degree=null, version=, container=null], RegistryCenterConfiguration [name=, zkAddressList=localhost:2181, namespace=, zkAlias=集群1, zkClusterKey=cluster1, digest=null, nameAndNamespace=/, sysAdmin=null, techAdmin=null, degree=null, version=, container=null]]}}
+[2026-09-29 20:17:06.797] [WARN] [refresh-RegCenter-thread] [c.v.s.j.c.service.helper.ZkClusterMappingUtils] >>> The mapping idc is not found for the zkClusterKey that is cluster1
+[2026-09-29 20:17:06.797] [INFO] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> Start NamespaceShardingManager /
+[2026-09-29 20:17:06.797] [INFO] [refresh-RegCenter-thread] [o.a.curator.framework.imps.CuratorFrameworkImpl] >>> Starting
+[2026-09-29 20:17:06.798] [INFO] [refresh-RegCenter-thread] [org.apache.zookeeper.ZooKeeper] >>> Initiating client connection, connectString=localhost:2181 sessionTimeout=20000 watcher=org.apache.curator.ConnectionState@293aaaf
+[2026-09-29 20:17:06.800] [INFO] [refresh-RegCenter-thread-SendThread(localhost:2181)] [org.apache.zookeeper.ClientCnxn] >>> Opening socket connection to server localhost/127.0.0.1:2181. Will not attempt to authenticate using SASL (unknown error)
+[2026-09-29 20:17:06.800] [INFO] [refresh-RegCenter-thread-SendThread(localhost:2181)] [org.apache.zookeeper.ClientCnxn] >>> Socket connection established to localhost/127.0.0.1:2181, initiating session
+[2026-09-29 20:17:06.800] [INFO] [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181] [org.apache.zookeeper.server.NIOServerCnxnFactory] >>> Accepted socket connection from /127.0.0.1:47446
+[2026-09-29 20:17:06.801] [INFO] [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181] [org.apache.zookeeper.server.ZooKeeperServer] >>> Client attempting to establish new session at /127.0.0.1:47446
+[2026-09-29 20:17:06.803] [INFO] [SyncThread:0] [org.apache.zookeeper.server.ZooKeeperServer] >>> Established session 0x100ada555400004 with negotiated timeout 20000 for client /127.0.0.1:47446
+[2026-09-29 20:17:06.803] [INFO] [refresh-RegCenter-thread-SendThread(localhost:2181)] [org.apache.zookeeper.ClientCnxn] >>> Session establishment complete on server localhost/127.0.0.1:2181, sessionid = 0x100ada555400004, negotiated timeout = 20000
+[2026-09-29 20:17:06.803] [INFO] [refresh-RegCenter-thread-EventThread] [o.a.curator.framework.state.ConnectionStateManager] >>> State change: CONNECTED
+[2026-09-29 20:17:06.805] [INFO] [refresh-RegCenter-thread] [c.v.s.j.sharding.service.NamespaceShardingService] >>> -127.0.1.1-cc7cad98-ba5e-45a1-b0bd-410e81950785 leadership election start
+[2026-09-29 20:17:06.807] [INFO] [ProcessThread(sid:0 cport:2181):] [org.apache.zookeeper.server.PrepRequestProcessor] >>> Got user-level KeeperException when processing sessionid:0x100ada555400004 type:create cxid:0x3 zxid:0x77 txntype:-1 reqpath:n/a Error Path:/$SaturnExecutors/leader/latch Error:KeeperErrorCode = NoNode for /$SaturnExecutors/leader/latch
+[2026-09-29 20:17:06.819] [ERROR] [refresh-RegCenter-thread-EventThread] [o.a.curator.framework.imps.CuratorFrameworkImpl] >>> Background exception was not retry-able or retry gave up
+java.lang.IllegalArgumentException: Path must start with / character
+	at org.apache.curator.utils.PathUtils.validatePath(PathUtils.java:54)
+	at org.apache.curator.utils.ZKPaths.getNodeFromPath(ZKPaths.java:122)
+	at org.apache.curator.framework.recipes.leader.LeaderLatch.checkLeadership(LeaderLatch.java:529)
+	at org.apache.curator.framework.recipes.leader.LeaderLatch.access$700(LeaderLatch.java:64)
+	at org.apache.curator.framework.recipes.leader.LeaderLatch$7.processResult(LeaderLatch.java:588)
+	at org.apache.curator.framework.imps.CuratorFrameworkImpl.sendToBackgroundCallback(CuratorFrameworkImpl.java:749)
+	at org.apache.curator.framework.imps.CuratorFrameworkImpl.processBackgroundOperation(CuratorFrameworkImpl.java:522)
+	at org.apache.curator.framework.imps.GetChildrenBuilderImpl$2.processResult(GetChildrenBuilderImpl.java:166)
+	at org.apache.zookeeper.ClientCnxn$EventThread.processEvent(ClientCnxn.java:601)
+	at org.apache.zookeeper.ClientCnxn$EventThread.run(ClientCnxn.java:508)

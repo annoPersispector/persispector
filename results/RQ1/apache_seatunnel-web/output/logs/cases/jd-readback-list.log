@@ -1,0 +1,25 @@
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@15fa4e8] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1179064745 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@15fa4e8]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@58311fd3] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@430545616 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT COUNT(*) AS total FROM t_st_job_definition t WHERE t.workspace_id = ?
+==> Parameters: 1(Long)
+<==    Columns: total
+<==        Row: 3
+<==      Total: 1
+==>  Preparing: select t.id, t.`name`, t.`description`, t.`job_type`, t.create_user_id, t.update_user_id, t.create_time, t.update_time, t.workspace_id , cu.username as create_username, uu.username as update_username from t_st_job_definition t left join `user` cu on t.create_user_id = cu.id left join `user` uu on t.update_user_id = uu.id WHERE t.workspace_id = ? order by t.update_time desc LIMIT ?
+==> Parameters: 1(Long), 50(Long)
+<==    Columns: id, name, description, job_type, create_user_id, update_user_id, create_time, update_time, workspace_id, create_username, update_username
+<==        Row: 23198767159328, jd_desc255, qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq, DATA_INTEGRATION, 1, 1, 2026-09-29 04:32:48.433, 2026-09-29 04:32:48.433, 1, admin, admin
+<==        Row: 23198767052832, jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj, d, DATA_INTEGRATION, 1, 1, 2026-09-29 04:32:47.602, 2026-09-29 04:32:47.602, 1, admin, admin
+<==        Row: 23198766999328, jd_ctrl, d, DATA_INTEGRATION, 1, 1, 2026-09-29 04:32:47.185, 2026-09-29 04:32:47.185, 1, admin, admin
+<==      Total: 3
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@58311fd3]

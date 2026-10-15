@@ -1,0 +1,12 @@
+{
+  "case_id": "starred-readback-get",
+  "purpose": "read-back",
+  "api_readback": {
+    "method": "GET",
+    "url": "http://127.0.0.1:18209/starredSchema?datasource=docker-presto&engine=presto&catalog=tpch",
+    "status": 200,
+    "body": "{\"starredSchemaList\":[{\"datasource\":\"docker-presto\",\"engine\":\"presto\",\"catalog\":\"tpch\",\"schema\":\"sf1\",\"user\":\"alice\",\"starred_schema_id\":1},{\"datasource\":\"docker-presto\",\"engine\":\"presto\",\"catalog\":\"tpch\",\"schema\":\"sf1\",\"user\":\"alice\",\"starred_schema_id\":2}],\"error\":null}"
+  },
+  "db_readback_sql": null,
+  "db_readback_result": null
+}

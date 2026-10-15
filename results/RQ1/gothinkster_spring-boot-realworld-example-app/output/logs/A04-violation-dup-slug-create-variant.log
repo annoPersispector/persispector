@@ -1,0 +1,6 @@
+2026-09-29 03:08:37.534 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findById       : ==>  Preparing: select id, username, email, password, bio, image from users where id = ?
+2026-09-29 03:08:37.535 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findById       : ==> Parameters: a1e8e8bc-b1f3-48a8-a8b2-e5ca28ad086c(String)
+2026-09-29 03:08:37.536 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findById       : <==      Total: 1
+2026-09-29 03:08:37.540 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.r.ArticleReadService.findBySlug  : ==>  Preparing: select A.id articleId, A.slug articleSlug, A.title articleTitle, A.description articleDescription, A.body articleBody, A.created_at articleCreatedAt, A.updated_at articleUpdatedAt, T.name tagName, U.id userId, U.username userUsername, U.bio userBio, U.image userImage from articles A left join article_tags AT on A.id = AT.article_id left join tags T on T.id = AT.tag_id left join users U on U.id = A.user_id where A.slug = ?
+2026-09-29 03:08:37.540 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.r.ArticleReadService.findBySlug  : ==> Parameters: dup-title(String)
+2026-09-29 03:08:37.541 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.r.ArticleReadService.findBySlug  : <==      Total: 2

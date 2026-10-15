@@ -1,0 +1,36 @@
+{
+ "case_id": "ns-len-namespace-256",
+ "purpose": "violation",
+ "target_hint": [
+  "namespace_info.namespace length",
+  "namespace_zkcluster_mapping.namespace length"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "body": {
+   "namespace": "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+   "zkCluster": "cluster1"
+  },
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:17:06 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"message\":\"Fail to create new namespace {nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn} for reason {\\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \\\"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\\\u57df\\\\u540d')\\\": \\\"'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)\\\"; SQL statement:\\ninsert into namespace_info( create_time, created_by, namespace, bus_id, content) values\\n        (?, ?,?,\\n        ?, ?) [22001-192]\\n### The error may involve com.vip.saturn.job.console.mybatis.repository.NamespaceInfoRepository.insert-Inline\\n### The error occurred while setting parameters\\n### SQL: insert into namespace_info( create_time, created_by, namespace, bus_id, content) values         (?, ?,?,         ?, ?)\\n### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \\\"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\\\u57df\\\\u540d')\\\": \\\"'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)\\\"; SQL statement:\\ninsert into namespace_info( create_time, created_by, namespace, bus_id, content) values\\n        (?, ?,?,\\n        ?, ?) [22001-192]\\n; SQL []; Value too long for column \\\"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\\\u57df\\\\u540d')\\\": \\\"'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)\\\"; SQL statement:\\ninsert into namespace_info( create_time, created_by, namespace, bus_id, content) values\\n        (?, ?,?,\\n        ?, ?) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \\\"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\\\u57df\\\\u540d')\\\": \\\"'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)\\\"; SQL statement:\\ninsert into namespace_info( create_time, created_by, namespace, bus_id, content) values\\n        (?, ?,?,\\n        ?, ?) [22001-192]}\"}",
+  "json": {
+   "message": "Fail to create new namespace {nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn} for reason {\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)\"; SQL statement:\ninsert into namespace_info( create_time, created_by, namespace, bus_id, content) values\n        (?, ?,?,\n        ?, ?) [22001-192]\n### The error may involve com.vip.saturn.job.console.mybatis.repository.NamespaceInfoRepository.insert-Inline\n### The error occurred while setting parameters\n### SQL: insert into namespace_info( create_time, created_by, namespace, bus_id, content) values         (?, ?,?,         ?, ?)\n### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)\"; SQL statement:\ninsert into namespace_info( create_time, created_by, namespace, bus_id, content) values\n        (?, ?,?,\n        ?, ?) [22001-192]\n; SQL []; Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)\"; SQL statement:\ninsert into namespace_info( create_time, created_by, namespace, bus_id, content) values\n        (?, ?,?,\n        ?, ?) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)\"; SQL statement:\ninsert into namespace_info( create_time, created_by, namespace, bus_id, content) values\n        (?, ?,?,\n        ?, ?) [22001-192]}"
+  }
+ },
+ "elapsed_seconds": 0.011,
+ "timestamp": "2026-09-29T20:17:07-0400"
+}

@@ -1,0 +1,39 @@
+{
+ "case_id": "ur-control-add",
+ "purpose": "control",
+ "target_hint": [
+  "user_role.*"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/authorizationManage/addUserRoles",
+  "headers": {
+   "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+  },
+  "body": {
+   "userNames": "guest",
+   "roleKey": "namespace_developer",
+   "namespaces": "pvns1",
+   "needApproval": "false"
+  },
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:19:46 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"status\":0,\"message\":\"\",\"obj\":\"\"}",
+  "json": {
+   "status": 0,
+   "message": "",
+   "obj": ""
+  }
+ },
+ "elapsed_seconds": 0.011,
+ "timestamp": "2026-09-29T20:19:47-0400"
+}

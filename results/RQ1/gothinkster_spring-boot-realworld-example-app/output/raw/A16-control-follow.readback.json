@@ -1,0 +1,13 @@
+{
+ "case_id": "A16-control-follow",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select length(user_id), length(follow_id), typeof(user_id) from follows",
+ "params": [],
+ "rows": [
+  [
+   36,
+   36,
+   "text"
+  ]
+ ]
+}

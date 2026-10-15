@@ -1,0 +1,18 @@
+{
+ "case_id": "A11-control-comment",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select length(id), typeof(body), typeof(created_at), created_at, typeof(updated_at), updated_at, length(article_id), length(user_id) from comments",
+ "params": [],
+ "rows": [
+  [
+   36,
+   "text",
+   "integer",
+   1790665720738,
+   "integer",
+   1790665720738,
+   36,
+   36
+  ]
+ ]
+}

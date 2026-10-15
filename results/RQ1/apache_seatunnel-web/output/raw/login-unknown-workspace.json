@@ -1,0 +1,34 @@
+{
+  "case_id": "login-unknown-workspace",
+  "purpose": "violation",
+  "targets": [],
+  "note": "user_login_log.workspace_id derived from workspace lookup",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/user/login",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "username": "admin",
+      "password": "admin",
+      "workspaceName": "no_such_ws"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:36:48 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 404,
+      "msg": "Workspace with name no_such_ws not found.",
+      "data": null,
+      "failed": true,
+      "success": false
+    }
+  },
+  "log_slice": "logs/cases/login-unknown-workspace.log"
+}

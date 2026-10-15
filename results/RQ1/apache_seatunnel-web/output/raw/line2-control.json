@@ -1,0 +1,38 @@
+{
+  "case_id": "line2-control",
+  "purpose": "control",
+  "targets": [],
+  "note": "valid edge set; may be rejected by transform-only DAG semantics",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/job/dag/23198804288544",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "edges": [
+        {
+          "inputPluginId": "ta",
+          "targetPluginId": "tb"
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:37:41 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 99994,
+      "msg": "transform plugin must be connected",
+      "data": null,
+      "failed": true,
+      "success": false
+    }
+  },
+  "log_slice": "logs/cases/line2-control.log"
+}

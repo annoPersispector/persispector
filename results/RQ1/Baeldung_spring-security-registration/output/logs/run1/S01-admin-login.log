@@ -1,0 +1,13 @@
+web - 2026-09-29 02:36:26,643 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,u1_0.secret from user_account u1_0 where u1_0.email=?
+web - 2026-09-29 02:36:26,644 [http-nio-127.0.0.1-18206-exec-7] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [test@test.com]
+web - 2026-09-29 02:36:26,644 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.h.SQL - select r1_0.user_id,r1_1.id,r1_1.name from users_roles r1_0 join role r1_1 on r1_1.id=r1_0.role_id where r1_0.user_id=?
+web - 2026-09-29 02:36:26,644 [http-nio-127.0.0.1-18206-exec-7] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:36:26,645 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,u1_0.secret from user_account u1_0 where u1_0.email=?
+web - 2026-09-29 02:36:26,645 [http-nio-127.0.0.1-18206-exec-7] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [test@test.com]
+web - 2026-09-29 02:36:26,646 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.h.SQL - select r1_0.user_id,r1_1.id,r1_1.name from users_roles r1_0 join role r1_1 on r1_1.id=r1_0.role_id where r1_0.user_id=?
+web - 2026-09-29 02:36:26,646 [http-nio-127.0.0.1-18206-exec-7] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:36:26,646 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.h.SQL - select p1_0.role_id,p1_1.id,p1_1.name from roles_privileges p1_0 join privilege p1_1 on p1_1.id=p1_0.privilege_id where p1_0.role_id=?
+web - 2026-09-29 02:36:26,646 [http-nio-127.0.0.1-18206-exec-7] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:36:26,763 [http-nio-127.0.0.1-18206-exec-7] DEBUG c.b.s.g.CustomAuthenticationProvider - Authenticated user
+web - 2026-09-29 02:36:26,764 [http-nio-127.0.0.1-18206-exec-7] DEBUG c.b.s.CustomRememberMeServices - Did not send remember-me cookie (principal did not set parameter 'remember-me')
+web - 2026-09-29 02:36:26,764 [http-nio-127.0.0.1-18206-exec-7] DEBUG c.b.s.CustomRememberMeServices - Remember-me login not requested.

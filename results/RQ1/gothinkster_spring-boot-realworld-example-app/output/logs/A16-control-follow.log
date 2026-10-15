@@ -1,0 +1,17 @@
+2026-09-29 03:08:42.604 DEBUG 942119 --- [.1-18208-exec-5] i.s.i.m.mapper.UserMapper.findById       : ==>  Preparing: select id, username, email, password, bio, image from users where id = ?
+2026-09-29 03:08:42.604 DEBUG 942119 --- [.1-18208-exec-5] i.s.i.m.mapper.UserMapper.findById       : ==> Parameters: 6617cc9f-8f05-4d27-8453-7f3646664798(String)
+2026-09-29 03:08:42.605 DEBUG 942119 --- [.1-18208-exec-5] i.s.i.m.mapper.UserMapper.findById       : <==      Total: 1
+2026-09-29 03:08:42.607 DEBUG 942119 --- [.1-18208-exec-5] i.s.i.m.m.UserMapper.findByUsername      : ==>  Preparing: select * from users where username = ?
+2026-09-29 03:08:42.608 DEBUG 942119 --- [.1-18208-exec-5] i.s.i.m.m.UserMapper.findByUsername      : ==> Parameters: longmail(String)
+2026-09-29 03:08:42.608 DEBUG 942119 --- [.1-18208-exec-5] i.s.i.m.m.UserMapper.findByUsername      : <==      Total: 1
+2026-09-29 03:08:42.610 DEBUG 942119 --- [.1-18208-exec-5] i.s.i.m.mapper.UserMapper.findRelation   : ==>  Preparing: SELECT F.user_id followUserId, F.follow_id followTargetId from follows F where F.user_id = ? and F.follow_id = ?
+2026-09-29 03:08:42.610 DEBUG 942119 --- [.1-18208-exec-5] i.s.i.m.mapper.UserMapper.findRelation   : ==> Parameters: 6617cc9f-8f05-4d27-8453-7f3646664798(String), 98fba659-3c02-47d9-b694-679d2506cc9f(String)
+2026-09-29 03:08:42.611 DEBUG 942119 --- [.1-18208-exec-5] i.s.i.m.mapper.UserMapper.saveRelation   : ==>  Preparing: insert into follows(user_id, follow_id) values (?, ?)
+2026-09-29 03:08:42.611 DEBUG 942119 --- [.1-18208-exec-5] i.s.i.m.mapper.UserMapper.saveRelation   : ==> Parameters: 6617cc9f-8f05-4d27-8453-7f3646664798(String), 98fba659-3c02-47d9-b694-679d2506cc9f(String)
+2026-09-29 03:08:42.622 DEBUG 942119 --- [.1-18208-exec-5] i.s.i.m.mapper.UserMapper.saveRelation   : <==    Updates: 1
+2026-09-29 03:08:42.622 DEBUG 942119 --- [.1-18208-exec-5] i.s.i.m.r.U.findByUsername               : ==>  Preparing: select * from users where username = ?
+2026-09-29 03:08:42.622 DEBUG 942119 --- [.1-18208-exec-5] i.s.i.m.r.U.findByUsername               : ==> Parameters: longmail(String)
+2026-09-29 03:08:42.623 DEBUG 942119 --- [.1-18208-exec-5] i.s.i.m.r.U.findByUsername               : <==      Total: 1
+2026-09-29 03:08:42.623 DEBUG 942119 --- [.1-18208-exec-5] i.s.i.m.r.U.isUserFollowing              : ==>  Preparing: select count(1) from follows where user_id = ? and follow_id = ?
+2026-09-29 03:08:42.623 DEBUG 942119 --- [.1-18208-exec-5] i.s.i.m.r.U.isUserFollowing              : ==> Parameters: 6617cc9f-8f05-4d27-8453-7f3646664798(String), 98fba659-3c02-47d9-b694-679d2506cc9f(String)
+2026-09-29 03:08:42.623 DEBUG 942119 --- [.1-18208-exec-5] i.s.i.m.r.U.isUserFollowing              : <==      Total: 1

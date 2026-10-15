@@ -1,0 +1,22 @@
+{
+  "case_id": "MSP-02-violation-null-content",
+  "purpose": "violation",
+  "target_ids": [
+    "pc-c69dfeadd911"
+  ],
+  "timestamp": "2026-09-29T12:27:30-0400",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18204/metricSetPairList?accountName=sql-account",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "null"
+  },
+  "response": {
+    "status": 400,
+    "body": ""
+  },
+  "readback_sql": "SELECT COUNT(*) AS n FROM metric_set_pairs",
+  "readback_result": "n\n1"
+}

@@ -1,0 +1,39 @@
+{
+  "case_id": "health-workspace-list",
+  "purpose": "setup",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/workspace/list",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:31:12 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 0,
+      "msg": null,
+      "data": [
+        {
+          "id": 1,
+          "workspaceName": "default",
+          "description": "default workspace",
+          "createTime": "2026-09-29 08:30:32",
+          "updateTime": "2026-09-29 08:30:32"
+        }
+      ],
+      "failed": false,
+      "success": true
+    }
+  },
+  "log_slice": "logs/cases/health-workspace-list.log"
+}

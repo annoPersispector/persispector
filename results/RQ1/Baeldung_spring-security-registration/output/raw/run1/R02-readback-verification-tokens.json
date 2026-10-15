@@ -1,0 +1,27 @@
+{
+  "case_id": "R02-readback-verification-tokens",
+  "kind": "read-back",
+  "channel": "H2 web console /h2/query.do (SELECT only)",
+  "sql": "SELECT T.ID, T.USER_ID, U.EMAIL, T.TOKEN FROM VERIFICATION_TOKEN T JOIN USER_ACCOUNT U ON U.ID=T.USER_ID ORDER BY T.ID",
+  "status": 200,
+  "rows": [
+    [
+      "ID",
+      "USER_ID",
+      "EMAIL",
+      "TOKEN"
+    ],
+    [
+      "1",
+      "2",
+      "pv.control@example.test",
+      "b4578745-f41a-4112-9347-7c7f696a564c"
+    ],
+    [
+      "2",
+      "3",
+      "pv.b30@example.test",
+      "fc1712c8-a89c-4a13-8513-ca73676dfae3"
+    ]
+  ]
+}

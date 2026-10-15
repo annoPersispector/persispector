@@ -1,0 +1,19 @@
+{
+ "case_id": "c02-readback-withdrawals",
+ "request": {
+  "method": "GET",
+  "url": "http://127.0.0.1:18207/?cardId=3a3e99f0-5ad9-47fa-961d-d75fab32ef0e",
+  "headers": {},
+  "body": null
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Tue, 29 Sep 2026 07:51:21 GMT",
+   "Connection": "close"
+  },
+  "body": "[{\"id\":\"07482e50-a117-43b5-bd5e-4a3eee44d61e\",\"amount\":10.00,\"cardId\":\"3a3e99f0-5ad9-47fa-961d-d75fab32ef0e\"}]"
+ }
+}

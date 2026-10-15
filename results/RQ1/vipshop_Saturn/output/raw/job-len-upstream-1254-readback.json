@@ -1,0 +1,30 @@
+{
+ "case_id": "job-len-upstream-1254-readback",
+ "purpose": "read-back",
+ "target_hint": [
+  "job_config.up_stream length"
+ ],
+ "note": "",
+ "request": {
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/rest/v1/mydomain/jobs/pvup1",
+  "headers": {},
+  "body": null,
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 404,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:19:29 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"message\":\"The job {pvup1} does not exists.\"}",
+  "json": {
+   "message": "The job {pvup1} does not exists."
+  }
+ },
+ "elapsed_seconds": 0.007,
+ "timestamp": "2026-09-29T20:19:30-0400"
+}

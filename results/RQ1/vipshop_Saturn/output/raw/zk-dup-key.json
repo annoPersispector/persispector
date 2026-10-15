@@ -1,0 +1,39 @@
+{
+ "case_id": "zk-dup-key",
+ "purpose": "violation",
+ "target_hint": [
+  "zk_cluster_info.uniq(zk_cluster_key)"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/zkClusters",
+  "headers": {
+   "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+  },
+  "body": {
+   "zkClusterKey": "pvzk1",
+   "alias": "pvalias",
+   "connectString": "127.0.0.1:2181",
+   "description": "pv desc"
+  },
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:19:36 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"status\":1,\"message\":\"ZK cluster[pvzk1]已经存在\",\"obj\":\"\"}",
+  "json": {
+   "status": 1,
+   "message": "ZK cluster[pvzk1]已经存在",
+   "obj": ""
+  }
+ },
+ "elapsed_seconds": 0.008,
+ "timestamp": "2026-09-29T20:19:38-0400"
+}

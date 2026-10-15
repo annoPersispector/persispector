@@ -1,0 +1,72 @@
+== users
+ID | NAME                                                             | ADMIN | CREATED_TIME               | LAST_MODIFIED_TIME         | NAME_LEN
+1  | Admin                                                            | TRUE  | 2026-09-29 11:16:40.741768 | 2026-09-29 11:16:40.741794 | 5
+2  | Alice                                                            | FALSE | 2026-09-29 11:18:04.568567 | 2026-09-29 11:18:04.56859  | 5
+4  | B128                                                             | FALSE | 2026-09-29 11:18:07.267166 | 2026-09-29 11:18:07.267187 | 4
+6  | NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN | FALSE | 2026-09-29 11:18:09.247731 | 2026-09-29 11:18:09.247759 | 64
+8  | LongPw70                                                         | FALSE | 2026-09-29 11:18:11.832167 | 2026-09-29 11:18:11.832187 | 8
+9  | R1                                                               | FALSE | 2026-09-29 11:18:39.506782 | 2026-09-29 11:18:39.506803 | 2
+(6 rows, 10 ms)
+== login_data
+ID | USER_ID | USERNAME                                                                                             | ULEN | HASH_LEN | HASH_PREFIX
+1  | 1       | admin                                                                                                | 5    | 60       | $2a$
+2  | 2       | alice_4b4b98                                                                                         | 12   | 60       | $2a$
+4  | 4       | b4b4b98xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | 128  | 60       | $2a$
+6  | 6       | d_4b4b98                                                                                             | 8    | 60       | $2a$
+7  | 8       | g_4b4b98                                                                                             | 8    | 60       | $2a$
+8  | 9       | race_138f2f                                                                                          | 11   | 60       | $2a$
+(data is partially truncated)
+(6 rows, 10 ms)
+== files
+ID | UNIQUE_NAME                          | NAME_LEN | TYPE   | SIZE | USER_ID
+2  | 9441b908-dd32-4fe1-b1f3-1f17f2adfe16 | 256      | GC_LOG | 19   | 2
+4  | 95861c97-16c6-46f2-a980-77d151714f58 | 11       | GC_LOG | 9    | 2
+5  | 20774e20-455b-4bf3-9bb6-fd056c5a02fa | 256      | GC_LOG | 1    | 2
+(3 rows, 9 ms)
+== transferring_files
+ID | NAME_LEN | TRANSFER_STATE | TOTAL_SIZE | TRANSFERRED_SIZE | LAST_MODIFIED_TIME
+1  | 11       | SUCCESS        | 9          | 9                | 2026-09-29 11:18:18.093443
+3  | 256      | SUCCESS        | 1          | 1                | 2026-09-29 11:18:22.646551
+(2 rows, 9 ms)
+== deleted_files
+ID | UNIQUE_NAME                          | ORIGINAL_NAME | SIZE | ORIGINAL_CREATED_TIME      | CREATED_TIME               | USER_ID
+1  | 6986423c-905a-4ce5-ab85-dac0a5c28695 | gc-valid.log  | 0    | 2026-09-29 11:18:13.162113 | 2026-09-29 11:18:25.380975 | 2
+(1 row, 9 ms)
+== configurations
+ID | UNIQUE_NAME | CONTENT_LEN
+1  | public-key  | 392
+2  | private-key | 1624
+(2 rows, 9 ms)
+== constraints
+TABLE_NAME          | CONSTRAINT_NAME             | CONSTRAINT_TYPE
+CONFIGURATIONS      | UK18O64Y12IMHL7BT28VJ7G9AQB | UNIQUE
+CONFIGURATIONS      | CONSTRAINT_7                | PRIMARY KEY
+DELETED_FILES       | FKK5JDWPFHFYBTY2P93M1DV1A2C | FOREIGN KEY
+DELETED_FILES       | CONSTRAINT_D                | PRIMARY KEY
+DELETED_FILES       | UK2P842PSHO13KAPKRNEBKU355R | UNIQUE
+EXTERNAL_LOGIN_DATA | FKNMOFCS8YVKR1O1V4TVS02JTM4 | FOREIGN KEY
+EXTERNAL_LOGIN_DATA | CONSTRAINT_A                | PRIMARY KEY
+EXTERNAL_LOGIN_DATA | UK2GMISQN1DXIUC9L5OGKW7A107 | UNIQUE
+EXTERNAL_LOGIN_DATA | UKCN7MRGNG6K3G18V3UM9L1HT72 | UNIQUE
+FILES               | UKQGDYF7Q5PRL5O3J8HVK3RINSN | UNIQUE
+FILES               | CONSTRAINT_3                | PRIMARY KEY
+FILES               | FKDGR5HX49828S5VHJO1S8Q3WDP | FOREIGN KEY
+LOGIN_DATA          | UKQ1YMG45TD0EE8X4YKOD1LQWV1 | UNIQUE
+LOGIN_DATA          | UKH9N534IK0PAA1RW5EOX0VML8T | UNIQUE
+LOGIN_DATA          | FKX5LNWS4UHFPV80YUO1UVJV2Y  | FOREIGN KEY
+LOGIN_DATA          | CONSTRAINT_B                | PRIMARY KEY
+TRANSFERRING_FILES  | UK8IB9FSE86M5LDK4465H8NTFT3 | UNIQUE
+TRANSFERRING_FILES  | FKO0MNCYR6DBI764SI1SRTMQOVL | FOREIGN KEY
+TRANSFERRING_FILES  | CONSTRAINT_B3               | PRIMARY KEY
+USERS               | CONSTRAINT_4                | PRIMARY KEY
+(20 rows, 14 ms)
+== tables
+TABLE_NAME
+TRANSFERRING_FILES
+EXTERNAL_LOGIN_DATA
+DELETED_FILES
+LOGIN_DATA
+FILES
+USERS
+CONFIGURATIONS
+(7 rows, 13 ms)

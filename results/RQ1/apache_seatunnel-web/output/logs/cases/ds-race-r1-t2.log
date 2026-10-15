@@ -1,0 +1,234 @@
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@bc93711] was not registered for synchronization because synchronization is not active
+Creating a new SqlSession
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@37f98377] was not registered for synchronization because synchronization is not active
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@115db10a] was not registered for synchronization because synchronization is not active
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@31f5805c] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@693166990 wrapping conn4: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+JDBC Connection [HikariProxyConnection@455032749 wrapping conn5: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+JDBC Connection [HikariProxyConnection@308677852 wrapping conn3: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+==> Parameters: 1(Long), 1(Integer)
+Creating a new SqlSession
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@55565c7c] was not registered for synchronization because synchronization is not active
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+==> Parameters: 1(Long), 1(Integer)
+JDBC Connection [HikariProxyConnection@1782915716 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+Creating a new SqlSession
+<==      Total: 1
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@81b85e4] was not registered for synchronization because synchronization is not active
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@31f5805c]
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+JDBC Connection [HikariProxyConnection@998932880 wrapping conn1: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+JDBC Connection [HikariProxyConnection@1418671998 wrapping conn2: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+<==      Total: 1
+Creating a new SqlSession
+==> Parameters: 1(Long), 1(Integer)
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7c6ed127] was not registered for synchronization because synchronization is not active
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+JDBC Connection [HikariProxyConnection@120668266 wrapping conn3: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@bc93711]
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==      Total: 1
+Creating a new SqlSession
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7c6ed127]
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6c1c1a79] was not registered for synchronization because synchronization is not active
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1458b46b] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@160783510 wrapping conn3: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+JDBC Connection [HikariProxyConnection@1768962859 wrapping conn2: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,datasource_name,plugin_name,plugin_version,datasource_config,description,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_datasource WHERE (datasource_name = ? AND id <> ? AND workspace_id = ?)
+==> Parameters: ds_race1(String), 0(Long), 1(Long)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1458b46b]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4a4b8d9b] was not registered for synchronization because synchronization is not active
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2bc3f8ab] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1533767459 wrapping conn2: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id , create_time, update_time from t_st_job_definition WHERE workspace_id = ? and name LIKE concat('%', ?, '%') order by update_time desc
+==> Parameters: 1(Long), jd_race1(String)
+JDBC Connection [HikariProxyConnection@114957930 wrapping conn6: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: INSERT INTO t_st_datasource ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+==> Parameters: 23198767586465(Long), ds_race1(String), JDBC-Mysql(String), 1.0.0(String), {"url":"u"}(String), r(String), 1(Integer), 1(Integer), 2026-09-29 04:32:51.772(Timestamp), 2026-09-29 04:32:51.772(Timestamp), 1(Long)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4a4b8d9b]
+<==    Updates: 1
+Creating a new SqlSession
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2bc3f8ab]
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@28037d8d]
+Creating a new SqlSession
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@281ad634] was not registered for synchronization because synchronization is not active
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@161b2558] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1283633252 wrapping conn6: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+JDBC Connection [HikariProxyConnection@1256179208 wrapping conn7: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@55565c7c]
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+JDBC Connection [HikariProxyConnection@960081119 wrapping conn2: url=jdbc:h2:mem:seatunnel user=SA] will be managed by Spring
+==>  Preparing: SELECT id,datasource_name,plugin_name,plugin_version,datasource_config,description,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_datasource WHERE (datasource_name = ? AND id <> ? AND workspace_id = ?)
+==>  Preparing: insert into `t_st_job_definition` ( id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id ) values (?, ?, ?,?, ?, ?, ?)
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+==> Parameters: ds_race1(String), 0(Long), 1(Long)
+<==      Total: 1
+==> Parameters: 23198767586976(Long), jd_race1(String), d(String), DATA_INTEGRATION(String), 1(Integer), 1(Integer), 1(Long)
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@81b85e4]
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@37f98377]
+<==    Columns: id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id
+<==        Row: 23198767586465, ds_race1, JDBC-Mysql, 1.0.0, {"url":"u"}, r, 1, 1, 2026-09-29 04:32:51.772, 2026-09-29 04:32:51.772, 1
+<==    Updates: 1
+Creating a new SqlSession
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@28037d8d]
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@19aabd15] was not registered for synchronization because synchronization is not active
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@28037d8d] from current transaction
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6c1c1a79]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@55d75ab3] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@705523718 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,datasource_name,plugin_name,plugin_version,datasource_config,description,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_datasource WHERE (datasource_name = ? AND id <> ? AND workspace_id = ?)
+==>  Preparing: INSERT INTO t_st_job_version ( id, name, job_id, job_mode, engine_name, engine_version, create_user_id, update_user_id, workspace_id ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? )
+==> Parameters: ds_race1(String), 0(Long), 1(Long)
+JDBC Connection [HikariProxyConnection@2081694420 wrapping conn4: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,datasource_name,plugin_name,plugin_version,datasource_config,description,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_datasource WHERE (datasource_name = ? AND id <> ? AND workspace_id = ?)
+<==    Columns: id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id
+<==        Row: 23198767586465, ds_race1, JDBC-Mysql, 1.0.0, {"url":"u"}, r, 1, 1, 2026-09-29 04:32:51.772, 2026-09-29 04:32:51.772, 1
+==> Parameters: 23198767586976(Long), 1.0(String), 23198767586976(Long), BATCH(String), SeaTunnel(String), 2.3.11(String), 1(Integer), 1(Integer), 1(Long)
+<==      Total: 1
+==> Parameters: ds_race1(String), 0(Long), 1(Long)
+<==    Updates: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@19aabd15]
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@28037d8d]
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@28037d8d]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@28037d8d]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@28037d8d]
+<==    Columns: id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id
+<==        Row: 23198767586465, ds_race1, JDBC-Mysql, 1.0.0, {"url":"u"}, r, 1, 1, 2026-09-29 04:32:51.772, 2026-09-29 04:32:51.772, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@55d75ab3]
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@115db10a]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@21021e1e] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@2134967213 wrapping conn5: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,datasource_name,plugin_name,plugin_version,datasource_config,description,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_datasource WHERE (datasource_name = ? AND id <> ? AND workspace_id = ?)
+==> Parameters: ds_race1(String), 0(Long), 1(Long)
+<==    Columns: id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id
+<==        Row: 23198767586465, ds_race1, JDBC-Mysql, 1.0.0, {"url":"u"}, r, 1, 1, 2026-09-29 04:32:51.772, 2026-09-29 04:32:51.772, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@21021e1e]
+Creating a new SqlSession
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+==> Parameters: 1(Long), 1(Integer)
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@413503a] was not registered for synchronization because synchronization is not active
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@161b2558]
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+JDBC Connection [HikariProxyConnection@1986289508 wrapping conn1: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+==>  Preparing: SELECT id,datasource_name,plugin_name,plugin_version,datasource_config,description,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_datasource WHERE (datasource_name = ? AND id <> ? AND workspace_id = ?)
+==> Parameters: ds_race1(String), 0(Long), 1(Long)
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@281ad634]
+<==    Columns: id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id
+<==        Row: 23198767586465, ds_race1, JDBC-Mysql, 1.0.0, {"url":"u"}, r, 1, 1, 2026-09-29 04:32:51.772, 2026-09-29 04:32:51.772, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@413503a]
+Creating a new SqlSession
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@b4809fd] was not registered for synchronization because synchronization is not active
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@76f840e0] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@790679499 wrapping conn6: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+JDBC Connection [HikariProxyConnection@2087760787 wrapping conn7: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id , create_time, update_time from t_st_job_definition WHERE workspace_id = ? and name LIKE concat('%', ?, '%') order by update_time desc
+==>  Preparing: select id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id , create_time, update_time from t_st_job_definition WHERE workspace_id = ? and name LIKE concat('%', ?, '%') order by update_time desc
+==> Parameters: 1(Long), jd_race1(String)
+==> Parameters: 1(Long), jd_race1(String)
+<==    Columns: id, name, description, job_type, create_user_id, update_user_id, workspace_id, create_time, update_time
+<==        Row: 23198767586976, jd_race1, d, DATA_INTEGRATION, 1, 1, 1, 2026-09-29 04:32:51.776, 2026-09-29 04:32:51.776
+<==    Columns: id, name, description, job_type, create_user_id, update_user_id, workspace_id, create_time, update_time
+<==        Row: 23198767586976, jd_race1, d, DATA_INTEGRATION, 1, 1, 1, 2026-09-29 04:32:51.776, 2026-09-29 04:32:51.776
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@76f840e0]
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@b4809fd]
+Creating a new SqlSession
+Creating a new SqlSession
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@61689d39] was not registered for synchronization because synchronization is not active
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4ded4338] was not registered for synchronization because synchronization is not active
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5c21fa50] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1353420260 wrapping conn5: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+JDBC Connection [HikariProxyConnection@1398884415 wrapping conn1: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+JDBC Connection [HikariProxyConnection@421752752 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+==> Parameters: 1(Long), 1(Integer)
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+<==        Row: 8, 1, <<BLOB>>, 1, 2026-09-29 04:32:47.162, 2026-09-29 04:32:47.162, 1
+<==      Total: 1
+<==      Total: 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5c21fa50]
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@61689d39]
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4ded4338]
+Creating a new SqlSession
+Creating a new SqlSession
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@72ab248] was not registered for synchronization because synchronization is not active
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3e9bd25] was not registered for synchronization because synchronization is not active
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2780b037] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@53324252 wrapping conn1: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+JDBC Connection [HikariProxyConnection@1710182689 wrapping conn5: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id , create_time, update_time from t_st_job_definition WHERE workspace_id = ? and name LIKE concat('%', ?, '%') order by update_time desc
+JDBC Connection [HikariProxyConnection@686863086 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id , create_time, update_time from t_st_job_definition WHERE workspace_id = ? and name LIKE concat('%', ?, '%') order by update_time desc
+==>  Preparing: select id, `name`, `description`,`job_type`, create_user_id, update_user_id, workspace_id , create_time, update_time from t_st_job_definition WHERE workspace_id = ? and name LIKE concat('%', ?, '%') order by update_time desc
+==> Parameters: 1(Long), jd_race1(String)
+==> Parameters: 1(Long), jd_race1(String)
+==> Parameters: 1(Long), jd_race1(String)
+<==    Columns: id, name, description, job_type, create_user_id, update_user_id, workspace_id, create_time, update_time
+<==    Columns: id, name, description, job_type, create_user_id, update_user_id, workspace_id, create_time, update_time
+<==    Columns: id, name, description, job_type, create_user_id, update_user_id, workspace_id, create_time, update_time
+<==        Row: 23198767586976, jd_race1, d, DATA_INTEGRATION, 1, 1, 1, 2026-09-29 04:32:51.776, 2026-09-29 04:32:51.776
+<==        Row: 23198767586976, jd_race1, d, DATA_INTEGRATION, 1, 1, 1, 2026-09-29 04:32:51.776, 2026-09-29 04:32:51.776
+<==        Row: 23198767586976, jd_race1, d, DATA_INTEGRATION, 1, 1, 1, 2026-09-29 04:32:51.776, 2026-09-29 04:32:51.776
+<==      Total: 1
+<==      Total: 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3e9bd25]
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@72ab248]
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2780b037]

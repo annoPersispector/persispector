@@ -1,0 +1,25 @@
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@429e5c01] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1623927174 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 2, 1, <<BLOB>>, 1, 2026-09-29 04:35:56.987, 2026-09-29 04:35:56.987, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@429e5c01]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1a8843c6] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@411395235 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT COUNT(1) FROM t_st_virtual_table WHERE workspace_id = ? AND id != ? AND virtual_database_name = ? AND virtual_table_name = ?
+==> Parameters: 1(Long), 0(Long), vdb(String), ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt(String)
+<==    Columns: COUNT(1)
+<==        Row: 0
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1a8843c6]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@284b5de6] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@292931184 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: INSERT INTO t_st_virtual_table ( id, datasource_id, virtual_database_name, virtual_table_name, table_fields, description, virtual_table_config, create_user_id, update_user_id, create_time, update_time, workspace_id ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+==> Parameters: 23198791909536(Long), 23198791306016(Long), vdb(String), ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt(String), [{"fieldName":"id","fieldType":"INT","nullable":false,"defaultValue":null,"primaryKey":true,"fieldComment":null,"fieldExtra":null}](String), d(String), {"k":"v"}(String), 1(Integer), 1(Integer), 2026-09-29 04:36:01.796(Timestamp), 2026-09-29 04:36:01.796(Timestamp), 1(Long)
+<==    Updates: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@284b5de6]

@@ -1,0 +1,36 @@
+{
+  "case_id": "CA-01-control-create",
+  "purpose": "control",
+  "target_ids": [
+    "pc-11859c35fe9a",
+    "pc-b223c202dd17",
+    "pc-fdc864d03407",
+    "pc-343b4ffdfac5",
+    "pc-990df09fb055",
+    "pc-89d1cd05bf3c",
+    "pc-89db031a1827"
+  ],
+  "timestamp": "2026-09-29T12:27:22-0400",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18204/canaryResultArchive?storageAccountName=sql-account&pipelineId=ca-valid-001",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "application": "verifapp",
+      "pipelineId": "p",
+      "stageStatus": {
+        "s1": "succeeded"
+      },
+      "complete": true,
+      "status": "succeeded"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"pipelineId\":\"ca-valid-001\"}"
+  },
+  "readback_sql": "SELECT id, CHAR_LENGTH(id) AS id_len, JSON_VALID(content) AS json_valid, JSON_TYPE(content) AS json_type, created_at, updated_at FROM canary_archive WHERE id ='ca-valid-001'",
+  "readback_result": "id\tid_len\tjson_valid\tjson_type\tcreated_at\tupdated_at\nca-valid-001\t12\t1\tOBJECT\t2026-09-29 12:27:23\t2026-09-29 12:27:23"
+}

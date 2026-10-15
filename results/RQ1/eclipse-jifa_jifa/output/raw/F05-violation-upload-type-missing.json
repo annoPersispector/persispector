@@ -1,0 +1,37 @@
+{
+ "case_id": "F05-violation-upload-type-missing",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18201/jifa-api/files/upload",
+  "headers": {
+   "User-Agent": "python-requests/2.31.0",
+   "Accept-Encoding": "gzip, deflate, br",
+   "Accept": "*/*",
+   "Connection": "keep-alive",
+   "Authorization": "<JWT-REDACTED>",
+   "Content-Length": "194",
+   "Content-Type": "multipart/form-data; boundary=bd2afb9e10148fea708444ef7e2f342e"
+  },
+  "body": "multipart: params={} filename='gc-notype.log' (len=13) content_len=19"
+ },
+ "response": {
+  "status": 400,
+  "headers": {
+   "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+   "X-Content-Type-Options": "nosniff",
+   "X-XSS-Protection": "0",
+   "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+   "Pragma": "no-cache",
+   "Expires": "0",
+   "X-Frame-Options": "DENY",
+   "Content-Length": "128",
+   "Date": "Tue, 29 Sep 2026 15:18:16 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"errorCode\":\"ILLEGAL_ARGUMENT\",\"message\":\"Required request parameter 'type' for method parameter type FileType is not present\"}"
+ },
+ "correlated_log_lines": [
+  "2026-09-29T11:18:16.844-04:00 ERROR 1126360 --- [.1-18201-exec-6] o.e.j.s.c.GlobalExceptionHandler         : Required request parameter 'type' for method parameter type FileType is not present"
+ ],
+ "extra": null
+}

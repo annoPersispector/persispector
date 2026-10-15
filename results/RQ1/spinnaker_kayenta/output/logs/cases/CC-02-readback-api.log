@@ -1,0 +1,2 @@
+2026-09-29 12:27:16.001 DEBUG 1164260 --- [.1-18204-exec-9] org.hibernate.SQL                        : select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as content2_1_0_, sqlcanaryc0_.created_at as created_3_1_0_, sqlcanaryc0_.updated_at as updated_4_1_0_ from canary_config sqlcanaryc0_ where sqlcanaryc0_.id=?
+2026-09-29 12:27:16.002 TRACE 1164260 --- [.1-18204-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [cc-valid-001]

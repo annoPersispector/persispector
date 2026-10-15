@@ -1,0 +1,26 @@
+2026-09-29 04:37:38.078 seatunnel artifact-host WARN [tr:,sp:] [qtp1371182382-21] [UserContextInterceptor.preHandle():56] - No user context found in request attributes
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b945f1e] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1401128738 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, username, `password`, `status`, `type`, create_time, update_time, auth_provider from `user` where status = 0 and username = ? and password = ? and auth_provider = ?
+==> Parameters: admin(String), 7f97da8846fed829bb8d1fd9f8030f3b(String), DB(String)
+<==    Columns: id, username, password, status, type, create_time, update_time, auth_provider
+<==        Row: 1, admin, 7f97da8846fed829bb8d1fd9f8030f3b, 0, 0, 2026-09-29 04:35:29.608, 2026-09-29 04:35:29.608, DB
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b945f1e]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@230ff826] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1828377074 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,workspace_name,description,create_time,update_time FROM workspace WHERE (workspace_name = ?)
+==> Parameters: default(String)
+<==    Columns: id, workspace_name, description, create_time, update_time
+<==        Row: 1, default, default workspace, 2026-09-29 04:35:29.611, 2026-09-29 04:35:29.611
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@230ff826]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5ee12db4] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@629589212 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: insert into `user_login_log` (user_id, token, `token_status`, `workspace_id`) VALUES (?, ?, ?, ?)
+==> Parameters: 1(Integer), <JWT-REDACTED>(String), true(Boolean), 1(Long)
+<==    Updates: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5ee12db4]

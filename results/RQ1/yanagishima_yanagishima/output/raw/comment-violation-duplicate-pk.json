@@ -1,0 +1,37 @@
+{
+  "case_id": "comment-violation-duplicate-pk",
+  "purpose": "violation",
+  "target_ids": [],
+  "note": "",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18209/comment",
+    "headers": {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "some.auth.header": "bob"
+    },
+    "form": {
+      "datasource": "docker-presto",
+      "engine": "presto",
+      "queryid": "20260929_000000_00001_aaaaa",
+      "content": "second"
+    },
+    "param_lengths": {
+      "datasource": 13,
+      "engine": 6,
+      "queryid": 27,
+      "content": 6
+    },
+    "header_lengths": {
+      "Content-Type": 33,
+      "some.auth.header": 3
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"updateTimeString\":\"2026-09-29T02:55:55.624411-04:00[America/New_York]\",\"engine\":\"presto\",\"datasource\":\"docker-presto\",\"likeCount\":0,\"user\":{\"id\":\"bob\"},\"content\":\"second\",\"queryid\":\"20260929_000000_00001_aaaaa\"}"
+  },
+  "readback_sql": "SELECT datasource, engine, query_id, LEFT(content,40) content, LENGTH(content) clen, CHAR_LENGTH(user) ulen, like_count, update_time_string FROM comment ORDER BY datasource, engine, query_id",
+  "readback_result": "+---------------+--------+-----------------------------+---------+------+------+------------+----------------------------------------------------+\n| datasource    | engine | query_id                    | content | clen | ulen | like_count | update_time_string                                 |\n+---------------+--------+-----------------------------+---------+------+------+------------+----------------------------------------------------+\n| docker-presto | presto | 20260929_000000_00001_aaaaa | second  |    6 |    3 |          0 | 2026-09-29T02:55:55.624411-04:00[America/New_York] |\n+---------------+--------+-----------------------------+---------+------+------+------------+----------------------------------------------------+",
+  "log_excerpt_path": "logs/cases/comment-violation-duplicate-pk.log"
+}

@@ -1,0 +1,36 @@
+{
+  "case_id": "r2-ds-longplugin-setup",
+  "purpose": "setup",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/datasource/create",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "datasourceName": "ds_lp",
+      "pluginName": "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+      "description": "d",
+      "datasourceConfig": "{\"url\": \"u\"}"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:36:46 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 0,
+      "msg": null,
+      "data": "23198797636640",
+      "failed": false,
+      "success": true
+    }
+  },
+  "log_slice": "logs/cases/r2-ds-longplugin-setup.log"
+}

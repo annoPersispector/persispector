@@ -1,0 +1,37 @@
+{
+  "case_id": "R01-readback-users",
+  "kind": "read-back",
+  "channel": "H2 web console /h2/query.do (SELECT only)",
+  "sql": "SELECT ID, EMAIL, LENGTH(PASSWORD) AS PW_LEN, LEFT(PASSWORD,7) AS PW_PREFIX, ENABLED FROM USER_ACCOUNT ORDER BY ID",
+  "status": 200,
+  "rows": [
+    [
+      "ID",
+      "EMAIL",
+      "PW_LEN",
+      "PW_PREFIX",
+      "ENABLED"
+    ],
+    [
+      "1",
+      "test@test.com",
+      "60",
+      "$2a$11$",
+      "TRUE"
+    ],
+    [
+      "2",
+      "pv.control@example.test",
+      "60",
+      "$2a$11$",
+      "FALSE"
+    ],
+    [
+      "3",
+      "pv.b30@example.test",
+      "60",
+      "$2a$11$",
+      "FALSE"
+    ]
+  ]
+}

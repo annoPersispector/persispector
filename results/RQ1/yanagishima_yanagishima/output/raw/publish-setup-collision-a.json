@@ -1,0 +1,35 @@
+{
+  "case_id": "publish-setup-collision-a",
+  "purpose": "setup",
+  "target_ids": [],
+  "note": "",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18209/publish",
+    "headers": {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "some.auth.header": "alice"
+    },
+    "form": {
+      "datasource": "x;y",
+      "engine": "z",
+      "queryid": "q"
+    },
+    "param_lengths": {
+      "datasource": 3,
+      "engine": 1,
+      "queryid": 1
+    },
+    "header_lengths": {
+      "Content-Type": 33,
+      "some.auth.header": 5
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"error\":null,\"publish_id\":\"458222a4869bcf460199afdedf5649ed\"}"
+  },
+  "readback_sql": "SELECT publish_id, datasource, engine, query_id, CHAR_LENGTH(user) ulen, user, LENGTH(viewers) vlen FROM publish ORDER BY publish_id",
+  "readback_result": "+----------------------------------+---------------+--------+-----------------------------+------+-------+------+\n| publish_id                       | datasource    | engine | query_id                    | ulen | user  | vlen |\n+----------------------------------+---------------+--------+-----------------------------+------+-------+------+\n| 458222a4869bcf460199afdedf5649ed | x;y           | z      | q                           |    5 | alice | NULL |\n| e97657f6ee2a677bd8f5353f59cc3052 | docker-presto | presto | 20260929_000000_00002_bbbbb |    5 | alice | NULL |\n+----------------------------------+---------------+--------+-----------------------------+------+-------+------+",
+  "log_excerpt_path": "logs/cases/publish-setup-collision-a.log"
+}

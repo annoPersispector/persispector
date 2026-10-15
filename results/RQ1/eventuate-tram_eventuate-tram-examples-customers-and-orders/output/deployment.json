@@ -1,0 +1,142 @@
+{
+  "schema_version": "persistence-runtime-verification-v2",
+  "application": "eventuate-tram_eventuate-tram-examples-customers-and-orders",
+  "source_revision": null,
+  "isolated_application_path": "/artifact/results/RQ1/eventuate-tram_eventuate-tram-examples-customers-and-orders/eventuate-tram_eventuate-tram-examples-customers-and-orders-20260929T154632Z-e0a22c9f/application",
+  "build_system": "gradle 8.13 (wrapper)",
+  "java_version": "OpenJDK 17.0.15 (Ubuntu build 17.0.15+6-Ubuntu-0ubuntu120.04)",
+  "runtime_database": "MySQL 8.0.42 (local mysqld, unix socket only, skip-networking), database eventuate CHARACTER SET latin1, sql_mode incl. STRICT_TRANS_TABLES",
+  "schema_context_id": "dbctx-9ed09ac67b2d",
+  "base_urls": [
+    "http://127.0.0.1:18202"
+  ],
+  "ports": [
+    18202
+  ],
+  "health_checks": [
+    "http://127.0.0.1:18202/actuator/health -> {\"status\":\"UP\"}"
+  ],
+  "commands": [
+    {
+      "purpose": "build",
+      "command": "./gradlew :order-service:order-service-main:bootJar -x test --no-daemon",
+      "working_directory": "/artifact/results/RQ1/eventuate-tram_eventuate-tram-examples-customers-and-orders/eventuate-tram_eventuate-tram-examples-customers-and-orders-20260929T154632Z-e0a22c9f/application",
+      "exit_code": 0
+    },
+    {
+      "purpose": "build compatibility shim",
+      "command": "javac -d classes -cp \"<bootJar BOOT-INF/lib/*>:lib/*\" src/persispector/compat/*.java && jar cf lib/persispector-compat.jar -C classes . (plus mvn dependency:copy of junixsocket-mysql/common/native-common 2.10.1; eventuate-tram-in-memory 0.37.0 from Gradle cache)",
+      "working_directory": "/artifact/results/RQ1/eventuate-tram_eventuate-tram-examples-customers-and-orders/eventuate-tram_eventuate-tram-examples-customers-and-orders-20260929T154632Z-e0a22c9f/application/.persispector-compat",
+      "exit_code": 0
+    },
+    {
+      "purpose": "database init",
+      "command": "cp /usr/sbin/mysqld bin/mysqld && bin/mysqld --defaults-file=mysql/my.cnf --initialize-insecure",
+      "working_directory": "/artifact/results/RQ1/eventuate-tram_eventuate-tram-examples-customers-and-orders/eventuate-tram_eventuate-tram-examples-customers-and-orders-20260929T154632Z-e0a22c9f/application/.persispector-compat",
+      "exit_code": 0
+    },
+    {
+      "purpose": "database start",
+      "command": "bin/mysqld --defaults-file=mysql/my.cnf (socket /tmp/pv18202/mysql.sock, no TCP)",
+      "working_directory": "/artifact/results/RQ1/eventuate-tram_eventuate-tram-examples-customers-and-orders/eventuate-tram_eventuate-tram-examples-customers-and-orders-20260929T154632Z-e0a22c9f/application/.persispector-compat",
+      "exit_code": null
+    },
+    {
+      "purpose": "schema",
+      "command": "mysql -uroot -S /tmp/pv18202/mysql.sock -e \"CREATE DATABASE eventuate CHARACTER SET latin1; CREATE USER mysqluser... ; GRANT ALL ON eventuate.*\" && mysql ... < aws-fargate-terraform/1.initialize-database.sql && mysql ... < aws-fargate-terraform/2.initialize-database.sql && mysql ... < ../output/patches/01-schema-message-partition.sql (applied after C00)",
+      "working_directory": "/artifact/results/RQ1/eventuate-tram_eventuate-tram-examples-customers-and-orders/eventuate-tram_eventuate-tram-examples-customers-and-orders-20260929T154632Z-e0a22c9f/application",
+      "exit_code": 0
+    },
+    {
+      "purpose": "start",
+      "command": ".persispector-compat/start-app.sh  (java -Dloader.path=.persispector-compat/lib -cp order-service/order-service-main/build/libs/order-service-main-0.1.0-SNAPSHOT.jar org.springframework.boot.loader.launch.PropertiesLauncher --server.address=127.0.0.1 --server.port=18202 --spring.datasource.url=jdbc:mysql://localhost/eventuate?socketFactory=org.newsclub.net.mysql.AFUNIXDatabaseSocketFactoryCJ&junixsocket.file=/tmp/pv18202/mysql.sock... --spring.flyway.enabled=false ...)",
+      "working_directory": "/artifact/results/RQ1/eventuate-tram_eventuate-tram-examples-customers-and-orders/eventuate-tram_eventuate-tram-examples-customers-and-orders-20260929T154632Z-e0a22c9f/application",
+      "exit_code": null
+    },
+    {
+      "purpose": "test",
+      "command": "python3 .persispector-compat/driver.py cases1.py ; python3 .persispector-compat/driver.py cases2.py",
+      "working_directory": "/artifact/results/RQ1/eventuate-tram_eventuate-tram-examples-customers-and-orders/eventuate-tram_eventuate-tram-examples-customers-and-orders-20260929T154632Z-e0a22c9f/application/.persispector-compat",
+      "exit_code": 0
+    },
+    {
+      "purpose": "stop",
+      "command": "kill <order-service pid> ; mysqladmin -uroot -S /tmp/pv18202/mysql.sock shutdown ; kill <gradle 8.13 daemon pid started by this run> ; rm -rf /tmp/pv18202",
+      "working_directory": "/artifact/results/RQ1/eventuate-tram_eventuate-tram-examples-customers-and-orders/eventuate-tram_eventuate-tram-examples-customers-and-orders-20260929T154632Z-e0a22c9f/application",
+      "exit_code": 0
+    }
+  ],
+  "patches": [
+    {
+      "path": "patches/00-database-charset.sql",
+      "kind": "patch",
+      "description": "Database created with latin1 so AWS DDL (VARCHAR(1000) keys) applies on MySQL 8",
+      "sha256": "24529578afb6780d8234a910ce99b6dc0dbbf9ae039cfde07013ec7c17d46f41"
+    },
+    {
+      "path": "patches/01-schema-message-partition.sql",
+      "kind": "patch",
+      "description": "ALTER TABLE message ADD message_partition SMALLINT (framework-required column absent from AWS DDL)",
+      "sha256": "2503e4042c60273db7df435fb2da9f449e068f684630532a3646410e532249fc"
+    },
+    {
+      "path": "patches/NoKafkaConsumerAutoConfiguration.java",
+      "kind": "patch",
+      "description": "Out-of-tree auto-configuration jar on loader.path supplying InMemoryMessageConsumer so no Kafka broker is contacted; no application source modified",
+      "sha256": "de701c071e1018732c463e505358f35e830e6a754a6bad970ac63316fbca8447"
+    },
+    {
+      "path": "patches/start-app.sh",
+      "kind": "patch",
+      "description": "Launch command with runtime property overrides (port, unix-socket datasource, flyway disabled, SQL tracing)",
+      "sha256": "4ea5f432cd82a84e940fe95da2a8c963e17b50aa1c6bf9d3eefc8526072fce35"
+    },
+    {
+      "path": "patches/mysql-my.cnf",
+      "kind": "patch",
+      "description": "MySQL config: skip-networking (unix socket only), general log",
+      "sha256": "e077e3f016f98447cccaa95a8edb5c39b3ac89c2a58261c938b8971e362f8dbc"
+    }
+  ],
+  "logs": [
+    {
+      "path": "logs/build-order-service.log",
+      "kind": "deployment-log",
+      "description": "Gradle bootJar build output",
+      "sha256": "5c98ead358d04614962d6259928aa6c5bcfc47a63bcd25baa47fe2ee74e77d69"
+    },
+    {
+      "path": "logs/order-service.log",
+      "kind": "application-log",
+      "description": "Full order-service run log (Hibernate SQL + JdbcTemplate TRACE)",
+      "sha256": "16b8c08f1ecc136c14003d282c86d6f1462f6a0bbb4a29f7cde718eb3499a2f6"
+    },
+    {
+      "path": "logs/schema-after-aws-sql.txt",
+      "kind": "database-log",
+      "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+      "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+    },
+    {
+      "path": "logs/mysql-general.log",
+      "kind": "sql-trace",
+      "description": "MySQL general query log for the whole run",
+      "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+    },
+    {
+      "path": "logs/mysql-error.log",
+      "kind": "database-log",
+      "description": "MySQL server error log",
+      "sha256": "db5c803288aa952649c925303587f25fed041ba996f8f4bd64ae0e30bf15e17e"
+    }
+  ],
+  "cleanup_performed": true,
+  "notes": [
+    "Only order-service was deployed: all analyzed targets are in the eventuate schema used by order-service (AWS init SQL) or the Order entity. customer-service, order-history-service, api-gateway, Kafka, CDC service, MongoDB and Zipkin were not started (external services / extra ports not permitted, Docker daemon unavailable).",
+    "MySQL used unix-socket-only networking (port 0) so the only TCP listener was the application on 127.0.0.1:18202; the JDBC driver connected via junixsocket socket factory. mysqluser switched to mysql_native_password for socket auth without TLS.",
+    "The mysqld binary was copied into .persispector-compat/bin to run a private instance outside the system AppArmor profile path; the system MySQL service was not touched.",
+    "Flyway disabled (spring.flyway.enabled=false) so the analyzed AWS DDL, not the framework's Flyway DDL, defines the eventuate tables; orders table created by Hibernate generate-ddl.",
+    "No application source files were modified; build.gradle unchanged. Runtime data dir retained at application/.persispector-compat/mysql (stopped).",
+    "All processes started (order-service, private mysqld, one Gradle daemon) were stopped; port 18202 released."
+  ]
+}

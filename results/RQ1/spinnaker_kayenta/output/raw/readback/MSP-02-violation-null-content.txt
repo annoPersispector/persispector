@@ -1,0 +1,4 @@
+-- MySQL read-back executed immediately after the request
+-- SQL: SELECT COUNT(*) AS n FROM metric_set_pairs
+n
+1

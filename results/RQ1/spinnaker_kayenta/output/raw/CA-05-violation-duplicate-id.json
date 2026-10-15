@@ -1,0 +1,30 @@
+{
+  "case_id": "CA-05-violation-duplicate-id",
+  "purpose": "violation",
+  "target_ids": [
+    "pc-000a33b9c80b"
+  ],
+  "timestamp": "2026-09-29T12:27:25-0400",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18204/canaryResultArchive?storageAccountName=sql-account&pipelineId=ca-valid-001",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "application": "dupapp",
+      "pipelineId": "p",
+      "stageStatus": {
+        "s1": "succeeded"
+      },
+      "complete": true,
+      "status": "succeeded"
+    }
+  },
+  "response": {
+    "status": 400,
+    "body": "{\"message\":\"Archived canary result 'ca-valid-001' already exists.\"}"
+  },
+  "readback_sql": "SELECT id, JSON_UNQUOTE(JSON_EXTRACT(content,'$.application')) AS application FROM canary_archive WHERE id='ca-valid-001'",
+  "readback_result": "id\tapplication\nca-valid-001\tverifapp"
+}

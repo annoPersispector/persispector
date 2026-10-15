@@ -1,0 +1,29 @@
+{
+ "case_id": "job-len-cron-list-300-readback",
+ "purpose": "read-back",
+ "target_hint": [
+  "job_config.cron length"
+ ],
+ "note": "",
+ "request": {
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/rest/v1/mydomain/jobs/pvcron2",
+  "headers": {},
+  "body": null
+ },
+ "response": {
+  "status": 404,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:15:49 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"message\":\"The job {pvcron2} does not exists.\"}",
+  "json": {
+   "message": "The job {pvcron2} does not exists."
+  }
+ },
+ "elapsed_seconds": 0.008,
+ "timestamp": "2026-09-29T20:15:50-0400"
+}

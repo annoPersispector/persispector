@@ -1,0 +1,743 @@
+[
+ {
+  "case_id": "login-admin-2",
+  "purpose": "setup",
+  "targets": [],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/authentication/login",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ns-control-create",
+  "purpose": "control",
+  "targets": [
+   "namespace_info.*",
+   "namespace_zkcluster_mapping.*"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces",
+  "status": 201,
+  "body_head": "",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ns-control-readback",
+  "purpose": "read-back",
+  "targets": [
+   "namespace_info.*"
+  ],
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces/pvns1",
+  "status": 200,
+  "body_head": "{\"namespace\":\"pvns1\",\"content\":\"\",\"zkCluster\":\"cluster1\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ns-dup",
+  "purpose": "violation",
+  "targets": [
+   "namespace_info.uniq(namespace)",
+   "namespace_zkcluster_mapping.uniq(namespace)"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces",
+  "status": 400,
+  "body_head": "{\"message\":\"Invalid request. Namespace: {pvns1} already existed\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ns-null-namespace",
+  "purpose": "violation",
+  "targets": [
+   "namespace_info.namespace not-null",
+   "namespace_zkcluster_mapping.namespace not-null"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces",
+  "status": 400,
+  "body_head": "{\"message\":\"Invalid request. Missing parameter: {namespace}\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ns-null-namespace-explicit",
+  "purpose": "violation",
+  "targets": [
+   "namespace_info.namespace not-null"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces",
+  "status": 201,
+  "body_head": "",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ns-len-namespace-256",
+  "purpose": "violation",
+  "targets": [
+   "namespace_info.namespace length",
+   "namespace_zkcluster_mapping.namespace length"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces",
+  "status": 500,
+  "body_head": "{\"message\":\"Fail to create new namespace {nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn} for reason {\\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for ",
+  "sql_error_lines": [
+   "### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)\"; SQL statement:",
+   "### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)\"; SQL statement:",
+   "; SQL []; Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)\"; SQL statement:",
+   "        ?, ?) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn... (256)\"; SQL statement:",
+   "org.springframework.dao.DataIntegrityViolationException: "
+  ]
+ },
+ {
+  "case_id": "ns-len-namespace-256-readback",
+  "purpose": "read-back",
+  "targets": [
+   "namespace_info.namespace length"
+  ],
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces/nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+  "status": 404,
+  "body_head": "{\"message\":\"The namespace does not exists.\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ns-len-namespace-255-boundary",
+  "purpose": "boundary",
+  "targets": [
+   "namespace_info.namespace length"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces",
+  "status": 201,
+  "body_head": "",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ns-len-namespace-255-readback",
+  "purpose": "read-back",
+  "targets": [
+   "namespace_info.namespace length"
+  ],
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "status": 200,
+  "body_head": "{\"namespace\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"content\":\"\",\"zkCluster\":\"cluster1\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ns-null-zkcluster",
+  "purpose": "violation",
+  "targets": [
+   "namespace_zkcluster_mapping.zk_cluster_key not-null"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces",
+  "status": 400,
+  "body_head": "{\"message\":\"Invalid request. Missing parameter: {zkCluster}\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ns-len-zkcluster-256",
+  "purpose": "violation",
+  "targets": [
+   "namespace_zkcluster_mapping.zk_cluster_key length"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces",
+  "status": 400,
+  "body_head": "{\"message\":\"Fail to create new namespace {pvns3} for reason {not found zkclusterzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz}\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ns-gui-dup",
+  "purpose": "violation",
+  "targets": [
+   "namespace_info.uniq(namespace)"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/namespaces",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"Invalid request. Namespace: {pvns1} already existed\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ns-gui-len-namespace-256",
+  "purpose": "violation",
+  "targets": [
+   "namespace_info.namespace length"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/namespaces",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"Fail to create new namespace {gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg} for reason {\\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value to",
+  "sql_error_lines": [
+   "### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg... (256)\"; SQL statement:",
+   "### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg... (256)\"; SQL statement:",
+   "; SQL []; Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg... (256)\"; SQL statement:",
+   "        ?, ?) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg... (256)\"; SQL statement:",
+   "org.springframework.dao.DataIntegrityViolationException: "
+  ]
+ },
+ {
+  "case_id": "ns-all-readback",
+  "purpose": "read-back",
+  "targets": [
+   "namespace_info.*"
+  ],
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/console/namespaces/detail",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":[{\"name\":\"业务组\",\"zkAddressList\":\"localhost:2181\",\"namespace\":\"mydomain\",\"zkAlias\":\"集群1\",\"zkClusterKey\":\"cluster1\",\"digest\":\"\",\"nameAndNamespace\":\"业务组/mydomain\",\"sysAdmin\":\"\",\"techAdmin\":\"\",\"degree\":\"\",\"version\":\"\",\"container\":\"\"},{\"name\":\"\",\"zkAddressList\":\"localhost:2181\",\"namespace\":\"pvns1\",\"zkAlias\":\"集群1\",\"zkClusterKey\":\"cluster1\",\"digest\":\"\",\"nameAndNamespace\":\"/p",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "zk-control-create",
+  "purpose": "control",
+  "targets": [
+   "zk_cluster_info.*"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/zkClusters",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "zk-control-readback",
+  "purpose": "read-back",
+  "targets": [
+   "zk_cluster_info.*"
+  ],
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/console/zkClusters",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":[{\"zkClusterKey\":\"cluster1\",\"zkAlias\":\"集群1\",\"zkAddr\":\"localhost:2181\",\"description\":\"\",\"digest\":\"\",\"offline\":false}]}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "zk-dup-key",
+  "purpose": "violation",
+  "targets": [
+   "zk_cluster_info.uniq(zk_cluster_key)"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/zkClusters",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"ZK cluster[pvzk1]已经存在\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "zk-null-description",
+  "purpose": "violation",
+  "targets": [
+   "zk_cluster_info.description not-null"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/zkClusters",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "zk-null-description-readback",
+  "purpose": "read-back",
+  "targets": [
+   "zk_cluster_info.description not-null"
+  ],
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/console/zkClusters",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":[{\"zkClusterKey\":\"cluster1\",\"zkAlias\":\"集群1\",\"zkAddr\":\"localhost:2181\",\"description\":\"\",\"digest\":\"\",\"offline\":false}]}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "zk-len-key-256",
+  "purpose": "violation",
+  "targets": [
+   "zk_cluster_info.zk_cluster_key length"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/zkClusters",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"\\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \\\"ZK_CLUSTER_KEY VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\\\u96c6\\\\u7fa4key\\\\u503c\\\\uff0c\\\\u552f\\\\u4e00')\\\": \\\"'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk... (256)\\\"; SQL statement:\\n",
+  "sql_error_lines": [
+   "### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"ZK_CLUSTER_KEY VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u96c6\\u7fa4key\\u503c\\uff0c\\u552f\\u4e00')\": \"'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk... (256)\"; SQL statement:",
+   "### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"ZK_CLUSTER_KEY VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u96c6\\u7fa4key\\u503c\\uff0c\\u552f\\u4e00')\": \"'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk... (256)\"; SQL statement:",
+   "; SQL []; Value too long for column \"ZK_CLUSTER_KEY VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u96c6\\u7fa4key\\u503c\\uff0c\\u552f\\u4e00')\": \"'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk... (256)\"; SQL statement:",
+   "        values(?, ?,?,?,?,?,?,?) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \"ZK_CLUSTER_KEY VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u96c6\\u7fa4key\\u503c\\uff0c\\u552f\\u4e00')\": \"'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk... (256)\"; SQL statement:",
+   "org.springframework.dao.DataIntegrityViolationException: "
+  ]
+ },
+ {
+  "case_id": "zk-len-alias-256",
+  "purpose": "violation",
+  "targets": [
+   "zk_cluster_info.alias length"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/zkClusters",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"\\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \\\"ALIAS VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\\\u522b\\\\u540d')\\\": \\\"'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa... (256)\\\"; SQL statement:\\ninsert into zk_cluster_info(create_time,",
+  "sql_error_lines": [
+   "### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"ALIAS VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u522b\\u540d')\": \"'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa... (256)\"; SQL statement:",
+   "### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"ALIAS VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u522b\\u540d')\": \"'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa... (256)\"; SQL statement:",
+   "; SQL []; Value too long for column \"ALIAS VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u522b\\u540d')\": \"'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa... (256)\"; SQL statement:",
+   "        values(?, ?,?,?,?,?,?,?) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \"ALIAS VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u522b\\u540d')\": \"'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa... (256)\"; SQL statement:",
+   "org.springframework.dao.DataIntegrityViolationException: "
+  ]
+ },
+ {
+  "case_id": "zk-len-connect-269",
+  "purpose": "violation",
+  "targets": [
+   "zk_cluster_info.connect_string length"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/zkClusters",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"\\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \\\"CONNECT_STRING VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\\\u8fde\\\\u63a5\\\\u4e32')\\\": \\\"'127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0... (269)\\\"; SQL statement:\\ninsert into zk_cluster_i",
+  "sql_error_lines": [
+   "### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"CONNECT_STRING VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u8fde\\u63a5\\u4e32')\": \"'127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0... (269)\"; SQL statement:",
+   "### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"CONNECT_STRING VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u8fde\\u63a5\\u4e32')\": \"'127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0... (269)\"; SQL statement:",
+   "; SQL []; Value too long for column \"CONNECT_STRING VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u8fde\\u63a5\\u4e32')\": \"'127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0... (269)\"; SQL statement:",
+   "        values(?, ?,?,?,?,?,?,?) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \"CONNECT_STRING VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u8fde\\u63a5\\u4e32')\": \"'127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0... (269)\"; SQL statement:",
+   "org.springframework.dao.DataIntegrityViolationException: "
+  ]
+ },
+ {
+  "case_id": "zk-len-description-256",
+  "purpose": "violation",
+  "targets": [
+   "zk_cluster_info.description length"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/zkClusters",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"\\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \\\"DESCRIPTION VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\\\u96c6\\\\u7fa4\\\\u63cf\\\\u8ff0')\\\": \\\"'ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd... (256)\\\"; SQL statement:\\ninsert into zk_clust",
+  "sql_error_lines": [
+   "### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"DESCRIPTION VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u96c6\\u7fa4\\u63cf\\u8ff0')\": \"'ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd... (256)\"; SQL statement:",
+   "### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"DESCRIPTION VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u96c6\\u7fa4\\u63cf\\u8ff0')\": \"'ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd... (256)\"; SQL statement:",
+   "; SQL []; Value too long for column \"DESCRIPTION VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u96c6\\u7fa4\\u63cf\\u8ff0')\": \"'ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd... (256)\"; SQL statement:",
+   "        values(?, ?,?,?,?,?,?,?) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \"DESCRIPTION VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u96c6\\u7fa4\\u63cf\\u8ff0')\": \"'ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd... (256)\"; SQL statement:",
+   "org.springframework.dao.DataIntegrityViolationException: "
+  ]
+ },
+ {
+  "case_id": "zk-null-zk_cluster_key",
+  "purpose": "violation",
+  "targets": [
+   "zk_cluster_info.zk_cluster_key not-null"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/zkClusters",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"Required String parameter 'zkClusterKey' is not present\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "zk-null-alias",
+  "purpose": "violation",
+  "targets": [
+   "zk_cluster_info.alias not-null"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/zkClusters",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"Required String parameter 'alias' is not present\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "zk-null-connect_string",
+  "purpose": "violation",
+  "targets": [
+   "zk_cluster_info.connect_string not-null"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/zkClusters",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"Required String parameter 'connectString' is not present\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "zk-update-null-description",
+  "purpose": "violation",
+  "targets": [
+   "zk_cluster_info.description not-null"
+  ],
+  "method": "PUT",
+  "url": "http://127.0.0.1:18205/console/zkClusters",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "zk-update-len-description-256",
+  "purpose": "violation",
+  "targets": [
+   "zk_cluster_info.description length"
+  ],
+  "method": "PUT",
+  "url": "http://127.0.0.1:18205/console/zkClusters",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"\\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \\\"DESCRIPTION VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\\\u96c6\\\\u7fa4\\\\u63cf\\\\u8ff0')\\\": \\\"'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee... (256)\\\"; SQL statement:\\nupdate zk_cluster_in",
+  "sql_error_lines": [
+   "### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"DESCRIPTION VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u96c6\\u7fa4\\u63cf\\u8ff0')\": \"'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee... (256)\"; SQL statement:",
+   "### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"DESCRIPTION VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u96c6\\u7fa4\\u63cf\\u8ff0')\": \"'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee... (256)\"; SQL statement:",
+   "; SQL []; Value too long for column \"DESCRIPTION VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u96c6\\u7fa4\\u63cf\\u8ff0')\": \"'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee... (256)\"; SQL statement:",
+   "        where zk_cluster_key = ? [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \"DESCRIPTION VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u96c6\\u7fa4\\u63cf\\u8ff0')\": \"'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee... (256)\"; SQL statement:",
+   "org.springframework.dao.DataIntegrityViolationException: "
+  ]
+ },
+ {
+  "case_id": "zk-update-len-connect-269",
+  "purpose": "violation",
+  "targets": [
+   "zk_cluster_info.connect_string length"
+  ],
+  "method": "PUT",
+  "url": "http://127.0.0.1:18205/console/zkClusters",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"\\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \\\"CONNECT_STRING VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\\\u8fde\\\\u63a5\\\\u4e32')\\\": \\\"'127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0... (269)\\\"; SQL statement:\\nupdate zk_cluster_info s",
+  "sql_error_lines": [
+   "### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"CONNECT_STRING VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u8fde\\u63a5\\u4e32')\": \"'127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0... (269)\"; SQL statement:",
+   "### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"CONNECT_STRING VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u8fde\\u63a5\\u4e32')\": \"'127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0... (269)\"; SQL statement:",
+   "; SQL []; Value too long for column \"CONNECT_STRING VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u8fde\\u63a5\\u4e32')\": \"'127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0... (269)\"; SQL statement:",
+   "        where zk_cluster_key = ? [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \"CONNECT_STRING VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u8fde\\u63a5\\u4e32')\": \"'127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181,127.0.0... (269)\"; SQL statement:",
+   "org.springframework.dao.DataIntegrityViolationException: "
+  ]
+ },
+ {
+  "case_id": "zk-final-readback",
+  "purpose": "read-back",
+  "targets": [
+   "zk_cluster_info.*"
+  ],
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/console/zkClusters",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":[{\"zkClusterKey\":\"cluster1\",\"zkAlias\":\"集群1\",\"zkAddr\":\"localhost:2181\",\"description\":\"\",\"digest\":\"\",\"offline\":false}]}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "sc-control-create",
+  "purpose": "control",
+  "targets": [
+   "sys_config.*"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/configs/console/create",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "sc-control-dup-proves-persisted",
+  "purpose": "read-back",
+  "targets": [
+   "sys_config.*"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/configs/console/create",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"systemConfig PV_TEST_A already existed\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "sc-len-value-2001",
+  "purpose": "violation",
+  "targets": [
+   "sys_config.value length"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/configs/console/create",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"\\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \\\"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\\\u5c5e\\\\u6027\\\\u503c')\\\": \\\"'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv... (2001)\\\"; SQL statement:\\ninsert into sys_config(property, value) va",
+  "sql_error_lines": [
+   "### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u503c')\": \"'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv... (2001)\"; SQL statement:",
+   "### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u503c')\": \"'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv... (2001)\"; SQL statement:",
+   "; SQL []; Value too long for column \"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u503c')\": \"'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv... (2001)\"; SQL statement:",
+   "insert into sys_config(property, value) values(?, ?) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u503c')\": \"'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv... (2001)\"; SQL statement:",
+   "org.springframework.dao.DataIntegrityViolationException: "
+  ]
+ },
+ {
+  "case_id": "sc-len-value-2001-readback",
+  "purpose": "read-back",
+  "targets": [
+   "sys_config.value length"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/configs/console/create",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "sc-len-property-256",
+  "purpose": "violation",
+  "targets": [
+   "sys_config.property length"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/configs/console/create",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"\\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \\\"PROPERTY VARCHAR(255) NOT NULL COMMENT STRINGDECODE('\\\\u5c5e\\\\u6027\\\\u540d')\\\": \\\"'PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP... (256)\\\"; SQL statement:\\ninsert into sys_config(property, value) v",
+  "sql_error_lines": [
+   "### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"PROPERTY VARCHAR(255) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u540d')\": \"'PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP... (256)\"; SQL statement:",
+   "### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"PROPERTY VARCHAR(255) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u540d')\": \"'PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP... (256)\"; SQL statement:",
+   "; SQL []; Value too long for column \"PROPERTY VARCHAR(255) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u540d')\": \"'PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP... (256)\"; SQL statement:",
+   "insert into sys_config(property, value) values(?, ?) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \"PROPERTY VARCHAR(255) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u540d')\": \"'PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP... (256)\"; SQL statement:",
+   "org.springframework.dao.DataIntegrityViolationException: "
+  ]
+ },
+ {
+  "case_id": "sc-null-value",
+  "purpose": "violation",
+  "targets": [
+   "sys_config.value not-null"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/configs/console/create",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"Required String parameter 'value' is not present\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "sc-null-property",
+  "purpose": "violation",
+  "targets": [
+   "sys_config.property not-null"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/configs/console/create",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"Required String parameter 'key' is not present\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "sc-update-len-value-2001",
+  "purpose": "violation",
+  "targets": [
+   "sys_config.value length"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/configs/console/update",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"\\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \\\"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\\\u5c5e\\\\u6027\\\\u503c')\\\": \\\"'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww... (2001)\\\"; SQL statement:\\nupdate sys_config\\n        set property = ",
+  "sql_error_lines": [
+   "### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u503c')\": \"'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww... (2001)\"; SQL statement:",
+   "### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u503c')\": \"'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww... (2001)\"; SQL statement:",
+   "; SQL []; Value too long for column \"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u503c')\": \"'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww... (2001)\"; SQL statement:",
+   "        where id = ? [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u503c')\": \"'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww... (2001)\"; SQL statement:",
+   "org.springframework.dao.DataIntegrityViolationException: "
+  ]
+ },
+ {
+  "case_id": "sc-readback-all",
+  "purpose": "read-back",
+  "targets": [
+   "sys_config.*"
+  ],
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/console/configs/console",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":{\"job_configs\":[{\"key\":\"MAX_JOB_NUM\",\"value\":\"100\",\"description\":\"每个域最大作业数\"},{\"key\":\"INTERVAL_TIME_OF_ENABLED_REPORT\",\"value\":\"5\",\"description\":\"根据cron计算执行间隔时间，如果间隔时间小于此值，则不上报作业运行状态；否则，则上报\"}],\"executor_configs\":[{\"key\":\"ALARM_RAISED_ON_EXECUTOR_RESTART\",\"value\":\"false\",\"description\":\"executor restart是否发送告警\"},{\"key\":\"MAX_SECONDS_FORCE_KILL_EXECUTOR\",\"value\":\"300\",\"des",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ur-control-add",
+  "purpose": "control",
+  "targets": [
+   "user_role.*"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/authorizationManage/addUserRoles",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ur-control-readback",
+  "purpose": "read-back",
+  "targets": [
+   "user_role.*"
+  ],
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/console/authorizationManage/getUserRoles?userName=guest",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":[{\"createdBy\":\"admin\",\"createTime\":1790727587257,\"lastUpdatedBy\":\"admin\",\"lastUpdateTime\":1790727587257,\"isDeleted\":false,\"userName\":\"guest\",\"roleKey\":\"namespace_developer\",\"namespace\":\"pvns1\",\"needApproval\":false,\"user\":\"\",\"role\":\"\"}]}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ur-dup-add",
+  "purpose": "violation",
+  "targets": [
+   "user_role.uniq(user_name,role_key,namespace)"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/authorizationManage/addUserRoles",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ur-dup-readback",
+  "purpose": "read-back",
+  "targets": [
+   "user_role.uniq(user_name,role_key,namespace)"
+  ],
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/console/authorizationManage/getUserRoles?userName=guest",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":[{\"createdBy\":\"admin\",\"createTime\":1790727587257,\"lastUpdatedBy\":\"admin\",\"lastUpdateTime\":1790727587257,\"isDeleted\":false,\"userName\":\"guest\",\"roleKey\":\"namespace_developer\",\"namespace\":\"pvns1\",\"needApproval\":true,\"user\":\"\",\"role\":\"\"}]}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ur-len-namespace-256",
+  "purpose": "violation",
+  "targets": [
+   "user_role.namespace length"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/authorizationManage/addUserRoles",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"\\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \\\"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\\\u57df\\\\u540d')\\\": \\\"'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq... (256)\\\"; SQL statement:\\nINSERT INTO `user_role`(`user_name`,",
+  "sql_error_lines": [
+   "### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq... (256)\"; SQL statement:",
+   "### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq... (256)\"; SQL statement:",
+   "; SQL []; Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq... (256)\"; SQL statement:",
+   "        ?, ?, ?) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq... (256)\"; SQL statement:",
+   "org.springframework.dao.DataIntegrityViolationException: "
+  ]
+ },
+ {
+  "case_id": "ur-len-username-256",
+  "purpose": "violation",
+  "targets": [
+   "user_role.user_name length"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/authorizationManage/addUserRoles",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"用户名(uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu)不存在\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ur-len-rolekey-256",
+  "purpose": "violation",
+  "targets": [
+   "user_role.role_key length"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/authorizationManage/addUserRoles",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"角色key(rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr)不存在\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ur-null-needapproval",
+  "purpose": "violation",
+  "targets": [
+   "user_role.need_approval not-null"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/authorizationManage/addUserRoles",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"Required Boolean parameter 'needApproval' is not present\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ur-null-username",
+  "purpose": "violation",
+  "targets": [
+   "user_role.user_name not-null"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/authorizationManage/addUserRoles",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"Required String parameter 'userNames' is not present\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ur-null-rolekey",
+  "purpose": "violation",
+  "targets": [
+   "user_role.role_key not-null"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/authorizationManage/addUserRoles",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"Required String parameter 'roleKey' is not present\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ur-anon-createdby-null",
+  "purpose": "violation",
+  "targets": [
+   "user_role.created_by not-null",
+   "user_role.last_updated_by not-null"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/authorizationManage/addUserRoles",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ur-anon-readback",
+  "purpose": "read-back",
+  "targets": [
+   "user_role.created_by not-null"
+  ],
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/console/authorizationManage/getUserRoles?userName=guest",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":[{\"createdBy\":\"admin\",\"createTime\":1790727587257,\"lastUpdatedBy\":\"admin\",\"lastUpdateTime\":1790727587257,\"isDeleted\":false,\"userName\":\"guest\",\"roleKey\":\"namespace_developer\",\"namespace\":\"pvns1\",\"needApproval\":true,\"user\":\"\",\"role\":\"\"},{\"createdBy\":\"Unknown\",\"createTime\":1790727591327,\"lastUpdatedBy\":\"Unknown\",\"lastUpdateTime\":1790727591327,\"isDeleted\":false,\"userName\"",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ur-update-len-namespace-256",
+  "purpose": "violation",
+  "targets": [
+   "user_role.namespace length"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/authorizationManage/updateUserRole",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"\\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \\\"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\\\u57df\\\\u540d')\\\": \\\"'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww... (256)\\\"; SQL statement:\\nINSERT INTO `user_role`(`user_name`,",
+  "sql_error_lines": [
+   "### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww... (256)\"; SQL statement:",
+   "### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww... (256)\"; SQL statement:",
+   "; SQL []; Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww... (256)\"; SQL statement:",
+   "        ?, ?, ?) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \"NAMESPACE VARCHAR(255) DEFAULT '' NOT NULL COMMENT STRINGDECODE('\\u57df\\u540d')\": \"'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww... (256)\"; SQL statement:",
+   "org.springframework.dao.DataIntegrityViolationException: "
+  ]
+ },
+ {
+  "case_id": "ur-update-readback",
+  "purpose": "read-back",
+  "targets": [
+   "user_role.*"
+  ],
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/console/authorizationManage/getUserRoles?userName=guest",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":[{\"createdBy\":\"admin\",\"createTime\":1790727587257,\"lastUpdatedBy\":\"admin\",\"lastUpdateTime\":1790727587257,\"isDeleted\":false,\"userName\":\"guest\",\"roleKey\":\"namespace_developer\",\"namespace\":\"pvns1\",\"needApproval\":true,\"user\":\"\",\"role\":\"\"},{\"createdBy\":\"Unknown\",\"createTime\":1790727591327,\"lastUpdatedBy\":\"Unknown\",\"lastUpdateTime\":1790727591327,\"isDeleted\":false,\"userName\"",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "job-empty-timezone-readback-gui",
+  "purpose": "read-back",
+  "targets": [
+   "job_config.time_zone not-null"
+  ],
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/console/namespaces/mydomain/jobs/pvtzempty/config",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":{\"jobName\":\"pvtzempty\",\"jobClass\":\"demo.DemoJavaJob\",\"shardingTotalCount\":1,\"timeZone\":\"\",\"cron\":\"0/30 * * * * ?\",\"pausePeriodDate\":[],\"pausePeriodTime\":[],\"shardingItemParameters\":\"0=0\",\"jobParameter\":\"\",\"processCountIntervalSeconds\":300,\"failover\":true,\"description\":\"pv\",\"timeout4AlarmSeconds\":0,\"timeoutSeconds\":0,\"disableTimeoutSeconds\":0,\"showNormalLog\":false,\"ch",
+  "sql_error_lines": []
+ }
+]

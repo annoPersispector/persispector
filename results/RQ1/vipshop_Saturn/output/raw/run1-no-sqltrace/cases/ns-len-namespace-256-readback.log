@@ -1,0 +1,1 @@
+[2026-09-29 20:17:07.300] [WARN] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.controller.rest.AbstractRestController] >>> Exception happens while calling REST API:The namespace does not exists.

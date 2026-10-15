@@ -1,0 +1,15 @@
+2026-09-29 03:08:41.067 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.mapper.UserMapper.findById       : ==>  Preparing: select id, username, email, password, bio, image from users where id = ?
+2026-09-29 03:08:41.068 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.mapper.UserMapper.findById       : ==> Parameters: 6617cc9f-8f05-4d27-8453-7f3646664798(String)
+2026-09-29 03:08:41.069 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.mapper.UserMapper.findById       : <==      Total: 1
+2026-09-29 03:08:41.072 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.mapper.ArticleMapper.findBySlug  : ==>  Preparing: select A.id articleId, A.slug articleSlug, A.title articleTitle, A.description articleDescription, A.body articleBody, A.user_id articleUserId, A.created_at articleCreatedAt, A.updated_at articleUpdatedAt, T.id tagId, T.name tagName from articles A left join article_tags AT on A.id = AT.article_id left join tags T on T.id = AT.tag_id where A.slug = ?
+2026-09-29 03:08:41.073 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.mapper.ArticleMapper.findBySlug  : ==> Parameters: other-title(String)
+2026-09-29 03:08:41.074 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.mapper.ArticleMapper.findBySlug  : <==      Total: 1
+2026-09-29 03:08:41.074 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.mapper.CommentMapper.insert      : ==>  Preparing: insert into comments(id, body, user_id, article_id, created_at, updated_at) values ( ?, ?, ?, ?, ?, ? )
+2026-09-29 03:08:41.074 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.mapper.CommentMapper.insert      : ==> Parameters: d30d54e5-f149-4b0c-8c3b-718a4a7cf819(String), 42(String), 6617cc9f-8f05-4d27-8453-7f3646664798(String), a775d7fe-78c8-4e82-93cc-64d8fc73f8c4(String), 2026-09-29 03:08:41.074(Timestamp), 2026-09-29 03:08:41.074(Timestamp)
+2026-09-29 03:08:41.085 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.mapper.CommentMapper.insert      : <==    Updates: 1
+2026-09-29 03:08:41.085 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.r.CommentReadService.findById    : ==>  Preparing: SELECT C.id commentId, C.body commentBody, C.created_at commentCreatedAt, C.article_id commentArticleId, U.id userId, U.username userUsername, U.bio userBio, U.image userImage from comments C left join users U on C.user_id = U.id where C.id = ?
+2026-09-29 03:08:41.085 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.r.CommentReadService.findById    : ==> Parameters: d30d54e5-f149-4b0c-8c3b-718a4a7cf819(String)
+2026-09-29 03:08:41.086 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.r.CommentReadService.findById    : <==      Total: 1
+2026-09-29 03:08:41.086 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.r.U.isUserFollowing              : ==>  Preparing: select count(1) from follows where user_id = ? and follow_id = ?
+2026-09-29 03:08:41.086 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.r.U.isUserFollowing              : ==> Parameters: 6617cc9f-8f05-4d27-8453-7f3646664798(String), 6617cc9f-8f05-4d27-8453-7f3646664798(String)
+2026-09-29 03:08:41.086 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.r.U.isUserFollowing              : <==      Total: 1

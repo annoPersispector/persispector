@@ -1,0 +1,17 @@
+To honour the JVM settings for this build a new JVM will be forked. Please consider using the daemon: https://docs.gradle.org/5.2/userguide/gradle_daemon.html.
+Daemon will be stopped at the end of the build stopping after processing
+
+> Task :compileJava
+Note: /artifact/results/RQ1/yanagishima_yanagishima/yanagishima_yanagishima-20260929T065140Z-b89792d6/application/src/main/java/yanagishima/service/HiveService.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :processResources
+> Task :classes
+> Task :jar
+> Task :copyDeps
+> Task :copyLibs
+
+BUILD SUCCESSFUL in 10s
+5 actionable tasks: 5 executed

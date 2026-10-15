@@ -1,0 +1,48 @@
+web - 2026-09-29 02:36:27,926 [http-nio-127.0.0.1-18206-exec-2] DEBUG c.b.w.c.RegistrationRestController - Registering user account with information: UserDto [firstName=Pv, lastName=Check, email=pv.b30@example.test, isUsing2FA=false, role=null]
+web - 2026-09-29 02:36:27,928 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,u1_0.secret from user_account u1_0 where u1_0.email=?
+web - 2026-09-29 02:36:27,928 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [pv.b30@example.test]
+web - 2026-09-29 02:36:28,046 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - select r1_0.id,r1_0.name from role r1_0 where r1_0.name=?
+web - 2026-09-29 02:36:28,046 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [ROLE_USER]
+web - 2026-09-29 02:36:28,047 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - insert into user_account (email,enabled,first_name,is_using2fa,last_name,password,secret,id) values (?,?,?,?,?,?,?,?)
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [pv.b30@example.test]
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [2] as [BOOLEAN] - [false]
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [3] as [VARCHAR] - [Pv]
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [4] as [BOOLEAN] - [false]
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [5] as [VARCHAR] - [Check]
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [6] as [VARCHAR] - [$2a$11$nzhR/ar/57ntEV1rhgu5WuA7cPn4TfGm6J5hLbtRMUI4q2gsKz4WK]
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [7] as [VARCHAR] - [E2I3BXOCZKAXPSRX]
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [8] as [BIGINT] - [3]
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - insert into users_roles (user_id,role_id) values (?,?)
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [3]
+web - 2026-09-29 02:36:28,048 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [2]
+web - 2026-09-29 02:36:28,050 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - select next value for verification_token_seq
+web - 2026-09-29 02:36:28,050 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - insert into verification_token (expiry_date,token,user_id,id) values (?,?,?,?)
+web - 2026-09-29 02:36:28,050 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [TIMESTAMP] - [2026-09-30 02:36:28.05]
+web - 2026-09-29 02:36:28,050 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [2] as [VARCHAR] - [fc1712c8-a89c-4a13-8513-ca73676dfae3]
+web - 2026-09-29 02:36:28,050 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [3] as [BIGINT] - [3]
+web - 2026-09-29 02:36:28,051 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [4] as [BIGINT] - [2]
+web - 2026-09-29 02:36:28,055 [http-nio-127.0.0.1-18206-exec-2] ERROR c.b.w.e.RestResponseEntityExceptionHandler - 500 Status Code
+o.s.m.MailSendException: Mail server connection failed. Failed messages: jakarta.mail.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206;
+  nested exception is:
+	javax.net.ssl.SSLException: Unsupported or unrecognized SSL message
+	at o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:448)
+	at o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:323)
+	at o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:312)
+	at c.b.r.l.RegistrationListener.confirmRegistration(RegistrationListener.java:43)
+	at c.b.r.l.RegistrationListener.onApplicationEvent(RegistrationListener.java:34)
+	... 96 frames truncated
+Caused by: j.m.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206
+	at c.s.m.s.SMTPTransport.openServer(SMTPTransport.java:2261)
+	at c.s.m.s.SMTPTransport.protocolConnect(SMTPTransport.java:754)
+	at j.m.Service.connect(Service.java:342)
+	at o.s.m.j.JavaMailSenderImpl.connectTransport(JavaMailSenderImpl.java:518)
+	at o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:437)
+	... 100 common frames omitted
+Caused by: j.n.s.SSLException: Unsupported or unrecognized SSL message
+	at s.s.s.SSLSocketInputRecord.handleUnknownRecord(SSLSocketInputRecord.java:457)
+	at s.s.s.SSLSocketInputRecord.decode(SSLSocketInputRecord.java:175)
+	at s.s.s.SSLTransport.decode(SSLTransport.java:111)
+	at s.s.s.SSLSocketImpl.decode(SSLSocketImpl.java:1510)
+	at s.s.s.SSLSocketImpl.readHandshakeRecord(SSLSocketImpl.java:1425)
+	... 6 frames truncated
+	... 104 common frames omitted

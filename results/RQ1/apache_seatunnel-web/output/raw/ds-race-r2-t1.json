@@ -1,0 +1,36 @@
+{
+  "case_id": "ds-race-r2-t1",
+  "purpose": "violation",
+  "targets": [],
+  "note": "concurrent race for composite unique; log slices overlap",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/datasource/create",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "datasourceName": "ds_race2",
+      "pluginName": "JDBC-Mysql",
+      "description": "r",
+      "datasourceConfig": "{\"url\": \"u\"}"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:32:52 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 99999,
+      "msg": "Unknown exception. \n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: \"public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))\"; SQL statement:\nINSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]\n### The error may exist in org/apache/seatunnel/app/dal/mapper/DatasourceMapper.java (best guess)\n### The error may involve org.apache.seatunnel.app.dal.mapper.DatasourceMapper.insert-Inline\n### The error occurred while setting parameters\n### SQL: INSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  )\n### Cause: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: \"public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))\"; SQL statement:\nINSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]\n; Unique index or primary key violation: \"public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))\"; SQL statement:\nINSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]; nested exception is org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: \"public.CONSTRAINT_INDEX_E ON public.t_st_datasource(datasource_name NULLS FIRST, workspace_id NULLS FIRST) VALUES ( /* key:23198767644448 */ 'ds_race2', CAST(1 AS BIGINT))\"; SQL statement:\nINSERT INTO t_st_datasource  ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id )  VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  ) [23505-214]",
+      "data": null,
+      "failed": true,
+      "success": false
+    }
+  },
+  "log_slice": "logs/cases/ds-race-r2-t1.log"
+}

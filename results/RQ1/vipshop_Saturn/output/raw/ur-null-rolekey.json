@@ -1,0 +1,38 @@
+{
+ "case_id": "ur-null-rolekey",
+ "purpose": "violation",
+ "target_hint": [
+  "user_role.role_key not-null"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/authorizationManage/addUserRoles",
+  "headers": {
+   "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+  },
+  "body": {
+   "userNames": "guest",
+   "namespaces": "pvns1",
+   "needApproval": "false"
+  },
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:19:50 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"status\":1,\"message\":\"Required String parameter 'roleKey' is not present\",\"obj\":\"\"}",
+  "json": {
+   "status": 1,
+   "message": "Required String parameter 'roleKey' is not present",
+   "obj": ""
+  }
+ },
+ "elapsed_seconds": 0.004,
+ "timestamp": "2026-09-29T20:19:51-0400"
+}

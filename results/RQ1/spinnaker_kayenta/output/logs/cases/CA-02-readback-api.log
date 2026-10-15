@@ -1,0 +1,2 @@
+2026-09-29 12:27:23.409 DEBUG 1164260 --- [.1-18204-exec-9] org.hibernate.SQL                        : select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as content2_0_0_, sqlcanarya0_.created_at as created_3_0_0_, sqlcanarya0_.updated_at as updated_4_0_0_ from canary_archive sqlcanarya0_ where sqlcanarya0_.id=?
+2026-09-29 12:27:23.409 TRACE 1164260 --- [.1-18204-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ca-valid-001]

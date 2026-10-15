@@ -1,0 +1,35 @@
+{
+ "case_id": "U07-violation-username-300",
+ "purpose": "violation",
+ "target_ids": [
+  "pc-6980a721c659",
+  "pc-c377652628ae"
+ ],
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18208/users",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "body": {
+   "user": {
+    "username": "uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu",
+    "email": "longname@example.com",
+    "password": "secret123"
+   }
+  }
+ },
+ "response": {
+  "status": 201,
+  "body": {
+   "user": {
+    "email": "longname@example.com",
+    "username": "uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu",
+    "bio": "",
+    "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+    "token": "<JWT-REDACTED>"
+   }
+  }
+ },
+ "note": ""
+}

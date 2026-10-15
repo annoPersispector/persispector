@@ -1,0 +1,55 @@
+{
+ "case_id": "A08-boundary-desc-body-nonstring",
+ "purpose": "boundary",
+ "target_ids": [
+  "pc-57bb94b78e9d",
+  "pc-71f42f2e337f"
+ ],
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18208/articles",
+  "headers": {
+   "Content-Type": "application/json",
+   "Authorization": "Token <JWT-REDACTED>"
+  },
+  "body": {
+   "article": {
+    "title": "Typed Body",
+    "description": 123,
+    "body": true,
+    "tagList": [
+     "delta"
+    ]
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "body": {
+   "article": {
+    "id": "25357a89-d094-4e83-958e-12a4edc3e876",
+    "slug": "typed-body",
+    "title": "Typed Body",
+    "description": "123",
+    "body": "true",
+    "favorited": false,
+    "favoritesCount": 0,
+    "createdAt": "2026-09-29T07:08:39.453Z",
+    "updatedAt": "2026-09-29T07:08:39.453Z",
+    "tagList": [
+     "delta"
+    ],
+    "cursor": {
+     "data": "2026-09-29T07:08:39.453Z"
+    },
+    "author": {
+     "username": "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv",
+     "bio": "",
+     "image": "https://img.example/iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.png",
+     "following": false
+    }
+   }
+  }
+ },
+ "note": ""
+}

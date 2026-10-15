@@ -1,0 +1,58 @@
+web - 2026-09-29 02:36:27,216 [http-nio-127.0.0.1-18206-exec-10] DEBUG c.b.w.c.RegistrationRestController - Registering user account with information: UserDto [firstName=Pv, lastName=Check, email=pv.control@example.test, isUsing2FA=false, role=null]
+web - 2026-09-29 02:36:27,217 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,u1_0.secret from user_account u1_0 where u1_0.email=?
+web - 2026-09-29 02:36:27,218 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [pv.control@example.test]
+web - 2026-09-29 02:36:27,336 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select r1_0.id,r1_0.name from role r1_0 where r1_0.name=?
+web - 2026-09-29 02:36:27,336 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [ROLE_USER]
+web - 2026-09-29 02:36:27,337 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select next value for user_account_seq
+web - 2026-09-29 02:36:27,337 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - insert into user_account (email,enabled,first_name,is_using2fa,last_name,password,secret,id) values (?,?,?,?,?,?,?,?)
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [pv.control@example.test]
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [2] as [BOOLEAN] - [false]
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [3] as [VARCHAR] - [Pv]
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [4] as [BOOLEAN] - [false]
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [5] as [VARCHAR] - [Check]
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [6] as [VARCHAR] - [$2a$11$KyqKuFc7OkxKSZnXuaTV5u1H2nr8TUi25EVEAziwwEl1QDZJOvnrC]
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [7] as [VARCHAR] - [J5DXJT5FRS36UYU2]
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [8] as [BIGINT] - [2]
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - insert into users_roles (user_id,role_id) values (?,?)
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [2]
+web - 2026-09-29 02:36:27,338 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [2]
+web - 2026-09-29 02:36:27,341 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select next value for verification_token_seq
+web - 2026-09-29 02:36:27,342 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - insert into verification_token (expiry_date,token,user_id,id) values (?,?,?,?)
+web - 2026-09-29 02:36:27,342 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [TIMESTAMP] - [2026-09-30 02:36:27.34]
+web - 2026-09-29 02:36:27,342 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [2] as [VARCHAR] - [b4578745-f41a-4112-9347-7c7f696a564c]
+web - 2026-09-29 02:36:27,343 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [3] as [BIGINT] - [2]
+web - 2026-09-29 02:36:27,343 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [4] as [BIGINT] - [1]
+web - 2026-09-29 02:36:27,496 [http-nio-127.0.0.1-18206-exec-1] INFO  o.a.c.h.Http11Processor - Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+j.l.IllegalArgumentException: Invalid character found in method name [0x160x030x030x010xb30x010x000x010xaf0x030x030xfa0x820x900xdaC0xc50xf40xa40xc50xa90xcc0xe20xe10xeaj}w0x9d0x8e0x820xeea0xbc0xe20x8eU0x920x100x02/0xa60x91 ]. HTTP method names must be tokens
+	at o.a.c.h.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:407)
+	at o.a.c.h.Http11Processor.service(Http11Processor.java:263)
+	at o.a.c.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at o.a.c.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+	at o.a.t.u.n.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	... 5 frames truncated
+web - 2026-09-29 02:36:27,503 [http-nio-127.0.0.1-18206-exec-10] ERROR c.b.w.e.RestResponseEntityExceptionHandler - 500 Status Code
+o.s.m.MailSendException: Mail server connection failed. Failed messages: jakarta.mail.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206;
+  nested exception is:
+	javax.net.ssl.SSLException: Unsupported or unrecognized SSL message
+	at o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:448)
+	at o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:323)
+	at o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:312)
+	at c.b.r.l.RegistrationListener.confirmRegistration(RegistrationListener.java:43)
+	at c.b.r.l.RegistrationListener.onApplicationEvent(RegistrationListener.java:34)
+	... 96 frames truncated
+Caused by: j.m.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206
+	at c.s.m.s.SMTPTransport.openServer(SMTPTransport.java:2261)
+	at c.s.m.s.SMTPTransport.protocolConnect(SMTPTransport.java:754)
+	at j.m.Service.connect(Service.java:342)
+	at o.s.m.j.JavaMailSenderImpl.connectTransport(JavaMailSenderImpl.java:518)
+	at o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:437)
+	... 100 common frames omitted
+Caused by: j.n.s.SSLException: Unsupported or unrecognized SSL message
+	at s.s.s.SSLSocketInputRecord.handleUnknownRecord(SSLSocketInputRecord.java:457)
+	at s.s.s.SSLSocketInputRecord.decode(SSLSocketInputRecord.java:175)
+	at s.s.s.SSLTransport.decode(SSLTransport.java:111)
+	at s.s.s.SSLSocketImpl.decode(SSLSocketImpl.java:1510)
+	at s.s.s.SSLSocketImpl.readHandshakeRecord(SSLSocketImpl.java:1425)
+	... 6 frames truncated
+	... 104 common frames omitted

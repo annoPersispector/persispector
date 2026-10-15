@@ -1,0 +1,4 @@
+2026-09-29T16:09:09.250349Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.0.42-0ubuntu0.20.04.1) initializing of server in progress as process 1153970
+2026-09-29T16:09:09.256908Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-09-29T16:09:09.746543Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-09-29T16:09:10.870112Z 5 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.

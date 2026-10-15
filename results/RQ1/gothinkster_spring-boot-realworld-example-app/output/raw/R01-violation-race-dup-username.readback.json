@@ -1,0 +1,12 @@
+{
+ "case_id": "R01-violation-race-dup-username",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select username, count(*) from users where username='racer' group by username",
+ "params": [],
+ "rows": [
+  [
+   "racer",
+   1
+  ]
+ ]
+}

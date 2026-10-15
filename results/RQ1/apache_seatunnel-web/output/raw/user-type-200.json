@@ -1,0 +1,38 @@
+{
+  "case_id": "user-type-200",
+  "purpose": "violation",
+  "targets": [],
+  "note": "TINYINT/Byte wrap",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/user",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "username": "user_ty200",
+      "password": "x",
+      "status": 0,
+      "type": 200
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:36:47 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 0,
+      "msg": null,
+      "data": {
+        "id": 2
+      },
+      "failed": false,
+      "success": true
+    }
+  },
+  "log_slice": "logs/cases/user-type-200.log"
+}

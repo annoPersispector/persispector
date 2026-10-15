@@ -1,0 +1,92 @@
+{
+  "schema_version": "persistence-runtime-verification-v1",
+  "application": "Baeldung_spring-security-registration",
+  "source_revision": null,
+  "isolated_application_path": "/artifact/results/RQ1/Baeldung_spring-security-registration/Baeldung_spring-security-registration-20260929T063401Z-2d6e2ecf/application",
+  "build_system": "maven 3.9.9 (spring-boot-starter-parent 3.1.0, war packaging)",
+  "java_version": "OpenJDK 17.0.15",
+  "runtime_database": "H2 2.1.214 in-memory (jdbc:h2:mem:registration_02), Hibernate 6.2.2 ddl-auto=update (project default)",
+  "schema_context_id": null,
+  "base_urls": [
+    "http://127.0.0.1:18206"
+  ],
+  "ports": [
+    18206
+  ],
+  "health_checks": [
+    "GET http://127.0.0.1:18206/login -> 200 (polled until ready)",
+    "Log line 'Started Application'"
+  ],
+  "commands": [
+    {
+      "purpose": "build",
+      "command": "mvn -q -B -DskipTests package dependency:build-classpath -Dmdep.outputFile=target/cp.txt",
+      "working_directory": "/artifact/results/RQ1/Baeldung_spring-security-registration/Baeldung_spring-security-registration-20260929T063401Z-2d6e2ecf/application",
+      "exit_code": 0
+    },
+    {
+      "purpose": "start (run 1, preliminary)",
+      "command": "java -cp \"target/classes:$(cat target/cp.txt)\" com.baeldung.Application --server.address=127.0.0.1 --server.port=18206 --spring.mail.host=127.0.0.1 --spring.mail.port=18206 --spring.mail.properties.mail.smtps.timeout=3000 --spring.mail.properties.mail.smtps.connectiontimeout=3000 --logging.level.org.hibernate.SQL=DEBUG --logging.level.org.hibernate.orm.jdbc.bind=TRACE --logging.level.org.hibernate.engine.jdbc.spi.SqlExceptionHelper=DEBUG > ../output/logs/app.log 2>&1 &",
+      "working_directory": "/artifact/results/RQ1/Baeldung_spring-security-registration/Baeldung_spring-security-registration-20260929T063401Z-2d6e2ecf/application",
+      "exit_code": null
+    },
+    {
+      "purpose": "stop (run 1)",
+      "command": "kill <java pid>",
+      "working_directory": "/artifact/results/RQ1/Baeldung_spring-security-registration/Baeldung_spring-security-registration-20260929T063401Z-2d6e2ecf/application",
+      "exit_code": 0
+    },
+    {
+      "purpose": "start (run 2, evidence run)",
+      "command": "java -cp \"target/classes:$(cat target/cp.txt)\" com.baeldung.Application --server.address=127.0.0.1 --server.port=18206 --spring.mail.host=127.0.0.1 --spring.mail.port=18206 --spring.mail.properties.mail.smtps.timeout=3000 --spring.mail.properties.mail.smtps.connectiontimeout=3000 --logging.level.org.hibernate.SQL=DEBUG --logging.level.org.hibernate.orm.jdbc.bind=TRACE --logging.level.org.hibernate.engine.jdbc.spi.SqlExceptionHelper=DEBUG --logging.level.org.springframework.web=DEBUG > ../output/logs/app.log 2>&1 &",
+      "working_directory": "/artifact/results/RQ1/Baeldung_spring-security-registration/Baeldung_spring-security-registration-20260929T063401Z-2d6e2ecf/application",
+      "exit_code": null
+    },
+    {
+      "purpose": "health check",
+      "command": "curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:18206/login",
+      "working_directory": "/artifact/results/RQ1/Baeldung_spring-security-registration/Baeldung_spring-security-registration-20260929T063401Z-2d6e2ecf/application",
+      "exit_code": 0
+    },
+    {
+      "purpose": "exercise cases",
+      "command": "python3 scripts/harness.py-driven inline session (see raw/*.json)",
+      "working_directory": "/artifact/results/RQ1/Baeldung_spring-security-registration/Baeldung_spring-security-registration-20260929T063401Z-2d6e2ecf/output",
+      "exit_code": 0
+    },
+    {
+      "purpose": "stop (run 2)",
+      "command": "kill 926763",
+      "working_directory": "/artifact/results/RQ1/Baeldung_spring-security-registration/Baeldung_spring-security-registration-20260929T063401Z-2d6e2ecf/application",
+      "exit_code": 0
+    }
+  ],
+  "patches": [],
+  "logs": [
+    {
+      "path": "logs/build.log",
+      "kind": "deployment-log",
+      "description": "Maven build output (quiet mode)",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/app.log",
+      "kind": "application-log",
+      "description": "Run 2 application log with Hibernate DDL/SQL trace",
+      "sha256": "0f3638844290794c67cb7c652279d0543b1b10e2758d31d114362f16438b7f7c"
+    },
+    {
+      "path": "logs/run1/app.log",
+      "kind": "application-log",
+      "description": "Run 1 application log (preliminary)",
+      "sha256": "af4937e9d8955fb415fa438ab8d9c334faee6af0cbf0b6f61d7e18bc831de052"
+    }
+  ],
+  "cleanup_performed": true,
+  "notes": [
+    "No source patches were needed; all adaptations are runtime property overrides (port, bind address, SMTP redirect to loopback, logging levels).",
+    "Executable war not used: SecSecurityConfig loads the GeoIP DB via ClassLoader.getResource().getFile(), which requires exploded classes, so the app was run from target/classes.",
+    "Both java processes were stopped; port 18206 verified free. The H2 database was in-memory and vanished on stop.",
+    "Seeded admin credentials (test@test.com/test) come from SetupDataLoader in the project source."
+  ]
+}

@@ -1,0 +1,42 @@
+{
+ "case_id": "F06-violation-upload-type-invalid",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18201/jifa-api/files/upload?type=NOT_A_TYPE",
+  "headers": {
+   "User-Agent": "python-requests/2.31.0",
+   "Accept-Encoding": "gzip, deflate, br",
+   "Accept": "*/*",
+   "Connection": "keep-alive",
+   "Authorization": "<JWT-REDACTED>",
+   "Content-Length": "195",
+   "Content-Type": "multipart/form-data; boundary=38235ee0117b804362cad7a7b366a987"
+  },
+  "body": "multipart: params={'type': 'NOT_A_TYPE'} filename='gc-badtype.log' (len=14) content_len=19"
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+   "X-Content-Type-Options": "nosniff",
+   "X-XSS-Protection": "0",
+   "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+   "Pragma": "no-cache",
+   "Expires": "0",
+   "X-Frame-Options": "DENY",
+   "Content-Length": "109",
+   "Date": "Tue, 29 Sep 2026 15:18:17 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"No enum constant org.eclipse.jifa.server.enums.FileType.NOT_A_TYPE\"}"
+ },
+ "correlated_log_lines": [
+  "2026-09-29T11:18:17.452-04:00 ERROR 1126360 --- [.1-18201-exec-7] o.e.j.s.c.GlobalExceptionHandler         : Error occurred when handling http request '/jifa-api/files/upload'",
+  "org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'type': Failed to convert value of type 'java.lang.String' to required type 'org.eclipse.jifa.server.enums.FileType'; Failed to convert from type [java.lang.String] to type [@org.springframework.web.bind.annotation.RequestParam org.eclipse.jifa.server.enums.FileType] for value [NOT_A_TYPE]",
+  "\tat org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.3.9.jar!/:6.3.9]",
+  "\tat org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.3.9.jar!/:6.3.9]",
+  "Caused by: org.springframework.core.convert.ConversionFailedException: Failed to convert from type [java.lang.String] to type [@org.springframework.web.bind.annotation.RequestParam org.eclipse.jifa.server.enums.FileType] for value [NOT_A_TYPE]",
+  "Caused by: java.lang.IllegalArgumentException: No enum constant org.eclipse.jifa.server.enums.FileType.NOT_A_TYPE"
+ ],
+ "extra": null
+}

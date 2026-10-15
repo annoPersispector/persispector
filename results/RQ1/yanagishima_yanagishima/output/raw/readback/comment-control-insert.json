@@ -1,0 +1,7 @@
+{
+  "case_id": "comment-control-insert",
+  "purpose": "control",
+  "api_readback": null,
+  "db_readback_sql": "SELECT datasource, engine, query_id, LEFT(content,40) content, LENGTH(content) clen, CHAR_LENGTH(user) ulen, like_count, update_time_string FROM comment ORDER BY datasource, engine, query_id",
+  "db_readback_result": "+---------------+--------+-----------------------------+---------+------+------+------------+----------------------------------------------------+\n| datasource    | engine | query_id                    | content | clen | ulen | like_count | update_time_string                                 |\n+---------------+--------+-----------------------------+---------+------+------+------------+----------------------------------------------------+\n| docker-presto | presto | 20260929_000000_00001_aaaaa | first   |    5 |    5 |          0 | 2026-09-29T02:55:54.874976-04:00[America/New_York] |\n+---------------+--------+-----------------------------+---------+------+------+------------+----------------------------------------------------+"
+}

@@ -1,0 +1,38 @@
+{
+ "case_id": "zk-null-zk_cluster_key",
+ "purpose": "violation",
+ "target_hint": [
+  "zk_cluster_info.zk_cluster_key not-null"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/zkClusters",
+  "headers": {
+   "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+  },
+  "body": {
+   "alias": "pvalias",
+   "connectString": "127.0.0.1:2181",
+   "description": "pv desc"
+  },
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:19:40 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"status\":1,\"message\":\"Required String parameter 'zkClusterKey' is not present\",\"obj\":\"\"}",
+  "json": {
+   "status": 1,
+   "message": "Required String parameter 'zkClusterKey' is not present",
+   "obj": ""
+  }
+ },
+ "elapsed_seconds": 0.005,
+ "timestamp": "2026-09-29T20:19:41-0400"
+}

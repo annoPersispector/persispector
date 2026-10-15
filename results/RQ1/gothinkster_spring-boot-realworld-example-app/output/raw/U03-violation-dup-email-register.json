@@ -1,0 +1,32 @@
+{
+ "case_id": "U03-violation-dup-email-register",
+ "purpose": "violation",
+ "target_ids": [
+  "pc-d699dbdf4b3e"
+ ],
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18208/users",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "body": {
+   "user": {
+    "username": "alice2",
+    "email": "alice@example.com",
+    "password": "secret123"
+   }
+  }
+ },
+ "response": {
+  "status": 422,
+  "body": {
+   "errors": {
+    "email": [
+     "duplicated email"
+    ]
+   }
+  }
+ },
+ "note": ""
+}

@@ -1,0 +1,30 @@
+{
+ "case_id": "job-len-timezone-256-readback",
+ "purpose": "read-back",
+ "target_hint": [
+  "job_config.time_zone length"
+ ],
+ "note": "",
+ "request": {
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/rest/v1/mydomain/jobs/pvtz1",
+  "headers": {},
+  "body": null,
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 404,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:19:18 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"message\":\"The job {pvtz1} does not exists.\"}",
+  "json": {
+   "message": "The job {pvtz1} does not exists."
+  }
+ },
+ "elapsed_seconds": 0.008,
+ "timestamp": "2026-09-29T20:19:19-0400"
+}

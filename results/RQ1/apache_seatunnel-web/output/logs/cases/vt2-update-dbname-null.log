@@ -1,0 +1,34 @@
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@12660cdc] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1813781113 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 2, 1, <<BLOB>>, 1, 2026-09-29 04:35:56.987, 2026-09-29 04:35:56.987, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@12660cdc]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2cae790f] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1728159690 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,datasource_id,virtual_database_name,virtual_table_name,table_fields,description,virtual_table_config,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_virtual_table WHERE (id = ? AND workspace_id = ?)
+==> Parameters: 23198791691936(Long), 1(Long)
+<==    Columns: id, datasource_id, virtual_database_name, virtual_table_name, table_fields, description, virtual_table_config, create_user_id, update_user_id, create_time, update_time, workspace_id
+<==        Row: 23198791691936, 23198791306016, vdb, vt_ctrl, [{"fieldName":"id","fieldType":"INT","nullable":false,"defaultValue":null,"primaryKey":true,"fieldComment":null,"fieldExtra":null}], d, {"k":"v"}, 1, 1, 2026-09-29 04:36:00.102, 2026-09-29 04:36:00.102, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2cae790f]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1b1ab191] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@70692360 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT COUNT(1) FROM t_st_virtual_table WHERE workspace_id = ? AND id != ? AND virtual_database_name = ? AND virtual_table_name = ?
+==> Parameters: 1(Long), 23198791691936(Long), null, vt_ctrl(String)
+<==    Columns: COUNT(1)
+<==        Row: 0
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1b1ab191]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7929155c] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@2072098828 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: UPDATE t_st_virtual_table SET datasource_id=?, virtual_table_name=?, table_fields=?, description=?, virtual_table_config=?, update_user_id=?, update_time=?, workspace_id=? WHERE id=?
+==> Parameters: 23198791306016(Long), vt_ctrl(String), [{"fieldName":"id","fieldType":"INT","nullable":false,"defaultValue":null,"primaryKey":true,"fieldComment":null,"fieldExtra":null}](String), d(String), {"k":"v"}(String), 1(Integer), 2026-09-29 04:36:08.03(Timestamp), 1(Long), 23198791691936(Long)
+<==    Updates: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7929155c]

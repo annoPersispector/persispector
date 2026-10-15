@@ -1,0 +1,4 @@
+-- MySQL read-back executed immediately after the request
+-- SQL: SELECT id, CHAR_LENGTH(id) AS id_len FROM canary_config WHERE JSON_UNQUOTE(JSON_EXTRACT(content,'$.name'))='cfgemptyid'
+id	id_len
+a14c712e-8fb6-4493-a918-536e37b0ad62	36

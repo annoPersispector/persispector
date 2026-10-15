@@ -1,0 +1,2928 @@
+{
+  "schema_version": "persistence-runtime-verification-v1",
+  "application": "Baeldung_spring-security-registration",
+  "constraint_report_schema_version": "9",
+  "generated_at": "2026-09-29T06:40:25.168203+00:00",
+  "target_ids": [
+    "pc-bb8149f66e5e",
+    "pc-b32616f91839",
+    "pc-2d9dcebe44bb",
+    "pc-9675b72b10f1",
+    "pc-59eed15a08ae",
+    "pc-6adbb8d1f613",
+    "pc-0ae63dad7bb9",
+    "pc-1b2f3d0cb90c",
+    "pc-b0d8b201b75c",
+    "pc-91738271ac10",
+    "pc-016323e7a03e",
+    "pc-02f2b44e194d",
+    "pc-8a9f9e890899",
+    "pc-aa3afec82064",
+    "pc-6ccd539d5f64",
+    "pc-4a315ecc6d36",
+    "pc-a944c6aee8f8",
+    "pc-50a06361f330",
+    "pc-879d80277dcc",
+    "pc-29140b5f442c",
+    "pc-105ab9a7198c",
+    "pc-43a36abc3819",
+    "pc-15d90c857799",
+    "dep-7c1ae4534c46",
+    "dep-36f11b73c41f",
+    "dep-49bd2e34886a",
+    "dep-e8b77e1b7059",
+    "dep-4885e4a93058",
+    "dep-6f1003335d99",
+    "dep-9cae88383c49",
+    "dep-a2dd5bd73014",
+    "dep-40a154be1981",
+    "dep-10a703b64121",
+    "dep-d1bb8190f17e",
+    "dep-7745339a7509",
+    "dep-19a3821c8531",
+    "dep-6c4cf8e0348d",
+    "dep-16655a5b88f0",
+    "dep-aaf21c07e94e"
+  ],
+  "cases": [
+    {
+      "case_id": "S01-admin-login",
+      "purpose": "setup",
+      "target_ids": [],
+      "endpoint": "/login",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18206/login",
+      "response_status": 302,
+      "reached_persistence": false,
+      "evidence": [
+        {
+          "path": "raw/S01-admin-login.json",
+          "kind": "http-exchange",
+          "description": "admin login exchange",
+          "sha256": "e0ff9f5ac43785735b5727fec5b02886161f203eea9d2597ed3f13752b5972ff"
+        }
+      ],
+      "observation": "Form login as seeded admin test@test.com -> 302 /console; session used only for SELECT read-backs via /h2 console."
+    },
+    {
+      "case_id": "C01-register-control",
+      "purpose": "control",
+      "target_ids": [
+        "pc-91738271ac10",
+        "pc-a944c6aee8f8",
+        "pc-50a06361f330",
+        "pc-879d80277dcc",
+        "dep-a2dd5bd73014",
+        "dep-7745339a7509",
+        "pc-016323e7a03e",
+        "pc-02f2b44e194d",
+        "pc-8a9f9e890899",
+        "pc-43a36abc3819",
+        "pc-15d90c857799",
+        "dep-6f1003335d99",
+        "dep-16655a5b88f0",
+        "dep-aaf21c07e94e"
+      ],
+      "endpoint": "/user/registration",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18206/user/registration",
+      "response_status": 500,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/C01-register-control.json",
+          "kind": "http-exchange",
+          "description": "registration control",
+          "sha256": "66760d3bf0287ad42fbfe263ee49c4f34c9a0a8130845c2a9652ce99a056a556"
+        },
+        {
+          "path": "logs/C01-register-control.log",
+          "kind": "sql-trace",
+          "description": "correlated SQL trace",
+          "sha256": "46ebc390d5183ad98bfe7d33e56349463c9b21b39bc92183952ac4f26ad27fd0"
+        }
+      ],
+      "observation": "Valid registration (10-char password). SQL trace shows insert into user_account, users_roles, verification_token. Response 500 InternalError is caused by the subsequent MailSendException (SMTP deliberately pointed at 127.0.0.1:18206, no external mail) AFTER the rows were committed; read-back R01/R02/R03 confirms persisted rows."
+    },
+    {
+      "case_id": "C02-register-boundary-30",
+      "purpose": "boundary",
+      "target_ids": [
+        "pc-91738271ac10",
+        "pc-a944c6aee8f8",
+        "pc-50a06361f330",
+        "pc-879d80277dcc",
+        "dep-a2dd5bd73014",
+        "dep-7745339a7509",
+        "pc-43a36abc3819",
+        "pc-15d90c857799",
+        "dep-6f1003335d99",
+        "dep-16655a5b88f0",
+        "dep-aaf21c07e94e"
+      ],
+      "endpoint": "/user/registration",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18206/user/registration",
+      "response_status": 500,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/C02-register-boundary-30.json",
+          "kind": "http-exchange",
+          "description": "30-char password registration",
+          "sha256": "1638ceeadc402cc51b0b72ab1df02d11249a124d249685db856158edc7bb820e"
+        },
+        {
+          "path": "logs/C02-register-boundary-30.log",
+          "kind": "sql-trace",
+          "description": "correlated SQL trace",
+          "sha256": "620bd5663c0b1f85960d536af178154fdb96f309a1c0c7580d91a33e16ba2e73"
+        }
+      ],
+      "observation": "30-char raw password (max accepted by @ValidPassword LengthRule(8,30)) accepted; user row inserted; read-back shows stored password is a 60-char BCrypt hash ($2a$11$...). 500 again from mail send after commit."
+    },
+    {
+      "case_id": "C03-register-boundary-31",
+      "purpose": "boundary",
+      "target_ids": [
+        "pc-91738271ac10"
+      ],
+      "endpoint": "/user/registration",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18206/user/registration",
+      "response_status": 400,
+      "reached_persistence": false,
+      "evidence": [
+        {
+          "path": "raw/C03-register-boundary-31.json",
+          "kind": "http-exchange",
+          "description": "31-char rejection",
+          "sha256": "7957ac6a11f8d3ee56da2a0d14ae4b87d466b9006425f3401037bdccf6fb9738"
+        },
+        {
+          "path": "logs/C03-register-boundary-31.log",
+          "kind": "sql-trace",
+          "description": "log slice: no SQL",
+          "sha256": "481df04b762ae0af1b35079ffa834c24ffe0ec904daeea7fd582907f414adf68"
+        }
+      ],
+      "observation": "31-char raw password (C02 value + 'K'): 400 Bad Request 'Invalid request content.'; no SQL statement emitted. Differential with C02 localizes the application limit at 30 raw characters."
+    },
+    {
+      "case_id": "C04-register-violation-61",
+      "purpose": "violation",
+      "target_ids": [
+        "pc-91738271ac10"
+      ],
+      "endpoint": "/user/registration",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18206/user/registration",
+      "response_status": 400,
+      "reached_persistence": false,
+      "evidence": [
+        {
+          "path": "raw/C04-register-violation-61.json",
+          "kind": "http-exchange",
+          "description": "61-char violation",
+          "sha256": "432e9fced01db89c9a14fe9c0800343fed8a90b459cad278fed0d8a132405b9b"
+        },
+        {
+          "path": "logs/C04-register-violation-61.log",
+          "kind": "sql-trace",
+          "description": "log slice: no SQL",
+          "sha256": "0b82a6307d8bd476ffb04b70fa826997fa05ffb395aa887f25ee4e70f45d7e51"
+        }
+      ],
+      "observation": "61-char raw password (violates declared column length 60): 400 Bad Request, no insert emitted, no user row (R01)."
+    },
+    {
+      "case_id": "C05-register-violation-100",
+      "purpose": "violation",
+      "target_ids": [
+        "pc-91738271ac10"
+      ],
+      "endpoint": "/user/registration",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18206/user/registration",
+      "response_status": 400,
+      "reached_persistence": false,
+      "evidence": [
+        {
+          "path": "raw/C05-register-violation-100.json",
+          "kind": "http-exchange",
+          "description": "100-char violation",
+          "sha256": "1b624b093855982a321d4e12afafbe8a22f004f84975384a37b30f20a7d7de42"
+        },
+        {
+          "path": "logs/C05-register-violation-100.log",
+          "kind": "sql-trace",
+          "description": "log slice: no SQL",
+          "sha256": "298e995f833d7a9c95f0f98ab0fe51a2f160fe271e6589d99e831248c2249bf4"
+        }
+      ],
+      "observation": "100-char raw password: 400 Bad Request, no SQL emitted, no user row."
+    },
+    {
+      "case_id": "R01-readback-users",
+      "purpose": "read-back",
+      "target_ids": [
+        "pc-91738271ac10",
+        "pc-016323e7a03e",
+        "pc-02f2b44e194d",
+        "pc-8a9f9e890899"
+      ],
+      "endpoint": null,
+      "request_method": null,
+      "request_url": null,
+      "response_status": null,
+      "reached_persistence": null,
+      "evidence": [
+        {
+          "path": "raw/R01-readback-users.json",
+          "kind": "read-back",
+          "description": "user_account read-back",
+          "sha256": "62463dbd61fae597a6e9fc5cf6ef9685897a096b1d1e26bf382df65391e75851"
+        }
+      ],
+      "observation": "user_account rows: ids 1,2,3 generated by Hibernate sequence; every password is 60 chars with $2a$11$ prefix; no rows for rejected emails pv.b31/pv.v61/pv.v100."
+    },
+    {
+      "case_id": "R02-readback-verification-tokens",
+      "purpose": "read-back",
+      "target_ids": [
+        "pc-a944c6aee8f8",
+        "pc-50a06361f330",
+        "pc-879d80277dcc",
+        "dep-a2dd5bd73014",
+        "dep-7745339a7509"
+      ],
+      "endpoint": null,
+      "request_method": null,
+      "request_url": null,
+      "response_status": null,
+      "reached_persistence": null,
+      "evidence": [
+        {
+          "path": "raw/R02-readback-verification-tokens.json",
+          "kind": "read-back",
+          "description": "verification_token read-back",
+          "sha256": "463dfba068aa321a06fb3a6d2830adb72a365ecae27a17f40e0284133461990e"
+        }
+      ],
+      "observation": "verification_token rows reference existing users 2 and 3 (user_id non-null, FK satisfied)."
+    },
+    {
+      "case_id": "R03-readback-users-roles",
+      "purpose": "read-back",
+      "target_ids": [
+        "pc-43a36abc3819",
+        "pc-15d90c857799",
+        "dep-6f1003335d99",
+        "dep-16655a5b88f0",
+        "dep-aaf21c07e94e"
+      ],
+      "endpoint": null,
+      "request_method": null,
+      "request_url": null,
+      "response_status": null,
+      "reached_persistence": null,
+      "evidence": [
+        {
+          "path": "raw/R03-readback-users-roles.json",
+          "kind": "read-back",
+          "description": "users_roles read-back",
+          "sha256": "e1f110add26ba5e91e4a6ac810fc9dc2ff0c51e2527052dbad42d6ceb0365e59"
+        }
+      ],
+      "observation": "users_roles rows: new users mapped to server-resolved ROLE_USER (id 2); admin to ROLE_ADMIN."
+    },
+    {
+      "case_id": "R04-readback-roles-privileges",
+      "purpose": "read-back",
+      "target_ids": [
+        "pc-29140b5f442c",
+        "pc-105ab9a7198c",
+        "dep-4885e4a93058",
+        "dep-19a3821c8531",
+        "dep-6c4cf8e0348d",
+        "pc-1b2f3d0cb90c",
+        "pc-b0d8b201b75c"
+      ],
+      "endpoint": null,
+      "request_method": null,
+      "request_url": null,
+      "response_status": null,
+      "reached_persistence": null,
+      "evidence": [
+        {
+          "path": "raw/R04-readback-roles-privileges.json",
+          "kind": "read-back",
+          "description": "roles_privileges read-back",
+          "sha256": "eb4e3b2dffd7f735488c4d75f2663ca2920dbbcc323ecc22ca7151dd13a0184a"
+        }
+      ],
+      "observation": "roles_privileges rows seeded only by SetupDataLoader at startup; all reference existing role/privilege ids."
+    },
+    {
+      "case_id": "R05-readback-orphan-check",
+      "purpose": "read-back",
+      "target_ids": [
+        "pc-aa3afec82064",
+        "pc-6ccd539d5f64",
+        "pc-4a315ecc6d36",
+        "pc-b32616f91839",
+        "pc-2d9dcebe44bb",
+        "pc-9675b72b10f1",
+        "pc-bb8149f66e5e",
+        "dep-7c1ae4534c46",
+        "dep-9cae88383c49",
+        "dep-40a154be1981",
+        "dep-d1bb8190f17e"
+      ],
+      "endpoint": null,
+      "request_method": null,
+      "request_url": null,
+      "response_status": null,
+      "reached_persistence": null,
+      "evidence": [
+        {
+          "path": "raw/R05-readback-orphan-check.json",
+          "kind": "read-back",
+          "description": "orphan/emptiness check",
+          "sha256": "c3e692a06b1166d25c7a07554633511518c8aa5bbc3df86456fafa774dd95111"
+        }
+      ],
+      "observation": "No orphan FK rows; user_location, new_location_token and device_metadata are empty: the geo-IP/device features are disabled by geo.ip.lib.enabled=false and never write these tables."
+    },
+    {
+      "case_id": "C06-reset-password-setup",
+      "purpose": "setup",
+      "target_ids": [
+        "pc-59eed15a08ae",
+        "pc-6adbb8d1f613",
+        "pc-0ae63dad7bb9",
+        "dep-36f11b73c41f",
+        "dep-10a703b64121"
+      ],
+      "endpoint": "/user/resetPassword",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18206/user/resetPassword",
+      "response_status": 500,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/C06-reset-password-setup.json",
+          "kind": "http-exchange",
+          "description": "reset token creation",
+          "sha256": "42163f9260adf2b5fd91b369a97881f8c4af82d20e87e282befa4863c13c62e4"
+        },
+        {
+          "path": "logs/C06-reset-password-setup.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "6d5310505d8fcf1e3146fd8b3bbeddfb6d6097932fb55c199c472e0d95b014fa"
+        }
+      ],
+      "observation": "POST /user/resetPassword for pv.control: insert into password_reset_token (user_id from server-side lookup) committed, then MailSendException -> 500."
+    },
+    {
+      "case_id": "R06-readback-password-reset-token",
+      "purpose": "read-back",
+      "target_ids": [
+        "pc-59eed15a08ae",
+        "pc-6adbb8d1f613",
+        "pc-0ae63dad7bb9",
+        "dep-36f11b73c41f",
+        "dep-10a703b64121"
+      ],
+      "endpoint": null,
+      "request_method": null,
+      "request_url": null,
+      "response_status": null,
+      "reached_persistence": null,
+      "evidence": [
+        {
+          "path": "raw/R06-readback-password-reset-token.json",
+          "kind": "read-back",
+          "description": "reset token read-back",
+          "sha256": "cfa33f3fd89724dc5267e94a7a982c3807ca72b04c6d17cc9c00f418fb576227"
+        }
+      ],
+      "observation": "password_reset_token id=1 user_id=2."
+    },
+    {
+      "case_id": "R07-readback-pw-before-save",
+      "purpose": "read-back",
+      "target_ids": [
+        "pc-91738271ac10"
+      ],
+      "endpoint": null,
+      "request_method": null,
+      "request_url": null,
+      "response_status": null,
+      "reached_persistence": null,
+      "evidence": [
+        {
+          "path": "raw/R07-readback-pw-before-save.json",
+          "kind": "read-back",
+          "description": "hash before",
+          "sha256": "c984ca97cc0bb518f8a26371b00dbbe3745a067b83ec60d3b0dfd6023f86d9bf"
+        }
+      ],
+      "observation": "pv.control password hash (60 chars) before savePassword."
+    },
+    {
+      "case_id": "C07-savePassword-violation-61",
+      "purpose": "violation",
+      "target_ids": [
+        "pc-91738271ac10"
+      ],
+      "endpoint": "/user/savePassword",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18206/user/savePassword",
+      "response_status": 400,
+      "reached_persistence": false,
+      "evidence": [
+        {
+          "path": "raw/C07-savePassword-violation-61.json",
+          "kind": "http-exchange",
+          "description": "savePassword violation",
+          "sha256": "8041b47989635c8f9e4424a68343e04a8390c0a43c56a6033f917f600dccf88f"
+        },
+        {
+          "path": "logs/C07-savePassword-violation-61.log",
+          "kind": "sql-trace",
+          "description": "log slice: no SQL",
+          "sha256": "5d4df6406a3c408e8834e9edb0fe6d617a5557c7e47f4a2845c0437968e43432"
+        }
+      ],
+      "observation": "savePassword with valid reset token and 61-char newPassword: 400 Bad Request, no update statement emitted."
+    },
+    {
+      "case_id": "C08-savePassword-control",
+      "purpose": "control",
+      "target_ids": [
+        "pc-91738271ac10"
+      ],
+      "endpoint": "/user/savePassword",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18206/user/savePassword",
+      "response_status": 200,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/C08-savePassword-control.json",
+          "kind": "http-exchange",
+          "description": "savePassword control",
+          "sha256": "73e742a380042a15a5118db865f4fbf9ca6d26bddfafae64d43f886b0a41603a"
+        },
+        {
+          "path": "logs/C08-savePassword-control.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "5811636bfe503d9f33468fdfd2fdc56a79b2ffc01b20223fe10ec6f1220b6723"
+        }
+      ],
+      "observation": "savePassword with 30-char newPassword: 200 'Password reset successfully'; update user_account emitted; read-back R08 shows a new 60-char BCrypt hash (differs from R07)."
+    },
+    {
+      "case_id": "R08-readback-pw-after-save",
+      "purpose": "read-back",
+      "target_ids": [
+        "pc-91738271ac10"
+      ],
+      "endpoint": null,
+      "request_method": null,
+      "request_url": null,
+      "response_status": null,
+      "reached_persistence": null,
+      "evidence": [
+        {
+          "path": "raw/R08-readback-pw-after-save.json",
+          "kind": "read-back",
+          "description": "hash after",
+          "sha256": "c390e262f232302c0adb9f7c1cb083372d3e32d0995890eca53badf108d21456"
+        }
+      ],
+      "observation": "pv.control password is a new 60-char hash."
+    },
+    {
+      "case_id": "C09-reset-password-second",
+      "purpose": "boundary",
+      "target_ids": [
+        "pc-59eed15a08ae",
+        "dep-36f11b73c41f",
+        "dep-10a703b64121"
+      ],
+      "endpoint": "/user/resetPassword",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18206/user/resetPassword",
+      "response_status": 500,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/C09-reset-password-second.json",
+          "kind": "http-exchange",
+          "description": "second reset request",
+          "sha256": "baafe5c10f895e833f6d74fe715f0dbe65d958cb3367322f6bd3ad0757d7e9ce"
+        },
+        {
+          "path": "logs/C09-reset-password-second.log",
+          "kind": "sql-trace",
+          "description": "SQL exception trace",
+          "sha256": "35f96cf263baea4313fedd0dd1bccb2a8bf8bfb099603c84d754c2921d919df0"
+        },
+        {
+          "path": "raw/R09-readback-password-reset-token-after.json",
+          "kind": "read-back",
+          "description": "still one token row",
+          "sha256": "c758189c273fbf25be6a66c391e8440606cf243cd27e95d5a6e92e906e0adae7"
+        }
+      ],
+      "observation": "Second reset-token request for the same user: insert into password_reset_token rejected by H2 unique index UK_F90IVICHJAOKVMOVXPNLM5NIN on user_id (SQLState 23505) -> DataIntegrityViolationException -> generic 500 InternalError. This is a deployed-schema constraint generated from @OneToOne (unique user_id), NOT the extracted FK/not-null predicates."
+    },
+    {
+      "case_id": "C10-resend-verification-token",
+      "purpose": "control",
+      "target_ids": [
+        "pc-a944c6aee8f8",
+        "pc-50a06361f330",
+        "pc-879d80277dcc",
+        "dep-a2dd5bd73014",
+        "dep-7745339a7509"
+      ],
+      "endpoint": "/user/resendRegistrationToken",
+      "request_method": "GET",
+      "request_url": "http://127.0.0.1:18206/user/resendRegistrationToken",
+      "response_status": 500,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/C10-resend-verification-token.json",
+          "kind": "http-exchange",
+          "description": "resend control",
+          "sha256": "6429cfe9e568227a169affe6f04f44340fcb74164a115806a8d2849e98922cbf"
+        },
+        {
+          "path": "logs/C10-resend-verification-token.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "553e7561981ed8e82ab890426c97211921290b190fdbcb5533131417b87b40d4"
+        },
+        {
+          "path": "raw/R11-readback-vtoken-after-resend.json",
+          "kind": "read-back",
+          "description": "token regenerated, user_id unchanged",
+          "sha256": "3f3eb814451f14d3b01efb52f8c32ad9962487aee54b094b7ebcc5591009c986"
+        }
+      ],
+      "observation": "resendRegistrationToken with a valid token: update verification_token (same user_id) emitted, then mail failure 500."
+    },
+    {
+      "case_id": "C11-resend-verification-unknown-token",
+      "purpose": "boundary",
+      "target_ids": [
+        "pc-a944c6aee8f8",
+        "pc-50a06361f330",
+        "pc-879d80277dcc",
+        "dep-a2dd5bd73014",
+        "dep-7745339a7509"
+      ],
+      "endpoint": "/user/resendRegistrationToken",
+      "request_method": "GET",
+      "request_url": "http://127.0.0.1:18206/user/resendRegistrationToken",
+      "response_status": 500,
+      "reached_persistence": false,
+      "evidence": [
+        {
+          "path": "raw/C11-resend-verification-unknown-token.json",
+          "kind": "http-exchange",
+          "description": "unknown token",
+          "sha256": "d5b9b725a8f6d393f92e37ef7e38f5ab955d1ba673022aeb7faedc1c62da58af"
+        },
+        {
+          "path": "logs/C11-resend-verification-unknown-token.log",
+          "kind": "sql-trace",
+          "description": "log slice",
+          "sha256": "d1d3543dd546064cae1967a96754a23121982b568820d6aa91422173717ea8fd"
+        }
+      ],
+      "observation": "Unknown token: NullPointerException in UserService.generateNewVerificationToken before any write -> generic 500; no persistence reached. Not a violation of any target predicate."
+    },
+    {
+      "case_id": "C12-registration-confirm",
+      "purpose": "control",
+      "target_ids": [
+        "pc-a944c6aee8f8",
+        "pc-50a06361f330",
+        "pc-879d80277dcc",
+        "dep-a2dd5bd73014",
+        "dep-7745339a7509",
+        "pc-016323e7a03e",
+        "pc-02f2b44e194d",
+        "pc-8a9f9e890899"
+      ],
+      "endpoint": "/registrationConfirm",
+      "request_method": "GET",
+      "request_url": "http://127.0.0.1:18206/registrationConfirm",
+      "response_status": 302,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/C12-registration-confirm.json",
+          "kind": "http-exchange",
+          "description": "confirm control",
+          "sha256": "07a5bc38c2bfd37f169ec62738e08f6b14b1f6ddfad311215713733588ebfbbf"
+        },
+        {
+          "path": "logs/C12-registration-confirm.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "3d9c8b2ecd5af80a9fd132de64236c12dd46f1d8b971fc290786d2a2dc41fd11"
+        },
+        {
+          "path": "raw/R12-readback-users-final.json",
+          "kind": "read-back",
+          "description": "final user_account state",
+          "sha256": "765c67a1417c09d0245a3568056834f76b7970081045e9d3d886cd1ed074fef7"
+        }
+      ],
+      "observation": "registrationConfirm with regenerated token: 302 to /console, update user_account enabled=true (R12)."
+    }
+  ],
+  "results": [
+    {
+      "target_id": "pc-bb8149f66e5e",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R05-readback-orphan-check"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R05-readback-orphan-check.json",
+          "kind": "read-back",
+          "description": "orphan/emptiness check",
+          "sha256": "c3e692a06b1166d25c7a07554633511518c8aa5bbc3df86456fafa774dd95111"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "DeviceMetadata.id primary key: id is @GeneratedValue(AUTO) and no endpoint binds an id for this entity, so no request can produce a null/duplicate key. Deployed table has a PRIMARY KEY on id (S02). The entity is only written by the geo-IP / device-notification features, which are disabled in the deployed configuration (geo.ip.lib.enabled=false) and would still assign ids server-side; the table stayed empty (R05).",
+      "confidence": 0.8,
+      "limitations": [
+        "Primary-key violation is not reachable through the public API."
+      ]
+    },
+    {
+      "target_id": "pc-b32616f91839",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R05-readback-orphan-check"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R05-readback-orphan-check.json",
+          "kind": "read-back",
+          "description": "orphan/emptiness check",
+          "sha256": "c3e692a06b1166d25c7a07554633511518c8aa5bbc3df86456fafa774dd95111"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "Foreign key new_location_token.user_location_id -> user_location: deployed schema contains the FK (S02/S04); valid references observed in controls and orphan check (R05). The owning feature (geo-IP location tracking) is disabled in the deployed configuration (geo.ip.lib.enabled=false); tables remained empty.",
+      "confidence": 0.85,
+      "limitations": [
+        "No public endpoint accepts a referenced id; a dangling reference cannot be constructed via HTTP. The deployed FK exists (S02/S04) but its enforcement was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-2d9dcebe44bb",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R05-readback-orphan-check"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R05-readback-orphan-check.json",
+          "kind": "read-back",
+          "description": "orphan/emptiness check",
+          "sha256": "c3e692a06b1166d25c7a07554633511518c8aa5bbc3df86456fafa774dd95111"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "NewLocationToken.userLocation (new_location_token.user_location_id) must not be null: deployed column is NOT NULL (S03). The value is always a server-side entity reference, never client input: tokens are only created in UserService.createNewLocationToken from a freshly saved UserLocation, and only when geo.ip.lib.enabled=true (disabled in deployed config). No request can make it null.",
+      "confidence": 0.85,
+      "limitations": [
+        "Null join column cannot be induced through the public API; DB NOT NULL enforcement not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-9675b72b10f1",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R05-readback-orphan-check"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R05-readback-orphan-check.json",
+          "kind": "read-back",
+          "description": "orphan/emptiness check",
+          "sha256": "c3e692a06b1166d25c7a07554633511518c8aa5bbc3df86456fafa774dd95111"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "NewLocationToken.id primary key: id is @GeneratedValue(AUTO) and no endpoint binds an id for this entity, so no request can produce a null/duplicate key. Deployed table has a PRIMARY KEY on id (S02). The entity is only written by the geo-IP / device-notification features, which are disabled in the deployed configuration (geo.ip.lib.enabled=false) and would still assign ids server-side; the table stayed empty (R05).",
+      "confidence": 0.8,
+      "limitations": [
+        "Primary-key violation is not reachable through the public API."
+      ]
+    },
+    {
+      "target_id": "pc-59eed15a08ae",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-reset-password-setup",
+        "R06-readback-password-reset-token",
+        "C09-reset-password-second"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C06-reset-password-setup.json",
+          "kind": "http-exchange",
+          "description": "reset token creation",
+          "sha256": "42163f9260adf2b5fd91b369a97881f8c4af82d20e87e282befa4863c13c62e4"
+        },
+        {
+          "path": "logs/C06-reset-password-setup.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "6d5310505d8fcf1e3146fd8b3bbeddfb6d6097932fb55c199c472e0d95b014fa"
+        },
+        {
+          "path": "raw/R06-readback-password-reset-token.json",
+          "kind": "read-back",
+          "description": "reset token read-back",
+          "sha256": "cfa33f3fd89724dc5267e94a7a982c3807ca72b04c6d17cc9c00f418fb576227"
+        },
+        {
+          "path": "raw/C09-reset-password-second.json",
+          "kind": "http-exchange",
+          "description": "second reset request",
+          "sha256": "baafe5c10f895e833f6d74fe715f0dbe65d958cb3367322f6bd3ad0757d7e9ce"
+        },
+        {
+          "path": "logs/C09-reset-password-second.log",
+          "kind": "sql-trace",
+          "description": "SQL exception trace",
+          "sha256": "35f96cf263baea4313fedd0dd1bccb2a8bf8bfb099603c84d754c2921d919df0"
+        },
+        {
+          "path": "raw/R09-readback-password-reset-token-after.json",
+          "kind": "read-back",
+          "description": "still one token row",
+          "sha256": "c758189c273fbf25be6a66c391e8440606cf243cd27e95d5a6e92e906e0adae7"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "Foreign key password_reset_token.user_id -> user_account: deployed schema contains the FK (S02/S04); valid references observed in controls and orphan check (R05). The referenced User always comes from the repository/just-saved entity.",
+      "confidence": 0.85,
+      "limitations": [
+        "No public endpoint accepts a referenced id; a dangling reference cannot be constructed via HTTP. The deployed FK exists (S02/S04) but its enforcement was not exercised.",
+        "C09 showed a different, stricter deployed constraint on the same column: a Hibernate-generated UNIQUE(user_id) from @OneToOne rejects a second reset token for the same user with an unhandled 500 (SQLState 23505). That is not the extracted FK predicate."
+      ]
+    },
+    {
+      "target_id": "pc-6adbb8d1f613",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-reset-password-setup",
+        "R06-readback-password-reset-token"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C06-reset-password-setup.json",
+          "kind": "http-exchange",
+          "description": "reset token creation",
+          "sha256": "42163f9260adf2b5fd91b369a97881f8c4af82d20e87e282befa4863c13c62e4"
+        },
+        {
+          "path": "logs/C06-reset-password-setup.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "6d5310505d8fcf1e3146fd8b3bbeddfb6d6097932fb55c199c472e0d95b014fa"
+        },
+        {
+          "path": "raw/R06-readback-password-reset-token.json",
+          "kind": "read-back",
+          "description": "reset token read-back",
+          "sha256": "cfa33f3fd89724dc5267e94a7a982c3807ca72b04c6d17cc9c00f418fb576227"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "PasswordResetToken.user (password_reset_token.user_id) must not be null: deployed column is NOT NULL (S03). The value is always a server-side entity reference, never client input: resetPassword only creates a token when findUserByEmail returned a non-null user; unknown emails skip persistence. No request can make it null.",
+      "confidence": 0.85,
+      "limitations": [
+        "Null join column cannot be induced through the public API; DB NOT NULL enforcement not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-0ae63dad7bb9",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-reset-password-setup",
+        "R06-readback-password-reset-token"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C06-reset-password-setup.json",
+          "kind": "http-exchange",
+          "description": "reset token creation",
+          "sha256": "42163f9260adf2b5fd91b369a97881f8c4af82d20e87e282befa4863c13c62e4"
+        },
+        {
+          "path": "logs/C06-reset-password-setup.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "6d5310505d8fcf1e3146fd8b3bbeddfb6d6097932fb55c199c472e0d95b014fa"
+        },
+        {
+          "path": "raw/R06-readback-password-reset-token.json",
+          "kind": "read-back",
+          "description": "reset token read-back",
+          "sha256": "cfa33f3fd89724dc5267e94a7a982c3807ca72b04c6d17cc9c00f418fb576227"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "PasswordResetToken.id primary key: id is @GeneratedValue(AUTO) and no endpoint binds an id for this entity, so no request can produce a null/duplicate key. Deployed table has a PRIMARY KEY on id (S02).",
+      "confidence": 0.9,
+      "limitations": [
+        "Primary-key violation is not reachable through the public API."
+      ]
+    },
+    {
+      "target_id": "pc-1b2f3d0cb90c",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R04-readback-roles-privileges"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R04-readback-roles-privileges.json",
+          "kind": "read-back",
+          "description": "roles_privileges read-back",
+          "sha256": "eb4e3b2dffd7f735488c4d75f2663ca2920dbbcc323ecc22ca7151dd13a0184a"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "Privilege.id primary key: id is @GeneratedValue(AUTO) and no endpoint binds an id for this entity, so no request can produce a null/duplicate key. Deployed table has a PRIMARY KEY on id (S02).",
+      "confidence": 0.9,
+      "limitations": [
+        "Primary-key violation is not reachable through the public API."
+      ]
+    },
+    {
+      "target_id": "pc-b0d8b201b75c",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R03-readback-users-roles",
+        "R04-readback-roles-privileges"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R03-readback-users-roles.json",
+          "kind": "read-back",
+          "description": "users_roles read-back",
+          "sha256": "e1f110add26ba5e91e4a6ac810fc9dc2ff0c51e2527052dbad42d6ceb0365e59"
+        },
+        {
+          "path": "raw/R04-readback-roles-privileges.json",
+          "kind": "read-back",
+          "description": "roles_privileges read-back",
+          "sha256": "eb4e3b2dffd7f735488c4d75f2663ca2920dbbcc323ecc22ca7151dd13a0184a"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "Role.id primary key: id is @GeneratedValue(AUTO) and no endpoint binds an id for this entity, so no request can produce a null/duplicate key. Deployed table has a PRIMARY KEY on id (S02).",
+      "confidence": 0.9,
+      "limitations": [
+        "Primary-key violation is not reachable through the public API."
+      ]
+    },
+    {
+      "target_id": "pc-91738271ac10",
+      "target_kind": "constraint",
+      "outcome": "APPLICATION_REJECTED",
+      "exact_predicate_confirmed": true,
+      "observed_enforcement": "application",
+      "application_layer_implemented": true,
+      "response_handling": "elegant",
+      "case_ids": [
+        "C01-register-control",
+        "C02-register-boundary-30",
+        "C03-register-boundary-31",
+        "C04-register-violation-61",
+        "C05-register-violation-100",
+        "R01-readback-users",
+        "C06-reset-password-setup",
+        "R07-readback-pw-before-save",
+        "C07-savePassword-violation-61",
+        "C08-savePassword-control",
+        "R08-readback-pw-after-save"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-register-control.json",
+          "kind": "http-exchange",
+          "description": "registration control",
+          "sha256": "66760d3bf0287ad42fbfe263ee49c4f34c9a0a8130845c2a9652ce99a056a556"
+        },
+        {
+          "path": "logs/C01-register-control.log",
+          "kind": "sql-trace",
+          "description": "correlated SQL trace",
+          "sha256": "46ebc390d5183ad98bfe7d33e56349463c9b21b39bc92183952ac4f26ad27fd0"
+        },
+        {
+          "path": "raw/C02-register-boundary-30.json",
+          "kind": "http-exchange",
+          "description": "30-char password registration",
+          "sha256": "1638ceeadc402cc51b0b72ab1df02d11249a124d249685db856158edc7bb820e"
+        },
+        {
+          "path": "logs/C02-register-boundary-30.log",
+          "kind": "sql-trace",
+          "description": "correlated SQL trace",
+          "sha256": "620bd5663c0b1f85960d536af178154fdb96f309a1c0c7580d91a33e16ba2e73"
+        },
+        {
+          "path": "raw/C03-register-boundary-31.json",
+          "kind": "http-exchange",
+          "description": "31-char rejection",
+          "sha256": "7957ac6a11f8d3ee56da2a0d14ae4b87d466b9006425f3401037bdccf6fb9738"
+        },
+        {
+          "path": "logs/C03-register-boundary-31.log",
+          "kind": "sql-trace",
+          "description": "log slice: no SQL",
+          "sha256": "481df04b762ae0af1b35079ffa834c24ffe0ec904daeea7fd582907f414adf68"
+        },
+        {
+          "path": "raw/C04-register-violation-61.json",
+          "kind": "http-exchange",
+          "description": "61-char violation",
+          "sha256": "432e9fced01db89c9a14fe9c0800343fed8a90b459cad278fed0d8a132405b9b"
+        },
+        {
+          "path": "logs/C04-register-violation-61.log",
+          "kind": "sql-trace",
+          "description": "log slice: no SQL",
+          "sha256": "0b82a6307d8bd476ffb04b70fa826997fa05ffb395aa887f25ee4e70f45d7e51"
+        },
+        {
+          "path": "raw/C05-register-violation-100.json",
+          "kind": "http-exchange",
+          "description": "100-char violation",
+          "sha256": "1b624b093855982a321d4e12afafbe8a22f004f84975384a37b30f20a7d7de42"
+        },
+        {
+          "path": "logs/C05-register-violation-100.log",
+          "kind": "sql-trace",
+          "description": "log slice: no SQL",
+          "sha256": "298e995f833d7a9c95f0f98ab0fe51a2f160fe271e6589d99e831248c2249bf4"
+        },
+        {
+          "path": "raw/R01-readback-users.json",
+          "kind": "read-back",
+          "description": "user_account read-back",
+          "sha256": "62463dbd61fae597a6e9fc5cf6ef9685897a096b1d1e26bf382df65391e75851"
+        },
+        {
+          "path": "raw/C06-reset-password-setup.json",
+          "kind": "http-exchange",
+          "description": "reset token creation",
+          "sha256": "42163f9260adf2b5fd91b369a97881f8c4af82d20e87e282befa4863c13c62e4"
+        },
+        {
+          "path": "logs/C06-reset-password-setup.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "6d5310505d8fcf1e3146fd8b3bbeddfb6d6097932fb55c199c472e0d95b014fa"
+        },
+        {
+          "path": "raw/R07-readback-pw-before-save.json",
+          "kind": "read-back",
+          "description": "hash before",
+          "sha256": "c984ca97cc0bb518f8a26371b00dbbe3745a067b83ec60d3b0dfd6023f86d9bf"
+        },
+        {
+          "path": "raw/C07-savePassword-violation-61.json",
+          "kind": "http-exchange",
+          "description": "savePassword violation",
+          "sha256": "8041b47989635c8f9e4424a68343e04a8390c0a43c56a6033f917f600dccf88f"
+        },
+        {
+          "path": "logs/C07-savePassword-violation-61.log",
+          "kind": "sql-trace",
+          "description": "log slice: no SQL",
+          "sha256": "5d4df6406a3c408e8834e9edb0fe6d617a5557c7e47f4a2845c0437968e43432"
+        },
+        {
+          "path": "raw/C08-savePassword-control.json",
+          "kind": "http-exchange",
+          "description": "savePassword control",
+          "sha256": "73e742a380042a15a5118db865f4fbf9ca6d26bddfafae64d43f886b0a41603a"
+        },
+        {
+          "path": "logs/C08-savePassword-control.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "5811636bfe503d9f33468fdfd2fdc56a79b2ffc01b20223fe10ec6f1220b6723"
+        },
+        {
+          "path": "raw/R08-readback-pw-after-save.json",
+          "kind": "read-back",
+          "description": "hash after",
+          "sha256": "c390e262f232302c0adb9f7c1cb083372d3e32d0995890eca53badf108d21456"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "Deployed column is user_account.password VARCHAR(60) (S03), matching the extracted length predicate. Raw passwords longer than 60 characters (61 and 100 chars) sent to /user/registration and /user/savePassword are rejected with 400 by the @ValidPassword Passay LengthRule(8,30) before any SQL is emitted (no insert/update in correlated trace, no row in read-back). The application check is stricter (limit 30, confirmed by the 30-accepted/31-rejected differential). Additionally, every accepted password is transformed by BCryptPasswordEncoder into a fixed 60-char hash (read-backs R01/R07/R08), so the raw value never reaches the column.",
+      "confidence": 0.85,
+      "limitations": [
+        "400 body is Spring's generic ProblemDetail 'Invalid request content.' without field detail: the app's custom handleBindException/handleMethodArgumentNotValid are not real overrides under Spring 6 signatures; cause attributed via length differential (C02 vs C03), not via a field-error message.",
+        "The DB length limit itself was never hit because all persisted values are 60-char BCrypt hashes; DB-level enforcement of VARCHAR(60) was not exercised.",
+        "/user/updatePassword (authenticated) uses the same @ValidPassword PasswordDto and was not separately exercised."
+      ]
+    },
+    {
+      "target_id": "pc-016323e7a03e",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-register-control",
+        "R01-readback-users",
+        "C12-registration-confirm"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-register-control.json",
+          "kind": "http-exchange",
+          "description": "registration control",
+          "sha256": "66760d3bf0287ad42fbfe263ee49c4f34c9a0a8130845c2a9652ce99a056a556"
+        },
+        {
+          "path": "logs/C01-register-control.log",
+          "kind": "sql-trace",
+          "description": "correlated SQL trace",
+          "sha256": "46ebc390d5183ad98bfe7d33e56349463c9b21b39bc92183952ac4f26ad27fd0"
+        },
+        {
+          "path": "raw/R01-readback-users.json",
+          "kind": "read-back",
+          "description": "user_account read-back",
+          "sha256": "62463dbd61fae597a6e9fc5cf6ef9685897a096b1d1e26bf382df65391e75851"
+        },
+        {
+          "path": "raw/C12-registration-confirm.json",
+          "kind": "http-exchange",
+          "description": "confirm control",
+          "sha256": "07a5bc38c2bfd37f169ec62738e08f6b14b1f6ddfad311215713733588ebfbbf"
+        },
+        {
+          "path": "logs/C12-registration-confirm.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "3d9c8b2ecd5af80a9fd132de64236c12dd46f1d8b971fc290786d2a2dc41fd11"
+        },
+        {
+          "path": "raw/R12-readback-users-final.json",
+          "kind": "read-back",
+          "description": "final user_account state",
+          "sha256": "765c67a1417c09d0245a3568056834f76b7970081045e9d3d886cd1ed074fef7"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "User.id not-null: id is @GeneratedValue(AUTO) (Hibernate sequence) and UserDto / all endpoints expose no id field; the client cannot supply a null or duplicate id. Deployed schema has user_account.id BIGINT NOT NULL PRIMARY KEY (S02/S03). Controls show sequence-generated ids 2 and 3 (R01).",
+      "confidence": 0.9,
+      "limitations": [
+        "Violation requires direct DB or code access; no public API binds User.id. updateUser2FA saves the authenticated principal entity, not client data."
+      ]
+    },
+    {
+      "target_id": "pc-02f2b44e194d",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-register-control",
+        "R01-readback-users",
+        "C12-registration-confirm"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-register-control.json",
+          "kind": "http-exchange",
+          "description": "registration control",
+          "sha256": "66760d3bf0287ad42fbfe263ee49c4f34c9a0a8130845c2a9652ce99a056a556"
+        },
+        {
+          "path": "logs/C01-register-control.log",
+          "kind": "sql-trace",
+          "description": "correlated SQL trace",
+          "sha256": "46ebc390d5183ad98bfe7d33e56349463c9b21b39bc92183952ac4f26ad27fd0"
+        },
+        {
+          "path": "raw/R01-readback-users.json",
+          "kind": "read-back",
+          "description": "user_account read-back",
+          "sha256": "62463dbd61fae597a6e9fc5cf6ef9685897a096b1d1e26bf382df65391e75851"
+        },
+        {
+          "path": "raw/C12-registration-confirm.json",
+          "kind": "http-exchange",
+          "description": "confirm control",
+          "sha256": "07a5bc38c2bfd37f169ec62738e08f6b14b1f6ddfad311215713733588ebfbbf"
+        },
+        {
+          "path": "logs/C12-registration-confirm.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "3d9c8b2ecd5af80a9fd132de64236c12dd46f1d8b971fc290786d2a2dc41fd11"
+        },
+        {
+          "path": "raw/R12-readback-users-final.json",
+          "kind": "read-back",
+          "description": "final user_account state",
+          "sha256": "765c67a1417c09d0245a3568056834f76b7970081045e9d3d886cd1ed074fef7"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "User.id primary-key: id is @GeneratedValue(AUTO) (Hibernate sequence) and UserDto / all endpoints expose no id field; the client cannot supply a null or duplicate id. Deployed schema has user_account.id BIGINT NOT NULL PRIMARY KEY (S02/S03). Controls show sequence-generated ids 2 and 3 (R01).",
+      "confidence": 0.9,
+      "limitations": [
+        "Violation requires direct DB or code access; no public API binds User.id. updateUser2FA saves the authenticated principal entity, not client data."
+      ]
+    },
+    {
+      "target_id": "pc-8a9f9e890899",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-register-control",
+        "R01-readback-users",
+        "C12-registration-confirm"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-register-control.json",
+          "kind": "http-exchange",
+          "description": "registration control",
+          "sha256": "66760d3bf0287ad42fbfe263ee49c4f34c9a0a8130845c2a9652ce99a056a556"
+        },
+        {
+          "path": "logs/C01-register-control.log",
+          "kind": "sql-trace",
+          "description": "correlated SQL trace",
+          "sha256": "46ebc390d5183ad98bfe7d33e56349463c9b21b39bc92183952ac4f26ad27fd0"
+        },
+        {
+          "path": "raw/R01-readback-users.json",
+          "kind": "read-back",
+          "description": "user_account read-back",
+          "sha256": "62463dbd61fae597a6e9fc5cf6ef9685897a096b1d1e26bf382df65391e75851"
+        },
+        {
+          "path": "raw/C12-registration-confirm.json",
+          "kind": "http-exchange",
+          "description": "confirm control",
+          "sha256": "07a5bc38c2bfd37f169ec62738e08f6b14b1f6ddfad311215713733588ebfbbf"
+        },
+        {
+          "path": "logs/C12-registration-confirm.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "3d9c8b2ecd5af80a9fd132de64236c12dd46f1d8b971fc290786d2a2dc41fd11"
+        },
+        {
+          "path": "raw/R12-readback-users-final.json",
+          "kind": "read-back",
+          "description": "final user_account state",
+          "sha256": "765c67a1417c09d0245a3568056834f76b7970081045e9d3d886cd1ed074fef7"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "User.id unique: id is @GeneratedValue(AUTO) (Hibernate sequence) and UserDto / all endpoints expose no id field; the client cannot supply a null or duplicate id. Deployed schema has user_account.id BIGINT NOT NULL PRIMARY KEY (S02/S03). Controls show sequence-generated ids 2 and 3 (R01).",
+      "confidence": 0.9,
+      "limitations": [
+        "Violation requires direct DB or code access; no public API binds User.id. updateUser2FA saves the authenticated principal entity, not client data."
+      ]
+    },
+    {
+      "target_id": "pc-aa3afec82064",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R05-readback-orphan-check"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R05-readback-orphan-check.json",
+          "kind": "read-back",
+          "description": "orphan/emptiness check",
+          "sha256": "c3e692a06b1166d25c7a07554633511518c8aa5bbc3df86456fafa774dd95111"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "Foreign key user_location.user_id -> user_account: deployed schema contains the FK (S02/S04); valid references observed in controls and orphan check (R05). The owning feature (geo-IP location tracking) is disabled in the deployed configuration (geo.ip.lib.enabled=false); tables remained empty.",
+      "confidence": 0.85,
+      "limitations": [
+        "No public endpoint accepts a referenced id; a dangling reference cannot be constructed via HTTP. The deployed FK exists (S02/S04) but its enforcement was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-6ccd539d5f64",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R05-readback-orphan-check"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R05-readback-orphan-check.json",
+          "kind": "read-back",
+          "description": "orphan/emptiness check",
+          "sha256": "c3e692a06b1166d25c7a07554633511518c8aa5bbc3df86456fafa774dd95111"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "UserLocation.user (user_location.user_id) must not be null: deployed column is NOT NULL (S03). The value is always a server-side entity reference, never client input: UserLocation rows are built from the saved/looked-up User and only when geo.ip.lib.enabled=true (disabled in deployed config). No request can make it null.",
+      "confidence": 0.85,
+      "limitations": [
+        "Null join column cannot be induced through the public API; DB NOT NULL enforcement not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-4a315ecc6d36",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R05-readback-orphan-check"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R05-readback-orphan-check.json",
+          "kind": "read-back",
+          "description": "orphan/emptiness check",
+          "sha256": "c3e692a06b1166d25c7a07554633511518c8aa5bbc3df86456fafa774dd95111"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "UserLocation.id primary key: id is @GeneratedValue(AUTO) and no endpoint binds an id for this entity, so no request can produce a null/duplicate key. Deployed table has a PRIMARY KEY on id (S02). The entity is only written by the geo-IP / device-notification features, which are disabled in the deployed configuration (geo.ip.lib.enabled=false) and would still assign ids server-side; the table stayed empty (R05).",
+      "confidence": 0.8,
+      "limitations": [
+        "Primary-key violation is not reachable through the public API."
+      ]
+    },
+    {
+      "target_id": "pc-a944c6aee8f8",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-register-control",
+        "R02-readback-verification-tokens",
+        "C10-resend-verification-token"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-register-control.json",
+          "kind": "http-exchange",
+          "description": "registration control",
+          "sha256": "66760d3bf0287ad42fbfe263ee49c4f34c9a0a8130845c2a9652ce99a056a556"
+        },
+        {
+          "path": "logs/C01-register-control.log",
+          "kind": "sql-trace",
+          "description": "correlated SQL trace",
+          "sha256": "46ebc390d5183ad98bfe7d33e56349463c9b21b39bc92183952ac4f26ad27fd0"
+        },
+        {
+          "path": "raw/R02-readback-verification-tokens.json",
+          "kind": "read-back",
+          "description": "verification_token read-back",
+          "sha256": "463dfba068aa321a06fb3a6d2830adb72a365ecae27a17f40e0284133461990e"
+        },
+        {
+          "path": "raw/C10-resend-verification-token.json",
+          "kind": "http-exchange",
+          "description": "resend control",
+          "sha256": "6429cfe9e568227a169affe6f04f44340fcb74164a115806a8d2849e98922cbf"
+        },
+        {
+          "path": "logs/C10-resend-verification-token.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "553e7561981ed8e82ab890426c97211921290b190fdbcb5533131417b87b40d4"
+        },
+        {
+          "path": "raw/R11-readback-vtoken-after-resend.json",
+          "kind": "read-back",
+          "description": "token regenerated, user_id unchanged",
+          "sha256": "3f3eb814451f14d3b01efb52f8c32ad9962487aee54b094b7ebcc5591009c986"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "Foreign key verification_token.user_id -> user_account (FK_VERIFY_USER): deployed schema contains the FK (S02/S04); valid references observed in controls and orphan check (R05). The referenced User always comes from the repository/just-saved entity.",
+      "confidence": 0.85,
+      "limitations": [
+        "No public endpoint accepts a referenced id; a dangling reference cannot be constructed via HTTP. The deployed FK exists (S02/S04) but its enforcement was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-50a06361f330",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-register-control",
+        "R02-readback-verification-tokens",
+        "C10-resend-verification-token"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-register-control.json",
+          "kind": "http-exchange",
+          "description": "registration control",
+          "sha256": "66760d3bf0287ad42fbfe263ee49c4f34c9a0a8130845c2a9652ce99a056a556"
+        },
+        {
+          "path": "logs/C01-register-control.log",
+          "kind": "sql-trace",
+          "description": "correlated SQL trace",
+          "sha256": "46ebc390d5183ad98bfe7d33e56349463c9b21b39bc92183952ac4f26ad27fd0"
+        },
+        {
+          "path": "raw/R02-readback-verification-tokens.json",
+          "kind": "read-back",
+          "description": "verification_token read-back",
+          "sha256": "463dfba068aa321a06fb3a6d2830adb72a365ecae27a17f40e0284133461990e"
+        },
+        {
+          "path": "raw/C10-resend-verification-token.json",
+          "kind": "http-exchange",
+          "description": "resend control",
+          "sha256": "6429cfe9e568227a169affe6f04f44340fcb74164a115806a8d2849e98922cbf"
+        },
+        {
+          "path": "logs/C10-resend-verification-token.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "553e7561981ed8e82ab890426c97211921290b190fdbcb5533131417b87b40d4"
+        },
+        {
+          "path": "raw/R11-readback-vtoken-after-resend.json",
+          "kind": "read-back",
+          "description": "token regenerated, user_id unchanged",
+          "sha256": "3f3eb814451f14d3b01efb52f8c32ad9962487aee54b094b7ebcc5591009c986"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "VerificationToken.user (verification_token.user_id) must not be null: deployed column is NOT NULL (S03). The value is always a server-side entity reference, never client input: the token is created from the just-saved User in RegistrationListener; resend updates the token without touching user. No request can make it null.",
+      "confidence": 0.85,
+      "limitations": [
+        "Null join column cannot be induced through the public API; DB NOT NULL enforcement not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-879d80277dcc",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-register-control",
+        "R02-readback-verification-tokens"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-register-control.json",
+          "kind": "http-exchange",
+          "description": "registration control",
+          "sha256": "66760d3bf0287ad42fbfe263ee49c4f34c9a0a8130845c2a9652ce99a056a556"
+        },
+        {
+          "path": "logs/C01-register-control.log",
+          "kind": "sql-trace",
+          "description": "correlated SQL trace",
+          "sha256": "46ebc390d5183ad98bfe7d33e56349463c9b21b39bc92183952ac4f26ad27fd0"
+        },
+        {
+          "path": "raw/R02-readback-verification-tokens.json",
+          "kind": "read-back",
+          "description": "verification_token read-back",
+          "sha256": "463dfba068aa321a06fb3a6d2830adb72a365ecae27a17f40e0284133461990e"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "VerificationToken.id primary key: id is @GeneratedValue(AUTO) and no endpoint binds an id for this entity, so no request can produce a null/duplicate key. Deployed table has a PRIMARY KEY on id (S02).",
+      "confidence": 0.9,
+      "limitations": [
+        "Primary-key violation is not reachable through the public API."
+      ]
+    },
+    {
+      "target_id": "pc-29140b5f442c",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R04-readback-roles-privileges",
+        "C12-registration-confirm"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R04-readback-roles-privileges.json",
+          "kind": "read-back",
+          "description": "roles_privileges read-back",
+          "sha256": "eb4e3b2dffd7f735488c4d75f2663ca2920dbbcc323ecc22ca7151dd13a0184a"
+        },
+        {
+          "path": "raw/C12-registration-confirm.json",
+          "kind": "http-exchange",
+          "description": "confirm control",
+          "sha256": "07a5bc38c2bfd37f169ec62738e08f6b14b1f6ddfad311215713733588ebfbbf"
+        },
+        {
+          "path": "logs/C12-registration-confirm.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "3d9c8b2ecd5af80a9fd132de64236c12dd46f1d8b971fc290786d2a2dc41fd11"
+        },
+        {
+          "path": "raw/R12-readback-users-final.json",
+          "kind": "read-back",
+          "description": "final user_account state",
+          "sha256": "765c67a1417c09d0245a3568056834f76b7970081045e9d3d886cd1ed074fef7"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "Foreign key roles_privileges.role_id -> role.id: deployed schema contains the FK (S02/S04); valid references observed in controls and orphan check (R05). roles_privileges is written only by SetupDataLoader at startup; no endpoint modifies roles or privileges. (The analysis groups this pair as a 'conflict' only because the two join-table columns reference different tables; the deployed schema has both FKs.)",
+      "confidence": 0.85,
+      "limitations": [
+        "No public endpoint accepts a referenced id; a dangling reference cannot be constructed via HTTP. The deployed FK exists (S02/S04) but its enforcement was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-105ab9a7198c",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R04-readback-roles-privileges",
+        "C12-registration-confirm"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R04-readback-roles-privileges.json",
+          "kind": "read-back",
+          "description": "roles_privileges read-back",
+          "sha256": "eb4e3b2dffd7f735488c4d75f2663ca2920dbbcc323ecc22ca7151dd13a0184a"
+        },
+        {
+          "path": "raw/C12-registration-confirm.json",
+          "kind": "http-exchange",
+          "description": "confirm control",
+          "sha256": "07a5bc38c2bfd37f169ec62738e08f6b14b1f6ddfad311215713733588ebfbbf"
+        },
+        {
+          "path": "logs/C12-registration-confirm.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "3d9c8b2ecd5af80a9fd132de64236c12dd46f1d8b971fc290786d2a2dc41fd11"
+        },
+        {
+          "path": "raw/R12-readback-users-final.json",
+          "kind": "read-back",
+          "description": "final user_account state",
+          "sha256": "765c67a1417c09d0245a3568056834f76b7970081045e9d3d886cd1ed074fef7"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "Foreign key roles_privileges.privilege_id -> privilege.id: deployed schema contains the FK (S02/S04); valid references observed in controls and orphan check (R05). roles_privileges is written only by SetupDataLoader at startup; no endpoint modifies roles or privileges. (The analysis groups this pair as a 'conflict' only because the two join-table columns reference different tables; the deployed schema has both FKs.)",
+      "confidence": 0.85,
+      "limitations": [
+        "No public endpoint accepts a referenced id; a dangling reference cannot be constructed via HTTP. The deployed FK exists (S02/S04) but its enforcement was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-43a36abc3819",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-register-control",
+        "R03-readback-users-roles"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-register-control.json",
+          "kind": "http-exchange",
+          "description": "registration control",
+          "sha256": "66760d3bf0287ad42fbfe263ee49c4f34c9a0a8130845c2a9652ce99a056a556"
+        },
+        {
+          "path": "logs/C01-register-control.log",
+          "kind": "sql-trace",
+          "description": "correlated SQL trace",
+          "sha256": "46ebc390d5183ad98bfe7d33e56349463c9b21b39bc92183952ac4f26ad27fd0"
+        },
+        {
+          "path": "raw/R03-readback-users-roles.json",
+          "kind": "read-back",
+          "description": "users_roles read-back",
+          "sha256": "e1f110add26ba5e91e4a6ac810fc9dc2ff0c51e2527052dbad42d6ceb0365e59"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "Foreign key users_roles.user_id -> user_account.id: deployed schema contains the FK (S02/S04); valid references observed in controls and orphan check (R05). users_roles is written at registration with the saved User and the server-resolved ROLE_USER (roleRepository.findByName); UserDto.role is bound but never used.",
+      "confidence": 0.85,
+      "limitations": [
+        "No public endpoint accepts a referenced id; a dangling reference cannot be constructed via HTTP. The deployed FK exists (S02/S04) but its enforcement was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-15d90c857799",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-register-control",
+        "R03-readback-users-roles"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-register-control.json",
+          "kind": "http-exchange",
+          "description": "registration control",
+          "sha256": "66760d3bf0287ad42fbfe263ee49c4f34c9a0a8130845c2a9652ce99a056a556"
+        },
+        {
+          "path": "logs/C01-register-control.log",
+          "kind": "sql-trace",
+          "description": "correlated SQL trace",
+          "sha256": "46ebc390d5183ad98bfe7d33e56349463c9b21b39bc92183952ac4f26ad27fd0"
+        },
+        {
+          "path": "raw/R03-readback-users-roles.json",
+          "kind": "read-back",
+          "description": "users_roles read-back",
+          "sha256": "e1f110add26ba5e91e4a6ac810fc9dc2ff0c51e2527052dbad42d6ceb0365e59"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "Foreign key users_roles.role_id -> role.id: deployed schema contains the FK (S02/S04); valid references observed in controls and orphan check (R05). users_roles is written at registration with the saved User and the server-resolved ROLE_USER (roleRepository.findByName); UserDto.role is bound but never used.",
+      "confidence": 0.85,
+      "limitations": [
+        "No public endpoint accepts a referenced id; a dangling reference cannot be constructed via HTTP. The deployed FK exists (S02/S04) but its enforcement was not exercised."
+      ]
+    },
+    {
+      "target_id": "dep-7c1ae4534c46",
+      "target_kind": "dependency",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R05-readback-orphan-check"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R05-readback-orphan-check.json",
+          "kind": "read-back",
+          "description": "orphan/emptiness check",
+          "sha256": "c3e692a06b1166d25c7a07554633511518c8aa5bbc3df86456fafa774dd95111"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "Association NewLocationToken.userLocation (user_location_id): written only by the disabled geo-IP feature from server-side entities.",
+      "confidence": 0.85,
+      "limitations": [
+        "Dependency integrity violation (dangling reference) cannot be induced through public endpoints."
+      ]
+    },
+    {
+      "target_id": "dep-36f11b73c41f",
+      "target_kind": "dependency",
+      "outcome": "CONTROL_ONLY",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-reset-password-setup",
+        "R06-readback-password-reset-token",
+        "C09-reset-password-second"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C06-reset-password-setup.json",
+          "kind": "http-exchange",
+          "description": "reset token creation",
+          "sha256": "42163f9260adf2b5fd91b369a97881f8c4af82d20e87e282befa4863c13c62e4"
+        },
+        {
+          "path": "logs/C06-reset-password-setup.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "6d5310505d8fcf1e3146fd8b3bbeddfb6d6097932fb55c199c472e0d95b014fa"
+        },
+        {
+          "path": "raw/R06-readback-password-reset-token.json",
+          "kind": "read-back",
+          "description": "reset token read-back",
+          "sha256": "cfa33f3fd89724dc5267e94a7a982c3807ca72b04c6d17cc9c00f418fb576227"
+        },
+        {
+          "path": "raw/C09-reset-password-second.json",
+          "kind": "http-exchange",
+          "description": "second reset request",
+          "sha256": "baafe5c10f895e833f6d74fe715f0dbe65d958cb3367322f6bd3ad0757d7e9ce"
+        },
+        {
+          "path": "logs/C09-reset-password-second.log",
+          "kind": "sql-trace",
+          "description": "SQL exception trace",
+          "sha256": "35f96cf263baea4313fedd0dd1bccb2a8bf8bfb099603c84d754c2921d919df0"
+        },
+        {
+          "path": "raw/R09-readback-password-reset-token-after.json",
+          "kind": "read-back",
+          "description": "still one token row",
+          "sha256": "c758189c273fbf25be6a66c391e8440606cf243cd27e95d5a6e92e906e0adae7"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "Association PasswordResetToken.user exercised by a valid control (C06, insert with user_id=2). A dangling/null reference cannot be supplied via API. C09 exposed the deployed @OneToOne UNIQUE(user_id) constraint: second token for the same user -> DB unique violation surfaced as generic 500.",
+      "confidence": 0.85,
+      "limitations": [
+        "Dependency integrity violation (dangling reference) cannot be induced through public endpoints."
+      ]
+    },
+    {
+      "target_id": "dep-49bd2e34886a",
+      "target_kind": "dependency",
+      "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R04-readback-roles-privileges"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R04-readback-roles-privileges.json",
+          "kind": "read-back",
+          "description": "roles_privileges read-back",
+          "sha256": "eb4e3b2dffd7f735488c4d75f2663ca2920dbbcc323ecc22ca7151dd13a0184a"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "Privilege.roles is the inverse (mappedBy='privileges') side of a many-to-many; it owns no column or constraint and carries no runtime predicate.",
+      "confidence": 0.9,
+      "limitations": [
+        "Inverse-side mapping; nothing to exercise at runtime."
+      ]
+    },
+    {
+      "target_id": "dep-e8b77e1b7059",
+      "target_kind": "dependency",
+      "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R03-readback-users-roles"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R03-readback-users-roles.json",
+          "kind": "read-back",
+          "description": "users_roles read-back",
+          "sha256": "e1f110add26ba5e91e4a6ac810fc9dc2ff0c51e2527052dbad42d6ceb0365e59"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "Role.users is the inverse (mappedBy='roles') side of the User-Role many-to-many; it owns no column or constraint.",
+      "confidence": 0.9,
+      "limitations": [
+        "Inverse-side mapping; nothing to exercise at runtime."
+      ]
+    },
+    {
+      "target_id": "dep-4885e4a93058",
+      "target_kind": "dependency",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R04-readback-roles-privileges",
+        "C12-registration-confirm"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R04-readback-roles-privileges.json",
+          "kind": "read-back",
+          "description": "roles_privileges read-back",
+          "sha256": "eb4e3b2dffd7f735488c4d75f2663ca2920dbbcc323ecc22ca7151dd13a0184a"
+        },
+        {
+          "path": "raw/C12-registration-confirm.json",
+          "kind": "http-exchange",
+          "description": "confirm control",
+          "sha256": "07a5bc38c2bfd37f169ec62738e08f6b14b1f6ddfad311215713733588ebfbbf"
+        },
+        {
+          "path": "logs/C12-registration-confirm.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "3d9c8b2ecd5af80a9fd132de64236c12dd46f1d8b971fc290786d2a2dc41fd11"
+        },
+        {
+          "path": "raw/R12-readback-users-final.json",
+          "kind": "read-back",
+          "description": "final user_account state",
+          "sha256": "765c67a1417c09d0245a3568056834f76b7970081045e9d3d886cd1ed074fef7"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "Owning association Role.privileges (roles_privileges join table) is populated only by SetupDataLoader at startup; no endpoint writes it. Observed read at runtime (authWithoutPassword in C12).",
+      "confidence": 0.85,
+      "limitations": [
+        "Dependency integrity violation (dangling reference) cannot be induced through public endpoints."
+      ]
+    },
+    {
+      "target_id": "dep-6f1003335d99",
+      "target_kind": "dependency",
+      "outcome": "CONTROL_ONLY",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-register-control",
+        "R03-readback-users-roles"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-register-control.json",
+          "kind": "http-exchange",
+          "description": "registration control",
+          "sha256": "66760d3bf0287ad42fbfe263ee49c4f34c9a0a8130845c2a9652ce99a056a556"
+        },
+        {
+          "path": "logs/C01-register-control.log",
+          "kind": "sql-trace",
+          "description": "correlated SQL trace",
+          "sha256": "46ebc390d5183ad98bfe7d33e56349463c9b21b39bc92183952ac4f26ad27fd0"
+        },
+        {
+          "path": "raw/R03-readback-users-roles.json",
+          "kind": "read-back",
+          "description": "users_roles read-back",
+          "sha256": "e1f110add26ba5e91e4a6ac810fc9dc2ff0c51e2527052dbad42d6ceb0365e59"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "Association User.roles (users_roles) exercised by registration control: insert into users_roles with server-resolved ROLE_USER.",
+      "confidence": 0.85,
+      "limitations": [
+        "Dependency integrity violation (dangling reference) cannot be induced through public endpoints."
+      ]
+    },
+    {
+      "target_id": "dep-9cae88383c49",
+      "target_kind": "dependency",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R05-readback-orphan-check"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R05-readback-orphan-check.json",
+          "kind": "read-back",
+          "description": "orphan/emptiness check",
+          "sha256": "c3e692a06b1166d25c7a07554633511518c8aa5bbc3df86456fafa774dd95111"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "Association UserLocation.user (user_id): written only by addUserLocation/createNewLocationToken, disabled in deployed config; reference is server-side.",
+      "confidence": 0.85,
+      "limitations": [
+        "Dependency integrity violation (dangling reference) cannot be induced through public endpoints."
+      ]
+    },
+    {
+      "target_id": "dep-a2dd5bd73014",
+      "target_kind": "dependency",
+      "outcome": "CONTROL_ONLY",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-register-control",
+        "R02-readback-verification-tokens",
+        "C10-resend-verification-token",
+        "C12-registration-confirm"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-register-control.json",
+          "kind": "http-exchange",
+          "description": "registration control",
+          "sha256": "66760d3bf0287ad42fbfe263ee49c4f34c9a0a8130845c2a9652ce99a056a556"
+        },
+        {
+          "path": "logs/C01-register-control.log",
+          "kind": "sql-trace",
+          "description": "correlated SQL trace",
+          "sha256": "46ebc390d5183ad98bfe7d33e56349463c9b21b39bc92183952ac4f26ad27fd0"
+        },
+        {
+          "path": "raw/R02-readback-verification-tokens.json",
+          "kind": "read-back",
+          "description": "verification_token read-back",
+          "sha256": "463dfba068aa321a06fb3a6d2830adb72a365ecae27a17f40e0284133461990e"
+        },
+        {
+          "path": "raw/C10-resend-verification-token.json",
+          "kind": "http-exchange",
+          "description": "resend control",
+          "sha256": "6429cfe9e568227a169affe6f04f44340fcb74164a115806a8d2849e98922cbf"
+        },
+        {
+          "path": "logs/C10-resend-verification-token.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "553e7561981ed8e82ab890426c97211921290b190fdbcb5533131417b87b40d4"
+        },
+        {
+          "path": "raw/R11-readback-vtoken-after-resend.json",
+          "kind": "read-back",
+          "description": "token regenerated, user_id unchanged",
+          "sha256": "3f3eb814451f14d3b01efb52f8c32ad9962487aee54b094b7ebcc5591009c986"
+        },
+        {
+          "path": "raw/C12-registration-confirm.json",
+          "kind": "http-exchange",
+          "description": "confirm control",
+          "sha256": "07a5bc38c2bfd37f169ec62738e08f6b14b1f6ddfad311215713733588ebfbbf"
+        },
+        {
+          "path": "logs/C12-registration-confirm.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "3d9c8b2ecd5af80a9fd132de64236c12dd46f1d8b971fc290786d2a2dc41fd11"
+        },
+        {
+          "path": "raw/R12-readback-users-final.json",
+          "kind": "read-back",
+          "description": "final user_account state",
+          "sha256": "765c67a1417c09d0245a3568056834f76b7970081045e9d3d886cd1ed074fef7"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "Association VerificationToken.user exercised by valid controls (insert at C01/C02, update at C10, read at C12).",
+      "confidence": 0.85,
+      "limitations": [
+        "Dependency integrity violation (dangling reference) cannot be induced through public endpoints."
+      ]
+    },
+    {
+      "target_id": "dep-40a154be1981",
+      "target_kind": "dependency",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R05-readback-orphan-check"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R05-readback-orphan-check.json",
+          "kind": "read-back",
+          "description": "orphan/emptiness check",
+          "sha256": "c3e692a06b1166d25c7a07554633511518c8aa5bbc3df86456fafa774dd95111"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "FK dependency NewLocationToken -> UserLocation: deployed FK FKT4D61XU4OMPO2FY5UPB033MWM; feature disabled (geo.ip.lib.enabled=false), no API supplies the reference.",
+      "confidence": 0.85,
+      "limitations": [
+        "Dependency integrity violation (dangling reference) cannot be induced through public endpoints."
+      ]
+    },
+    {
+      "target_id": "dep-10a703b64121",
+      "target_kind": "dependency",
+      "outcome": "CONTROL_ONLY",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-reset-password-setup",
+        "R06-readback-password-reset-token"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C06-reset-password-setup.json",
+          "kind": "http-exchange",
+          "description": "reset token creation",
+          "sha256": "42163f9260adf2b5fd91b369a97881f8c4af82d20e87e282befa4863c13c62e4"
+        },
+        {
+          "path": "logs/C06-reset-password-setup.log",
+          "kind": "sql-trace",
+          "description": "SQL trace",
+          "sha256": "6d5310505d8fcf1e3146fd8b3bbeddfb6d6097932fb55c199c472e0d95b014fa"
+        },
+        {
+          "path": "raw/R06-readback-password-reset-token.json",
+          "kind": "read-back",
+          "description": "reset token read-back",
+          "sha256": "cfa33f3fd89724dc5267e94a7a982c3807ca72b04c6d17cc9c00f418fb576227"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "FK dependency PasswordResetToken -> User exercised by valid control C06; FK FKNS9Q9F0F318UAOXIQN6LKA9UX deployed; violation not API-controllable.",
+      "confidence": 0.85,
+      "limitations": [
+        "Dependency integrity violation (dangling reference) cannot be induced through public endpoints."
+      ]
+    },
+    {
+      "target_id": "dep-d1bb8190f17e",
+      "target_kind": "dependency",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R05-readback-orphan-check"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R05-readback-orphan-check.json",
+          "kind": "read-back",
+          "description": "orphan/emptiness check",
+          "sha256": "c3e692a06b1166d25c7a07554633511518c8aa5bbc3df86456fafa774dd95111"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "FK dependency UserLocation -> User: deployed FK FKEWIIG159T5FN9JT50SRA34ADR; not reachable with client-controlled reference.",
+      "confidence": 0.85,
+      "limitations": [
+        "Dependency integrity violation (dangling reference) cannot be induced through public endpoints."
+      ]
+    },
+    {
+      "target_id": "dep-7745339a7509",
+      "target_kind": "dependency",
+      "outcome": "CONTROL_ONLY",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-register-control",
+        "R02-readback-verification-tokens"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-register-control.json",
+          "kind": "http-exchange",
+          "description": "registration control",
+          "sha256": "66760d3bf0287ad42fbfe263ee49c4f34c9a0a8130845c2a9652ce99a056a556"
+        },
+        {
+          "path": "logs/C01-register-control.log",
+          "kind": "sql-trace",
+          "description": "correlated SQL trace",
+          "sha256": "46ebc390d5183ad98bfe7d33e56349463c9b21b39bc92183952ac4f26ad27fd0"
+        },
+        {
+          "path": "raw/R02-readback-verification-tokens.json",
+          "kind": "read-back",
+          "description": "verification_token read-back",
+          "sha256": "463dfba068aa321a06fb3a6d2830adb72a365ecae27a17f40e0284133461990e"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "FK dependency VerificationToken -> User (FK_VERIFY_USER) exercised by valid controls; violation not API-controllable.",
+      "confidence": 0.85,
+      "limitations": [
+        "Dependency integrity violation (dangling reference) cannot be induced through public endpoints."
+      ]
+    },
+    {
+      "target_id": "dep-19a3821c8531",
+      "target_kind": "dependency",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R04-readback-roles-privileges"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R04-readback-roles-privileges.json",
+          "kind": "read-back",
+          "description": "roles_privileges read-back",
+          "sha256": "eb4e3b2dffd7f735488c4d75f2663ca2920dbbcc323ecc22ca7151dd13a0184a"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "FK roles_privileges.role_id -> role.id deployed (FK9H2VEWSQH8LUHFQ71XOKH4WHO); join table only written at startup.",
+      "confidence": 0.85,
+      "limitations": [
+        "Dependency integrity violation (dangling reference) cannot be induced through public endpoints."
+      ]
+    },
+    {
+      "target_id": "dep-6c4cf8e0348d",
+      "target_kind": "dependency",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "R04-readback-roles-privileges"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R04-readback-roles-privileges.json",
+          "kind": "read-back",
+          "description": "roles_privileges read-back",
+          "sha256": "eb4e3b2dffd7f735488c4d75f2663ca2920dbbcc323ecc22ca7151dd13a0184a"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "FK roles_privileges.privilege_id -> privilege.id deployed (FK5YJWXW2GVFYU76J3RGQWO685U); join table only written at startup.",
+      "confidence": 0.85,
+      "limitations": [
+        "Dependency integrity violation (dangling reference) cannot be induced through public endpoints."
+      ]
+    },
+    {
+      "target_id": "dep-16655a5b88f0",
+      "target_kind": "dependency",
+      "outcome": "CONTROL_ONLY",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-register-control",
+        "R03-readback-users-roles"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-register-control.json",
+          "kind": "http-exchange",
+          "description": "registration control",
+          "sha256": "66760d3bf0287ad42fbfe263ee49c4f34c9a0a8130845c2a9652ce99a056a556"
+        },
+        {
+          "path": "logs/C01-register-control.log",
+          "kind": "sql-trace",
+          "description": "correlated SQL trace",
+          "sha256": "46ebc390d5183ad98bfe7d33e56349463c9b21b39bc92183952ac4f26ad27fd0"
+        },
+        {
+          "path": "raw/R03-readback-users-roles.json",
+          "kind": "read-back",
+          "description": "users_roles read-back",
+          "sha256": "e1f110add26ba5e91e4a6ac810fc9dc2ff0c51e2527052dbad42d6ceb0365e59"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "FK users_roles.user_id -> user_account.id (FKCI4MDVG1FMO9EQMWNO1Y9O0FA) exercised by registration control; violation not API-controllable.",
+      "confidence": 0.85,
+      "limitations": [
+        "Dependency integrity violation (dangling reference) cannot be induced through public endpoints."
+      ]
+    },
+    {
+      "target_id": "dep-aaf21c07e94e",
+      "target_kind": "dependency",
+      "outcome": "CONTROL_ONLY",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": true,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-register-control",
+        "R03-readback-users-roles"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-register-control.json",
+          "kind": "http-exchange",
+          "description": "registration control",
+          "sha256": "66760d3bf0287ad42fbfe263ee49c4f34c9a0a8130845c2a9652ce99a056a556"
+        },
+        {
+          "path": "logs/C01-register-control.log",
+          "kind": "sql-trace",
+          "description": "correlated SQL trace",
+          "sha256": "46ebc390d5183ad98bfe7d33e56349463c9b21b39bc92183952ac4f26ad27fd0"
+        },
+        {
+          "path": "raw/R03-readback-users-roles.json",
+          "kind": "read-back",
+          "description": "users_roles read-back",
+          "sha256": "e1f110add26ba5e91e4a6ac810fc9dc2ff0c51e2527052dbad42d6ceb0365e59"
+        },
+        {
+          "path": "raw/S02-schema-constraints.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.TABLE_CONSTRAINTS of deployed H2 schema",
+          "sha256": "1532395799408694ba47e5c55da1b2f0615c87d6d9e71a8df77fa2e74cd4001b"
+        },
+        {
+          "path": "raw/S03-schema-columns.json",
+          "kind": "read-back",
+          "description": "INFORMATION_SCHEMA.COLUMNS (types, lengths, nullability)",
+          "sha256": "1bc8d7266449b3683e8c47127756683dcae6a3a73ec4fafaf5d7e1f76bc429f1"
+        },
+        {
+          "path": "raw/S04-schema-key-columns.json",
+          "kind": "read-back",
+          "description": "Key/FK columns and referenced unique constraints",
+          "sha256": "b408563101b78c8a56ea1e8de6c846e4226f694bd270e61c0c5c2991c2762ec6"
+        }
+      ],
+      "rationale": "FK users_roles.role_id -> role.id (FKT4V0RRWEYK393BDGT107VDX0X) exercised by registration control; role resolved server-side by name, UserDto.role ignored.",
+      "confidence": 0.85,
+      "limitations": [
+        "Dependency integrity violation (dangling reference) cannot be induced through public endpoints."
+      ]
+    }
+  ],
+  "warnings": [
+    "Outbound mail was redirected to 127.0.0.1:18206 (runtime property override, no source change) to honour the no-external-services policy; endpoints that send mail therefore return a generic 500 after their persistence work has committed. Persistence was confirmed by SQL trace and read-back, not by status code.",
+    "Read-backs use SELECT statements through the application's own H2 web console (/h2) on the permitted port, authenticated as the seeded admin.",
+    "Deployed schema adds constraints not in the analysis: UNIQUE(user_id) on password_reset_token and verification_token and UNIQUE(user_location_id) on new_location_token (from @OneToOne). C09 showed the password_reset_token one surfaces as an unhandled generic 500 on a second reset request for the same user.",
+    "Run 1 (logs/run1, raw/run1) was a preliminary run with less web logging; the reported evidence comes from run 2."
+  ]
+}

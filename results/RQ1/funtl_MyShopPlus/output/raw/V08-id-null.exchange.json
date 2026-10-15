@@ -1,0 +1,30 @@
+{
+ "case_id": "V08-id-null",
+ "purpose": "violation",
+ "target_ids": [
+  "pc-566dafe4ec19"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/reg",
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8"
+  },
+  "body": {
+   "id": null,
+   "username": "pv121525nullid",
+   "password": "123456"
+  }
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Tue, 29 Sep 2026 16:15:36 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"code\":200,\"message\":\"用户注册成功\",\"data\":{\"id\":8,\"username\":\"pv121525nullid\",\"password\":\"$2a$10$hEhTiX.9GekUL.skNsVKsOOU0NZ42mtn.Byd5uxNkcsLhlo0rk/2u\",\"icon\":null,\"email\":null,\"nickName\":null,\"note\":null,\"createTime\":\"2026-09-30 00:15:36\",\"loginTime\":\"2026-09-30 00:15:36\",\"status\":0}}"
+ }
+}

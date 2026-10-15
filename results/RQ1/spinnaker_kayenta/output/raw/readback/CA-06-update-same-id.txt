@@ -1,0 +1,4 @@
+-- MySQL read-back executed immediately after the request
+-- SQL: SELECT id, JSON_UNQUOTE(JSON_EXTRACT(content,'$.application')) AS application, (SELECT COUNT(*) FROM canary_archive WHERE id='ca-valid-001') AS n FROM canary_archive WHERE id='ca-valid-001'
+id	application	n
+ca-valid-001	updatedapp	1

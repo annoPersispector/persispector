@@ -1,0 +1,16 @@
+{
+ "case_id": "A12-boundary-comment-body-nonstring",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select body, typeof(body) from comments",
+ "params": [],
+ "rows": [
+  [
+   "nice",
+   "text"
+  ],
+  [
+   "42",
+   "text"
+  ]
+ ]
+}

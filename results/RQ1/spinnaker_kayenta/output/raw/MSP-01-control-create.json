@@ -1,0 +1,59 @@
+{
+  "case_id": "MSP-01-control-create",
+  "purpose": "control",
+  "target_ids": [
+    "pc-88c6ef457170",
+    "pc-a56ff232d178",
+    "pc-c69dfeadd911",
+    "pc-ab279b731a74",
+    "pc-914538813632",
+    "pc-216b2a3dbc5e",
+    "pc-893aeb4d6f06",
+    "pc-6e7266c1819b",
+    "pc-25e267f034f9",
+    "pc-5f7f9ca6c44d"
+  ],
+  "timestamp": "2026-09-29T12:27:29-0400",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18204/metricSetPairList?accountName=sql-account",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": [
+      {
+        "name": "cpu",
+        "id": "pair-1",
+        "tags": {
+          "a": "b"
+        },
+        "values": {
+          "control": [
+            1.0
+          ],
+          "experiment": [
+            2.0
+          ]
+        },
+        "scopes": {
+          "control": {
+            "startTimeMillis": 0,
+            "startTimeIso": "1970-01-01T00:00:00Z",
+            "stepMillis": 60000
+          },
+          "experiment": {
+            "startTimeMillis": 0,
+            "startTimeIso": "1970-01-01T00:00:00Z",
+            "stepMillis": 60000
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"metricSetPairListId\":\"81251910-c49f-44d9-8b0e-cb974af438d3\"}"
+  },
+  "readback_sql": "SELECT id, CHAR_LENGTH(id) AS id_len, JSON_VALID(content) AS json_valid, JSON_TYPE(content) AS json_type, created_at, updated_at FROM metric_set_pairs",
+  "readback_result": "id\tid_len\tjson_valid\tjson_type\tcreated_at\tupdated_at\n81251910-c49f-44d9-8b0e-cb974af438d3\t36\t1\tARRAY\t2026-09-29 12:27:30\t2026-09-29 12:27:30"
+}

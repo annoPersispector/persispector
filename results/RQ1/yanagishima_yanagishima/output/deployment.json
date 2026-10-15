@@ -1,0 +1,137 @@
+{
+  "schema_version": "persistence-runtime-verification-v1",
+  "application": "yanagishima_yanagishima",
+  "source_revision": null,
+  "isolated_application_path": "/artifact/results/RQ1/yanagishima_yanagishima/yanagishima_yanagishima-20260929T065140Z-b89792d6/application",
+  "build_system": "Gradle 5.2 (wrapper)",
+  "java_version": "OpenJDK 11.0.27 (/usr/lib/jvm/java-11-openjdk-amd64)",
+  "runtime_database": "MySQL 8.0.42 (local private instance, socket-only, skip-networking, sql_mode includes STRICT_TRANS_TABLES, utf8mb4_0900_ai_ci); schema from src/main/resources/schema.sql via spring.datasource.initialization-mode=always",
+  "schema_context_id": "dbctx-9ed09ac67b2d",
+  "base_urls": [
+    "http://127.0.0.1:18209"
+  ],
+  "ports": [
+    18209
+  ],
+  "health_checks": [
+    "GET http://127.0.0.1:18209/actuator/health -> 200 {\"status\":\"UP\",\"components\":{\"db\":{\"status\":\"UP\",\"details\":{\"database\":\"MySQL\"}}}}"
+  ],
+  "commands": [
+    {
+      "purpose": "compatibility patch (dependency coordinates)",
+      "command": "sed -i (see patches/01-build-gradle-central-deps.patch) build.gradle",
+      "working_directory": "/artifact/results/RQ1/yanagishima_yanagishima/yanagishima_yanagishima-20260929T065140Z-b89792d6/application",
+      "exit_code": 0
+    },
+    {
+      "purpose": "build",
+      "command": "JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 ./gradlew --no-daemon -x checkstyleMain jar copyDeps copyLibs",
+      "working_directory": "/artifact/results/RQ1/yanagishima_yanagishima/yanagishima_yanagishima-20260929T065140Z-b89792d6/application",
+      "exit_code": 0
+    },
+    {
+      "purpose": "fetch MySQL unix-socket factory (runtime-only classpath addition)",
+      "command": "mvn -q dependency:copy -Dartifact=com.kohlschutter.junixsocket:junixsocket-{mysql,core,common,native-common}:2.3.2 -DoutputDirectory=/tmp/yjx/lib",
+      "working_directory": "/tmp/yjx",
+      "exit_code": 0
+    },
+    {
+      "purpose": "database init",
+      "command": "mysqld --defaults-file=/tmp/ymysql/my.cnf --initialize-insecure (my.cnf: skip-networking, socket=/tmp/ymysql/mysql.sock, general_log=1)",
+      "working_directory": "/tmp/ymysql",
+      "exit_code": 0
+    },
+    {
+      "purpose": "database start",
+      "command": "mysqld --defaults-file=/tmp/ymysql/my.cnf &; mysql -S /tmp/ymysql/mysql.sock -uroot -e \"ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY 'test'; CREATE DATABASE test;\"",
+      "working_directory": "/tmp/ymysql",
+      "exit_code": 0
+    },
+    {
+      "purpose": "application start",
+      "command": "bash output/logs/start-command.sh (java -cp 'build/package/lib/*:/tmp/yjx/lib/*' yanagishima.YanagishimaApplication --spring.config.location=src/main/resources/config/ --server.port=18209 --server.address=127.0.0.1 --spring.datasource.url=jdbc:mysql://localhost:3306/test?socketFactory=org.newsclub.net.mysql.AFUNIXDatabaseSocketFactory&junixsocket.file=/tmp/ymysql/mysql.sock&useSSL=false --spring.jpa.show-sql=true)",
+      "working_directory": "/artifact/results/RQ1/yanagishima_yanagishima/yanagishima_yanagishima-20260929T065140Z-b89792d6",
+      "exit_code": null
+    },
+    {
+      "purpose": "verification",
+      "command": "python3 harness.py && python3 harness_supplement.py",
+      "working_directory": "/artifact/results/RQ1/yanagishima_yanagishima/yanagishima_yanagishima-20260929T065140Z-b89792d6/output",
+      "exit_code": 0
+    },
+    {
+      "purpose": "application stop",
+      "command": "pkill -f yanagishima.YanagishimaApplication",
+      "working_directory": "/artifact/results/RQ1/yanagishima_yanagishima/yanagishima_yanagishima-20260929T065140Z-b89792d6",
+      "exit_code": 0
+    },
+    {
+      "purpose": "database stop",
+      "command": "mysqladmin -S /tmp/ymysql/mysql.sock -uroot -ptest shutdown",
+      "working_directory": "/artifact/results/RQ1/yanagishima_yanagishima/yanagishima_yanagishima-20260929T065140Z-b89792d6",
+      "exit_code": 0
+    }
+  ],
+  "patches": [
+    {
+      "path": "patches/01-build-gradle-central-deps.patch",
+      "kind": "patch",
+      "sha256": "69abccfad6ebf831dee1d33b51a37beecc3fc6160109fe2ebe2b513ba24f5940",
+      "description": "Build-only compatibility patch: removed unreachable repo.hortonworks.com repositories (expired TLS cert) and replaced HDP builds hive-jdbc 1.2.1000.2.5.3.0-37 / hadoop-common 2.7.3.2.5.3.0-37 with Apache Central 1.2.1 / 2.7.3. No application source changed."
+    }
+  ],
+  "logs": [
+    {
+      "path": "logs/build.log",
+      "kind": "deployment-log",
+      "description": "Gradle build output"
+    },
+    {
+      "path": "logs/app.log",
+      "kind": "application-log",
+      "description": "Application console log incl. Hibernate SQL and SqlExceptionHelper errors"
+    },
+    {
+      "path": "logs/yanagishima-file.log",
+      "kind": "application-log",
+      "description": "Application log4j file appender output"
+    },
+    {
+      "path": "logs/mysql-general.log",
+      "kind": "sql-trace",
+      "description": "MySQL general query log (lines truncated at 600 chars)"
+    },
+    {
+      "path": "logs/mysqld-error.log",
+      "kind": "database-log",
+      "description": "MySQL error log"
+    },
+    {
+      "path": "logs/mysql-init.log",
+      "kind": "database-log",
+      "description": "MySQL datadir initialization output"
+    },
+    {
+      "path": "logs/harness-run.log",
+      "kind": "other",
+      "description": "Harness console output"
+    },
+    {
+      "path": "logs/harness-supplement-run.log",
+      "kind": "other",
+      "description": "Supplementary harness console output"
+    },
+    {
+      "path": "logs/start-command.sh",
+      "kind": "other",
+      "description": "Exact application start command"
+    }
+  ],
+  "cleanup_performed": true,
+  "notes": [
+    "Only port 18209 was permitted, so MySQL was run with skip-networking and reached through a Unix socket using junixsocket's Connector/J 5.1 socket factory (runtime classpath addition, no source change).",
+    "Presto/Hive/Spark datasources in application.yml were left unchanged and never contacted; query-engine paths (query, session_property tables) were not exercised.",
+    "Frontend (web/) build was skipped; only REST endpoints were used. Checkstyle was skipped.",
+    "Application and MySQL processes were stopped after verification; port 18209 confirmed closed. MySQL datadir remains at /tmp/ymysql (scratch)."
+  ]
+}

@@ -1,0 +1,30 @@
+{
+ "case_id": "A05-violation-dup-slug-update",
+ "purpose": "violation",
+ "target_ids": [
+  "pc-e4f422b7bd9e"
+ ],
+ "request": {
+  "method": "PUT",
+  "url": "http://127.0.0.1:18208/articles/other-title",
+  "headers": {
+   "Content-Type": "application/json",
+   "Authorization": "Token <JWT-REDACTED>"
+  },
+  "body": {
+   "article": {
+    "title": "Dup Title"
+   }
+  }
+ },
+ "response": {
+  "status": 500,
+  "body": {
+   "timestamp": "2026-09-29T07:08:37.862+00:00",
+   "status": 500,
+   "error": "Internal Server Error",
+   "path": "/articles/other-title"
+  }
+ },
+ "note": ""
+}

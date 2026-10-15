@@ -1,0 +1,76 @@
+[2026-09-29 20:19:31.230] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==>  Preparing: select id, is_deleted, create_time, created_by, last_update_time, last_updated_by, namespace, bus_id, content from namespace_info where namespace = ? limit 0,1 
+[2026-09-29 20:19:31.231] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==> Parameters: pvns1(String)
+[2026-09-29 20:19:31.231] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.N.selectByNamespace] >>> <==      Total: 0
+[2026-09-29 20:19:31.231] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==>  Preparing: select id, is_deleted, create_time, created_by, last_update_time, last_updated_by, namespace, name, zk_cluster_key from namespace_zkcluster_mapping where namespace = ? limit 0,1 
+[2026-09-29 20:19:31.231] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==> Parameters: pvns1(String)
+[2026-09-29 20:19:31.231] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.N.selectByNamespace] >>> <==      Total: 0
+[2026-09-29 20:19:31.231] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.NamespaceInfoRepository.insert] >>> ==>  Preparing: insert into namespace_info( create_time, created_by, namespace, bus_id, content) values (?, ?,?, ?, ?) 
+[2026-09-29 20:19:31.231] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.NamespaceInfoRepository.insert] >>> ==> Parameters: 2026-09-29 20:19:31.231(Timestamp), REST_API(String), pvns1(String), (String), (String)
+[2026-09-29 20:19:31.232] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.NamespaceInfoRepository.insert] >>> <==    Updates: 1
+[2026-09-29 20:19:31.232] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==>  Preparing: select id, is_deleted, create_time, created_by, last_update_time, last_updated_by, namespace, name, zk_cluster_key from namespace_zkcluster_mapping where namespace = ? limit 0,1 
+[2026-09-29 20:19:31.232] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==> Parameters: pvns1(String)
+[2026-09-29 20:19:31.232] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.N.selectByNamespace] >>> <==      Total: 0
+[2026-09-29 20:19:31.232] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.N.insert] >>> ==>  Preparing: insert into namespace_zkcluster_mapping( create_time, created_by,last_update_time,last_updated_by, namespace, name, zk_cluster_key) values(?, ?,?,?, ?, ?, ?) 
+[2026-09-29 20:19:31.232] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.N.insert] >>> ==> Parameters: 2026-09-29 20:19:31.232(Timestamp), REST_API(String), 2026-09-29 20:19:31.232(Timestamp), REST_API(String), pvns1(String), (String), cluster1(String)
+[2026-09-29 20:19:31.232] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.N.insert] >>> <==    Updates: 1
+[2026-09-29 20:19:31.232] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==>  Preparing: select id, property, value from sys_config where id in (select max(id) from sys_config where property in ( ? ) group by property) 
+[2026-09-29 20:19:31.232] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==> Parameters: REFRESH_REGISTRY_CENTER_UUID(String)
+[2026-09-29 20:19:31.232] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> <==      Total: 1
+[2026-09-29 20:19:31.232] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.SystemConfigRepository.updateById] >>> ==>  Preparing: update sys_config set property = ?, value = ? where id = ? 
+[2026-09-29 20:19:31.232] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.SystemConfigRepository.updateById] >>> ==> Parameters: REFRESH_REGISTRY_CENTER_UUID(String), 80130565-c1b7-4765-a5ab-68cd00fbf445(String), 11(Long)
+[2026-09-29 20:19:31.233] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.SystemConfigRepository.updateById] >>> <==    Updates: 1
+[2026-09-29 20:19:31.233] [INFO] [http-nio-127.0.0.1-18205-exec-2] [AUDITLOG] >>> REST API:[create] path:[/rest/v1/namespaces] is called by IP:[127.0.0.1], result is success.
+[2026-09-29 20:19:31.487] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==>  Preparing: select id, property, value from sys_config where id in (select max(id) from sys_config where property in ( ? ) group by property) 
+[2026-09-29 20:19:31.487] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==> Parameters: REFRESH_REGISTRY_CENTER_UUID(String)
+[2026-09-29 20:19:31.488] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> <==      Total: 1
+[2026-09-29 20:19:31.488] [INFO] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> Start refresh RegCenter
+[2026-09-29 20:19:31.489] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==>  Preparing: select id, property, value from sys_config where id in (select max(id) from sys_config where property in ( ? ) group by property) 
+[2026-09-29 20:19:31.489] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==> Parameters: CONSOLE_ZK_CLUSTER_MAPPING(String)
+[2026-09-29 20:19:31.490] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> <==      Total: 1
+[2026-09-29 20:19:31.490] [INFO] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> the current console cluster:default can do sharding and dashboard to zk clusters:[cluster1, it_cluster]
+[2026-09-29 20:19:31.490] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.ZkClusterInfoRepository.selectAll] >>> ==>  Preparing: select id, create_time, created_by, last_update_time, last_updated_by, zk_cluster_key, alias, connect_string, description from zk_cluster_info 
+[2026-09-29 20:19:31.491] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.ZkClusterInfoRepository.selectAll] >>> ==> Parameters: 
+[2026-09-29 20:19:31.491] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.ZkClusterInfoRepository.selectAll] >>> <==      Total: 1
+[2026-09-29 20:19:31.492] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByZkClusterKey] >>> ==>  Preparing: select id, is_deleted, create_time, created_by, last_update_time, last_updated_by, namespace, name, zk_cluster_key from namespace_zkcluster_mapping where zk_cluster_key = ? 
+[2026-09-29 20:19:31.492] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByZkClusterKey] >>> ==> Parameters: cluster1(String)
+[2026-09-29 20:19:31.492] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByZkClusterKey] >>> <==      Total: 2
+[2026-09-29 20:19:31.494] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==>  Preparing: select id, is_deleted, create_time, created_by, last_update_time, last_updated_by, namespace, bus_id, content from namespace_info where namespace = ? limit 0,1 
+[2026-09-29 20:19:31.494] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==> Parameters: mydomain(String)
+[2026-09-29 20:19:31.494] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByNamespace] >>> <==      Total: 0
+[2026-09-29 20:19:31.497] [INFO] [ProcessThread(sid:0 cport:2181):] [org.apache.zookeeper.server.PrepRequestProcessor] >>> Got user-level KeeperException when processing sessionid:0x100adaa051d0000 type:create cxid:0x37 zxid:0x68 txntype:-1 reqpath:n/a Error Path:/pvns1 Error:KeeperErrorCode = NoNode for /pvns1
+[2026-09-29 20:19:31.509] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==>  Preparing: select id, is_deleted, create_time, created_by, last_update_time, last_updated_by, namespace, bus_id, content from namespace_info where namespace = ? limit 0,1 
+[2026-09-29 20:19:31.509] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==> Parameters: pvns1(String)
+[2026-09-29 20:19:31.509] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.N.selectByNamespace] >>> <==      Total: 1
+[2026-09-29 20:19:31.510] [INFO] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> Zkcluster [cluster1] namespace size change from 1 to 2
+[2026-09-29 20:19:31.510] [INFO] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> new zkClusterMap is : {cluster1=ZkCluster{zkClusterKey='cluster1', zkAlias='集群1', zkAddr='localhost:2181', description='', digest='null', offline=false, regCenterConfList=[RegistryCenterConfiguration [name=业务组, zkAddressList=localhost:2181, namespace=mydomain, zkAlias=集群1, zkClusterKey=cluster1, digest=null, nameAndNamespace=业务组/mydomain, sysAdmin=null, techAdmin=null, degree=null, version=, container=null], RegistryCenterConfiguration [name=, zkAddressList=localhost:2181, namespace=pvns1, zkAlias=集群1, zkClusterKey=cluster1, digest=null, nameAndNamespace=/pvns1, sysAdmin=null, techAdmin=null, degree=null, version=, container=null]]}}
+[2026-09-29 20:19:31.511] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==>  Preparing: select id, property, value from sys_config where id in (select max(id) from sys_config where property in ( ? ) group by property) 
+[2026-09-29 20:19:31.511] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==> Parameters: IDC_ZK_CLUSTER_MAPPING(String)
+[2026-09-29 20:19:31.511] [DEBUG] [refresh-RegCenter-thread] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> <==      Total: 1
+[2026-09-29 20:19:31.511] [WARN] [refresh-RegCenter-thread] [c.v.s.j.c.service.helper.ZkClusterMappingUtils] >>> The mapping idc is not found for the zkClusterKey that is cluster1
+[2026-09-29 20:19:31.511] [INFO] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> Start NamespaceShardingManager /pvns1
+[2026-09-29 20:19:31.512] [INFO] [refresh-RegCenter-thread] [o.a.curator.framework.imps.CuratorFrameworkImpl] >>> Starting
+[2026-09-29 20:19:31.512] [INFO] [refresh-RegCenter-thread] [org.apache.zookeeper.ZooKeeper] >>> Initiating client connection, connectString=localhost:2181 sessionTimeout=20000 watcher=org.apache.curator.ConnectionState@6523b439
+[2026-09-29 20:19:31.514] [INFO] [refresh-RegCenter-thread-SendThread(localhost:2181)] [org.apache.zookeeper.ClientCnxn] >>> Opening socket connection to server localhost/127.0.0.1:2181. Will not attempt to authenticate using SASL (unknown error)
+[2026-09-29 20:19:31.515] [INFO] [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181] [org.apache.zookeeper.server.NIOServerCnxnFactory] >>> Accepted socket connection from /127.0.0.1:43772
+[2026-09-29 20:19:31.515] [INFO] [refresh-RegCenter-thread-SendThread(localhost:2181)] [org.apache.zookeeper.ClientCnxn] >>> Socket connection established to localhost/127.0.0.1:2181, initiating session
+[2026-09-29 20:19:31.515] [INFO] [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181] [org.apache.zookeeper.server.ZooKeeperServer] >>> Client attempting to establish new session at /127.0.0.1:43772
+[2026-09-29 20:19:31.517] [INFO] [SyncThread:0] [org.apache.zookeeper.server.ZooKeeperServer] >>> Established session 0x100adaa051d0003 with negotiated timeout 20000 for client /127.0.0.1:43772
+[2026-09-29 20:19:31.517] [INFO] [refresh-RegCenter-thread-SendThread(localhost:2181)] [org.apache.zookeeper.ClientCnxn] >>> Session establishment complete on server localhost/127.0.0.1:2181, sessionid = 0x100adaa051d0003, negotiated timeout = 20000
+[2026-09-29 20:19:31.517] [INFO] [refresh-RegCenter-thread-EventThread] [o.a.curator.framework.state.ConnectionStateManager] >>> State change: CONNECTED
+[2026-09-29 20:19:31.519] [INFO] [refresh-RegCenter-thread] [c.v.s.j.sharding.service.NamespaceShardingService] >>> pvns1-127.0.1.1-93a7091b-b9e6-4e56-ba23-da93f1e640ed leadership election start
+[2026-09-29 20:19:31.520] [INFO] [ProcessThread(sid:0 cport:2181):] [org.apache.zookeeper.server.PrepRequestProcessor] >>> Got user-level KeeperException when processing sessionid:0x100adaa051d0003 type:create cxid:0x3 zxid:0x6d txntype:-1 reqpath:n/a Error Path:/pvns1/$SaturnExecutors/leader/latch Error:KeeperErrorCode = NoNode for /pvns1/$SaturnExecutors/leader/latch
+[2026-09-29 20:19:31.530] [INFO] [refresh-RegCenter-thread] [c.v.s.j.sharding.service.NamespaceShardingService] >>> pvns1-127.0.1.1-93a7091b-b9e6-4e56-ba23-da93f1e640ed become leader
+[2026-09-29 20:19:31.530] [INFO] [pvns1-Worker] [c.v.s.job.sharding.task.ExecuteAllShardingTask] >>> Execute the ExecuteAllShardingTask 
+[2026-09-29 20:19:31.531] [INFO] [refresh-RegCenter-thread] [c.v.s.job.sharding.service.AddJobListenersService] >>> addExistJobPathListener, jobs = []
+[2026-09-29 20:19:31.533] [WARN] [pvns1-Worker] [c.v.s.job.sharding.task.AbstractAsyncShardingTask] >>> Unnecessary to put shards back to executors balanced because of no executor
+[2026-09-29 20:19:31.533] [INFO] [refresh-RegCenter-thread] [c.v.s.j.sharding.service.ShardingTreeCacheService] >>> create TreeCache, full path is pvns1/$SaturnExecutors/executors, depth is 2
+[2026-09-29 20:19:31.533] [INFO] [refresh-RegCenter-thread] [c.v.s.j.sharding.service.ShardingTreeCacheService] >>> add ExecutorOnlineOfflineTriggerShardingListener, full path is pvns1/$SaturnExecutors/executors, depth is 2
+[2026-09-29 20:19:31.533] [INFO] [refresh-RegCenter-thread] [c.v.s.j.sharding.service.ShardingTreeCacheService] >>> add ExecutorTrafficTriggerShardingListener, full path is pvns1/$SaturnExecutors/executors, depth is 2
+[2026-09-29 20:19:31.534] [INFO] [refresh-RegCenter-thread] [c.v.s.j.sharding.service.ShardingTreeCacheService] >>> create TreeCache, full path is pvns1/$SaturnExecutors/sharding, depth is 1
+[2026-09-29 20:19:31.534] [INFO] [refresh-RegCenter-thread] [c.v.s.j.sharding.service.ShardingTreeCacheService] >>> add SaturnExecutorsShardingTriggerShardingListener, full path is pvns1/$SaturnExecutors/sharding, depth is 1
+[2026-09-29 20:19:31.536] [INFO] [refresh-RegCenter-thread] [c.v.s.j.sharding.service.ShardingTreeCacheService] >>> create TreeCache, full path is pvns1/$SaturnExecutors/leader, depth is 1
+[2026-09-29 20:19:31.536] [INFO] [refresh-RegCenter-thread] [c.v.s.j.sharding.service.ShardingTreeCacheService] >>> add LeadershipElectionListener, full path is pvns1/$SaturnExecutors/leader, depth is 1
+[2026-09-29 20:19:31.536] [INFO] [refresh-RegCenter-thread] [c.v.s.j.sharding.service.ShardingTreeCacheService] >>> create TreeCache, full path is pvns1/$Jobs, depth is 1
+[2026-09-29 20:19:31.536] [INFO] [refresh-RegCenter-thread] [c.v.s.j.sharding.service.ShardingTreeCacheService] >>> add AddOrRemoveJobListener, full path is pvns1/$Jobs, depth is 1
+[2026-09-29 20:19:31.536] [INFO] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> Done starting NamespaceShardingManager /pvns1
+[2026-09-29 20:19:31.536] [INFO] [refresh-RegCenter-thread] [c.v.s.j.c.service.impl.RegistryCenterServiceImpl] >>> End refresh RegCenter, cost 48ms

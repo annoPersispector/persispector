@@ -1,0 +1,36 @@
+{
+ "case_id": "ns-dup",
+ "purpose": "violation",
+ "target_hint": [
+  "namespace_info.uniq(namespace)",
+  "namespace_zkcluster_mapping.uniq(namespace)"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "body": {
+   "namespace": "pvns1",
+   "zkCluster": "cluster1"
+  },
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 400,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:17:05 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"message\":\"Invalid request. Namespace: {pvns1} already existed\"}",
+  "json": {
+   "message": "Invalid request. Namespace: {pvns1} already existed"
+  }
+ },
+ "elapsed_seconds": 0.008,
+ "timestamp": "2026-09-29T20:17:06-0400"
+}

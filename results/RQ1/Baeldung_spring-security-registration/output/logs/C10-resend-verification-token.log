@@ -1,0 +1,38 @@
+web - 2026-09-29 02:37:38,963 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.s.w.s.DispatcherServlet - GET "/user/resendRegistrationToken?token=f09e0c1d-959b-4506-b6c0-3322b9427d97", parameters={masked}
+web - 2026-09-29 02:37:38,964 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select v1_0.id,v1_0.expiry_date,v1_0.token,v1_0.user_id from verification_token v1_0 where v1_0.token=?
+web - 2026-09-29 02:37:38,965 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [f09e0c1d-959b-4506-b6c0-3322b9427d97]
+web - 2026-09-29 02:37:38,965 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,r1_0.user_id,r1_1.id,r1_1.name,u1_0.secret from user_account u1_0 left join (users_roles r1_0 join role r1_1 on r1_1.id=r1_0.role_id) on u1_0.id=r1_0.user_id where u1_0.id=?
+web - 2026-09-29 02:37:38,966 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [3]
+web - 2026-09-29 02:37:38,967 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - update verification_token set expiry_date=?,token=?,user_id=? where id=?
+web - 2026-09-29 02:37:38,967 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [TIMESTAMP] - [Wed Sep 30 02:37:38 EDT 2026]
+web - 2026-09-29 02:37:38,967 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [2] as [VARCHAR] - [530edeea-8dfb-4397-86cd-5bdb4f2b2585]
+web - 2026-09-29 02:37:38,967 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [3] as [BIGINT] - [3]
+web - 2026-09-29 02:37:38,967 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [4] as [BIGINT] - [2]
+web - 2026-09-29 02:37:38,968 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select v1_0.id,v1_0.expiry_date,v1_0.token,v1_0.user_id from verification_token v1_0 where v1_0.token=?
+web - 2026-09-29 02:37:38,968 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [530edeea-8dfb-4397-86cd-5bdb4f2b2585]
+web - 2026-09-29 02:37:38,972 [http-nio-127.0.0.1-18206-exec-10] ERROR c.b.w.e.RestResponseEntityExceptionHandler - 500 Status Code
+o.s.m.MailSendException: Mail server connection failed. Failed messages: jakarta.mail.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206;
+  nested exception is:
+	javax.net.ssl.SSLException: Unsupported or unrecognized SSL message
+	at o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:448)
+	at o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:323)
+	at o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:312)
+	at c.b.w.c.RegistrationRestController.resendRegistrationToken(RegistrationRestController.java:72)
+	at j.i.r.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java)
+	... 88 frames truncated
+Caused by: j.m.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206
+	at c.s.m.s.SMTPTransport.openServer(SMTPTransport.java:2261)
+	at c.s.m.s.SMTPTransport.protocolConnect(SMTPTransport.java:754)
+	at j.m.Service.connect(Service.java:342)
+	at o.s.m.j.JavaMailSenderImpl.connectTransport(JavaMailSenderImpl.java:518)
+	at o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:437)
+	... 92 common frames omitted
+Caused by: j.n.s.SSLException: Unsupported or unrecognized SSL message
+	at s.s.s.SSLSocketInputRecord.handleUnknownRecord(SSLSocketInputRecord.java:457)
+	at s.s.s.SSLSocketInputRecord.decode(SSLSocketInputRecord.java:175)
+	at s.s.s.SSLTransport.decode(SSLTransport.java:111)
+	at s.s.s.SSLSocketImpl.decode(SSLSocketImpl.java:1510)
+	at s.s.s.SSLSocketImpl.readHandshakeRecord(SSLSocketImpl.java:1425)
+	... 6 frames truncated
+	... 96 common frames omitted
+web - 2026-09-29 02:37:38,973 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.s.w.s.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR

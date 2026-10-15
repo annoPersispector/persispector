@@ -1,0 +1,693 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.0.4.RELEASE)
+
+2026-09-29 03:51:02.019  INFO 960522 --- [           main] io.dddbyexamples.cqrs.CqrsApplication    : Starting CqrsApplication v0.0.1-SNAPSHOT on artifact-host with PID 960522 (/artifact/results/RQ1/ddd-by-examples_all-things-cqrs__in-one-class/ddd-by-examples_all-things-cqrs__in-one-class-20260929T075000Z-b7b65e8c/application/target/in-one-class-0.0.1-SNAPSHOT.jar started by anonymous in /artifact/results/RQ1/ddd-by-examples_all-things-cqrs__in-one-class/ddd-by-examples_all-things-cqrs__in-one-class-20260929T075000Z-b7b65e8c)
+2026-09-29 03:51:02.022  INFO 960522 --- [           main] io.dddbyexamples.cqrs.CqrsApplication    : No active profile set, falling back to default profiles: default
+2026-09-29 03:51:02.069  INFO 960522 --- [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1ff8b8f: startup date [Tue Sep 29 03:51:02 EDT 2026]; root of context hierarchy
+2026-09-29 03:51:02.943  INFO 960522 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c938533d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2026-09-29 03:51:03.277  INFO 960522 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 18207 (http)
+2026-09-29 03:51:03.310  INFO 960522 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-29 03:51:03.310  INFO 960522 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.32
+2026-09-29 03:51:03.319  INFO 960522 --- [ost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2026-09-29 03:51:03.409  INFO 960522 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-29 03:51:03.409  INFO 960522 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1342 ms
+2026-09-29 03:51:03.620  INFO 960522 --- [ost-startStop-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-29 03:51:03.739  INFO 960522 --- [ost-startStop-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-29 03:51:03.748  INFO 960522 --- [ost-startStop-1] o.s.jdbc.datasource.init.ScriptUtils     : Executing SQL script from URL [jar:file:/artifact/results/RQ1/ddd-by-examples_all-things-cqrs__in-one-class/ddd-by-examples_all-things-cqrs__in-one-class-20260929T075000Z-b7b65e8c/application/target/in-one-class-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/schema.sql]
+2026-09-29 03:51:03.766  INFO 960522 --- [ost-startStop-1] o.s.jdbc.datasource.init.ScriptUtils     : Executed SQL script from URL [jar:file:/artifact/results/RQ1/ddd-by-examples_all-things-cqrs__in-one-class/ddd-by-examples_all-things-cqrs__in-one-class-20260929T075000Z-b7b65e8c/application/target/in-one-class-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/schema.sql] in 18 ms.
+2026-09-29 03:51:03.766  INFO 960522 --- [ost-startStop-1] o.s.jdbc.datasource.init.ScriptUtils     : Executing SQL script from URL [jar:file:/artifact/results/RQ1/ddd-by-examples_all-things-cqrs__in-one-class/ddd-by-examples_all-things-cqrs__in-one-class-20260929T075000Z-b7b65e8c/application/target/in-one-class-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/data.sql]
+2026-09-29 03:51:03.768  INFO 960522 --- [ost-startStop-1] o.s.jdbc.datasource.init.ScriptUtils     : Executed SQL script from URL [jar:file:/artifact/results/RQ1/ddd-by-examples_all-things-cqrs__in-one-class/ddd-by-examples_all-things-cqrs__in-one-class-20260929T075000Z-b7b65e8c/application/target/in-one-class-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/data.sql] in 2 ms.
+2026-09-29 03:51:03.941  INFO 960522 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2026-09-29 03:51:03.941  INFO 960522 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webMvcMetricsFilter' to: [/*]
+2026-09-29 03:51:03.942  INFO 960522 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2026-09-29 03:51:03.942  INFO 960522 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2026-09-29 03:51:03.942  INFO 960522 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2026-09-29 03:51:03.942  INFO 960522 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpTraceFilter' to: [/*]
+2026-09-29 03:51:03.942  INFO 960522 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2026-09-29 03:51:03.943  INFO 960522 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet webServlet mapped to [/h2-console/*]
+2026-09-29 03:51:04.027  INFO 960522 --- [           main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2026-09-29 03:51:04.037  INFO 960522 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2026-09-29 03:51:04.081  INFO 960522 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2026-09-29 03:51:04.082  INFO 960522 --- [           main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2026-09-29 03:51:04.115  INFO 960522 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2026-09-29 03:51:04.233  INFO 960522 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2026-09-29 03:51:04.525  INFO 960522 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-29 03:51:04.765  INFO 960522 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2026-09-29 03:51:04.955  INFO 960522 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1ff8b8f: startup date [Tue Sep 29 03:51:02 EDT 2026]; root of context hierarchy
+2026-09-29 03:51:04.986  WARN 960522 --- [           main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-29 03:51:05.009  INFO 960522 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[],methods=[GET]}" onto org.springframework.http.ResponseEntity<java.util.List<io.dddbyexamples.cqrs.model.Withdrawal>> io.dddbyexamples.cqrs.ui.WithdrawalsController.withdrawals(java.lang.String)
+2026-09-29 03:51:05.010  INFO 960522 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[],methods=[POST]}" onto org.springframework.http.ResponseEntity io.dddbyexamples.cqrs.ui.WithdrawalsController.withdraw(io.dddbyexamples.cqrs.ui.WithdrawalCommand)
+2026-09-29 03:51:05.012  INFO 960522 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2026-09-29 03:51:05.012  INFO 960522 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2026-09-29 03:51:05.026  INFO 960522 --- [           main] o.s.w.s.h.BeanNameUrlHandlerMapping      : Mapped URL path [/withdrawals] onto handler '/withdrawals'
+2026-09-29 03:51:05.030  INFO 960522 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2026-09-29 03:51:05.030  INFO 960522 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2026-09-29 03:51:05.437  INFO 960522 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2026-09-29 03:51:05.444  INFO 960522 --- [           main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Mapped "{[/actuator/health],methods=[GET],produces=[application/vnd.spring-boot.actuator.v2+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.web.servlet.AbstractWebMvcEndpointHandlerMapping$OperationHandler.handle(javax.servlet.http.HttpServletRequest,java.util.Map<java.lang.String, java.lang.String>)
+2026-09-29 03:51:05.444  INFO 960522 --- [           main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Mapped "{[/actuator/info],methods=[GET],produces=[application/vnd.spring-boot.actuator.v2+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.web.servlet.AbstractWebMvcEndpointHandlerMapping$OperationHandler.handle(javax.servlet.http.HttpServletRequest,java.util.Map<java.lang.String, java.lang.String>)
+2026-09-29 03:51:05.445  INFO 960522 --- [           main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Mapped "{[/actuator],methods=[GET],produces=[application/vnd.spring-boot.actuator.v2+json || application/json]}" onto protected java.util.Map<java.lang.String, java.util.Map<java.lang.String, org.springframework.boot.actuate.endpoint.web.Link>> org.springframework.boot.actuate.endpoint.web.servlet.WebMvcEndpointHandlerMapping.links(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2026-09-29 03:51:05.474  INFO 960522 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2026-09-29 03:51:05.474  INFO 960522 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2026-09-29 03:51:05.478  INFO 960522 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2026-09-29 03:51:05.505  INFO 960522 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 18207 (http) with context path ''
+2026-09-29 03:51:05.507  INFO 960522 --- [           main] io.dddbyexamples.cqrs.CqrsApplication    : Started CqrsApplication in 3.706 seconds (JVM running for 3.966)
+2026-09-29 03:51:05.594  INFO 960522 --- [.1-18207-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2026-09-29 03:51:05.594  INFO 960522 --- [.1-18207-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2026-09-29 03:51:05.603  INFO 960522 --- [.1-18207-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 9 ms
+2026-09-29 03:51:21.653 DEBUG 960522 --- [.1-18207-exec-5] org.hibernate.SQL                        : select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+Hibernate: select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+2026-09-29 03:51:21.656 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:21.667 DEBUG 960522 --- [.1-18207-exec-5] org.hibernate.SQL                        : select withdrawal0_.card_id as card_id3_1_0_, withdrawal0_.id as id1_1_0_, withdrawal0_.id as id1_1_1_, withdrawal0_.amount as amount2_1_1_, withdrawal0_.card_id as card_id3_1_1_ from withdrawal withdrawal0_ where withdrawal0_.card_id=?
+Hibernate: select withdrawal0_.card_id as card_id3_1_0_, withdrawal0_.id as id1_1_0_, withdrawal0_.id as id1_1_1_, withdrawal0_.amount as amount2_1_1_, withdrawal0_.card_id as card_id3_1_1_ from withdrawal withdrawal0_ where withdrawal0_.card_id=?
+2026-09-29 03:51:21.668 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:21.681 DEBUG 960522 --- [.1-18207-exec-5] org.hibernate.SQL                        : insert into withdrawal (amount, card_id, id) values (?, ?, ?)
+Hibernate: insert into withdrawal (amount, card_id, id) values (?, ?, ?)
+2026-09-29 03:51:21.681 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [NUMERIC] - [10]
+2026-09-29 03:51:21.681 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:21.681 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [BINARY] - [07482e50-a117-43b5-bd5e-4a3eee44d61e]
+2026-09-29 03:51:21.682 DEBUG 960522 --- [.1-18207-exec-5] org.hibernate.SQL                        : update credit_card set initial_limit=?, used_limit=? where id=?
+Hibernate: update credit_card set initial_limit=?, used_limit=? where id=?
+2026-09-29 03:51:21.683 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [NUMERIC] - [10000.00]
+2026-09-29 03:51:21.683 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [NUMERIC] - [10.00]
+2026-09-29 03:51:21.683 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:21.685 DEBUG 960522 --- [.1-18207-exec-5] org.hibernate.SQL                        : update withdrawal set card_id=? where id=?
+Hibernate: update withdrawal set card_id=? where id=?
+2026-09-29 03:51:21.685 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:21.686 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [BINARY] - [07482e50-a117-43b5-bd5e-4a3eee44d61e]
+2026-09-29 03:51:22.097 DEBUG 960522 --- [.1-18207-exec-6] org.hibernate.SQL                        : select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+Hibernate: select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+2026-09-29 03:51:22.097 TRACE 960522 --- [.1-18207-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:22.101 DEBUG 960522 --- [.1-18207-exec-6] org.hibernate.SQL                        : select withdrawal0_.card_id as card_id3_1_0_, withdrawal0_.id as id1_1_0_, withdrawal0_.id as id1_1_1_, withdrawal0_.amount as amount2_1_1_, withdrawal0_.card_id as card_id3_1_1_ from withdrawal withdrawal0_ where withdrawal0_.card_id=?
+Hibernate: select withdrawal0_.card_id as card_id3_1_0_, withdrawal0_.id as id1_1_0_, withdrawal0_.id as id1_1_1_, withdrawal0_.amount as amount2_1_1_, withdrawal0_.card_id as card_id3_1_1_ from withdrawal withdrawal0_ where withdrawal0_.card_id=?
+2026-09-29 03:51:22.101 TRACE 960522 --- [.1-18207-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:27.387 DEBUG 960522 --- [1-18207-exec-10] org.hibernate.SQL                        : select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+Hibernate: select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+2026-09-29 03:51:27.387 TRACE 960522 --- [1-18207-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:27.393 ERROR 960522 --- [1-18207-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+
+java.lang.NullPointerException: null
+	at java.math.BigDecimal.compareTo(BigDecimal.java:2642) ~[na:1.8.0_452]
+	at io.dddbyexamples.cqrs.model.CreditCard.thereIsMoneyToWithdraw(CreditCard.java:46) ~[classes!/:0.0.1-SNAPSHOT]
+	at io.dddbyexamples.cqrs.model.CreditCard.withdraw(CreditCard.java:33) ~[classes!/:0.0.1-SNAPSHOT]
+	at io.dddbyexamples.cqrs.application.WithdrawalProcess.withdraw(WithdrawalProcess.java:24) ~[classes!/:0.0.1-SNAPSHOT]
+	at io.dddbyexamples.cqrs.application.WithdrawalProcess$$FastClassBySpringCGLIB$$ed2f4daf.invoke(<generated>) ~[classes!/:0.0.1-SNAPSHOT]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204) ~[spring-core-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:746) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294) ~[spring-tx-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98) ~[spring-tx-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at io.dddbyexamples.cqrs.application.WithdrawalProcess$$EnhancerBySpringCGLIB$$525cd150.withdraw(<generated>) ~[classes!/:0.0.1-SNAPSHOT]
+	at io.dddbyexamples.cqrs.ui.WithdrawalsController.withdraw(WithdrawalsController.java:29) ~[classes!/:0.0.1-SNAPSHOT]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_452]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_452]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_452]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_452]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:209) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:877) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:783) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:991) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:974) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:877) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:851) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) ~[tomcat-embed-websocket-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.boot.actuate.web.trace.servlet.HttpTraceFilter.doFilterInternal(HttpTraceFilter.java:90) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:155) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:123) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:108) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:800) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:800) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1471) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_452]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_452]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at java.lang.Thread.run(Thread.java:750) [na:1.8.0_452]
+
+2026-09-29 03:51:27.808 ERROR 960522 --- [.1-18207-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessApiUsageException: The given id must not be null!; nested exception is java.lang.IllegalArgumentException: The given id must not be null!] with root cause
+
+java.lang.IllegalArgumentException: The given id must not be null!
+	at org.springframework.util.Assert.notNull(Assert.java:193) ~[spring-core-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.findById(SimpleJpaRepository.java:223) ~[spring-data-jpa-2.0.9.RELEASE.jar!/:2.0.9.RELEASE]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_452]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_452]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_452]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_452]
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:377) ~[spring-data-commons-2.0.9.RELEASE.jar!/:2.0.9.RELEASE]
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:200) ~[spring-data-commons-2.0.9.RELEASE.jar!/:2.0.9.RELEASE]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:629) ~[spring-data-commons-2.0.9.RELEASE.jar!/:2.0.9.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.doInvoke(RepositoryFactorySupport.java:593) ~[spring-data-commons-2.0.9.RELEASE.jar!/:2.0.9.RELEASE]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.invoke(RepositoryFactorySupport.java:578) ~[spring-data-commons-2.0.9.RELEASE.jar!/:2.0.9.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:59) ~[spring-data-commons-2.0.9.RELEASE.jar!/:2.0.9.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294) ~[spring-tx-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98) ~[spring-tx-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139) ~[spring-tx-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:135) ~[spring-data-jpa-2.0.9.RELEASE.jar!/:2.0.9.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.data.repository.core.support.SurroundingTransactionDetectorMethodInterceptor.invoke(SurroundingTransactionDetectorMethodInterceptor.java:61) ~[spring-data-commons-2.0.9.RELEASE.jar!/:2.0.9.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at com.sun.proxy.$Proxy102.findById(Unknown Source) ~[na:na]
+	at io.dddbyexamples.cqrs.application.WithdrawalProcess.withdraw(WithdrawalProcess.java:22) ~[classes!/:0.0.1-SNAPSHOT]
+	at io.dddbyexamples.cqrs.application.WithdrawalProcess$$FastClassBySpringCGLIB$$ed2f4daf.invoke(<generated>) ~[classes!/:0.0.1-SNAPSHOT]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204) ~[spring-core-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:746) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294) ~[spring-tx-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98) ~[spring-tx-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at io.dddbyexamples.cqrs.application.WithdrawalProcess$$EnhancerBySpringCGLIB$$525cd150.withdraw(<generated>) ~[classes!/:0.0.1-SNAPSHOT]
+	at io.dddbyexamples.cqrs.ui.WithdrawalsController.withdraw(WithdrawalsController.java:29) ~[classes!/:0.0.1-SNAPSHOT]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_452]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_452]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_452]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_452]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:209) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:877) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:783) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:991) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:974) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:877) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:851) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) ~[tomcat-embed-websocket-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.boot.actuate.web.trace.servlet.HttpTraceFilter.doFilterInternal(HttpTraceFilter.java:90) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:155) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:123) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:108) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:800) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:800) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1471) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_452]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_452]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at java.lang.Thread.run(Thread.java:750) [na:1.8.0_452]
+
+2026-09-29 03:51:28.218 DEBUG 960522 --- [.1-18207-exec-2] org.hibernate.SQL                        : select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+Hibernate: select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+2026-09-29 03:51:28.218 TRACE 960522 --- [.1-18207-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [00000000-0000-0000-0000-000000000001]
+2026-09-29 03:51:28.222 ERROR 960522 --- [.1-18207-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalStateException: Cannot find card with id 00000000-0000-0000-0000-000000000001] with root cause
+
+java.lang.IllegalStateException: Cannot find card with id 00000000-0000-0000-0000-000000000001
+	at io.dddbyexamples.cqrs.application.WithdrawalProcess.lambda$withdraw$0(WithdrawalProcess.java:23) ~[classes!/:0.0.1-SNAPSHOT]
+	at java.util.Optional.orElseThrow(Optional.java:290) ~[na:1.8.0_452]
+	at io.dddbyexamples.cqrs.application.WithdrawalProcess.withdraw(WithdrawalProcess.java:23) ~[classes!/:0.0.1-SNAPSHOT]
+	at io.dddbyexamples.cqrs.application.WithdrawalProcess$$FastClassBySpringCGLIB$$ed2f4daf.invoke(<generated>) ~[classes!/:0.0.1-SNAPSHOT]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204) ~[spring-core-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:746) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294) ~[spring-tx-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98) ~[spring-tx-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at io.dddbyexamples.cqrs.application.WithdrawalProcess$$EnhancerBySpringCGLIB$$525cd150.withdraw(<generated>) ~[classes!/:0.0.1-SNAPSHOT]
+	at io.dddbyexamples.cqrs.ui.WithdrawalsController.withdraw(WithdrawalsController.java:29) ~[classes!/:0.0.1-SNAPSHOT]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_452]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_452]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_452]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_452]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:209) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:877) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:783) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:991) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:974) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:877) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:851) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) ~[tomcat-embed-websocket-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.boot.actuate.web.trace.servlet.HttpTraceFilter.doFilterInternal(HttpTraceFilter.java:90) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:155) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:123) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:108) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:800) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:800) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1471) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_452]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_452]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at java.lang.Thread.run(Thread.java:750) [na:1.8.0_452]
+
+2026-09-29 03:51:28.638  WARN 960522 --- [.1-18207-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.util.UUID` from String "not-a-uuid": UUID has to be represented by standard 36-char representation; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.util.UUID` from String "not-a-uuid": UUID has to be represented by standard 36-char representation
+ at [Source: (PushbackInputStream); line: 1, column: 10] (through reference chain: io.dddbyexamples.cqrs.ui.WithdrawalCommand["card"])
+2026-09-29 03:51:29.050  WARN 960522 --- [.1-18207-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.math.BigDecimal` from String "abc": not a valid representation; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.math.BigDecimal` from String "abc": not a valid representation
+ at [Source: (PushbackInputStream); line: 1, column: 60] (through reference chain: io.dddbyexamples.cqrs.ui.WithdrawalCommand["amount"])
+2026-09-29 03:51:29.462 DEBUG 960522 --- [.1-18207-exec-5] org.hibernate.SQL                        : select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+Hibernate: select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+2026-09-29 03:51:29.463 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:29.463 DEBUG 960522 --- [.1-18207-exec-5] org.hibernate.SQL                        : select withdrawal0_.card_id as card_id3_1_0_, withdrawal0_.id as id1_1_0_, withdrawal0_.id as id1_1_1_, withdrawal0_.amount as amount2_1_1_, withdrawal0_.card_id as card_id3_1_1_ from withdrawal withdrawal0_ where withdrawal0_.card_id=?
+Hibernate: select withdrawal0_.card_id as card_id3_1_0_, withdrawal0_.id as id1_1_0_, withdrawal0_.id as id1_1_1_, withdrawal0_.amount as amount2_1_1_, withdrawal0_.card_id as card_id3_1_1_ from withdrawal withdrawal0_ where withdrawal0_.card_id=?
+2026-09-29 03:51:29.463 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:29.464 DEBUG 960522 --- [.1-18207-exec-5] org.hibernate.SQL                        : insert into withdrawal (amount, card_id, id) values (?, ?, ?)
+Hibernate: insert into withdrawal (amount, card_id, id) values (?, ?, ?)
+2026-09-29 03:51:29.464 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [NUMERIC] - [1.005]
+2026-09-29 03:51:29.464 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:29.464 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [BINARY] - [17cdef04-a2bc-4860-b494-35cb70236fa8]
+2026-09-29 03:51:29.465 DEBUG 960522 --- [.1-18207-exec-5] org.hibernate.SQL                        : update credit_card set initial_limit=?, used_limit=? where id=?
+Hibernate: update credit_card set initial_limit=?, used_limit=? where id=?
+2026-09-29 03:51:29.465 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [NUMERIC] - [10000.00]
+2026-09-29 03:51:29.465 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [NUMERIC] - [11.005]
+2026-09-29 03:51:29.465 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:29.465 DEBUG 960522 --- [.1-18207-exec-5] org.hibernate.SQL                        : update withdrawal set card_id=? where id=?
+Hibernate: update withdrawal set card_id=? where id=?
+2026-09-29 03:51:29.465 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:29.465 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [BINARY] - [17cdef04-a2bc-4860-b494-35cb70236fa8]
+2026-09-29 03:51:29.874 DEBUG 960522 --- [.1-18207-exec-6] org.hibernate.SQL                        : select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+Hibernate: select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+2026-09-29 03:51:29.875 TRACE 960522 --- [.1-18207-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:29.876 DEBUG 960522 --- [.1-18207-exec-6] org.hibernate.SQL                        : select withdrawal0_.card_id as card_id3_1_0_, withdrawal0_.id as id1_1_0_, withdrawal0_.id as id1_1_1_, withdrawal0_.amount as amount2_1_1_, withdrawal0_.card_id as card_id3_1_1_ from withdrawal withdrawal0_ where withdrawal0_.card_id=?
+Hibernate: select withdrawal0_.card_id as card_id3_1_0_, withdrawal0_.id as id1_1_0_, withdrawal0_.id as id1_1_1_, withdrawal0_.amount as amount2_1_1_, withdrawal0_.card_id as card_id3_1_1_ from withdrawal withdrawal0_ where withdrawal0_.card_id=?
+2026-09-29 03:51:29.876 TRACE 960522 --- [.1-18207-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:29.877 DEBUG 960522 --- [.1-18207-exec-6] org.hibernate.SQL                        : insert into withdrawal (amount, card_id, id) values (?, ?, ?)
+Hibernate: insert into withdrawal (amount, card_id, id) values (?, ?, ?)
+2026-09-29 03:51:29.877 TRACE 960522 --- [.1-18207-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [NUMERIC] - [2.004]
+2026-09-29 03:51:29.877 TRACE 960522 --- [.1-18207-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:29.877 TRACE 960522 --- [.1-18207-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [BINARY] - [a10fb523-7087-46e2-8ed1-8a3f48b11cb8]
+2026-09-29 03:51:29.877 DEBUG 960522 --- [.1-18207-exec-6] org.hibernate.SQL                        : update credit_card set initial_limit=?, used_limit=? where id=?
+Hibernate: update credit_card set initial_limit=?, used_limit=? where id=?
+2026-09-29 03:51:29.877 TRACE 960522 --- [.1-18207-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [NUMERIC] - [10000.00]
+2026-09-29 03:51:29.877 TRACE 960522 --- [.1-18207-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [NUMERIC] - [13.014]
+2026-09-29 03:51:29.877 TRACE 960522 --- [.1-18207-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:29.878 DEBUG 960522 --- [.1-18207-exec-6] org.hibernate.SQL                        : update withdrawal set card_id=? where id=?
+Hibernate: update withdrawal set card_id=? where id=?
+2026-09-29 03:51:29.878 TRACE 960522 --- [.1-18207-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:29.878 TRACE 960522 --- [.1-18207-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [BINARY] - [a10fb523-7087-46e2-8ed1-8a3f48b11cb8]
+2026-09-29 03:51:30.289 DEBUG 960522 --- [.1-18207-exec-7] org.hibernate.SQL                        : select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+Hibernate: select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+2026-09-29 03:51:30.289 TRACE 960522 --- [.1-18207-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:30.290 DEBUG 960522 --- [.1-18207-exec-7] org.hibernate.SQL                        : select withdrawal0_.card_id as card_id3_1_0_, withdrawal0_.id as id1_1_0_, withdrawal0_.id as id1_1_1_, withdrawal0_.amount as amount2_1_1_, withdrawal0_.card_id as card_id3_1_1_ from withdrawal withdrawal0_ where withdrawal0_.card_id=?
+Hibernate: select withdrawal0_.card_id as card_id3_1_0_, withdrawal0_.id as id1_1_0_, withdrawal0_.id as id1_1_1_, withdrawal0_.amount as amount2_1_1_, withdrawal0_.card_id as card_id3_1_1_ from withdrawal withdrawal0_ where withdrawal0_.card_id=?
+2026-09-29 03:51:30.290 TRACE 960522 --- [.1-18207-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:39.655 DEBUG 960522 --- [.1-18207-exec-4] org.hibernate.SQL                        : select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+Hibernate: select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+2026-09-29 03:51:39.655 TRACE 960522 --- [.1-18207-exec-4] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:39.655 DEBUG 960522 --- [.1-18207-exec-4] org.hibernate.SQL                        : select withdrawal0_.card_id as card_id3_1_0_, withdrawal0_.id as id1_1_0_, withdrawal0_.id as id1_1_1_, withdrawal0_.amount as amount2_1_1_, withdrawal0_.card_id as card_id3_1_1_ from withdrawal withdrawal0_ where withdrawal0_.card_id=?
+Hibernate: select withdrawal0_.card_id as card_id3_1_0_, withdrawal0_.id as id1_1_0_, withdrawal0_.id as id1_1_1_, withdrawal0_.amount as amount2_1_1_, withdrawal0_.card_id as card_id3_1_1_ from withdrawal withdrawal0_ where withdrawal0_.card_id=?
+2026-09-29 03:51:39.656 TRACE 960522 --- [.1-18207-exec-4] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:39.657 DEBUG 960522 --- [.1-18207-exec-4] org.hibernate.SQL                        : insert into withdrawal (amount, card_id, id) values (?, ?, ?)
+Hibernate: insert into withdrawal (amount, card_id, id) values (?, ?, ?)
+2026-09-29 03:51:39.657 TRACE 960522 --- [.1-18207-exec-4] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [NUMERIC] - [-12345678901234567]
+2026-09-29 03:51:39.657 TRACE 960522 --- [.1-18207-exec-4] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:39.657 TRACE 960522 --- [.1-18207-exec-4] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [BINARY] - [e67fd82f-cf1f-4600-b5ff-cfce5106cd33]
+2026-09-29 03:51:39.657  WARN 960522 --- [.1-18207-exec-4] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 22001, SQLState: 22001
+2026-09-29 03:51:39.657 ERROR 960522 --- [.1-18207-exec-4] o.h.engine.jdbc.spi.SqlExceptionHelper   : Value too long for column "AMOUNT DECIMAL(18, 2) NOT NULL": "-12345678901234567.00 (19)"; SQL statement:
+insert into withdrawal (amount, card_id, id) values (?, ?, ?) [22001-197]
+2026-09-29 03:51:39.658 ERROR 960522 --- [.1-18207-exec-4] o.h.i.ExceptionMapperStandardImpl        : HHH000346: Error during managed flush [org.hibernate.exception.DataException: could not execute statement]
+2026-09-29 03:51:39.659 ERROR 960522 --- [.1-18207-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.DataException: could not execute statement] with root cause
+
+org.h2.jdbc.JdbcSQLException: Value too long for column "AMOUNT DECIMAL(18, 2) NOT NULL": "-12345678901234567.00 (19)"; SQL statement:
+insert into withdrawal (amount, card_id, id) values (?, ?, ?) [22001-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357) ~[h2-1.4.197.jar!/:na]
+	at org.h2.message.DbException.get(DbException.java:179) ~[h2-1.4.197.jar!/:na]
+	at org.h2.table.Column.validateConvertUpdateSequence(Column.java:398) ~[h2-1.4.197.jar!/:na]
+	at org.h2.table.Table.validateConvertUpdateSequence(Table.java:798) ~[h2-1.4.197.jar!/:na]
+	at org.h2.command.dml.Insert.insertRows(Insert.java:177) ~[h2-1.4.197.jar!/:na]
+	at org.h2.command.dml.Insert.update(Insert.java:134) ~[h2-1.4.197.jar!/:na]
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102) ~[h2-1.4.197.jar!/:na]
+	at org.h2.command.Command.executeUpdate(Command.java:261) ~[h2-1.4.197.jar!/:na]
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:199) ~[h2-1.4.197.jar!/:na]
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:153) ~[h2-1.4.197.jar!/:na]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-2.7.9.jar!/:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-2.7.9.jar!/:na]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:175) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3032) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3547) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:89) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:600) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:474) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:337) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:39) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1437) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:494) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3245) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2451) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:473) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:156) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$100(JdbcResourceLocalTransactionCoordinatorImpl.java:38) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:231) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:68) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:536) ~[spring-orm-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:746) ~[spring-tx-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:714) ~[spring-tx-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:532) ~[spring-tx-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:304) ~[spring-tx-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98) ~[spring-tx-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at io.dddbyexamples.cqrs.application.WithdrawalProcess$$EnhancerBySpringCGLIB$$525cd150.withdraw(<generated>) ~[classes!/:0.0.1-SNAPSHOT]
+	at io.dddbyexamples.cqrs.ui.WithdrawalsController.withdraw(WithdrawalsController.java:29) ~[classes!/:0.0.1-SNAPSHOT]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_452]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_452]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_452]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_452]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:209) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:877) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:783) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:991) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:974) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:877) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:851) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) ~[tomcat-embed-websocket-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.boot.actuate.web.trace.servlet.HttpTraceFilter.doFilterInternal(HttpTraceFilter.java:90) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:155) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:123) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:108) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:800) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:800) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1471) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_452]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_452]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at java.lang.Thread.run(Thread.java:750) [na:1.8.0_452]
+
+2026-09-29 03:51:40.097 DEBUG 960522 --- [.1-18207-exec-1] org.hibernate.SQL                        : select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+Hibernate: select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+2026-09-29 03:51:40.098 TRACE 960522 --- [.1-18207-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:40.098 DEBUG 960522 --- [.1-18207-exec-1] org.hibernate.SQL                        : select withdrawal0_.card_id as card_id3_1_0_, withdrawal0_.id as id1_1_0_, withdrawal0_.id as id1_1_1_, withdrawal0_.amount as amount2_1_1_, withdrawal0_.card_id as card_id3_1_1_ from withdrawal withdrawal0_ where withdrawal0_.card_id=?
+Hibernate: select withdrawal0_.card_id as card_id3_1_0_, withdrawal0_.id as id1_1_0_, withdrawal0_.id as id1_1_1_, withdrawal0_.amount as amount2_1_1_, withdrawal0_.card_id as card_id3_1_1_ from withdrawal withdrawal0_ where withdrawal0_.card_id=?
+2026-09-29 03:51:40.098 TRACE 960522 --- [.1-18207-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:40.100 DEBUG 960522 --- [.1-18207-exec-1] org.hibernate.SQL                        : insert into withdrawal (amount, card_id, id) values (?, ?, ?)
+Hibernate: insert into withdrawal (amount, card_id, id) values (?, ?, ?)
+2026-09-29 03:51:40.100 TRACE 960522 --- [.1-18207-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [NUMERIC] - [-9000000000000000]
+2026-09-29 03:51:40.100 TRACE 960522 --- [.1-18207-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:40.100 TRACE 960522 --- [.1-18207-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [BINARY] - [db5f0247-671d-48b0-ac99-e9068503accc]
+2026-09-29 03:51:40.101 DEBUG 960522 --- [.1-18207-exec-1] org.hibernate.SQL                        : update credit_card set initial_limit=?, used_limit=? where id=?
+Hibernate: update credit_card set initial_limit=?, used_limit=? where id=?
+2026-09-29 03:51:40.101 TRACE 960522 --- [.1-18207-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [NUMERIC] - [10000.00]
+2026-09-29 03:51:40.101 TRACE 960522 --- [.1-18207-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [NUMERIC] - [-8999999999999986.99]
+2026-09-29 03:51:40.101 TRACE 960522 --- [.1-18207-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:40.101 DEBUG 960522 --- [.1-18207-exec-1] org.hibernate.SQL                        : update withdrawal set card_id=? where id=?
+Hibernate: update withdrawal set card_id=? where id=?
+2026-09-29 03:51:40.101 TRACE 960522 --- [.1-18207-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:40.101 TRACE 960522 --- [.1-18207-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [BINARY] - [db5f0247-671d-48b0-ac99-e9068503accc]
+2026-09-29 03:51:40.527 DEBUG 960522 --- [.1-18207-exec-8] org.hibernate.SQL                        : select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+Hibernate: select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+2026-09-29 03:51:40.527 TRACE 960522 --- [.1-18207-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:40.527 DEBUG 960522 --- [.1-18207-exec-8] org.hibernate.SQL                        : select withdrawal0_.card_id as card_id3_1_0_, withdrawal0_.id as id1_1_0_, withdrawal0_.id as id1_1_1_, withdrawal0_.amount as amount2_1_1_, withdrawal0_.card_id as card_id3_1_1_ from withdrawal withdrawal0_ where withdrawal0_.card_id=?
+Hibernate: select withdrawal0_.card_id as card_id3_1_0_, withdrawal0_.id as id1_1_0_, withdrawal0_.id as id1_1_1_, withdrawal0_.amount as amount2_1_1_, withdrawal0_.card_id as card_id3_1_1_ from withdrawal withdrawal0_ where withdrawal0_.card_id=?
+2026-09-29 03:51:40.527 TRACE 960522 --- [.1-18207-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:40.529 DEBUG 960522 --- [.1-18207-exec-8] org.hibernate.SQL                        : insert into withdrawal (amount, card_id, id) values (?, ?, ?)
+Hibernate: insert into withdrawal (amount, card_id, id) values (?, ?, ?)
+2026-09-29 03:51:40.529 TRACE 960522 --- [.1-18207-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [NUMERIC] - [-9000000000000000]
+2026-09-29 03:51:40.529 TRACE 960522 --- [.1-18207-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:40.529 TRACE 960522 --- [.1-18207-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [BINARY] - [0a91f808-942c-4ff9-8aa0-90feff089ef0]
+2026-09-29 03:51:40.529 DEBUG 960522 --- [.1-18207-exec-8] org.hibernate.SQL                        : update credit_card set initial_limit=?, used_limit=? where id=?
+Hibernate: update credit_card set initial_limit=?, used_limit=? where id=?
+2026-09-29 03:51:40.529 TRACE 960522 --- [.1-18207-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [NUMERIC] - [10000.00]
+2026-09-29 03:51:40.529 TRACE 960522 --- [.1-18207-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [NUMERIC] - [-17999999999999986.99]
+2026-09-29 03:51:40.529 TRACE 960522 --- [.1-18207-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:40.530  WARN 960522 --- [.1-18207-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 22001, SQLState: 22001
+2026-09-29 03:51:40.530 ERROR 960522 --- [.1-18207-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : Value too long for column "USED_LIMIT DECIMAL(18, 2) NOT NULL": "-17999999999999986.99 (19)"; SQL statement:
+update credit_card set initial_limit=?, used_limit=? where id=? [22001-197]
+2026-09-29 03:51:40.530 ERROR 960522 --- [.1-18207-exec-8] o.h.i.ExceptionMapperStandardImpl        : HHH000346: Error during managed flush [org.hibernate.exception.DataException: could not execute statement]
+2026-09-29 03:51:40.532 ERROR 960522 --- [.1-18207-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.DataException: could not execute statement] with root cause
+
+org.h2.jdbc.JdbcSQLException: Value too long for column "USED_LIMIT DECIMAL(18, 2) NOT NULL": "-17999999999999986.99 (19)"; SQL statement:
+update credit_card set initial_limit=?, used_limit=? where id=? [22001-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357) ~[h2-1.4.197.jar!/:na]
+	at org.h2.message.DbException.get(DbException.java:179) ~[h2-1.4.197.jar!/:na]
+	at org.h2.table.Column.validateConvertUpdateSequence(Column.java:398) ~[h2-1.4.197.jar!/:na]
+	at org.h2.table.Table.validateConvertUpdateSequence(Table.java:798) ~[h2-1.4.197.jar!/:na]
+	at org.h2.command.dml.Update.update(Update.java:157) ~[h2-1.4.197.jar!/:na]
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102) ~[h2-1.4.197.jar!/:na]
+	at org.h2.command.Command.executeUpdate(Command.java:261) ~[h2-1.4.197.jar!/:na]
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:199) ~[h2-1.4.197.jar!/:na]
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:153) ~[h2-1.4.197.jar!/:na]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-2.7.9.jar!/:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-2.7.9.jar!/:na]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:175) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:3217) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.updateOrInsert(AbstractEntityPersister.java:3090) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:3491) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.action.internal.EntityUpdateAction.execute(EntityUpdateAction.java:145) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:600) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:474) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:337) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:39) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1437) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:494) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3245) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2451) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:473) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:156) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$100(JdbcResourceLocalTransactionCoordinatorImpl.java:38) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:231) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:68) ~[hibernate-core-5.2.17.Final.jar!/:5.2.17.Final]
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:536) ~[spring-orm-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:746) ~[spring-tx-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:714) ~[spring-tx-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:532) ~[spring-tx-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:304) ~[spring-tx-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98) ~[spring-tx-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688) ~[spring-aop-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at io.dddbyexamples.cqrs.application.WithdrawalProcess$$EnhancerBySpringCGLIB$$525cd150.withdraw(<generated>) ~[classes!/:0.0.1-SNAPSHOT]
+	at io.dddbyexamples.cqrs.ui.WithdrawalsController.withdraw(WithdrawalsController.java:29) ~[classes!/:0.0.1-SNAPSHOT]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_452]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_452]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_452]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_452]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:209) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:877) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:783) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:991) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:974) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:877) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:851) ~[spring-webmvc-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) ~[tomcat-embed-websocket-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.boot.actuate.web.trace.servlet.HttpTraceFilter.doFilterInternal(HttpTraceFilter.java:90) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:155) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:123) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:108) ~[spring-boot-actuator-2.0.4.RELEASE.jar!/:2.0.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.8.RELEASE.jar!/:5.0.8.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198) ~[tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:800) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:800) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1471) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_452]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_452]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.32.jar!/:8.5.32]
+	at java.lang.Thread.run(Thread.java:750) [na:1.8.0_452]
+
+2026-09-29 03:51:45.025  INFO 960522 --- [       Thread-5] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1ff8b8f: startup date [Tue Sep 29 03:51:02 EDT 2026]; root of context hierarchy
+2026-09-29 03:51:45.028  INFO 960522 --- [       Thread-5] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2026-09-29 03:51:45.028  INFO 960522 --- [       Thread-5] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2026-09-29 03:51:45.030  INFO 960522 --- [       Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-29 03:51:45.030  INFO 960522 --- [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-29 03:51:45.031  INFO 960522 --- [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

@@ -1,0 +1,80 @@
+{
+  "case_id": "jd-readback-list",
+  "purpose": "read-back",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/job/definition?pageNo=1&pageSize=50",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:32:50 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 0,
+      "msg": null,
+      "data": {
+        "data": [
+          {
+            "id": 23198767159328,
+            "name": "jd_desc255",
+            "description": "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
+            "jobType": "DATA_INTEGRATION",
+            "createUserId": 1,
+            "updateUserId": 1,
+            "createUserName": "admin",
+            "updateUserName": "admin",
+            "createTime": "2026-09-29 08:32:48",
+            "updateTime": "2026-09-29 08:32:48",
+            "projectCode": 0,
+            "projectName": null
+          },
+          {
+            "id": 23198767052832,
+            "name": "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
+            "description": "d",
+            "jobType": "DATA_INTEGRATION",
+            "createUserId": 1,
+            "updateUserId": 1,
+            "createUserName": "admin",
+            "updateUserName": "admin",
+            "createTime": "2026-09-29 08:32:47",
+            "updateTime": "2026-09-29 08:32:47",
+            "projectCode": 0,
+            "projectName": null
+          },
+          {
+            "id": 23198766999328,
+            "name": "jd_ctrl",
+            "description": "d",
+            "jobType": "DATA_INTEGRATION",
+            "createUserId": 1,
+            "updateUserId": 1,
+            "createUserName": "admin",
+            "updateUserName": "admin",
+            "createTime": "2026-09-29 08:32:47",
+            "updateTime": "2026-09-29 08:32:47",
+            "projectCode": 0,
+            "projectName": null
+          }
+        ],
+        "totalCount": 3,
+        "totalPage": 1,
+        "pageNo": 1,
+        "pageSize": 50
+      },
+      "failed": false,
+      "success": true
+    }
+  },
+  "log_slice": "logs/cases/jd-readback-list.log"
+}

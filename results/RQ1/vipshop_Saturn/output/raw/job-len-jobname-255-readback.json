@@ -1,0 +1,66 @@
+{
+ "case_id": "job-len-jobname-255-readback",
+ "purpose": "read-back",
+ "target_hint": [
+  "job_config.job_name length"
+ ],
+ "note": "",
+ "request": {
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/rest/v1/mydomain/jobs/kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+  "headers": {},
+  "body": null,
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:19:14 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"jobName\":\"kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\",\"description\":\"pv\",\"enabled\":false,\"runningStatus\":\"STOPPED\",\"jobConfig\":{\"jobClass\":\"demo.DemoJavaJob\",\"jobType\":\"JAVA_JOB\",\"shardingTotalCount\":1,\"shardingItemParameters\":\"0=0\",\"jobParameter\":\"\",\"timeZone\":\"Asia/Shanghai\",\"cron\":\"0/30 * * * * ?\",\"pausePeriodDate\":\"\",\"pausePeriodTime\":\"\",\"timeout4AlarmSeconds\":0,\"timeoutSeconds\":0,\"channelName\":\"\",\"queueName\":\"\",\"loadLevel\":1,\"jobDegree\":0,\"enabledReport\":true,\"preferList\":\"\",\"useDispreferList\":true,\"localMode\":false,\"useSerial\":false,\"dependencies\":\"\",\"groups\":\"\",\"showNormalLog\":false,\"processCountInterValSeconds\":300},\"statistics\":{\"lastBeginTime\":\"\",\"lastCompleteTime\":\"\",\"nextFireTime\":\"\",\"processCount\":\"\",\"processErrorCount\":\"\"}}",
+  "json": {
+   "jobName": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+   "description": "pv",
+   "enabled": false,
+   "runningStatus": "STOPPED",
+   "jobConfig": {
+    "jobClass": "demo.DemoJavaJob",
+    "jobType": "JAVA_JOB",
+    "shardingTotalCount": 1,
+    "shardingItemParameters": "0=0",
+    "jobParameter": "",
+    "timeZone": "Asia/Shanghai",
+    "cron": "0/30 * * * * ?",
+    "pausePeriodDate": "",
+    "pausePeriodTime": "",
+    "timeout4AlarmSeconds": 0,
+    "timeoutSeconds": 0,
+    "channelName": "",
+    "queueName": "",
+    "loadLevel": 1,
+    "jobDegree": 0,
+    "enabledReport": true,
+    "preferList": "",
+    "useDispreferList": true,
+    "localMode": false,
+    "useSerial": false,
+    "dependencies": "",
+    "groups": "",
+    "showNormalLog": false,
+    "processCountInterValSeconds": 300
+   },
+   "statistics": {
+    "lastBeginTime": "",
+    "lastCompleteTime": "",
+    "nextFireTime": "",
+    "processCount": "",
+    "processErrorCount": ""
+   }
+  }
+ },
+ "elapsed_seconds": 0.026,
+ "timestamp": "2026-09-29T20:19:14-0400"
+}

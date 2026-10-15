@@ -1,0 +1,1 @@
+Hibernate: select bookmark0_.bookmark_id as bookmark1_0_, bookmark0_.datasource as datasour2_0_, bookmark0_.engine as engine3_0_, bookmark0_.query as query4_0_, bookmark0_.snippet as snippet5_0_, bookmark0_.title as title6_0_, bookmark0_.user as user7_0_ from bookmark bookmark0_ where bookmark0_.datasource=? and bookmark0_.engine=? and bookmark0_.user=?

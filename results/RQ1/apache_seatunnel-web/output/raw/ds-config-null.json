@@ -1,0 +1,35 @@
+{
+  "case_id": "ds-config-null",
+  "purpose": "violation",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/datasource/create",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "datasourceName": "ds_cfgnull",
+      "pluginName": "JDBC-Mysql",
+      "description": "d"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:32:25 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 60007,
+      "msg": "datasource pram [datasourceConfig] not allowed null",
+      "data": null,
+      "failed": true,
+      "success": false
+    }
+  },
+  "log_slice": "logs/cases/ds-config-null.log"
+}

@@ -1,0 +1,34 @@
+{
+  "case_id": "r2-ds-update-name-null",
+  "purpose": "violation",
+  "targets": [],
+  "note": "blank name is skipped by updateDatasource",
+  "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/datasource/23198791360544",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "description": "kept-name",
+      "datasourceConfig": "{\"url\": \"jdbc:mysql://127.0.0.1:1/x\", \"driver\": \"com.mysql.cj.jdbc.Driver\", \"user\": \"u\", \"password\": \"p\"}"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:35:59 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 0,
+      "msg": null,
+      "data": true,
+      "failed": false,
+      "success": true
+    }
+  },
+  "log_slice": "logs/cases/r2-ds-update-name-null.log"
+}

@@ -1,0 +1,34 @@
+{
+ "case_id": "login-admin",
+ "purpose": "setup",
+ "target_hint": [],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/authentication/login",
+  "headers": {
+   "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+  },
+  "body": {
+   "username": "admin",
+   "password": "admin"
+  }
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:15:44 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"status\":0,\"message\":\"\",\"obj\":\"\"}",
+  "json": {
+   "status": 0,
+   "message": "",
+   "obj": ""
+  }
+ },
+ "elapsed_seconds": 0.023,
+ "timestamp": "2026-09-29T20:15:45-0400"
+}

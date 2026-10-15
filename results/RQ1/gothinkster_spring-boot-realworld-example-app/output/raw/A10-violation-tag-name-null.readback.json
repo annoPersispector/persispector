@@ -1,0 +1,11 @@
+{
+ "case_id": "A10-violation-tag-name-null",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select count(*) from articles where slug='null-tag'",
+ "params": [],
+ "rows": [
+  [
+   0
+  ]
+ ]
+}

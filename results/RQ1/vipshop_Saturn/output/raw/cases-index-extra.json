@@ -1,0 +1,90 @@
+[
+ {
+  "case_id": "login-admin-3",
+  "purpose": "setup",
+  "targets": [],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/authentication/login",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ur-null-namespaces",
+  "purpose": "violation",
+  "targets": [
+   "user_role.namespace not-null"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/authorizationManage/addUserRoles",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"Required String parameter 'namespaces' is not present\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "ns-null-zkcluster-explicit",
+  "purpose": "violation",
+  "targets": [
+   "namespace_zkcluster_mapping.zk_cluster_key not-null"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces",
+  "status": 400,
+  "body_head": "{\"message\":\"Fail to create new namespace {pvns4} for reason {not found zkclusternull}\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "job-len-namespace-path-256",
+  "purpose": "violation",
+  "targets": [
+   "job_config.namespace length"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/namespaces/ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss/jobs/jobs",
+  "status": 200,
+  "body_head": "{\"status\":1,\"message\":\"find registryCenterConfiguration failed\",\"obj\":\"\"}",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "job-rest-null-defaults",
+  "purpose": "violation",
+  "targets": [
+   "job_config.load_level/job_degree/time_zone/timeout_4_alarm_seconds not-null"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/mydomain/jobs",
+  "status": 201,
+  "body_head": "",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "job-rest-null-defaults-readback",
+  "purpose": "read-back",
+  "targets": [
+   "job_config not-null defaults"
+  ],
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/console/namespaces/mydomain/jobs/pvrestnull/config",
+  "status": 200,
+  "body_head": "{\"status\":0,\"message\":\"\",\"obj\":{\"jobName\":\"pvrestnull\",\"jobClass\":\"demo.DemoJavaJob\",\"shardingTotalCount\":1,\"timeZone\":\"Asia/Shanghai\",\"cron\":\"0/30 * * * * ?\",\"pausePeriodDate\":[],\"pausePeriodTime\":[],\"shardingItemParameters\":\"0=0\",\"jobParameter\":\"\",\"processCountIntervalSeconds\":300,\"failover\":true,\"description\":\"pv\",\"timeout4AlarmSeconds\":0,\"timeoutSeconds\":0,\"disableTimeoutSeconds\":0,\"showNormal",
+  "sql_error_lines": []
+ },
+ {
+  "case_id": "job-rest-len-jobname-256",
+  "purpose": "violation",
+  "targets": [
+   "job_config.job_name length"
+  ],
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/mydomain/jobs",
+  "status": 500,
+  "body_head": "{\"message\":\"org.springframework.dao.DataIntegrityViolationException: \\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \\\"JOB_NAME VARCHAR(255) NOT NULL COMMENT STRINGDECODE('\\\\u4f5c\\\\u4e1a\\\\u540d\\\\u79f0')\\\": \\\"'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr... (256)\\\"; SQL ",
+  "sql_error_lines": [
+   "### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"JOB_NAME VARCHAR(255) NOT NULL COMMENT STRINGDECODE('\\u4f5c\\u4e1a\\u540d\\u79f0')\": \"'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr... (256)\"; SQL statement:",
+   "### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"JOB_NAME VARCHAR(255) NOT NULL COMMENT STRINGDECODE('\\u4f5c\\u4e1a\\u540d\\u79f0')\": \"'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr... (256)\"; SQL statement:",
+   "; SQL []; Value too long for column \"JOB_NAME VARCHAR(255) NOT NULL COMMENT STRINGDECODE('\\u4f5c\\u4e1a\\u540d\\u79f0')\": \"'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr... (256)\"; SQL statement:",
+   "        ) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \"JOB_NAME VARCHAR(255) NOT NULL COMMENT STRINGDECODE('\\u4f5c\\u4e1a\\u540d\\u79f0')\": \"'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr... (256)\"; SQL statement:",
+   "org.springframework.dao.DataIntegrityViolationException: "
+  ]
+ }
+]

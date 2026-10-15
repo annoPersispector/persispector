@@ -1,0 +1,22 @@
+{
+  "case_id": "CA-08-violation-null-content",
+  "purpose": "violation",
+  "target_ids": [
+    "pc-b223c202dd17"
+  ],
+  "timestamp": "2026-09-29T12:27:27-0400",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18204/canaryResultArchive?storageAccountName=sql-account&pipelineId=ca-null-content",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "null"
+  },
+  "response": {
+    "status": 400,
+    "body": ""
+  },
+  "readback_sql": "SELECT COUNT(*) AS n FROM canary_archive WHERE id='ca-null-content'",
+  "readback_result": "n\n0"
+}

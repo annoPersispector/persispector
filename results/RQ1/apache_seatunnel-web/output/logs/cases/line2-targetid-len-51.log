@@ -1,0 +1,28 @@
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5e4e2f87] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1533024825 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 6, 1, <<BLOB>>, 1, 2026-09-29 04:37:38.494, 2026-09-29 04:37:38.494, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5e4e2f87]
+Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6fe4eaca]
+JDBC Connection [HikariProxyConnection@921444475 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will be managed by Spring
+==>  Preparing: SELECT id,name,job_id,job_mode,env,engine_name,engine_version,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_job_version WHERE (id = ? AND workspace_id = ?)
+==> Parameters: 23198804288544(Long), 1(Long)
+<==    Columns: id, name, job_id, job_mode, env, engine_name, engine_version, create_user_id, update_user_id, create_time, update_time, workspace_id
+<==        Row: 23198804288544, 1.0, 23198804288544, BATCH, <<BLOB>>, SeaTunnel, 2.3.11, 1, 1, 2026-09-29 04:37:38.506, 2026-09-29 04:37:38.506, 1
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6fe4eaca]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6fe4eaca] from current transaction
+==>  Preparing: SELECT id,version_id,plugin_id,connector_type,datasource_id,datasource_option,select_table_fields,scene_mode,transform_options,output_schema,config,type,name,create_time,update_time,workspace_id FROM t_st_job_task WHERE (version_id = ? AND workspace_id = ?)
+==> Parameters: 23198804288544(Long), 1(Long)
+<==    Columns: id, version_id, plugin_id, connector_type, datasource_id, datasource_option, select_table_fields, scene_mode, transform_options, output_schema, config, type, name, create_time, update_time, workspace_id
+<==        Row: 23198804395168, 23198804288544, ta, FilterRowKind, null, null, null, null, {"exclude_kinds":["INSERT"]}, <<BLOB>>, <<BLOB>>, TRANSFORM, ta, 2026-09-29 04:37:39.339, 2026-09-29 04:37:39.339, 1
+<==        Row: 23198804448160, 23198804288544, tb, FilterRowKind, null, null, null, null, {"exclude_kinds":["INSERT"]}, <<BLOB>>, <<BLOB>>, TRANSFORM, tb, 2026-09-29 04:37:39.753, 2026-09-29 04:37:39.753, 1
+<==      Total: 2
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6fe4eaca]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6fe4eaca]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6fe4eaca]

@@ -1,0 +1,22 @@
+{
+ "case_id": "U02-setup-register-bob",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select username, email, length(password), bio, image from users order by username",
+ "params": [],
+ "rows": [
+  [
+   "alice",
+   "alice@example.com",
+   60,
+   "",
+   "https://static.productionready.io/images/smiley-cyrus.jpg"
+  ],
+  [
+   "bob",
+   "bob@example.com",
+   60,
+   "",
+   "https://static.productionready.io/images/smiley-cyrus.jpg"
+  ]
+ ]
+}

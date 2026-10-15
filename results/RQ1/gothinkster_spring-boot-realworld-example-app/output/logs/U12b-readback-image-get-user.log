@@ -1,0 +1,6 @@
+2026-09-29 03:07:43.080 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.mapper.UserMapper.findById       : ==>  Preparing: select id, username, email, password, bio, image from users where id = ?
+2026-09-29 03:07:43.080 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.mapper.UserMapper.findById       : ==> Parameters: a1e8e8bc-b1f3-48a8-a8b2-e5ca28ad086c(String)
+2026-09-29 03:07:43.081 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.mapper.UserMapper.findById       : <==      Total: 1
+2026-09-29 03:07:43.082 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.r.UserReadService.findById       : ==>  Preparing: select * from users where id = ?
+2026-09-29 03:07:43.082 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.r.UserReadService.findById       : ==> Parameters: a1e8e8bc-b1f3-48a8-a8b2-e5ca28ad086c(String)
+2026-09-29 03:07:43.082 DEBUG 942119 --- [.1-18208-exec-4] i.s.i.m.r.UserReadService.findById       : <==      Total: 1

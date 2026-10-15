@@ -1,0 +1,37 @@
+{
+  "case_id": "user-update-control",
+  "purpose": "control",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/user/2",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "username": "user_ctrl2",
+      "password": "pw1",
+      "status": 0,
+      "type": 1,
+      "userId": 2
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:33:30 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 0,
+      "msg": null,
+      "data": null,
+      "failed": false,
+      "success": true
+    }
+  },
+  "log_slice": "logs/cases/user-update-control.log"
+}

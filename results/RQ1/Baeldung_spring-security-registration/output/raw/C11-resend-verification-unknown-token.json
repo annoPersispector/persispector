@@ -1,0 +1,33 @@
+{
+  "case_id": "C11-resend-verification-unknown-token",
+  "note": "probe: unknown token (no persistence reachable)",
+  "timestamp": "2026-09-29T06:37:39Z",
+  "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:18206/user/resendRegistrationToken?token=00000000-0000-0000-0000-000000000000",
+    "headers": {
+      "User-Agent": "python-requests/2.31.0",
+      "Accept-Encoding": "gzip, deflate, br",
+      "Accept": "*/*",
+      "Connection": "keep-alive"
+    },
+    "form": {}
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "X-XSS-Protection": "0",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "Pragma": "no-cache",
+      "Expires": "0",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Transfer-Encoding": "chunked",
+      "Date": "Tue, 29 Sep 2026 06:37:39 GMT",
+      "Connection": "close"
+    },
+    "body": "{\"message\":\"Error Occurred\",\"error\":\"InternalError\"}"
+  },
+  "correlated_log": "web - 2026-09-29 02:37:39,382 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.DispatcherServlet - GET \"/user/resendRegistrationToken?token=00000000-0000-0000-0000-000000000000\", parameters={masked}\nweb - 2026-09-29 02:37:39,385 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - select v1_0.id,v1_0.expiry_date,v1_0.token,v1_0.user_id from verification_token v1_0 where v1_0.token=?\nweb - 2026-09-29 02:37:39,385 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [00000000-0000-0000-0000-000000000000]\nweb - 2026-09-29 02:37:39,387 [http-nio-127.0.0.1-18206-exec-2] ERROR c.b.w.e.RestResponseEntityExceptionHandler - 500 Status Code\nj.l.NullPointerException: Cannot invoke \"com.baeldung.persistence.model.VerificationToken.updateToken(String)\" because \"vToken\" is null\n\tat c.b.s.UserService.generateNewVerificationToken(UserService.java:145)\n\tat j.i.r.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java)\n\tat j.i.r.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat j.i.r.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat j.l.r.Method.invoke(Method.java:569)\n\t... 101 frames truncated\nweb - 2026-09-29 02:37:39,389 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR\n"
+}

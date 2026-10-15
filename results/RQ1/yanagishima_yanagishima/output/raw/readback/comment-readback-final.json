@@ -1,0 +1,12 @@
+{
+  "case_id": "comment-readback-final",
+  "purpose": "read-back",
+  "api_readback": {
+    "method": "GET",
+    "url": "http://127.0.0.1:18209/comment?datasource=docker-presto&engine=presto",
+    "status": 200,
+    "body": "{\"comments\":[{\"datasource\":\"docker-presto\",\"engine\":\"presto\",\"queryid\":\"20260929_000000_00003_ccccc\",\"updateTimeString\":\"2026-09-29T02:56:57.491199-04:00[America/New_York]\",\"content\":\"other query\",\"user\":\"alice\",\"likeCount\":0},{\"datasource\":\"docker-presto\",\"engine\":\"presto\",\"queryid\":\"20260929_000000_00001_aaaaa\",\"updateTimeString\":\"2026-09-29T02:55:56.354641-04:00[America/New_York]\",\"content\":\"third-case-variant\",\"user\":\"carol\",\"likeCount\":-2147483648}]}"
+  },
+  "db_readback_sql": null,
+  "db_readback_result": null
+}

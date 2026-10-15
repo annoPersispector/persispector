@@ -1,0 +1,122 @@
+{
+  "schema_version": "persistence-runtime-verification-v1",
+  "application": "apache_seatunnel-web",
+  "source_revision": "1.0.3-SNAPSHOT (no VCS metadata in isolated copy)",
+  "isolated_application_path": "/artifact/results/RQ1/apache_seatunnel-web/apache_seatunnel-web-20260929T082831Z-9e8c6ade/application",
+  "build_system": "Maven 3.9.9 (multi-module; built -pl seatunnel-server/seatunnel-app -am)",
+  "java_version": "OpenJDK 17.0.15 (project targets Java 1.8 bytecode)",
+  "runtime_database": "H2 2.1.214 in-memory (jdbc:h2:mem:seatunnel;MODE=MySQL;DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=true), schema from classpath script/seatunnel_server_h2.sql via Spring profile 'h2'",
+  "schema_context_id": "dbctx-04bb0fb56807",
+  "base_urls": [
+    "http://127.0.0.1:18200"
+  ],
+  "ports": [
+    18200
+  ],
+  "health_checks": [
+    "POST http://127.0.0.1:18200/seatunnel/api/v1/user/login (admin/admin) -> code 0 with token",
+    "GET http://127.0.0.1:18200/seatunnel/api/v1/workspace/list -> code 0 (raw/health-workspace-list.json)",
+    "Log line 'Started SeatunnelApplication' in logs/app-stdout.log"
+  ],
+  "commands": [
+    {
+      "purpose": "build",
+      "command": "mvn -B -q -DskipTests -Dspotless.check.skip=true -Dspotless.apply.skip=true -Dcheckstyle.skip -Dlicense.skipAddThirdParty -Dmaven.javadoc.skip=true -pl seatunnel-server/seatunnel-app -am install",
+      "working_directory": "/artifact/results/RQ1/apache_seatunnel-web/apache_seatunnel-web-20260929T082831Z-9e8c6ade/application",
+      "exit_code": 0
+    },
+    {
+      "purpose": "resolve runtime classpath",
+      "command": "mvn -B -q -pl seatunnel-server/seatunnel-app dependency:build-classpath -Dmdep.outputFile=/tmp/st-cp.txt -Dmdep.includeScope=runtime",
+      "working_directory": "/artifact/results/RQ1/apache_seatunnel-web/apache_seatunnel-web-20260929T082831Z-9e8c6ade/application",
+      "exit_code": 0
+    },
+    {
+      "purpose": "recompile after compatibility patch 0001",
+      "command": "mvn -B -q -o -DskipTests -Dspotless.check.skip=true -Dspotless.apply.skip=true -pl seatunnel-server/seatunnel-app compile",
+      "working_directory": "/artifact/results/RQ1/apache_seatunnel-web/apache_seatunnel-web-20260929T082831Z-9e8c6ade/application",
+      "exit_code": 0
+    },
+    {
+      "purpose": "start (H2 profile, SQL trace on)",
+      "command": "java -Dseatunnel-web.logs.path=<output>/logs/app -cp seatunnel-app/target/classes:<runtime classpath> org.apache.seatunnel.app.SeatunnelApplication --spring.profiles.active=h2 --server.port=18200 --server.address=127.0.0.1 --jwt.secretKey=<local test key> --spring.h2.console.enabled=false --spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.hazelcast.HazelcastAutoConfiguration,org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration,org.springframework.boot.autoconfigure.data.cassandra.CassandraDataAutoConfiguration,org.springframework.boot.autoconfigure.data.cassandra.CassandraReactiveDataAutoConfiguration,org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchRestClientAutoConfiguration,org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration,org.springframework.boot.autoconfigure.mongo.MongoReactiveAutoConfiguration,org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration,org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration,org.springframework.boot.autoconfigure.influx.InfluxDbAutoConfiguration,org.springframework.boot.autoconfigure.neo4j.Neo4jAutoConfiguration,org.springframework.boot.autoconfigure.mail.MailSenderAutoConfiguration,org.springframework.boot.autoconfigure.hazelcast.HazelcastJpaDependencyAutoConfiguration --mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl  (script: run/start.sh)",
+      "working_directory": "/artifact/results/RQ1/apache_seatunnel-web/apache_seatunnel-web-20260929T082831Z-9e8c6ade/output/run",
+      "exit_code": null
+    },
+    {
+      "purpose": "stop",
+      "command": "kill <pid from run/app.pid> (graceful Spring shutdown; done after run 1 and after run 2)",
+      "working_directory": "/artifact/results/RQ1/apache_seatunnel-web/apache_seatunnel-web-20260929T082831Z-9e8c6ade/output",
+      "exit_code": 0
+    },
+    {
+      "purpose": "verification requests",
+      "command": "python3 run/batch1.py ... run/batch9.py (harness run/harness.py); results assembled by python3 run/gen.py",
+      "working_directory": "/artifact/results/RQ1/apache_seatunnel-web/apache_seatunnel-web-20260929T082831Z-9e8c6ade/output/run",
+      "exit_code": 0
+    }
+  ],
+  "patches": [
+    {
+      "path": "patches/0001-virtual-table-mapper-param-binding.patch",
+      "kind": "patch",
+      "description": "Compatibility fix: VirtualTableMapper.checkVirtualTableNameUnique annotated its 4th argument @Param(\"datasourceId\") while VirtualTableDaoImpl passes the current workspace id and the XML references #{workspaceId}; every virtual-table create/update failed with MyBatis BindingException. Renamed the @Param to workspaceId. No constraint/validation semantics changed.",
+      "sha256": "1a38d0282cb9c63abbfa3b0a77f6ff75e477363b539f38e3a13c5a84d65fe44f"
+    }
+  ],
+  "logs": [
+    {
+      "path": "logs/build.log",
+      "kind": "deployment-log",
+      "description": "Maven build output (EXIT=0)",
+      "sha256": "418a5c17f33c70e99b0cc0a07fce69191489cfedc94164bfa903785777c5bd4b"
+    },
+    {
+      "path": "logs/classpath.log",
+      "kind": "deployment-log",
+      "description": "Classpath resolution output",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/build-after-patch.log",
+      "kind": "deployment-log",
+      "description": "Recompile after patch 0001 (EXIT=0)",
+      "sha256": "418a5c17f33c70e99b0cc0a07fce69191489cfedc94164bfa903785777c5bd4b"
+    },
+    {
+      "path": "logs/app-stdout-run1.log",
+      "kind": "application-log",
+      "description": "Run 1 (unpatched) application stdout incl. MyBatis SQL trace; JWTs redacted",
+      "sha256": "64e5c3f6a2f09c04fbb6493102edac3413cee355d407143e047a60092b06ce84"
+    },
+    {
+      "path": "logs/app-stdout.log",
+      "kind": "application-log",
+      "description": "Run 2 (patched, fresh H2) application stdout incl. SQL trace and shutdown; JWTs redacted",
+      "sha256": "1af3db5f796eacba62394d1a4695e49e7b90d9684f088961b6ecc4427b2dd2d6"
+    },
+    {
+      "path": "logs/app/seatunnel-web.log",
+      "kind": "application-log",
+      "description": "Logback file appender output for both runs",
+      "sha256": "4ba7470f75904eb54f97cffc938f413fd1f960f72c009d9e89baa27c7fa4afe5"
+    },
+    {
+      "path": "logs/cases-index.json",
+      "kind": "sql-trace",
+      "description": "Index (with sha256) of the 193 per-case SQL-trace/log slices under logs/cases/",
+      "sha256": "b75a9264b5e145d1ea804d844152ed48bd8868713313a30cbac3b18175bf658c"
+    }
+  ],
+  "cleanup_performed": true,
+  "notes": [
+    "Two start attempts failed before the successful run: Spring Boot HazelcastClientConfiguration tried to connect to a SeaTunnel engine on localhost:5801-5815 (not permitted), then CassandraAutoConfiguration hit a typesafe-config classpath conflict from connector jars. Both were resolved purely with --spring.autoconfigure.exclude (runtime configuration, no source change).",
+    "A non-empty jwt.secretKey is required (the shipped application.yml leaves it blank); a local test key was supplied on the command line.",
+    "Only the H2 profile was deployed. The MySQL schema context (dbctx-c15350c14606) was not deployed because a MySQL server would require an additional TCP port and the policy permits only 18200.",
+    "Run 1: cases before the patch (ws-, ds-, jd-, user-, jc-, task-, line-, vt-). Run 2: fresh in-memory DB after patch 0001 (r2-, vt2-, line2-, jv-, login-unknown-workspace, user-type-200, task-source-connector-...).",
+    "SeaTunnel job execution (/job/executor/execute) was intentionally not invoked since it submits to the SeaTunnel engine on a non-permitted port.",
+    "All started processes were stopped; port 18200 verified closed. Maven build artefacts (target/) remain inside the isolated application copy.",
+    "Revision 2 (validator corrections): no redeployment was needed; verification-results.json was regenerated from the same recorded evidence with corrected outcome/handling classifications. The application remains stopped and port 18200 is closed.",
+    "Revision 3: read-back cases now label their exchange evidence as kind 'read-back'; the directory reference logs/cases was replaced by the file logs/cases-index.json. No redeployment; application remains stopped."
+  ]
+}

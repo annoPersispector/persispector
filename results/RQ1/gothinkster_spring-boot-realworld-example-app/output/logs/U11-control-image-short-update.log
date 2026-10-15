@@ -1,0 +1,16 @@
+2026-09-29 03:07:42.429 DEBUG 942119 --- [.1-18208-exec-2] i.s.i.m.mapper.UserMapper.findById       : ==>  Preparing: select id, username, email, password, bio, image from users where id = ?
+2026-09-29 03:07:42.430 DEBUG 942119 --- [.1-18208-exec-2] i.s.i.m.mapper.UserMapper.findById       : ==> Parameters: a1e8e8bc-b1f3-48a8-a8b2-e5ca28ad086c(String)
+2026-09-29 03:07:42.430 DEBUG 942119 --- [.1-18208-exec-2] i.s.i.m.mapper.UserMapper.findById       : <==      Total: 1
+2026-09-29 03:07:42.431 DEBUG 942119 --- [.1-18208-exec-2] i.s.i.m.mapper.UserMapper.findByEmail    : ==>  Preparing: select id, username, email, password, bio, image from users where email = ?
+2026-09-29 03:07:42.431 DEBUG 942119 --- [.1-18208-exec-2] i.s.i.m.mapper.UserMapper.findByEmail    : ==> Parameters: (String)
+2026-09-29 03:07:42.431 DEBUG 942119 --- [.1-18208-exec-2] i.s.i.m.m.UserMapper.findByUsername      : ==>  Preparing: select * from users where username = ?
+2026-09-29 03:07:42.431 DEBUG 942119 --- [.1-18208-exec-2] i.s.i.m.m.UserMapper.findByUsername      : ==> Parameters: (String)
+2026-09-29 03:07:42.432 DEBUG 942119 --- [.1-18208-exec-2] i.s.i.m.mapper.UserMapper.findById       : ==>  Preparing: select id, username, email, password, bio, image from users where id = ?
+2026-09-29 03:07:42.432 DEBUG 942119 --- [.1-18208-exec-2] i.s.i.m.mapper.UserMapper.findById       : ==> Parameters: a1e8e8bc-b1f3-48a8-a8b2-e5ca28ad086c(String)
+2026-09-29 03:07:42.432 DEBUG 942119 --- [.1-18208-exec-2] i.s.i.m.mapper.UserMapper.findById       : <==      Total: 1
+2026-09-29 03:07:42.432 DEBUG 942119 --- [.1-18208-exec-2] i.s.i.mybatis.mapper.UserMapper.update   : ==>  Preparing: update users SET username = ?, email = ?, password = ?, image = ? where id = ?
+2026-09-29 03:07:42.432 DEBUG 942119 --- [.1-18208-exec-2] i.s.i.mybatis.mapper.UserMapper.update   : ==> Parameters: alice(String), alice@example.com(String), <BCRYPT-HASH-REDACTED>(String), https://img.example/short.png(String), a1e8e8bc-b1f3-48a8-a8b2-e5ca28ad086c(String)
+2026-09-29 03:07:42.443 DEBUG 942119 --- [.1-18208-exec-2] i.s.i.mybatis.mapper.UserMapper.update   : <==    Updates: 1
+2026-09-29 03:07:42.444 DEBUG 942119 --- [.1-18208-exec-2] i.s.i.m.r.UserReadService.findById       : ==>  Preparing: select * from users where id = ?
+2026-09-29 03:07:42.444 DEBUG 942119 --- [.1-18208-exec-2] i.s.i.m.r.UserReadService.findById       : ==> Parameters: a1e8e8bc-b1f3-48a8-a8b2-e5ca28ad086c(String)
+2026-09-29 03:07:42.444 DEBUG 942119 --- [.1-18208-exec-2] i.s.i.m.r.UserReadService.findById       : <==      Total: 1

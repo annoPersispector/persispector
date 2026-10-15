@@ -1,0 +1,3638 @@
+{
+ "schema_version": "persistence-runtime-verification-v1",
+ "application": "eclipse-jifa_jifa",
+ "constraint_report_schema_version": "9",
+ "generated_at": "2026-09-29T15:23:19.226779+00:00",
+ "target_ids": [
+  "pc-68f1a70c95e7",
+  "pc-c705018fa89e",
+  "pc-d4e271272200",
+  "pc-1406b72912ae",
+  "pc-66bbd97dfe99",
+  "pc-1f8edfc701b1",
+  "pc-c1e3f35334a9",
+  "pc-874a6a2ac936",
+  "pc-ec622227e059",
+  "pc-44c33cfea18f",
+  "pc-88f28bdb87aa",
+  "pc-258475034ab9",
+  "pc-20c0d797f663",
+  "pc-d8f3aa6d61e5",
+  "pc-ee76ca8ad530",
+  "pc-5a6ea4133ebc",
+  "pc-ae5a90dd7f49",
+  "pc-dfd7bdd6c37d",
+  "pc-cd51f184de8b",
+  "pc-48e9bf8227f1",
+  "pc-3e35f578373c",
+  "pc-af12da359866",
+  "pc-6621b7739c87",
+  "pc-c20b79df1193",
+  "pc-6821b75a2d48",
+  "pc-9c37f4c20ca6",
+  "pc-3d56a5beb521",
+  "pc-191309924e00",
+  "pc-4244db524a4c",
+  "pc-fa78387953c7",
+  "pc-1b1b5b847432",
+  "pc-ff20234e88b6",
+  "pc-9dc453702ad5",
+  "pc-4b6237857285",
+  "pc-7bd080f76fd8",
+  "pc-d38f7297ef0b",
+  "pc-b4ebd14483a5",
+  "pc-6651333b5023",
+  "pc-ba6c538cf19e",
+  "pc-2dba18a41a86",
+  "pc-40c43109a824",
+  "pc-88d3fdcac021",
+  "pc-86a7449cbae4",
+  "pc-cf8abdc6e5dd",
+  "pc-0b730c39e689",
+  "pc-3ff6a9289b2e",
+  "pc-157393a1ceb6",
+  "pc-0a6b29cadaaa",
+  "pc-d303579fa1ce",
+  "pc-682fb6168768",
+  "pc-6d0fe928ba99",
+  "pc-6750ed3eeedf",
+  "pc-3571fcbbb794",
+  "pc-0a266e6d6c62",
+  "pc-a7f69b5d6bb3",
+  "pc-6758dbc5f0ce",
+  "pc-c25e43a4d892",
+  "dep-ee15432fe20f",
+  "dep-a60971164e0c",
+  "dep-084090781acf",
+  "dep-a2a8e5a41857",
+  "dep-6990ba98c9cc",
+  "dep-e76a3905a886",
+  "dep-b1adb8e19c0f",
+  "dep-572f8dadc327",
+  "dep-047588832dc2",
+  "dep-aeb6ac18e588",
+  "dep-17cd15816d78",
+  "dep-689a80af21ad",
+  "dep-4c765bc63075",
+  "dep-a64a6cad050a",
+  "dep-910436451794",
+  "dep-91a33858eefd",
+  "dep-a5163390810d",
+  "dep-dbe86676470b",
+  "dep-9939fdca2edb",
+  "dep-665265eaf81d",
+  "dep-9ceb499d2684",
+  "dep-ecf4e52ef925",
+  "dep-99168590c03b",
+  "dep-10ea706a3af3"
+ ],
+ "cases": [
+  {
+   "case_id": "U01-setup-register-valid",
+   "purpose": "setup",
+   "target_ids": [
+    "pc-0a266e6d6c62",
+    "pc-6d0fe928ba99",
+    "pc-a7f69b5d6bb3",
+    "pc-3571fcbbb794",
+    "pc-682fb6168768"
+   ],
+   "endpoint": "/jifa-api/user",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/user",
+   "response_status": 200,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/U01-setup-register-valid.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "39aa9b10b993e9fd11e1077ebb721d7db9485c9a67e5b83949cd9a6cfd199bc9"
+    }
+   ],
+   "observation": "Valid registration inserted users + login_data rows; JWT returned in Authorization header."
+  },
+  {
+   "case_id": "U02-readback-login-valid",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-0a266e6d6c62"
+   ],
+   "endpoint": "/jifa-api/login",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/login",
+   "response_status": 200,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/U02-readback-login-valid.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "191662b868ddd148f802273ec6a4e5265837ed9518c7f350154b5b24075b3c37"
+    },
+    {
+     "path": "raw/U02-readback-login-valid.json",
+     "kind": "read-back",
+     "description": "API read-back observation of persisted state (response body of this read request)",
+     "sha256": "191662b868ddd148f802273ec6a4e5265837ed9518c7f350154b5b24075b3c37"
+    }
+   ],
+   "observation": "Login with the registered username succeeds (persisted row readable)."
+  },
+  {
+   "case_id": "U03-violation-username-duplicate",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-0a266e6d6c62"
+   ],
+   "endpoint": "/jifa-api/user",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/user",
+   "response_status": 500,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/U03-violation-username-duplicate.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "826de83db855e26e193a61b5aa4b91cc23aac6196ffb6e0ec78f3c2687658efe"
+    }
+   ],
+   "observation": "Sequential duplicate username rejected by UserServiceImpl.register pre-check (Validate USERNAME_EXISTS) before any INSERT; response errorCode USERNAME_EXISTS (HTTP 500)."
+  },
+  {
+   "case_id": "U04-violation-username-null",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-3571fcbbb794"
+   ],
+   "endpoint": "/jifa-api/user",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/user",
+   "response_status": 500,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/U04-violation-username-null.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "2f67e051382e5330d6001f2bed23f8465ff26ca6d22c88381970e96904ebf910"
+    }
+   ],
+   "observation": "Omitted username bound as null; INSERT into login_data failed with H2 23502 NULL not allowed for column USERNAME; transaction rolled back (users row id 3 absent in read-back); generic INTERNAL_ERROR with raw SQL text in response."
+  },
+  {
+   "case_id": "U05-boundary-username-128",
+   "purpose": "boundary",
+   "target_ids": [
+    "pc-6d0fe928ba99"
+   ],
+   "endpoint": "/jifa-api/user",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/user",
+   "response_status": 200,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/U05-boundary-username-128.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "cb335cd95ef67ef18d88cfacab90f1f0b4b800778229aeae7a5e4bee79f6665d"
+    }
+   ],
+   "observation": "128-char username accepted and persisted (read-back length 128)."
+  },
+  {
+   "case_id": "U06-violation-username-129",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-6d0fe928ba99"
+   ],
+   "endpoint": "/jifa-api/user",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/user",
+   "response_status": 500,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/U06-violation-username-129.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "217216387abbf2f62c0637e430c29cf8904b193d2d659c15e17302b22d52453b"
+    }
+   ],
+   "observation": "129-char username reached INSERT into login_data; H2 22001 Value too long for column USERNAME VARCHAR(128); INTERNAL_ERROR response exposing SQL."
+  },
+  {
+   "case_id": "U06b-readback-login-username-129",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-6d0fe928ba99"
+   ],
+   "endpoint": "/jifa-api/login",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/login",
+   "response_status": 500,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/U06b-readback-login-username-129.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "de3cb65ad834ad9aa5c303fd96c36f984dbf0a5471d99b2e95e685f0bf5af71c"
+    },
+    {
+     "path": "raw/U06b-readback-login-username-129.json",
+     "kind": "read-back",
+     "description": "API read-back observation of persisted state (response body of this read request)",
+     "sha256": "de3cb65ad834ad9aa5c303fd96c36f984dbf0a5471d99b2e95e685f0bf5af71c"
+    }
+   ],
+   "observation": "Login for the 129-char username returns USER_NOT_FOUND: nothing persisted."
+  },
+  {
+   "case_id": "U07-boundary-name-64",
+   "purpose": "boundary",
+   "target_ids": [
+    "pc-a7f69b5d6bb3"
+   ],
+   "endpoint": "/jifa-api/user",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/user",
+   "response_status": 200,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/U07-boundary-name-64.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "85c0711061240378e88c3a55f87e516b44c50eaa090ef938dca6d34aba10d6fe"
+    }
+   ],
+   "observation": "64-char name accepted and persisted (read-back length 64)."
+  },
+  {
+   "case_id": "U08-violation-name-65",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-a7f69b5d6bb3"
+   ],
+   "endpoint": "/jifa-api/user",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/user",
+   "response_status": 500,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/U08-violation-name-65.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "9c96373b88314609d933388399dda865d3caa74579c543c610d30ca9a6ab83aa"
+    }
+   ],
+   "observation": "65-char name reached INSERT into users; H2 22001 Value too long for column NAME VARCHAR(64); INTERNAL_ERROR response exposing SQL."
+  },
+  {
+   "case_id": "U08b-readback-login-after-name-65",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-a7f69b5d6bb3"
+   ],
+   "endpoint": "/jifa-api/login",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/login",
+   "response_status": 500,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/U08b-readback-login-after-name-65.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "005499894ed687d35dbaf68d308aea1a37497c4d54c0298100fd894e15493c81"
+    },
+    {
+     "path": "raw/U08b-readback-login-after-name-65.json",
+     "kind": "read-back",
+     "description": "API read-back observation of persisted state (response body of this read request)",
+     "sha256": "005499894ed687d35dbaf68d308aea1a37497c4d54c0298100fd894e15493c81"
+    }
+   ],
+   "observation": "Login for that username returns USER_NOT_FOUND: nothing persisted."
+  },
+  {
+   "case_id": "U09-violation-attempt-long-password-100",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-682fb6168768"
+   ],
+   "endpoint": "/jifa-api/user",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/user",
+   "response_status": 500,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/U09-violation-attempt-long-password-100.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "acd771c0f4516318639c127477cf5cc45067b377ec9329056fd11f0b7143983e"
+    }
+   ],
+   "observation": "100-char password rejected by BCryptPasswordEncoder (password cannot be more than 72 bytes) before persistence; the stored column holds the hash, never the raw password."
+  },
+  {
+   "case_id": "U10-control-long-password-70",
+   "purpose": "control",
+   "target_ids": [
+    "pc-682fb6168768"
+   ],
+   "endpoint": "/jifa-api/user",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/user",
+   "response_status": 200,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/U10-control-long-password-70.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "1066536263a40d0f968266e85e63873f0cdb91c0a6d57ff14947fe08b07f5104"
+    }
+   ],
+   "observation": "70-char password accepted; stored password_hash is a 60-char bcrypt hash (DB read-back hash_len=60)."
+  },
+  {
+   "case_id": "U10b-readback-login-long-password-70",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-682fb6168768"
+   ],
+   "endpoint": "/jifa-api/login",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/login",
+   "response_status": 200,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/U10b-readback-login-long-password-70.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "fa714b3aee34729dadc002329fe903a1567fc00cec74d10acf4b197c94446bc2"
+    },
+    {
+     "path": "raw/U10b-readback-login-long-password-70.json",
+     "kind": "read-back",
+     "description": "API read-back observation of persisted state (response body of this read request)",
+     "sha256": "fa714b3aee34729dadc002329fe903a1567fc00cec74d10acf4b197c94446bc2"
+    }
+   ],
+   "observation": "Login with the 70-char password succeeds."
+  },
+  {
+   "case_id": "U11-violation-username-duplicate-concurrent",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-0a266e6d6c62"
+   ],
+   "endpoint": "/jifa-api/user",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/user",
+   "response_status": 500,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/U11-violation-username-duplicate-concurrent.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "3d8151516aa9d35611bb56a62e5f7a5869b10159e7f13225598531c31405bb43"
+    }
+   ],
+   "observation": "12 concurrent registrations with one new username: 1 succeeded, 2 hit the application pre-check (USERNAME_EXISTS), 9 bypassed it and failed at INSERT with H2 unique index violation on login_data(username), returned as INTERNAL_ERROR."
+  },
+  {
+   "case_id": "F01-control-upload-valid",
+   "purpose": "control",
+   "target_ids": [
+    "pc-fa78387953c7",
+    "pc-9dc453702ad5",
+    "dep-a64a6cad050a"
+   ],
+   "endpoint": "/jifa-api/files/upload",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/files/upload?type=GC_LOG",
+   "response_status": 200,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/F01-control-upload-valid.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "db2beb30007dcb09df3cc4ada94b26a5fbbd5c48069fcb2eea09ccf1a0e7d754"
+    }
+   ],
+   "observation": "Valid multipart upload persisted as files row id 1."
+  },
+  {
+   "case_id": "F02-readback-file-valid",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-fa78387953c7"
+   ],
+   "endpoint": "/jifa-api/files/{id}",
+   "request_method": "GET",
+   "request_url": "http://127.0.0.1:18201/jifa-api/files/1",
+   "response_status": 200,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/F02-readback-file-valid.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "c17c9ac501c39035b06cf1298c0c9c64888db4ab5934dc91815f83213e1d1488"
+    },
+    {
+     "path": "raw/F02-readback-file-valid.json",
+     "kind": "read-back",
+     "description": "API read-back observation of persisted state (response body of this read request)",
+     "sha256": "c17c9ac501c39035b06cf1298c0c9c64888db4ab5934dc91815f83213e1d1488"
+    }
+   ],
+   "observation": "File view read-back shows persisted originalName/type/size."
+  },
+  {
+   "case_id": "F03-boundary-upload-originalName-256",
+   "purpose": "boundary",
+   "target_ids": [
+    "pc-fa78387953c7"
+   ],
+   "endpoint": "/jifa-api/files/upload",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/files/upload?type=GC_LOG",
+   "response_status": 200,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/F03-boundary-upload-originalName-256.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "fbd5bf71c66e0439f8347bf2d30a16b1aa31fcc8a6757181a01de742c836e6a3"
+    }
+   ],
+   "observation": "256-char filename accepted and persisted."
+  },
+  {
+   "case_id": "F03b-readback-file-256",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-fa78387953c7"
+   ],
+   "endpoint": "/jifa-api/files/{id}",
+   "request_method": "GET",
+   "request_url": "http://127.0.0.1:18201/jifa-api/files/2",
+   "response_status": 200,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/F03b-readback-file-256.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "f63b4c81a3a9afe8ebb7abd1d3b6770ea9a04f8f376480ab02a2464f12dff913"
+    },
+    {
+     "path": "raw/F03b-readback-file-256.json",
+     "kind": "read-back",
+     "description": "API read-back observation of persisted state (response body of this read request)",
+     "sha256": "f63b4c81a3a9afe8ebb7abd1d3b6770ea9a04f8f376480ab02a2464f12dff913"
+    }
+   ],
+   "observation": "Read-back shows 256-char originalName."
+  },
+  {
+   "case_id": "F04-violation-upload-originalName-257",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-fa78387953c7"
+   ],
+   "endpoint": "/jifa-api/files/upload",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/files/upload?type=GC_LOG",
+   "response_status": 500,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/F04-violation-upload-originalName-257.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "753e82c729ef4ef6a63460760ce3eb667560708abe5feafad2c75db16dc444fc"
+    }
+   ],
+   "observation": "257-char filename: file stored to disk, then INSERT into files failed with H2 22001 Value too long for ORIGINAL_NAME VARCHAR(256); INTERNAL_ERROR response exposing SQL; orphaned storage directory left behind."
+  },
+  {
+   "case_id": "F04b-readback-file-list",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-fa78387953c7"
+   ],
+   "endpoint": "/jifa-api/files",
+   "request_method": "GET",
+   "request_url": "http://127.0.0.1:18201/jifa-api/files?page=1&pageSize=50",
+   "response_status": 200,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/F04b-readback-file-list.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "08a4bbf3809029223e535dc8eeb5d8bc1d92a2049fbcc744f797636a8f0d813f"
+    },
+    {
+     "path": "raw/F04b-readback-file-list.json",
+     "kind": "read-back",
+     "description": "API read-back observation of persisted state (response body of this read request)",
+     "sha256": "08a4bbf3809029223e535dc8eeb5d8bc1d92a2049fbcc744f797636a8f0d813f"
+    }
+   ],
+   "observation": "File list contains no 257-char entry."
+  },
+  {
+   "case_id": "F05-violation-upload-type-missing",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-9dc453702ad5"
+   ],
+   "endpoint": "/jifa-api/files/upload",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/files/upload",
+   "response_status": 400,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/F05-violation-upload-type-missing.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "39145a60e5e221ecf664f0252fbb9aaf72509830abb36ffc9a55be08ec2b928b"
+    }
+   ],
+   "observation": "Missing type parameter rejected during Spring request binding (MissingServletRequestParameterException) with HTTP 400; no SQL issued."
+  },
+  {
+   "case_id": "F06-violation-upload-type-invalid",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-9dc453702ad5"
+   ],
+   "endpoint": "/jifa-api/files/upload",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/files/upload?type=NOT_A_TYPE",
+   "response_status": 500,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/F06-violation-upload-type-invalid.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "9d546d4a9480e8e338403c388943afaaf4efc90e8911f75841135ed15c3b296c"
+    }
+   ],
+   "observation": "Invalid enum value rejected during conversion (HTTP 500, INTERNAL_ERROR); no SQL issued."
+  },
+  {
+   "case_id": "T01-control-transfer-text-valid",
+   "purpose": "control",
+   "target_ids": [
+    "pc-fa78387953c7",
+    "pc-ff20234e88b6",
+    "pc-9dc453702ad5"
+   ],
+   "endpoint": "/jifa-api/files/transfer",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/files/transfer",
+   "response_status": 200,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/T01-control-transfer-text-valid.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "55335805471b90ebfac334e651561188abad460719930bfaf67c5074dcc7868e"
+    }
+   ],
+   "observation": "Valid TEXT transfer persisted transferring_files and files rows."
+  },
+  {
+   "case_id": "T02-readback-transfer-progress-valid",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-fa78387953c7"
+   ],
+   "endpoint": "/jifa-api/files/transfer/{id}",
+   "request_method": "GET",
+   "request_url": "http://127.0.0.1:18201/jifa-api/files/transfer/1",
+   "response_status": 200,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/T02-readback-transfer-progress-valid.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "3203b86e03fe7eee86e37036f194502e75810f3d87231a75025a0662549bff50"
+    },
+    {
+     "path": "raw/T02-readback-transfer-progress-valid.json",
+     "kind": "read-back",
+     "description": "API read-back observation of persisted state (response body of this read request)",
+     "sha256": "3203b86e03fe7eee86e37036f194502e75810f3d87231a75025a0662549bff50"
+    }
+   ],
+   "observation": "Progress read-back SUCCESS with fileId."
+  },
+  {
+   "case_id": "T03-violation-transfer-type-null",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-9dc453702ad5"
+   ],
+   "endpoint": "/jifa-api/files/transfer",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/files/transfer",
+   "response_status": 500,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/T03-violation-transfer-type-null.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "19971f4982b843ee0645e924af5ced655a1db610800f76267e459d9a9c6d5831"
+    }
+   ],
+   "observation": "type omitted: FileTransferRequest.Constraint validator rejected (field error 'type'), no SQL; returned HTTP 500 INTERNAL_ERROR with validation text."
+  },
+  {
+   "case_id": "T04-violation-transfer-filename-null",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-ff20234e88b6"
+   ],
+   "endpoint": "/jifa-api/files/transfer",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/files/transfer",
+   "response_status": 500,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/T04-violation-transfer-filename-null.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "00a71f5418c0ac47528634226bec42ed8c882c455f20a79f08534f39bf1116ef"
+    }
+   ],
+   "observation": "filename omitted for TEXT method: validator rejected (field error 'filename'), no SQL; HTTP 500 INTERNAL_ERROR with validation text."
+  },
+  {
+   "case_id": "T05-violation-transfer-filename-257",
+   "purpose": "violation",
+   "target_ids": [
+    "pc-fa78387953c7"
+   ],
+   "endpoint": "/jifa-api/files/transfer",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/files/transfer",
+   "response_status": 500,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/T05-violation-transfer-filename-257.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "c47186330de6b9a1b4769b83466c6856f5a5953a6280bd6235f9ff04d583d060"
+    }
+   ],
+   "observation": "257-char filename reached INSERT into transferring_files; H2 22001 Value too long for ORIGINAL_NAME VARCHAR(256); INTERNAL_ERROR response exposing SQL."
+  },
+  {
+   "case_id": "T06-boundary-transfer-filename-256",
+   "purpose": "boundary",
+   "target_ids": [
+    "pc-fa78387953c7"
+   ],
+   "endpoint": "/jifa-api/files/transfer",
+   "request_method": "POST",
+   "request_url": "http://127.0.0.1:18201/jifa-api/files/transfer",
+   "response_status": 200,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/T06-boundary-transfer-filename-256.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "49df228357b7f602181504aa5f0209f57b23dbfb1a3e6072de0e552d56674ab5"
+    }
+   ],
+   "observation": "256-char filename accepted and persisted."
+  },
+  {
+   "case_id": "T06b-readback-transfer-progress-256",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-fa78387953c7"
+   ],
+   "endpoint": "/jifa-api/files/transfer/{id}",
+   "request_method": "GET",
+   "request_url": "http://127.0.0.1:18201/jifa-api/files/transfer/3",
+   "response_status": 200,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/T06b-readback-transfer-progress-256.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "c9998321e9a295a28e458c844cd654125ceb286344812e19cac1377d7d96013d"
+    },
+    {
+     "path": "raw/T06b-readback-transfer-progress-256.json",
+     "kind": "read-back",
+     "description": "API read-back observation of persisted state (response body of this read request)",
+     "sha256": "c9998321e9a295a28e458c844cd654125ceb286344812e19cac1377d7d96013d"
+    }
+   ],
+   "observation": "Progress SUCCESS for 256-char filename transfer."
+  },
+  {
+   "case_id": "D01-control-delete-file",
+   "purpose": "control",
+   "target_ids": [
+    "pc-d38f7297ef0b",
+    "pc-b4ebd14483a5",
+    "dep-910436451794"
+   ],
+   "endpoint": "/jifa-api/files/{id}",
+   "request_method": "DELETE",
+   "request_url": "http://127.0.0.1:18201/jifa-api/files/1",
+   "response_status": 200,
+   "reached_persistence": true,
+   "evidence": [
+    {
+     "path": "raw/D01-control-delete-file.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "76d4113951b821c8ed1b2707cc78b58051282685195e43094e4594b502936ed2"
+    }
+   ],
+   "observation": "Delete inserted deleted_files row; originalCreatedTime copied from file; size NOT copied by EntityConverter so primitive default 0 persisted."
+  },
+  {
+   "case_id": "D02-readback-deleted-file",
+   "purpose": "read-back",
+   "target_ids": [
+    "pc-d38f7297ef0b"
+   ],
+   "endpoint": "/jifa-api/files/{id}",
+   "request_method": "GET",
+   "request_url": "http://127.0.0.1:18201/jifa-api/files/1",
+   "response_status": 500,
+   "reached_persistence": false,
+   "evidence": [
+    {
+     "path": "raw/D02-readback-deleted-file.json",
+     "kind": "http-exchange",
+     "description": "Sanitized request/response with correlated Hibernate SQL/bind/exception log lines",
+     "sha256": "3b00fba272f5683063d115ca9335c0faf41bfa03372bcef462e2c410ad8ccaad"
+    },
+    {
+     "path": "raw/D02-readback-deleted-file.json",
+     "kind": "read-back",
+     "description": "API read-back observation of persisted state (response body of this read request)",
+     "sha256": "3b00fba272f5683063d115ca9335c0faf41bfa03372bcef462e2c410ad8ccaad"
+    }
+   ],
+   "observation": "Deleted file no longer readable (FILE_NOT_FOUND)."
+  },
+  {
+   "case_id": "DB-readback",
+   "purpose": "read-back",
+   "target_ids": [],
+   "endpoint": null,
+   "request_method": null,
+   "request_url": "jdbc:h2:file:<app>/.jifa-storage/.h2db (offline, after server stop)",
+   "response_status": null,
+   "reached_persistence": null,
+   "evidence": [
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "H2 Shell queries of all deployed tables and information_schema constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "raw/DB-readback-storage-listing.txt",
+     "kind": "read-back",
+     "description": "Listing of stored upload directories",
+     "sha256": "d1047268d0d95cfa5a39850e7f0efa590d18181286c1975f23865e949b99401e"
+    }
+   ],
+   "observation": "Offline H2 read-back: rolled-back registrations absent (user ids 3,5,7 missing); login_data password_hash length 60; files originalName max 256; deleted_files size=0; only shared tables exist (no cluster tables); orphan storage dir 0cccb151... from F04 has no files row."
+  }
+ ],
+ "results": [
+  {
+   "target_id": "pc-68f1a70c95e7",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). ElasticWorkerEntity (purpose, referenceId) composite unique; rows are created only by the K8s worker scheduler (WorkerServiceImpl), not by request payload. Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-c705018fa89e",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). ElasticWorkerEntity.failureMessage length 1024; written only from K8s pod failure messages (and truncated to 1024 in WorkerServiceImpl). Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-d4e271272200",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). ElasticWorkerEntity.purpose not null; set internally by the elastic-worker scheduler. Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-1406b72912ae",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). ElasticWorkerEntity.referenceId not null; set internally by the elastic-worker scheduler. Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-66bbd97dfe99",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). ElasticWorkerEntity.state not null; set internally by the elastic-worker scheduler. Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-1f8edfc701b1",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). FileLocationRuleEntity (user_id, fileType) unique; the codebase has no write path for file_location_rules (read-only lookups in WorkerServiceImpl). Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-c1e3f35334a9",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). FileLocationRuleEntity.user FK; no API write path exists. Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-874a6a2ac936",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). FileLocationRuleEntity.rule not null; no API write path exists. Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-ec622227e059",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). FileStaticWorkerBindEntity.staticWorker required; only written when role=static-worker, bound to the self-registered current worker. Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-44c33cfea18f",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). GlobalLockEntity.uniqueName length 64; locks are named by internal code (DistributedLockServiceImpl). Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-88f28bdb87aa",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). GlobalLockEntity.expiryAt not null; set internally. Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-258475034ab9",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). GlobalLockEntity.uniqueName not null; set internally. Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-20c0d797f663",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). GlobalLockEntity.uniqueName unique; internal distributed lock. Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-d8f3aa6d61e5",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). StaticWorkerEntity.availableSpace not null; populated by CurrentStaticWorker self-registration from the local filesystem. Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-ee76ca8ad530",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). StaticWorkerEntity.lastModifiedTime not null; @UpdateTimestamp-managed in self-registration. Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-5a6ea4133ebc",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). StaticWorkerEntity.totalSpace not null; populated by self-registration. Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-ae5a90dd7f49",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). StaticWorkerLabelEntity (static_worker_id, label) unique; the codebase has no write path for labels (read-only findByLabel). Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-dfd7bdd6c37d",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). StaticWorkerLabelEntity.staticWorker FK; no write path. Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-cd51f184de8b",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). StaticWorkerLabelEntity.label length 64; no write path. Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-48e9bf8227f1",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). StaticWorkerLabelEntity.label not null; no write path. Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-3e35f578373c",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). StaticWorkerLabelEntity.staticWorker required; no write path. Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-af12da359866",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). WorkerEntity.hostAddress length 128 (mapped superclass of static/elastic workers); set from the worker's own host address. Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-6621b7739c87",
+   "target_kind": "constraint",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). WorkerEntity.port not null; set from worker configuration. Even in cluster roles there is no public API that supplies this value.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles require an external MySQL and a Kubernetes API (external services disallowed; only port 18201 permitted)."
+   ]
+  },
+  {
+   "target_id": "pc-c20b79df1193",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": true,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/domain/entity/shared/BaseEntity.java",
+     "kind": "source",
+     "description": "@CreationTimestamp createdTime (verbatim copy of application source)",
+     "sha256": "dcdc3a514a0b48f94c2b0d6011c48704fa284c4169e7260053cd6f7bc81f0754"
+    }
+   ],
+   "rationale": "createdTime is populated by Hibernate @CreationTimestamp on every insert; no request field maps to it. DDL shows 'created_time timestamp(6) not null' on all deployed tables and read-back shows every row populated.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-6821b75a2d48",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": true,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    }
+   ],
+   "rationale": "id is an IDENTITY-generated primary key ('id bigint generated by default as identity ... primary key (id)' in DDL; PRIMARY KEY constraints in information_schema). Clients never supply ids on insert paths.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-9c37f4c20ca6",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/service/impl/CipherServiceImpl.java",
+     "kind": "source",
+     "description": "Only writer of configurations (verbatim copy of application source)",
+     "sha256": "89b1ce61fbbc98451245e4e09ca4656680d72f714702828d6e49457ec238effa"
+    }
+   ],
+   "rationale": "ConfigurationEntity content length 4096: configurations rows are written only by CipherServiceImpl at startup (public-key/private-key with constant names; key content 392/1624 chars). No HTTP endpoint writes configurations. DDL confirms the declared column constraint exists.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-3d56a5beb521",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/service/impl/CipherServiceImpl.java",
+     "kind": "source",
+     "description": "Only writer of configurations (verbatim copy of application source)",
+     "sha256": "89b1ce61fbbc98451245e4e09ca4656680d72f714702828d6e49457ec238effa"
+    }
+   ],
+   "rationale": "ConfigurationEntity content not null: configurations rows are written only by CipherServiceImpl at startup (public-key/private-key with constant names; key content 392/1624 chars). No HTTP endpoint writes configurations. DDL confirms the declared column constraint exists.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-191309924e00",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/service/impl/CipherServiceImpl.java",
+     "kind": "source",
+     "description": "Only writer of configurations (verbatim copy of application source)",
+     "sha256": "89b1ce61fbbc98451245e4e09ca4656680d72f714702828d6e49457ec238effa"
+    }
+   ],
+   "rationale": "ConfigurationEntity uniqueName not null: configurations rows are written only by CipherServiceImpl at startup (public-key/private-key with constant names; key content 392/1624 chars). No HTTP endpoint writes configurations. DDL confirms the declared column constraint exists.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-4244db524a4c",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/service/impl/CipherServiceImpl.java",
+     "kind": "source",
+     "description": "Only writer of configurations (verbatim copy of application source)",
+     "sha256": "89b1ce61fbbc98451245e4e09ca4656680d72f714702828d6e49457ec238effa"
+    }
+   ],
+   "rationale": "ConfigurationEntity uniqueName unique: configurations rows are written only by CipherServiceImpl at startup (public-key/private-key with constant names; key content 392/1624 chars). No HTTP endpoint writes configurations. DDL confirms the declared column constraint exists.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-fa78387953c7",
+   "target_kind": "constraint",
+   "outcome": "DATABASE_ENFORCED_UNHANDLED",
+   "exact_predicate_confirmed": true,
+   "observed_enforcement": "database",
+   "application_layer_implemented": false,
+   "response_handling": "unhandled",
+   "case_ids": [
+    "F01-control-upload-valid",
+    "F03-boundary-upload-originalName-256",
+    "F04-violation-upload-originalName-257",
+    "F04b-readback-file-list",
+    "T01-control-transfer-text-valid",
+    "T05-violation-transfer-filename-257",
+    "T06-boundary-transfer-filename-256",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/F03-boundary-upload-originalName-256.json",
+     "kind": "http-exchange",
+     "description": "256-char filename accepted and persisted.",
+     "sha256": "fbd5bf71c66e0439f8347bf2d30a16b1aa31fcc8a6757181a01de742c836e6a3"
+    },
+    {
+     "path": "raw/F04-violation-upload-originalName-257.json",
+     "kind": "http-exchange",
+     "description": "257-char filename: file stored to disk, then INSERT into files failed with H2 22001 Value too long for ORIGINAL_NAME VARCHAR(256); INTERNAL_ERROR response exposing SQL; orphaned storage directory left",
+     "sha256": "753e82c729ef4ef6a63460760ce3eb667560708abe5feafad2c75db16dc444fc"
+    },
+    {
+     "path": "raw/F04b-readback-file-list.json",
+     "kind": "read-back",
+     "description": "File list contains no 257-char entry.",
+     "sha256": "08a4bbf3809029223e535dc8eeb5d8bc1d92a2049fbcc744f797636a8f0d813f"
+    },
+    {
+     "path": "raw/T05-violation-transfer-filename-257.json",
+     "kind": "http-exchange",
+     "description": "257-char filename reached INSERT into transferring_files; H2 22001 Value too long for ORIGINAL_NAME VARCHAR(256); INTERNAL_ERROR response exposing SQL.",
+     "sha256": "c47186330de6b9a1b4769b83466c6856f5a5953a6280bd6235f9ff04d583d060"
+    },
+    {
+     "path": "raw/T06-boundary-transfer-filename-256.json",
+     "kind": "http-exchange",
+     "description": "256-char filename accepted and persisted.",
+     "sha256": "49df228357b7f602181504aa5f0209f57b23dbfb1a3e6072de0e552d56674ab5"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "raw/DB-readback-storage-listing.txt",
+     "kind": "read-back",
+     "description": "Stored-file directory listing",
+     "sha256": "d1047268d0d95cfa5a39850e7f0efa590d18181286c1975f23865e949b99401e"
+    },
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    }
+   ],
+   "rationale": "originalName is length-checked nowhere in the application. 256 chars persists (upload and TEXT transfer); 257 chars reaches INSERT into files / transferring_files and H2 rejects with SQLState 22001 'Value too long for column ORIGINAL_NAME CHARACTER VARYING(256)'. The GlobalExceptionHandler returns HTTP 500 errorCode INTERNAL_ERROR with the raw SQL statement. For upload, the file is written to storage before the failed INSERT, leaving an orphaned directory.",
+   "confidence": 0.95,
+   "limitations": [
+    "Verified on H2 2.2.220; MySQL would behave the same under strict mode but may truncate in non-strict mode."
+   ]
+  },
+  {
+   "target_id": "pc-1b1b5b847432",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": true,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "F01-control-upload-valid",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/service/impl/FileServiceImpl.java",
+     "kind": "source",
+     "description": "generateFileUniqueName = UUID.randomUUID() (verbatim copy of application source)",
+     "sha256": "97409596a4b9dee4fc10ec3cda5a79bd2e2cb3f3954c60700859703902dbcaf6"
+    }
+   ],
+   "rationale": "BaseFileEntity.uniqueName length 64: the value is always server-generated with UUID.randomUUID() (36 chars, non-null, random); clients cannot supply it. Read-back shows 36-char UUIDs; DDL declares varchar(64) not null with a unique constraint.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-4b6237857285",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": true,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "F01-control-upload-valid",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/service/impl/FileServiceImpl.java",
+     "kind": "source",
+     "description": "generateFileUniqueName = UUID.randomUUID() (verbatim copy of application source)",
+     "sha256": "97409596a4b9dee4fc10ec3cda5a79bd2e2cb3f3954c60700859703902dbcaf6"
+    }
+   ],
+   "rationale": "BaseFileEntity.uniqueName not null: the value is always server-generated with UUID.randomUUID() (36 chars, non-null, random); clients cannot supply it. Read-back shows 36-char UUIDs; DDL declares varchar(64) not null with a unique constraint.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-7bd080f76fd8",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": true,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "F01-control-upload-valid",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/service/impl/FileServiceImpl.java",
+     "kind": "source",
+     "description": "generateFileUniqueName = UUID.randomUUID() (verbatim copy of application source)",
+     "sha256": "97409596a4b9dee4fc10ec3cda5a79bd2e2cb3f3954c60700859703902dbcaf6"
+    }
+   ],
+   "rationale": "BaseFileEntity.uniqueName unique: the value is always server-generated with UUID.randomUUID() (36 chars, non-null, random); clients cannot supply it. Read-back shows 36-char UUIDs; DDL declares varchar(64) not null with a unique constraint.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-ff20234e88b6",
+   "target_kind": "constraint",
+   "outcome": "APPLICATION_REJECTED",
+   "exact_predicate_confirmed": true,
+   "observed_enforcement": "application",
+   "application_layer_implemented": true,
+   "response_handling": "elegant",
+   "case_ids": [
+    "T01-control-transfer-text-valid",
+    "T04-violation-transfer-filename-null"
+   ],
+   "evidence": [
+    {
+     "path": "raw/T01-control-transfer-text-valid.json",
+     "kind": "http-exchange",
+     "description": "Valid TEXT transfer persisted transferring_files and files rows.",
+     "sha256": "55335805471b90ebfac334e651561188abad460719930bfaf67c5074dcc7868e"
+    },
+    {
+     "path": "raw/T04-violation-transfer-filename-null.json",
+     "kind": "http-exchange",
+     "description": "filename omitted for TEXT method: validator rejected (field error 'filename'), no SQL; HTTP 500 INTERNAL_ERROR with validation text.",
+     "sha256": "00a71f5418c0ac47528634226bec42ed8c882c455f20a79f08534f39bf1116ef"
+    },
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    }
+   ],
+   "rationale": "For the TEXT transfer path the FileTransferRequest class-level validator requires a non-blank filename (source of originalName); omitting it is rejected before any SQL. The response body carries a field-specific validation message (field error on 'filename'), and no SQL or persistence exception is exposed, so the handling is classed as intentional/elegant; however the HTTP status is 500 (errorCode INTERNAL_ERROR) rather than 400. On the upload path a null original filename is replaced with Constant.DEFAULT_FILENAME, so null never reaches persistence.",
+   "confidence": 0.85,
+   "limitations": [
+    "Handling classed as elegant because the rejection is an intentional, field-specific validation response; the HTTP status (500) and errorCode INTERNAL_ERROR are not ideal.",
+    "Upload-path substitution (null -> DEFAULT_FILENAME) was not exercised: a multipart part without a filename is not bound as MultipartFile.",
+    "Other transfer methods (OSS/S3/URL) use the same validator but require external services and were not exercised."
+   ]
+  },
+  {
+   "target_id": "pc-9dc453702ad5",
+   "target_kind": "constraint",
+   "outcome": "APPLICATION_REJECTED",
+   "exact_predicate_confirmed": true,
+   "observed_enforcement": "application",
+   "application_layer_implemented": true,
+   "response_handling": "elegant",
+   "case_ids": [
+    "F01-control-upload-valid",
+    "F05-violation-upload-type-missing",
+    "F06-violation-upload-type-invalid",
+    "T03-violation-transfer-type-null"
+   ],
+   "evidence": [
+    {
+     "path": "raw/F05-violation-upload-type-missing.json",
+     "kind": "http-exchange",
+     "description": "Missing type parameter rejected during Spring request binding (MissingServletRequestParameterException) with HTTP 400; no SQL issued.",
+     "sha256": "39145a60e5e221ecf664f0252fbb9aaf72509830abb36ffc9a55be08ec2b928b"
+    },
+    {
+     "path": "raw/F06-violation-upload-type-invalid.json",
+     "kind": "http-exchange",
+     "description": "Invalid enum value rejected during conversion (HTTP 500, INTERNAL_ERROR); no SQL issued.",
+     "sha256": "9d546d4a9480e8e338403c388943afaaf4efc90e8911f75841135ed15c3b296c"
+    },
+    {
+     "path": "raw/T03-violation-transfer-type-null.json",
+     "kind": "http-exchange",
+     "description": "type omitted: FileTransferRequest.Constraint validator rejected (field error 'type'), no SQL; returned HTTP 500 INTERNAL_ERROR with validation text.",
+     "sha256": "19971f4982b843ee0645e924af5ced655a1db610800f76267e459d9a9c6d5831"
+    },
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    }
+   ],
+   "rationale": "A missing type is rejected before persistence: upload requires @RequestParam FileType (HTTP 400 'Required request parameter type ... is not present'); transfer's validator requires type (field error 'type'). No INSERT is issued. The upload response is a clean 400; the transfer path returns 500 INTERNAL_ERROR with validation text.",
+   "confidence": 0.9,
+   "limitations": [
+    "Transfer-path rejection uses HTTP 500 rather than 400."
+   ]
+  },
+  {
+   "target_id": "pc-d38f7297ef0b",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": true,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "D01-control-delete-file",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/D01-control-delete-file.json",
+     "kind": "http-exchange",
+     "description": "Delete inserted deleted_files row; originalCreatedTime copied from file; size NOT copied by EntityConverter so primitive default 0 persisted.",
+     "sha256": "76d4113951b821c8ed1b2707cc78b58051282685195e43094e4594b502936ed2"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    }
+   ],
+   "rationale": "DeletedFileEntity.originalCreatedTime is copied by EntityConverter from the persisted file's createdTime (always non-null). Delete through the API wrote a deleted_files row with the value populated; clients cannot influence it.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-b4ebd14483a5",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": false,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "D01-control-delete-file",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/D01-control-delete-file.json",
+     "kind": "http-exchange",
+     "description": "Delete inserted deleted_files row; originalCreatedTime copied from file; size NOT copied by EntityConverter so primitive default 0 persisted.",
+     "sha256": "76d4113951b821c8ed1b2707cc78b58051282685195e43094e4594b502936ed2"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/domain/converter/EntityConverter.java",
+     "kind": "source",
+     "description": "convert(FileEntity) does not copy size (verbatim copy of application source)",
+     "sha256": "4cf0178bf26bb91184c72591a8a2c13695e690f5da3a11ab5b5b0ddcaaf6506e"
+    }
+   ],
+   "rationale": "DeletedFileEntity.size is a primitive long, so it can never be null. Observed: EntityConverter.convert(FileEntity) does not copy size, so deleted_files.size is persisted as 0 (original file size was 19). The not-null predicate cannot be violated; the stored value is not the real size.",
+   "confidence": 0.9,
+   "limitations": [
+    "size=0 is an application data-fidelity defect, not a constraint violation."
+   ]
+  },
+  {
+   "target_id": "pc-6651333b5023",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": true,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "F01-control-upload-valid",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/F01-control-upload-valid.json",
+     "kind": "http-exchange",
+     "description": "Valid multipart upload persisted as files row id 1.",
+     "sha256": "db2beb30007dcb09df3cc4ada94b26a5fbbd5c48069fcb2eea09ccf1a0e7d754"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    }
+   ],
+   "rationale": "FileEntity.size is a primitive long computed server-side from the stored file length; it cannot be null or client-supplied.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-ba6c538cf19e",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": true,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "T01-control-transfer-text-valid",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/T01-control-transfer-text-valid.json",
+     "kind": "http-exchange",
+     "description": "Valid TEXT transfer persisted transferring_files and files rows.",
+     "sha256": "55335805471b90ebfac334e651561188abad460719930bfaf67c5074dcc7868e"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    }
+   ],
+   "rationale": "TransferringFileEntity.lastModifiedTime (@UpdateTimestamp): always set server-side and never taken from the request. Read-back rows show non-null values.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-2dba18a41a86",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": true,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "T01-control-transfer-text-valid",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/T01-control-transfer-text-valid.json",
+     "kind": "http-exchange",
+     "description": "Valid TEXT transfer persisted transferring_files and files rows.",
+     "sha256": "55335805471b90ebfac334e651561188abad460719930bfaf67c5074dcc7868e"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    }
+   ],
+   "rationale": "TransferringFileEntity.totalSize (primitive long set by transfer listener): always set server-side and never taken from the request. Read-back rows show non-null values.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-40c43109a824",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": true,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "T01-control-transfer-text-valid",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/T01-control-transfer-text-valid.json",
+     "kind": "http-exchange",
+     "description": "Valid TEXT transfer persisted transferring_files and files rows.",
+     "sha256": "55335805471b90ebfac334e651561188abad460719930bfaf67c5074dcc7868e"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    }
+   ],
+   "rationale": "TransferringFileEntity.transferState (set to IN_PROGRESS by FileServiceImpl, later SUCCESS/FAILURE): always set server-side and never taken from the request. Read-back rows show non-null values.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-88d3fdcac021",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": true,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "T01-control-transfer-text-valid",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/T01-control-transfer-text-valid.json",
+     "kind": "http-exchange",
+     "description": "Valid TEXT transfer persisted transferring_files and files rows.",
+     "sha256": "55335805471b90ebfac334e651561188abad460719930bfaf67c5074dcc7868e"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    }
+   ],
+   "rationale": "TransferringFileEntity.transferredSize (primitive long set by transfer listener): always set server-side and never taken from the request. Read-back rows show non-null values.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-86a7449cbae4",
+   "target_kind": "constraint",
+   "outcome": "BLOCKED_EXTERNAL_DEPENDENCY",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": null,
+   "response_handling": "not-assessed",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/service/impl/UserServiceImpl.java",
+     "kind": "source",
+     "description": "handleOauth2Login is sole writer of external_login_data (verbatim copy of application source)",
+     "sha256": "be9fb5460f19d312e22f2192ab1b07e51fb534603e72cf4777550a65c1c848b7"
+    }
+   ],
+   "rationale": "ExternalLoginDataEntity (method, provider, principalName) composite unique: external_login_data is written only by UserServiceImpl.handleOauth2Login after a successful OAuth2 login. That requires a configured OAuth2 client registration and an external identity provider (handshake shows oauth2LoginLinks={}). External services are disallowed. The DDL confirms the table and constraints were deployed.",
+   "confidence": 0.85,
+   "limitations": [
+    "provider comes from the OAuth2 registration id and principalName from the IdP, so neither is request-body controllable even with an IdP."
+   ]
+  },
+  {
+   "target_id": "pc-cf8abdc6e5dd",
+   "target_kind": "constraint",
+   "outcome": "BLOCKED_EXTERNAL_DEPENDENCY",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": null,
+   "response_handling": "not-assessed",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/service/impl/UserServiceImpl.java",
+     "kind": "source",
+     "description": "handleOauth2Login is sole writer of external_login_data (verbatim copy of application source)",
+     "sha256": "be9fb5460f19d312e22f2192ab1b07e51fb534603e72cf4777550a65c1c848b7"
+    }
+   ],
+   "rationale": "ExternalLoginDataEntity principalName length 64: external_login_data is written only by UserServiceImpl.handleOauth2Login after a successful OAuth2 login. That requires a configured OAuth2 client registration and an external identity provider (handshake shows oauth2LoginLinks={}). External services are disallowed. The DDL confirms the table and constraints were deployed.",
+   "confidence": 0.85,
+   "limitations": [
+    "provider comes from the OAuth2 registration id and principalName from the IdP, so neither is request-body controllable even with an IdP."
+   ]
+  },
+  {
+   "target_id": "pc-0b730c39e689",
+   "target_kind": "constraint",
+   "outcome": "BLOCKED_EXTERNAL_DEPENDENCY",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": null,
+   "response_handling": "not-assessed",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/service/impl/UserServiceImpl.java",
+     "kind": "source",
+     "description": "handleOauth2Login is sole writer of external_login_data (verbatim copy of application source)",
+     "sha256": "be9fb5460f19d312e22f2192ab1b07e51fb534603e72cf4777550a65c1c848b7"
+    }
+   ],
+   "rationale": "ExternalLoginDataEntity provider length 32: external_login_data is written only by UserServiceImpl.handleOauth2Login after a successful OAuth2 login. That requires a configured OAuth2 client registration and an external identity provider (handshake shows oauth2LoginLinks={}). External services are disallowed. The DDL confirms the table and constraints were deployed.",
+   "confidence": 0.85,
+   "limitations": [
+    "provider comes from the OAuth2 registration id and principalName from the IdP, so neither is request-body controllable even with an IdP."
+   ]
+  },
+  {
+   "target_id": "pc-3ff6a9289b2e",
+   "target_kind": "constraint",
+   "outcome": "BLOCKED_EXTERNAL_DEPENDENCY",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": null,
+   "response_handling": "not-assessed",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/service/impl/UserServiceImpl.java",
+     "kind": "source",
+     "description": "handleOauth2Login is sole writer of external_login_data (verbatim copy of application source)",
+     "sha256": "be9fb5460f19d312e22f2192ab1b07e51fb534603e72cf4777550a65c1c848b7"
+    }
+   ],
+   "rationale": "ExternalLoginDataEntity method not null: external_login_data is written only by UserServiceImpl.handleOauth2Login after a successful OAuth2 login. That requires a configured OAuth2 client registration and an external identity provider (handshake shows oauth2LoginLinks={}). External services are disallowed. The DDL confirms the table and constraints were deployed.",
+   "confidence": 0.85,
+   "limitations": [
+    "provider comes from the OAuth2 registration id and principalName from the IdP, so neither is request-body controllable even with an IdP."
+   ]
+  },
+  {
+   "target_id": "pc-157393a1ceb6",
+   "target_kind": "constraint",
+   "outcome": "BLOCKED_EXTERNAL_DEPENDENCY",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": null,
+   "response_handling": "not-assessed",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/service/impl/UserServiceImpl.java",
+     "kind": "source",
+     "description": "handleOauth2Login is sole writer of external_login_data (verbatim copy of application source)",
+     "sha256": "be9fb5460f19d312e22f2192ab1b07e51fb534603e72cf4777550a65c1c848b7"
+    }
+   ],
+   "rationale": "ExternalLoginDataEntity principalName not null: external_login_data is written only by UserServiceImpl.handleOauth2Login after a successful OAuth2 login. That requires a configured OAuth2 client registration and an external identity provider (handshake shows oauth2LoginLinks={}). External services are disallowed. The DDL confirms the table and constraints were deployed.",
+   "confidence": 0.85,
+   "limitations": [
+    "provider comes from the OAuth2 registration id and principalName from the IdP, so neither is request-body controllable even with an IdP."
+   ]
+  },
+  {
+   "target_id": "pc-0a6b29cadaaa",
+   "target_kind": "constraint",
+   "outcome": "BLOCKED_EXTERNAL_DEPENDENCY",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": null,
+   "response_handling": "not-assessed",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/service/impl/UserServiceImpl.java",
+     "kind": "source",
+     "description": "handleOauth2Login is sole writer of external_login_data (verbatim copy of application source)",
+     "sha256": "be9fb5460f19d312e22f2192ab1b07e51fb534603e72cf4777550a65c1c848b7"
+    }
+   ],
+   "rationale": "ExternalLoginDataEntity provider not null: external_login_data is written only by UserServiceImpl.handleOauth2Login after a successful OAuth2 login. That requires a configured OAuth2 client registration and an external identity provider (handshake shows oauth2LoginLinks={}). External services are disallowed. The DDL confirms the table and constraints were deployed.",
+   "confidence": 0.85,
+   "limitations": [
+    "provider comes from the OAuth2 registration id and principalName from the IdP, so neither is request-body controllable even with an IdP."
+   ]
+  },
+  {
+   "target_id": "pc-d303579fa1ce",
+   "target_kind": "constraint",
+   "outcome": "BLOCKED_EXTERNAL_DEPENDENCY",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": null,
+   "response_handling": "not-assessed",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/service/impl/UserServiceImpl.java",
+     "kind": "source",
+     "description": "handleOauth2Login is sole writer of external_login_data (verbatim copy of application source)",
+     "sha256": "be9fb5460f19d312e22f2192ab1b07e51fb534603e72cf4777550a65c1c848b7"
+    }
+   ],
+   "rationale": "ExternalLoginDataEntity user relationship required: external_login_data is written only by UserServiceImpl.handleOauth2Login after a successful OAuth2 login. That requires a configured OAuth2 client registration and an external identity provider (handshake shows oauth2LoginLinks={}). External services are disallowed. The DDL confirms the table and constraints were deployed.",
+   "confidence": 0.85,
+   "limitations": [
+    "provider comes from the OAuth2 registration id and principalName from the IdP, so neither is request-body controllable even with an IdP."
+   ]
+  },
+  {
+   "target_id": "pc-682fb6168768",
+   "target_kind": "constraint",
+   "outcome": "APPLICATION_TRANSFORMED",
+   "exact_predicate_confirmed": true,
+   "observed_enforcement": "application",
+   "application_layer_implemented": true,
+   "response_handling": "elegant",
+   "case_ids": [
+    "U09-violation-attempt-long-password-100",
+    "U10-control-long-password-70",
+    "U10b-readback-login-long-password-70",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U09-violation-attempt-long-password-100.json",
+     "kind": "http-exchange",
+     "description": "100-char password rejected by BCryptPasswordEncoder (password cannot be more than 72 bytes) before persistence; the stored column holds the hash, never the raw password.",
+     "sha256": "acd771c0f4516318639c127477cf5cc45067b377ec9329056fd11f0b7143983e"
+    },
+    {
+     "path": "raw/U10-control-long-password-70.json",
+     "kind": "http-exchange",
+     "description": "70-char password accepted; stored password_hash is a 60-char bcrypt hash (DB read-back hash_len=60).",
+     "sha256": "1066536263a40d0f968266e85e63873f0cdb91c0a6d57ff14947fe08b07f5104"
+    },
+    {
+     "path": "raw/U10b-readback-login-long-password-70.json",
+     "kind": "read-back",
+     "description": "Login with the 70-char password succeeds.",
+     "sha256": "fa714b3aee34729dadc002329fe903a1567fc00cec74d10acf4b197c94446bc2"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    }
+   ],
+   "rationale": "passwordHash is always the BCrypt encoding of the client password, never the raw value. A 70-char password persisted as a 60-char hash (DB read-back hash_len=60 for all rows) and login still works. Passwords over 72 bytes are rejected by BCryptPasswordEncoder before persistence. No API input can make the hash exceed 64 chars. The transformation is transparent to the client (HTTP 200, later login works), so handling is elegant.",
+   "confidence": 0.8,
+   "limitations": [
+    "U09 returned HTTP 500 errorCode ILLEGAL_ARGUMENT for the >72-byte password."
+   ]
+  },
+  {
+   "target_id": "pc-6d0fe928ba99",
+   "target_kind": "constraint",
+   "outcome": "DATABASE_ENFORCED_UNHANDLED",
+   "exact_predicate_confirmed": true,
+   "observed_enforcement": "database",
+   "application_layer_implemented": false,
+   "response_handling": "unhandled",
+   "case_ids": [
+    "U05-boundary-username-128",
+    "U06-violation-username-129",
+    "U06b-readback-login-username-129",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U05-boundary-username-128.json",
+     "kind": "http-exchange",
+     "description": "128-char username accepted and persisted (read-back length 128).",
+     "sha256": "cb335cd95ef67ef18d88cfacab90f1f0b4b800778229aeae7a5e4bee79f6665d"
+    },
+    {
+     "path": "raw/U06-violation-username-129.json",
+     "kind": "http-exchange",
+     "description": "129-char username reached INSERT into login_data; H2 22001 Value too long for column USERNAME VARCHAR(128); INTERNAL_ERROR response exposing SQL.",
+     "sha256": "217216387abbf2f62c0637e430c29cf8904b193d2d659c15e17302b22d52453b"
+    },
+    {
+     "path": "raw/U06b-readback-login-username-129.json",
+     "kind": "read-back",
+     "description": "Login for the 129-char username returns USER_NOT_FOUND: nothing persisted.",
+     "sha256": "de3cb65ad834ad9aa5c303fd96c36f984dbf0a5471d99b2e95e685f0bf5af71c"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    }
+   ],
+   "rationale": "No application length check on username. 128 chars persisted (read-back ulen=128). 129 chars reached INSERT into login_data and H2 rejected it (22001 Value too long for USERNAME VARCHAR(128)). The transaction rolled back (the preceding users INSERT is absent) and the client got HTTP 500 INTERNAL_ERROR containing the SQL statement.",
+   "confidence": 0.95,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-6750ed3eeedf",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": true,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "U01-setup-register-valid",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U01-setup-register-valid.json",
+     "kind": "http-exchange",
+     "description": "Valid registration inserted users + login_data rows; JWT returned in Authorization header.",
+     "sha256": "39aa9b10b993e9fd11e1077ebb721d7db9485c9a67e5b83949cd9a6cfd199bc9"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    }
+   ],
+   "rationale": "LoginDataEntity.user is always set to the user created in the same transaction by UserServiceImpl.register; no request field controls it. DDL: user_id bigint not null + FK + unique.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-3571fcbbb794",
+   "target_kind": "constraint",
+   "outcome": "DATABASE_ENFORCED_UNHANDLED",
+   "exact_predicate_confirmed": true,
+   "observed_enforcement": "database",
+   "application_layer_implemented": false,
+   "response_handling": "unhandled",
+   "case_ids": [
+    "U01-setup-register-valid",
+    "U04-violation-username-null",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U01-setup-register-valid.json",
+     "kind": "http-exchange",
+     "description": "Valid registration inserted users + login_data rows; JWT returned in Authorization header.",
+     "sha256": "39aa9b10b993e9fd11e1077ebb721d7db9485c9a67e5b83949cd9a6cfd199bc9"
+    },
+    {
+     "path": "raw/U04-violation-username-null.json",
+     "kind": "http-exchange",
+     "description": "Omitted username bound as null; INSERT into login_data failed with H2 23502 NULL not allowed for column USERNAME; transaction rolled back (users row id 3 absent in read-back); generic INTERNAL_ERROR w",
+     "sha256": "2f67e051382e5330d6001f2bed23f8465ff26ca6d22c88381970e96904ebf910"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    }
+   ],
+   "rationale": "Omitting username binds null; the only pre-check (findByUsername(null) -> empty) passes. INSERT into login_data with username=null (bind trace) fails with H2 23502 NULL not allowed for column USERNAME. The users insert rolled back; the client got HTTP 500 INTERNAL_ERROR exposing SQL.",
+   "confidence": 0.95,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-0a266e6d6c62",
+   "target_kind": "constraint",
+   "outcome": "APPLICATION_REJECTED",
+   "exact_predicate_confirmed": true,
+   "observed_enforcement": "application",
+   "application_layer_implemented": true,
+   "response_handling": "elegant",
+   "case_ids": [
+    "U01-setup-register-valid",
+    "U02-readback-login-valid",
+    "U03-violation-username-duplicate",
+    "U11-violation-username-duplicate-concurrent",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U01-setup-register-valid.json",
+     "kind": "http-exchange",
+     "description": "Valid registration inserted users + login_data rows; JWT returned in Authorization header.",
+     "sha256": "39aa9b10b993e9fd11e1077ebb721d7db9485c9a67e5b83949cd9a6cfd199bc9"
+    },
+    {
+     "path": "raw/U03-violation-username-duplicate.json",
+     "kind": "http-exchange",
+     "description": "Sequential duplicate username rejected by UserServiceImpl.register pre-check (Validate USERNAME_EXISTS) before any INSERT; response errorCode USERNAME_EXISTS (HTTP 500).",
+     "sha256": "826de83db855e26e193a61b5aa4b91cc23aac6196ffb6e0ec78f3c2687658efe"
+    },
+    {
+     "path": "raw/U11-violation-username-duplicate-concurrent.json",
+     "kind": "http-exchange",
+     "description": "12 concurrent registrations with one new username: 1 succeeded, 2 hit the application pre-check (USERNAME_EXISTS), 9 bypassed it and failed at INSERT with H2 unique index violation on login_data(usern",
+     "sha256": "3d8151516aa9d35611bb56a62e5f7a5869b10159e7f13225598531c31405bb43"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    }
+   ],
+   "rationale": "Sequential duplicate registration is rejected by the application pre-check (errorCode USERNAME_EXISTS) before any INSERT. The check is check-then-act, not atomic: in a 12-way concurrent race, 9 requests passed it and were stopped only by the DB unique index on login_data(username) (H2 23505), surfacing as INTERNAL_ERROR. Exactly one row persisted (read-back).",
+   "confidence": 0.9,
+   "limitations": [
+    "USERNAME_EXISTS is returned with HTTP status 500.",
+    "Under concurrency, enforcement is DATABASE_ENFORCED_UNHANDLED."
+   ]
+  },
+  {
+   "target_id": "pc-a7f69b5d6bb3",
+   "target_kind": "constraint",
+   "outcome": "DATABASE_ENFORCED_UNHANDLED",
+   "exact_predicate_confirmed": true,
+   "observed_enforcement": "database",
+   "application_layer_implemented": false,
+   "response_handling": "unhandled",
+   "case_ids": [
+    "U07-boundary-name-64",
+    "U08-violation-name-65",
+    "U08b-readback-login-after-name-65",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U07-boundary-name-64.json",
+     "kind": "http-exchange",
+     "description": "64-char name accepted and persisted (read-back length 64).",
+     "sha256": "85c0711061240378e88c3a55f87e516b44c50eaa090ef938dca6d34aba10d6fe"
+    },
+    {
+     "path": "raw/U08-violation-name-65.json",
+     "kind": "http-exchange",
+     "description": "65-char name reached INSERT into users; H2 22001 Value too long for column NAME VARCHAR(64); INTERNAL_ERROR response exposing SQL.",
+     "sha256": "9c96373b88314609d933388399dda865d3caa74579c543c610d30ca9a6ab83aa"
+    },
+    {
+     "path": "raw/U08b-readback-login-after-name-65.json",
+     "kind": "read-back",
+     "description": "Login for that username returns USER_NOT_FOUND: nothing persisted.",
+     "sha256": "005499894ed687d35dbaf68d308aea1a37497c4d54c0298100fd894e15493c81"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    }
+   ],
+   "rationale": "No application length check on the registration name. 64 chars persisted (read-back name_len=64). 65 chars reached INSERT into users and H2 rejected it (22001 Value too long for NAME VARCHAR(64)). HTTP 500 INTERNAL_ERROR with SQL text; nothing persisted.",
+   "confidence": 0.95,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-6758dbc5f0ce",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": true,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "U01-setup-register-valid",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U01-setup-register-valid.json",
+     "kind": "http-exchange",
+     "description": "Valid registration inserted users + login_data rows; JWT returned in Authorization header.",
+     "sha256": "39aa9b10b993e9fd11e1077ebb721d7db9485c9a67e5b83949cd9a6cfd199bc9"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    }
+   ],
+   "rationale": "UserEntity.admin is a primitive boolean; public registration always sets admin=false (RegisterRequest has no admin field). It cannot be null.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "pc-c25e43a4d892",
+   "target_kind": "constraint",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": true,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "U01-setup-register-valid",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U01-setup-register-valid.json",
+     "kind": "http-exchange",
+     "description": "Valid registration inserted users + login_data rows; JWT returned in Authorization header.",
+     "sha256": "39aa9b10b993e9fd11e1077ebb721d7db9485c9a67e5b83949cd9a6cfd199bc9"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    }
+   ],
+   "rationale": "UserEntity.lastModifiedTime is @UpdateTimestamp-managed by Hibernate; read-back shows it populated on every row.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "dep-ee15432fe20f",
+   "target_kind": "dependency",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). Dependency: ElasticWorkerEntity extends WorkerEntity (inheritance). No public API writes these cluster rows.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles need external MySQL and Kubernetes (disallowed)."
+   ]
+  },
+  {
+   "target_id": "dep-a60971164e0c",
+   "target_kind": "dependency",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). Dependency: FileLocationRuleEntity extends BaseEntity (inheritance). No public API writes these cluster rows.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles need external MySQL and Kubernetes (disallowed)."
+   ]
+  },
+  {
+   "target_id": "dep-084090781acf",
+   "target_kind": "dependency",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). Dependency: FileLocationRuleEntity.user -> UserEntity association (user_id). No public API writes these cluster rows.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles need external MySQL and Kubernetes (disallowed)."
+   ]
+  },
+  {
+   "target_id": "dep-a2a8e5a41857",
+   "target_kind": "dependency",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). Dependency: FileStaticWorkerBindEntity extends BaseEntity (inheritance). No public API writes these cluster rows.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles need external MySQL and Kubernetes (disallowed)."
+   ]
+  },
+  {
+   "target_id": "dep-6990ba98c9cc",
+   "target_kind": "dependency",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). Dependency: FileStaticWorkerBindEntity.file -> FileEntity association. No public API writes these cluster rows.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles need external MySQL and Kubernetes (disallowed)."
+   ]
+  },
+  {
+   "target_id": "dep-e76a3905a886",
+   "target_kind": "dependency",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). Dependency: FileStaticWorkerBindEntity.staticWorker -> StaticWorkerEntity association. No public API writes these cluster rows.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles need external MySQL and Kubernetes (disallowed)."
+   ]
+  },
+  {
+   "target_id": "dep-b1adb8e19c0f",
+   "target_kind": "dependency",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). Dependency: GlobalLockEntity extends BaseEntity (inheritance). No public API writes these cluster rows.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles need external MySQL and Kubernetes (disallowed)."
+   ]
+  },
+  {
+   "target_id": "dep-572f8dadc327",
+   "target_kind": "dependency",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). Dependency: StaticWorkerEntity extends WorkerEntity (inheritance). No public API writes these cluster rows.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles need external MySQL and Kubernetes (disallowed)."
+   ]
+  },
+  {
+   "target_id": "dep-047588832dc2",
+   "target_kind": "dependency",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). Dependency: StaticWorkerLabelEntity extends BaseEntity (inheritance). No public API writes these cluster rows.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles need external MySQL and Kubernetes (disallowed)."
+   ]
+  },
+  {
+   "target_id": "dep-aeb6ac18e588",
+   "target_kind": "dependency",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). Dependency: StaticWorkerLabelEntity.staticWorker -> StaticWorkerEntity association (static_worker_id). No public API writes these cluster rows.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles need external MySQL and Kubernetes (disallowed)."
+   ]
+  },
+  {
+   "target_id": "dep-17cd15816d78",
+   "target_kind": "dependency",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). Dependency: WorkerEntity extends BaseEntity (inheritance). No public API writes these cluster rows.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles need external MySQL and Kubernetes (disallowed)."
+   ]
+  },
+  {
+   "target_id": "dep-99168590c03b",
+   "target_kind": "dependency",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). Dependency: file_location_rules foreign key -> UserEntity. No public API writes these cluster rows.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles need external MySQL and Kubernetes (disallowed)."
+   ]
+  },
+  {
+   "target_id": "dep-10ea706a3af3",
+   "target_kind": "dependency",
+   "outcome": "VARIANT_NOT_DEPLOYED",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "source/server/src/main/java/org/eclipse/jifa/server/configurer/EntityConfigurer.java",
+     "kind": "source",
+     "description": "Cluster entity scan is role-conditional (verbatim copy of application source)",
+     "sha256": "17083d185c3bbd06c091c5c413325f43dc73fd25f24c8853a00507c5705d0509"
+    }
+   ],
+   "rationale": "Deployed variant is role=standalone-worker with embedded H2 (the only role runnable without an external MySQL and Kubernetes). EntityConfigurer scans org.eclipse.jifa.server.domain.entity.cluster only under @Cluster (master/static-worker/elastic-worker roles), so no cluster tables were created (see DDL in app.log and information_schema read-back). Dependency: static_worker_labels foreign key -> StaticWorkerEntity. No public API writes these cluster rows.",
+   "confidence": 0.85,
+   "limitations": [
+    "Cluster roles need external MySQL and Kubernetes (disallowed)."
+   ]
+  },
+  {
+   "target_id": "dep-689a80af21ad",
+   "target_kind": "dependency",
+   "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    }
+   ],
+   "rationale": "ConfigurationEntity extends BaseEntity: an ORM @MappedSuperclass inheritance relation with no runtime predicate to violate. The deployed DDL confirms the inherited columns (id identity PK, created_time not null, plus BaseFileEntity columns where applicable) are materialized in configurations.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "dep-4c765bc63075",
+   "target_kind": "dependency",
+   "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    }
+   ],
+   "rationale": "BaseFileEntity extends BaseEntity (mapped superclass): an ORM @MappedSuperclass inheritance relation with no runtime predicate to violate. The deployed DDL confirms the inherited columns (id identity PK, created_time not null, plus BaseFileEntity columns where applicable) are materialized in files/deleted_files/transferring_files.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "dep-910436451794",
+   "target_kind": "dependency",
+   "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    }
+   ],
+   "rationale": "DeletedFileEntity extends BaseFileEntity: an ORM @MappedSuperclass inheritance relation with no runtime predicate to violate. The deployed DDL confirms the inherited columns (id identity PK, created_time not null, plus BaseFileEntity columns where applicable) are materialized in deleted_files.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "dep-91a33858eefd",
+   "target_kind": "dependency",
+   "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    }
+   ],
+   "rationale": "FileEntity extends BaseFileEntity: an ORM @MappedSuperclass inheritance relation with no runtime predicate to violate. The deployed DDL confirms the inherited columns (id identity PK, created_time not null, plus BaseFileEntity columns where applicable) are materialized in files.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "dep-a5163390810d",
+   "target_kind": "dependency",
+   "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    }
+   ],
+   "rationale": "TransferringFileEntity extends BaseFileEntity: an ORM @MappedSuperclass inheritance relation with no runtime predicate to violate. The deployed DDL confirms the inherited columns (id identity PK, created_time not null, plus BaseFileEntity columns where applicable) are materialized in transferring_files.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "dep-dbe86676470b",
+   "target_kind": "dependency",
+   "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    }
+   ],
+   "rationale": "ExternalLoginDataEntity extends BaseEntity: an ORM @MappedSuperclass inheritance relation with no runtime predicate to violate. The deployed DDL confirms the inherited columns (id identity PK, created_time not null, plus BaseFileEntity columns where applicable) are materialized in external_login_data.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "dep-665265eaf81d",
+   "target_kind": "dependency",
+   "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    }
+   ],
+   "rationale": "LoginDataEntity extends BaseEntity: an ORM @MappedSuperclass inheritance relation with no runtime predicate to violate. The deployed DDL confirms the inherited columns (id identity PK, created_time not null, plus BaseFileEntity columns where applicable) are materialized in login_data.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "dep-ecf4e52ef925",
+   "target_kind": "dependency",
+   "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": null,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    }
+   ],
+   "rationale": "UserEntity extends BaseEntity: an ORM @MappedSuperclass inheritance relation with no runtime predicate to violate. The deployed DDL confirms the inherited columns (id identity PK, created_time not null, plus BaseFileEntity columns where applicable) are materialized in users.",
+   "confidence": 0.9,
+   "limitations": []
+  },
+  {
+   "target_id": "dep-a64a6cad050a",
+   "target_kind": "dependency",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": true,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "F01-control-upload-valid",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/F01-control-upload-valid.json",
+     "kind": "http-exchange",
+     "description": "Valid multipart upload persisted as files row id 1.",
+     "sha256": "db2beb30007dcb09df3cc4ada94b26a5fbbd5c48069fcb2eea09ccf1a0e7d754"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    },
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    }
+   ],
+   "rationale": "BaseFileEntity.user -> UserEntity (nullable FK user_id -> users, present in DDL for files/deleted_files/transferring_files). The user is taken from the authenticated JWT (userService.getCurrentUserRef()), so the client cannot point it at a nonexistent user; users cannot be deleted through any API. Read-back shows user_id=2 on files uploaded by the test user.",
+   "confidence": 0.85,
+   "limitations": []
+  },
+  {
+   "target_id": "dep-9939fdca2edb",
+   "target_kind": "dependency",
+   "outcome": "BLOCKED_EXTERNAL_DEPENDENCY",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-observed",
+   "application_layer_implemented": null,
+   "response_handling": "not-assessed",
+   "case_ids": [],
+   "evidence": [
+    {
+     "path": "logs/app.log",
+     "kind": "application-log",
+     "description": "Application log with Hibernate DDL, SQL, bind trace and exceptions (keys/JWT/bcrypt redacted)",
+     "sha256": "fb612264c65ecd99945a8a84ac5f606629055c29a567ab72ef3ee7e275c73a84"
+    }
+   ],
+   "rationale": "ExternalLoginDataEntity.user -> UserEntity is written only during OAuth2 login, which needs an external identity provider (not configured; external services disallowed). The FK and unique(user_id) are present in DDL.",
+   "confidence": 0.85,
+   "limitations": []
+  },
+  {
+   "target_id": "dep-9ceb499d2684",
+   "target_kind": "dependency",
+   "outcome": "NOT_API_CONTROLLABLE",
+   "exact_predicate_confirmed": false,
+   "observed_enforcement": "not-applicable",
+   "application_layer_implemented": true,
+   "response_handling": "not-applicable",
+   "case_ids": [
+    "U01-setup-register-valid",
+    "U04-violation-username-null",
+    "DB-readback"
+   ],
+   "evidence": [
+    {
+     "path": "raw/U01-setup-register-valid.json",
+     "kind": "http-exchange",
+     "description": "Valid registration inserted users + login_data rows; JWT returned in Authorization header.",
+     "sha256": "39aa9b10b993e9fd11e1077ebb721d7db9485c9a67e5b83949cd9a6cfd199bc9"
+    },
+    {
+     "path": "raw/U04-violation-username-null.json",
+     "kind": "http-exchange",
+     "description": "Omitted username bound as null; INSERT into login_data failed with H2 23502 NULL not allowed for column USERNAME; transaction rolled back (users row id 3 absent in read-back); generic INTERNAL_ERROR w",
+     "sha256": "2f67e051382e5330d6001f2bed23f8465ff26ca6d22c88381970e96904ebf910"
+    },
+    {
+     "path": "raw/DB-readback-h2.txt",
+     "kind": "read-back",
+     "description": "Offline H2 read-back of tables and constraints",
+     "sha256": "16e7e083740ed230202826ba616e989a2dd7eb500a33e899ca72187f869b0e52"
+    }
+   ],
+   "rationale": "LoginDataEntity.user -> UserEntity (FK user_id not null unique) is always set to the user saved in the same transaction. When the login_data insert failed (U04), the whole transaction rolled back, leaving no orphan users row (read-back). Not client-controllable.",
+   "confidence": 0.85,
+   "limitations": []
+  }
+ ],
+ "warnings": [
+  "Only the standalone-worker/H2 variant was deployed; 36 cluster-entity targets are VARIANT_NOT_DEPLOYED.",
+  "Application logs were redacted of RSA key material, JWTs and bcrypt hashes captured by SQL bind tracing.",
+  "Most application error responses (including validation failures) use HTTP 500 and echo raw SQL text."
+ ]
+}

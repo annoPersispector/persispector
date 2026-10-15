@@ -1,0 +1,190 @@
+{
+ "schema_version": "persistence-runtime-verification-v2",
+ "application": "funtl_MyShopPlus",
+ "source_revision": null,
+ "isolated_application_path": "/artifact/results/RQ1/funtl_MyShopPlus/funtl_MyShopPlus-20260929T160737Z-ae489bc7/application",
+ "build_system": "maven 3.9.9 (multi-module; built business-reg-service and provider-admin-service with -am)",
+ "java_version": "OpenJDK 1.8.0_452 (build and runtime; JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64)",
+ "runtime_database": "MySQL 8.0.42 (Ubuntu build), private instance, --skip-networking, Unix socket /tmp/mysp-verify/run/mysql.sock, sql_mode=ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION; database mplus_ums_admin loaded from docs/sql/mplus.sql (71 tables)",
+ "schema_context_id": "dbctx-1a1c02a7d585",
+ "base_urls": [
+  "http://127.0.0.1:18205"
+ ],
+ "ports": [
+  18205,
+  20882
+ ],
+ "health_checks": [
+  "GET http://127.0.0.1:18205/actuator/health -> {\"status\":\"UP\"}",
+  "provider log 'Start NettyServer bind /0.0.0.0:20882' inside the loopback-only network namespace",
+  "control case C01 POST /reg -> HTTP 200 with persisted row read back"
+ ],
+ "commands": [
+  {
+   "purpose": "build",
+   "command": "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 mvn -q -B -DskipTests -pl business/business-reg-service,provider/provider-admin-service -am install",
+   "working_directory": "/artifact/results/RQ1/funtl_MyShopPlus/funtl_MyShopPlus-20260929T160737Z-ae489bc7/application",
+   "exit_code": 0
+  },
+  {
+   "purpose": "fetch junixsocket for Unix-socket JDBC",
+   "command": "mvn -q -B -f /tmp/mysp-verify/pom.xml dependency:copy-dependencies -DexcludeGroupIds=mysql -DoutputDirectory=/tmp/mysp-verify/extlib",
+   "working_directory": "/tmp/mysp-verify",
+   "exit_code": 0
+  },
+  {
+   "purpose": "repackage deploy jars without sentinel-transport-simple-http",
+   "command": "zip -d <jar> BOOT-INF/lib/sentinel-transport-simple-http-1.6.3.jar",
+   "working_directory": "/tmp/mysp-verify/deploy",
+   "exit_code": 0
+  },
+  {
+   "purpose": "init database",
+   "command": "mysqld --no-defaults --initialize-insecure --datadir=/tmp/mysp-verify/data",
+   "working_directory": "/artifact/results/RQ1/funtl_MyShopPlus/funtl_MyShopPlus-20260929T160737Z-ae489bc7/application",
+   "exit_code": 0
+  },
+  {
+   "purpose": "start database",
+   "command": "mysqld --no-defaults --datadir=/tmp/mysp-verify/data --socket=/tmp/mysp-verify/run/mysql.sock --skip-networking --mysqlx=OFF --general-log=1 ...",
+   "working_directory": "/artifact/results/RQ1/funtl_MyShopPlus/funtl_MyShopPlus-20260929T160737Z-ae489bc7/application",
+   "exit_code": null
+  },
+  {
+   "purpose": "load schema",
+   "command": "mysql -S /tmp/mysp-verify/run/mysql.sock -uroot -e 'create database mplus_ums_admin default charset utf8' && mysql -S ... mplus_ums_admin < docs/sql/mplus.sql",
+   "working_directory": "/artifact/results/RQ1/funtl_MyShopPlus/funtl_MyShopPlus-20260929T160737Z-ae489bc7/application",
+   "exit_code": 0
+  },
+  {
+   "purpose": "create loopback-only network namespace",
+   "command": "unshare -rn sh -c 'ip link set lo up; exec sleep 100000'",
+   "working_directory": "/artifact/results/RQ1/funtl_MyShopPlus/funtl_MyShopPlus-20260929T160737Z-ae489bc7/application",
+   "exit_code": null
+  },
+  {
+   "purpose": "start provider-admin-service (Dubbo 20882)",
+   "command": "nsenter -t <holder> -U -n --preserve-credentials /tmp/mysp-verify/start-provider.sh (see logs/start-provider.sh)",
+   "working_directory": "/artifact/results/RQ1/funtl_MyShopPlus/funtl_MyShopPlus-20260929T160737Z-ae489bc7/output/logs",
+   "exit_code": null
+  },
+  {
+   "purpose": "start business-reg-service (HTTP 18205)",
+   "command": "nsenter -t <holder> -U -n --preserve-credentials /tmp/mysp-verify/start-reg.sh (see logs/start-reg.sh)",
+   "working_directory": "/artifact/results/RQ1/funtl_MyShopPlus/funtl_MyShopPlus-20260929T160737Z-ae489bc7/output",
+   "exit_code": null
+  },
+  {
+   "purpose": "run verification harness",
+   "command": "nsenter -t <holder> -U -n --preserve-credentials python3 /tmp/mysp-verify/harness.py <output>",
+   "working_directory": "/artifact/results/RQ1/funtl_MyShopPlus/funtl_MyShopPlus-20260929T160737Z-ae489bc7/output",
+   "exit_code": 0
+  },
+  {
+   "purpose": "stop",
+   "command": "kill <provider/reg java pids>; kill <namespace holder>; mysqladmin -S /tmp/mysp-verify/run/mysql.sock -uroot shutdown",
+   "working_directory": "/artifact/results/RQ1/funtl_MyShopPlus/funtl_MyShopPlus-20260929T160737Z-ae489bc7/output",
+   "exit_code": 0
+  }
+ ],
+ "patches": [
+  {
+   "path": "patches/deployment-compat.txt",
+   "kind": "patch",
+   "description": "Compatibility-only deployment adjustments (no source changes)",
+   "sha256": "e167ee49c949833f9ae328b062a72e11ba3488bc75cc16164b94f9ecfef2cdd2"
+  }
+ ],
+ "logs": [
+  {
+   "path": "logs/build.log",
+   "kind": "deployment-log",
+   "description": "Maven build output (quiet mode, exit 0)",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "path": "logs/mysql-init.log",
+   "kind": "deployment-log",
+   "description": "mysqld --initialize-insecure",
+   "sha256": "2de4190428363dfacbfa1be8b07ce6757086e782687174f399a409176ceb29ab"
+  },
+  {
+   "path": "logs/mysqld-error.log",
+   "kind": "database-log",
+   "description": "MySQL server error log",
+   "sha256": "b96529d62f740b6fc8ca7037e20a62b60891f69e0470514c5edd64c5d4d0239a"
+  },
+  {
+   "path": "logs/mysql-general-ums_admin.log",
+   "kind": "sql-trace",
+   "description": "MySQL general log filtered to ums_admin statements and connects",
+   "sha256": "b2d19e84d37e3187fed7e92ad0c4e3a18a877d71b247c60ea736cb6faf12b767"
+  },
+  {
+   "path": "logs/provider.log",
+   "kind": "application-log",
+   "description": "provider-admin-service log (final run, MyBatis DEBUG SQL)",
+   "sha256": "2e9c7cff3b9904d0a8096ef366e865140f04d63f3b61b8e3fc9bef9c05b35fd7"
+  },
+  {
+   "path": "logs/reg.log",
+   "kind": "application-log",
+   "description": "business-reg-service log (final run)",
+   "sha256": "ca13a5f5f2aa8d7aad0d4655a5c3d18c866a71c682f7fcf85a38e6793e3a208d"
+  },
+  {
+   "path": "logs/provider-attempt1.log",
+   "kind": "deployment-log",
+   "description": "First provider start; bound 0.0.0.0 outside namespace and was stopped",
+   "sha256": "2dc37ad7ea95167351a4d9388cfa041e8cf6828e9d5f4cd0c8465fb8e248151c"
+  },
+  {
+   "path": "logs/provider-attempt2.log",
+   "kind": "deployment-log",
+   "description": "Failed attempt with DUBBO_IP_TO_BIND=127.0.0.1 (rejected by Dubbo 2.7.3)",
+   "sha256": "438fdb19d55d145bb517bcc49e887babadeb66132228fec9a9cbc1a7bf19119e"
+  },
+  {
+   "path": "logs/reg-attempt1.log",
+   "kind": "deployment-log",
+   "description": "Failed reg start: EchoService reference had no registry/direct URL",
+   "sha256": "02b5254b5c0d6cf234b32996b8f210bb069592d282a06150e24e9306655fe46d"
+  },
+  {
+   "path": "logs/reg-attempt2.log",
+   "kind": "deployment-log",
+   "description": "Reg run with direct URLs missing version=1.0.0 (attempt1 cases)",
+   "sha256": "40cd0d336f78cf13a635233e5b7842248b9013ef2d738eed76dd85ec51af9333"
+  },
+  {
+   "path": "logs/harness-run.log",
+   "kind": "other",
+   "description": "Harness console output of the final run",
+   "sha256": "193d536ece46f4ba1aa3fed06888f14bc833311e9e1eda3400a4ddce829bfcda"
+  },
+  {
+   "path": "logs/start-provider.sh",
+   "kind": "other",
+   "description": "Provider start command",
+   "sha256": "204c311dcd7498cb5dbf8a959f70b7bda447113529b2fb3b580113c46938a27c"
+  },
+  {
+   "path": "logs/start-reg.sh",
+   "kind": "other",
+   "description": "Reg service start command",
+   "sha256": "38483870a57c0cb22be8ab5ff79ed944a61384e981ad30f2a79423e7cd032105"
+  },
+  {
+   "path": "logs/harness.py",
+   "kind": "other",
+   "description": "Verification harness",
+   "sha256": "3ee43b5e5373598cb55422325d26c5f7e01785aa10f957be5b4a0661423503e3"
+  }
+ ],
+ "cleanup_performed": true,
+ "notes": [
+  "No application source files were modified. All adjustments are packaging, classpath, or command-line configuration (patches/deployment-compat.txt).",
+  "Nacos, Sentinel dashboard, Redis, RocketMQ, TiDB, the OAuth2 server, and the profile/gateway/upload/message services were not deployed (external services or extra ports would be needed).",
+  "All processes started for this run (private mysqld, both JVMs, namespace holder) were stopped. The pre-existing system mysqld (pid 1677) was not touched. Temporary data remains under /tmp/mysp-verify."
+ ]
+}

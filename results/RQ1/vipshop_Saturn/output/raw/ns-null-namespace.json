@@ -1,0 +1,35 @@
+{
+ "case_id": "ns-null-namespace",
+ "purpose": "violation",
+ "target_hint": [
+  "namespace_info.namespace not-null",
+  "namespace_zkcluster_mapping.namespace not-null"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "body": {
+   "zkCluster": "cluster1"
+  },
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 400,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:19:32 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"message\":\"Invalid request. Missing parameter: {namespace}\"}",
+  "json": {
+   "message": "Invalid request. Missing parameter: {namespace}"
+  }
+ },
+ "elapsed_seconds": 0.006,
+ "timestamp": "2026-09-29T20:19:32-0400"
+}

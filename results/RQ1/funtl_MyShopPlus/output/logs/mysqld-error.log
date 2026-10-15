@@ -1,0 +1,9 @@
+2026-09-29T16:09:35.442173Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.42-0ubuntu0.20.04.1) starting as process 1154275
+2026-09-29T16:09:35.527161Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-09-29T16:09:35.756921Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-09-29T16:09:35.962238Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-09-29T16:09:35.962292Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-09-29T16:09:35.964846Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/tmp' in the path is accessible to all OS users. Consider choosing a different directory.
+2026-09-29T16:09:35.993661Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.42-0ubuntu0.20.04.1'  socket: '/tmp/mysp-verify/run/mysql.sock'  port: 0  (Ubuntu).
+2026-09-29T16:16:15.689791Z 48 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.0.42-0ubuntu0.20.04.1).
+2026-09-29T16:16:16.461552Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.42-0ubuntu0.20.04.1)  (Ubuntu).

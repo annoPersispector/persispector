@@ -1,0 +1,2 @@
+2026-09-29T16:15:34.950791Z	   27 Query	SELECT  id,username,`password`,icon,email,nick_name,note,create_time,login_time,`status`  FROM ums_admin  WHERE (       (  username = 'pv121525dup' ) )
+2026-09-29T16:15:35.021386Z	   27 Query	INSERT INTO ums_admin  ( id,username,`password`,icon,email,nick_name,note,create_time,login_time,`status` ) VALUES( 1,'pv121525dup','$2a$10$Zk5rXn402QvS2d5bxXRnwOws006YHcBogE2U7wJLsHLETuYIOlgJO',null,null,null,null,'2026-09-30 00:15:34.954','2026-09-30 00:15:34.954',0 )

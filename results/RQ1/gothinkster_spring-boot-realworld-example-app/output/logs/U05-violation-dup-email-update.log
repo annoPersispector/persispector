@@ -1,0 +1,8 @@
+2026-09-29 03:07:40.281 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findById       : ==>  Preparing: select id, username, email, password, bio, image from users where id = ?
+2026-09-29 03:07:40.281 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findById       : ==> Parameters: 6617cc9f-8f05-4d27-8453-7f3646664798(String)
+2026-09-29 03:07:40.281 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findById       : <==      Total: 1
+2026-09-29 03:07:40.290 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findByEmail    : ==>  Preparing: select id, username, email, password, bio, image from users where email = ?
+2026-09-29 03:07:40.290 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findByEmail    : ==> Parameters: alice@example.com(String)
+2026-09-29 03:07:40.290 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findByEmail    : <==      Total: 1
+2026-09-29 03:07:40.290 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.m.UserMapper.findByUsername      : ==>  Preparing: select * from users where username = ?
+2026-09-29 03:07:40.291 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.m.UserMapper.findByUsername      : ==> Parameters: (String)

@@ -1,0 +1,27 @@
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@69ec0b87] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1129975272 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 6, 1, <<BLOB>>, 1, 2026-09-29 04:37:38.494, 2026-09-29 04:37:38.494, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@69ec0b87]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@50f850c8] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1335141684 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,name,job_id,job_mode,env,engine_name,engine_version,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_job_version WHERE (id = ? AND workspace_id = ?)
+==> Parameters: 23198804288544(Long), 1(Long)
+<==    Columns: id, name, job_id, job_mode, env, engine_name, engine_version, create_user_id, update_user_id, create_time, update_time, workspace_id
+<==        Row: 23198804288544, 1.0, 23198804288544, BATCH, <<BLOB>>, SeaTunnel, 2.3.11, 1, 1, 2026-09-29 04:37:38.506, 2026-09-29 04:37:38.506, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@50f850c8]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46ad2f72] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1435193090 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,name,description,job_type,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_job_definition WHERE (id = ? AND workspace_id = ?)
+==> Parameters: 23198804288544(Long), 1(Long)
+<==    Columns: id, name, description, job_type, create_user_id, update_user_id, create_time, update_time, workspace_id
+<==        Row: 23198804288544, line_job, engnull, DATA_INTEGRATION, 1, 1, 2026-09-29 04:37:38.505, 2026-09-29 04:37:38.505, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46ad2f72]

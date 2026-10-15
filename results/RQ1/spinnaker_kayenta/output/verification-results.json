@@ -1,0 +1,3146 @@
+{
+  "schema_version": "persistence-runtime-verification-v2",
+  "application": "spinnaker_kayenta",
+  "constraint_report_schema_version": "9",
+  "generated_at": "2026-09-29T16:30:34.643249+00:00",
+  "target_ids": [
+    "pc-5a7d64fe7c3a",
+    "pc-cf94e5cb7efc",
+    "pc-b223c202dd17",
+    "pc-89d1cd05bf3c",
+    "pc-3c41052834d2",
+    "pc-89db031a1827",
+    "pc-000a33b9c80b",
+    "pc-fdc864d03407",
+    "pc-343b4ffdfac5",
+    "pc-11859c35fe9a",
+    "pc-990df09fb055",
+    "pc-900bdfd125e0",
+    "pc-697814377ac0",
+    "pc-03dd49ea23ba",
+    "pc-03e7ed0064f7",
+    "pc-454b6220f809",
+    "pc-82610b8aefc0",
+    "pc-28c967fd981a",
+    "pc-cd98250264a6",
+    "pc-d4dc77dfb22b",
+    "pc-e3c4f3bbce3b",
+    "pc-b2886370da3b",
+    "pc-2b8c47e5d7bd",
+    "pc-aadee8576d99",
+    "pc-bcfeaadde2a6",
+    "pc-4ee8f253c4e1",
+    "pc-f2aa380a79e9",
+    "pc-2611c9ac3275",
+    "pc-4ff0c7f191dd",
+    "pc-34efbcce606b",
+    "pc-0a2ac553dd29",
+    "pc-a56ff232d178",
+    "pc-c69dfeadd911",
+    "pc-893aeb4d6f06",
+    "pc-25e267f034f9",
+    "pc-6e7266c1819b",
+    "pc-5f7f9ca6c44d",
+    "pc-ab279b731a74",
+    "pc-914538813632",
+    "pc-88c6ef457170",
+    "pc-216b2a3dbc5e",
+    "pc-fdf41b7b35f8",
+    "pc-76e10d4548d7",
+    "pc-044910f711c0",
+    "pc-a0ad056986da",
+    "dep-66b9ecab929e",
+    "dep-60bfac11e620",
+    "dep-4f212f5e936f",
+    "dep-934e5c07c2b4"
+  ],
+  "cases": [
+    {
+      "case_id": "CA-01-control-create",
+      "purpose": "control",
+      "target_ids": [
+        "pc-11859c35fe9a",
+        "pc-b223c202dd17",
+        "pc-fdc864d03407",
+        "pc-343b4ffdfac5",
+        "pc-990df09fb055",
+        "pc-89d1cd05bf3c",
+        "pc-89db031a1827"
+      ],
+      "endpoint": "/canaryResultArchive",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18204/canaryResultArchive?storageAccountName=sql-account&pipelineId=ca-valid-001",
+      "response_status": 200,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/CA-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "96ab6c95b56edd1823ec0c8c8996f3b2c0fba3e6b29837bdda316bc7a26090a0"
+        },
+        {
+          "path": "logs/cases/CA-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "17a61a793f7c2fc8b4aef83adba45808cfd94d7309839b35b3d9c05f16cc1188"
+        },
+        {
+          "path": "raw/readback/CA-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "20c34df02e3bcedc591238d15145c0ce4905f94658ef039ce9b445927df656c0"
+        }
+      ],
+      "observation": "HTTP 200; SQL: select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as ; select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as ; insert into canary_archive (content, created_at, updated_at,; read-back: id\tid_len\tjson_valid\tjson_type\tcreated_at\tupdated_at | ca-valid-001\t12\t1\tOBJECT\t2026-09-29 12:27:23\t2026-09-29 12:27:23"
+    },
+    {
+      "case_id": "CA-02-readback-api",
+      "purpose": "read-back",
+      "target_ids": [
+        "pc-fdc864d03407"
+      ],
+      "endpoint": "/canaryResultArchive/ca-valid-001",
+      "request_method": "GET",
+      "request_url": "http://127.0.0.1:18204/canaryResultArchive/ca-valid-001?storageAccountName=sql-account",
+      "response_status": 200,
+      "reached_persistence": false,
+      "evidence": [
+        {
+          "path": "raw/CA-02-readback-api.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "cfab748739ae5e613e605bb95553e1881d1415b4260058d1aac9dbadab89be33"
+        },
+        {
+          "path": "logs/cases/CA-02-readback-api.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "f8c1b557528c4614ca78e254d92787fb1842a05b02d9ace46270ff3ef6dd59dd"
+        },
+        {
+          "path": "raw/readback/CA-02-readback-api.txt",
+          "kind": "read-back",
+          "description": "API read-back (GET) of the persisted object loaded from MySQL via SqlStorageService.loadObject",
+          "sha256": "24bf58994c87edb8c7a2e8114353bdcdfcb410eff1693f34a4efd8c49138f93e"
+        }
+      ],
+      "observation": "HTTP 200; SQL: select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as "
+    },
+    {
+      "case_id": "CA-03-boundary-id-255",
+      "purpose": "boundary",
+      "target_ids": [
+        "pc-cf94e5cb7efc",
+        "pc-11859c35fe9a"
+      ],
+      "endpoint": "/canaryResultArchive",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18204/canaryResultArchive?storageAccountName=sql-account&pipelineId=ca-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "response_status": 200,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/CA-03-boundary-id-255.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "351236619196f98d9631abeffd5b924c5689a14fa97187a0b7b5182863e93e4b"
+        },
+        {
+          "path": "logs/cases/CA-03-boundary-id-255.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "a631d2bed195428457d2c081a1b0eac6415f596d5bdd29b332d99176e46e3d74"
+        },
+        {
+          "path": "raw/readback/CA-03-boundary-id-255.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "9e6ba04b29477ea2df13d34cc8a1f171cdaf7f89673dc2fb7a6d1ccca824859e"
+        }
+      ],
+      "observation": "HTTP 200; SQL: select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as ; select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as ; insert into canary_archive (content, created_at, updated_at,; read-back: id\tid_len\tjson_valid\tjson_type\tcreated_at\tupdated_at | ca-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "case_id": "CA-04-violation-id-256",
+      "purpose": "violation",
+      "target_ids": [
+        "pc-cf94e5cb7efc",
+        "pc-11859c35fe9a"
+      ],
+      "endpoint": "/canaryResultArchive",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18204/canaryResultArchive?storageAccountName=sql-account&pipelineId=ca-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "response_status": 500,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/CA-04-violation-id-256.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "d837d009237adfd2bc4f4f1ce41f811064c1fa5d7254af37583385cd390dc064"
+        },
+        {
+          "path": "logs/cases/CA-04-violation-id-256.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "07e705ad5cc33f80b5c8acba1fe6f6c6bd1470a14b2de66ec91922419c9775d6"
+        },
+        {
+          "path": "raw/readback/CA-04-violation-id-256.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "3514731af0430e0174e69802aab9cd6516a4b805c3a227b766ea25dd980898a9"
+        }
+      ],
+      "observation": "HTTP 500; log: Data truncation: Data too long for column 'id' at row 1 || SQL Error: 1406, SQLState: 22001 || Data truncation: Data too long for column 'id' at row 1; SQL: select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as ; select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as ; insert into canary_archive (content, created_at, updated_at,; read-back: n_rows_like_256 | 0"
+    },
+    {
+      "case_id": "CA-05-violation-duplicate-id",
+      "purpose": "violation",
+      "target_ids": [
+        "pc-000a33b9c80b"
+      ],
+      "endpoint": "/canaryResultArchive",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18204/canaryResultArchive?storageAccountName=sql-account&pipelineId=ca-valid-001",
+      "response_status": 400,
+      "reached_persistence": false,
+      "evidence": [
+        {
+          "path": "raw/CA-05-violation-duplicate-id.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "fc54280c742378b40d9d56a7809b743b43a353c8e7b60b37fd038cb67092dfe7"
+        },
+        {
+          "path": "logs/cases/CA-05-violation-duplicate-id.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "da44776c8bd500d3446cc12180cdf049052e71a2ab97db077d505c01bfe65792"
+        },
+        {
+          "path": "raw/readback/CA-05-violation-duplicate-id.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "3ed25451bd0173380b47818e830269b4130c190d96244b4eb860c32261d7873d"
+        }
+      ],
+      "observation": "HTTP 400; SQL: select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as ; read-back: id\tapplication | ca-valid-001\tverifapp"
+    },
+    {
+      "case_id": "CA-06-update-same-id",
+      "purpose": "boundary",
+      "target_ids": [
+        "pc-000a33b9c80b"
+      ],
+      "endpoint": "/canaryResultArchive/ca-valid-001",
+      "request_method": "PUT",
+      "request_url": "http://127.0.0.1:18204/canaryResultArchive/ca-valid-001?storageAccountName=sql-account",
+      "response_status": 200,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/CA-06-update-same-id.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "8773143f384011f7a550bdca7b35507a0b8c69f7599dacd6255a010489556bc7"
+        },
+        {
+          "path": "logs/cases/CA-06-update-same-id.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "a6986ce373eb200fde319b417705074831fd3ab1aa8b63956a79a0a975342ef6"
+        },
+        {
+          "path": "raw/readback/CA-06-update-same-id.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "bf4934e69734d69a02f53c9bea563978bb5eaa0ef4e1934318ba80cc1c3f93ea"
+        }
+      ],
+      "observation": "HTTP 200; SQL: select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as ; select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as ; update canary_archive set content=?, created_at=?, updated_a; read-back: id\tapplication\tn | ca-valid-001\tupdatedapp\t1"
+    },
+    {
+      "case_id": "CA-07-violation-null-id",
+      "purpose": "violation",
+      "target_ids": [
+        "pc-3c41052834d2"
+      ],
+      "endpoint": "/canaryResultArchive",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18204/canaryResultArchive?storageAccountName=sql-account",
+      "response_status": 200,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/CA-07-violation-null-id.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "8986956c38d44ff663a75a30829a4dd2bc9d28ba408b6f3fa67ae9bd4dbe6e70"
+        },
+        {
+          "path": "logs/cases/CA-07-violation-null-id.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "61b00fce384d1ec2c7a7b915e23d63abe3dd1bf5d896f4fc2a024276f9e10ed4"
+        },
+        {
+          "path": "raw/readback/CA-07-violation-null-id.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "2adbed6dfb19a4c8c11b40593893cf72b4eeeeb6c391c5d55bb8fdcdddbc6d2d"
+        }
+      ],
+      "observation": "HTTP 200; SQL: select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as ; select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as ; insert into canary_archive (content, created_at, updated_at,; read-back: id\tid_len | 4b929a4c-f5c9-466b-b6ec-1d8ab9a159cb\t36"
+    },
+    {
+      "case_id": "CA-08-violation-null-content",
+      "purpose": "violation",
+      "target_ids": [
+        "pc-b223c202dd17"
+      ],
+      "endpoint": "/canaryResultArchive",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18204/canaryResultArchive?storageAccountName=sql-account&pipelineId=ca-null-content",
+      "response_status": 400,
+      "reached_persistence": false,
+      "evidence": [
+        {
+          "path": "raw/CA-08-violation-null-content.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "5b0815f409bc6e637a82cb13068d39c46009f0ec5175a23dec60511ad76fa913"
+        },
+        {
+          "path": "logs/cases/CA-08-violation-null-content.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "raw/readback/CA-08-violation-null-content.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "b7941ca6b9e13225114bacfc1c216ad3e6ef7ab80bfb7e9ffb80ed0be63981bd"
+        }
+      ],
+      "observation": "HTTP 400; read-back: n | 0"
+    },
+    {
+      "case_id": "CC-01-control-create",
+      "purpose": "control",
+      "target_ids": [
+        "pc-11859c35fe9a",
+        "pc-697814377ac0",
+        "pc-28c967fd981a",
+        "pc-cd98250264a6",
+        "pc-e3c4f3bbce3b",
+        "pc-03dd49ea23ba",
+        "pc-454b6220f809"
+      ],
+      "endpoint": "/canaryConfig",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18204/canaryConfig?configurationAccountName=sql-account",
+      "response_status": 200,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/CC-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "397d283bc497c5ce1c465c6aa379f6036360f84ba7eed08204a79c6c126b5c87"
+        },
+        {
+          "path": "logs/cases/CC-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "eea5fbde162ec9b9b496fadd33a7785d5635d19acf479e8689012d636930a371"
+        },
+        {
+          "path": "raw/readback/CC-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "0f8e14dd270def7a79bfaeb6dc30fc7fce05cdba6d4083a6374f5bdbbde33a8a"
+        }
+      ],
+      "observation": "HTTP 200; SQL: select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as ; select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as ; insert into canary_config (content, created_at, updated_at, ; read-back: id\tid_len\tjson_valid\tjson_type\tcreated_at\tupdated_at | cc-valid-001\t12\t1\tOBJECT\t2026-09-29 12:27:15\t2026-09-29 12:27:15"
+    },
+    {
+      "case_id": "CC-02-readback-api",
+      "purpose": "read-back",
+      "target_ids": [
+        "pc-28c967fd981a"
+      ],
+      "endpoint": "/canaryConfig/cc-valid-001",
+      "request_method": "GET",
+      "request_url": "http://127.0.0.1:18204/canaryConfig/cc-valid-001?configurationAccountName=sql-account",
+      "response_status": 200,
+      "reached_persistence": false,
+      "evidence": [
+        {
+          "path": "raw/CC-02-readback-api.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "2f5c809bf9b8f99e2602a3cc999f8f5dfc50a2b982e2b6b507c213eb1da80a95"
+        },
+        {
+          "path": "logs/cases/CC-02-readback-api.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "a824ec81887f71b80c7fffb94092aaf8e083c04a28d21eb5b6971e401529cf73"
+        },
+        {
+          "path": "raw/readback/CC-02-readback-api.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "d0f4d9979391ee5d91868e45c887b75ed199c7fd1bbef5f0695d8ae8a3c41a66"
+        }
+      ],
+      "observation": "HTTP 200; SQL: select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as ; read-back: n | 1"
+    },
+    {
+      "case_id": "CC-03-boundary-id-255",
+      "purpose": "boundary",
+      "target_ids": [
+        "pc-900bdfd125e0",
+        "pc-d4dc77dfb22b"
+      ],
+      "endpoint": "/canaryConfig",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18204/canaryConfig?configurationAccountName=sql-account",
+      "response_status": 200,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/CC-03-boundary-id-255.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "63bc6b348c2aeffd8d2dfb85d95fb00217ee85fc4fa16a5aac30204776048331"
+        },
+        {
+          "path": "logs/cases/CC-03-boundary-id-255.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "829f58bf62ae8044618d6852c1866fab26945f5c3ae65b0683771099ad8a8a44"
+        },
+        {
+          "path": "raw/readback/CC-03-boundary-id-255.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "50701ff4dc90d8aa2b22c9de415e71eba49e99696772d6e8b98958e86f454a43"
+        }
+      ],
+      "observation": "HTTP 200; SQL: select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as ; select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as ; insert into canary_config (content, created_at, updated_at, ; read-back: id\tid_len\tjson_valid\tjson_type\tcreated_at\tupdated_at | cc-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "case_id": "CC-04-violation-id-256",
+      "purpose": "violation",
+      "target_ids": [
+        "pc-900bdfd125e0",
+        "pc-d4dc77dfb22b"
+      ],
+      "endpoint": "/canaryConfig",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18204/canaryConfig?configurationAccountName=sql-account",
+      "response_status": 500,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/CC-04-violation-id-256.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "64fc5b7b09de2733b3eaefe5650ce7648e528e023b97eea69f3513f8edfa882a"
+        },
+        {
+          "path": "logs/cases/CC-04-violation-id-256.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "b319994bb77b8a0808f9f3f437f75762342a964719c2364421d9a35407b84b23"
+        },
+        {
+          "path": "raw/readback/CC-04-violation-id-256.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "3af6d8def93efd4d02264b7b35fd57dca836a3bc436a93a734790c1ba578fc3a"
+        }
+      ],
+      "observation": "HTTP 500; log: Data truncation: Data too long for column 'id' at row 1 || SQL Error: 1406, SQLState: 22001 || Data truncation: Data too long for column 'id' at row 1; SQL: select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as ; select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as ; insert into canary_config (content, created_at, updated_at, ; read-back: n_rows_like_256 | 0"
+    },
+    {
+      "case_id": "CC-05-violation-duplicate-id",
+      "purpose": "violation",
+      "target_ids": [
+        "pc-82610b8aefc0",
+        "pc-5a7d64fe7c3a"
+      ],
+      "endpoint": "/canaryConfig",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18204/canaryConfig?configurationAccountName=sql-account",
+      "response_status": 400,
+      "reached_persistence": false,
+      "evidence": [
+        {
+          "path": "raw/CC-05-violation-duplicate-id.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "2025af406831c5f14b92c7dc39cc67db13202c0c6d74ff5973d05e3dd0dc8bb3"
+        },
+        {
+          "path": "logs/cases/CC-05-violation-duplicate-id.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "fb130ffe7a9e225ccaa11cf21a50f7d1c39c230777875e1ea040b0c49fd1f4fa"
+        },
+        {
+          "path": "raw/readback/CC-05-violation-duplicate-id.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "29195e02d16ca18a9463d2a79c539884c9ba194037ca6b151c49ad9e20d436d0"
+        }
+      ],
+      "observation": "HTTP 400; SQL: select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as ; read-back: id\tname | cc-valid-001\tcfgvalid"
+    },
+    {
+      "case_id": "CC-06-boundary-duplicate-id-case-variant",
+      "purpose": "boundary",
+      "target_ids": [
+        "pc-82610b8aefc0",
+        "pc-5a7d64fe7c3a"
+      ],
+      "endpoint": "/canaryConfig",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18204/canaryConfig?configurationAccountName=sql-account",
+      "response_status": 400,
+      "reached_persistence": false,
+      "evidence": [
+        {
+          "path": "raw/CC-06-boundary-duplicate-id-case-variant.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "a6f27112b0d06fb3518515ee89248a02e77701eb5c1f209482b057f7b96431a1"
+        },
+        {
+          "path": "logs/cases/CC-06-boundary-duplicate-id-case-variant.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d9806bed97f06bf1f35cef82b94fff327d17545332ac3fa6b62dd9ea1232f8b7"
+        },
+        {
+          "path": "raw/readback/CC-06-boundary-duplicate-id-case-variant.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "29195e02d16ca18a9463d2a79c539884c9ba194037ca6b151c49ad9e20d436d0"
+        }
+      ],
+      "observation": "HTTP 400; SQL: select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as ; read-back: id\tname | cc-valid-001\tcfgvalid"
+    },
+    {
+      "case_id": "CC-07-update-same-id",
+      "purpose": "boundary",
+      "target_ids": [
+        "pc-82610b8aefc0",
+        "pc-5a7d64fe7c3a"
+      ],
+      "endpoint": "/canaryConfig/cc-valid-001",
+      "request_method": "PUT",
+      "request_url": "http://127.0.0.1:18204/canaryConfig/cc-valid-001?configurationAccountName=sql-account",
+      "response_status": 200,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/CC-07-update-same-id.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "230a2cb267e22142065c38751dd2fe7df5b9380eb34d127bb1c6afca502811ab"
+        },
+        {
+          "path": "logs/cases/CC-07-update-same-id.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "436ec58f2d892af8de9a06c863ba0b9562f66d318eb89c5f4437b7cf0aec4658"
+        },
+        {
+          "path": "raw/readback/CC-07-update-same-id.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "8375a8a9bb2639eb2af5065d85acec3fd146de65fb6b76c611b81fbc63f13fc6"
+        }
+      ],
+      "observation": "HTTP 200; SQL: select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as ; select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as ; update canary_config set content=?, created_at=?, updated_at; read-back: id\tname\tcreated_at\tupdated_at\tn | cc-valid-001\tcfgupdated\t2026-09-29 12:27:20\t2026-09-29 12:27:20\t1"
+    },
+    {
+      "case_id": "CC-08-violation-null-id",
+      "purpose": "violation",
+      "target_ids": [
+        "pc-03e7ed0064f7"
+      ],
+      "endpoint": "/canaryConfig",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18204/canaryConfig?configurationAccountName=sql-account",
+      "response_status": 200,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/CC-08-violation-null-id.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "6e3487d34ac9e457af4cce3f3aa86f23a4175160478cac910ad5d01d18989aab"
+        },
+        {
+          "path": "logs/cases/CC-08-violation-null-id.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "65ef40fe4c3f1299f2ca7af23e100fc92c8a0c515d35694ca0a529be69851541"
+        },
+        {
+          "path": "raw/readback/CC-08-violation-null-id.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "2384a0533b950a67160aa4c886731e8d273354bb7649644d6c8003c76bcd7645"
+        }
+      ],
+      "observation": "HTTP 200; SQL: select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as ; select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as ; insert into canary_config (content, created_at, updated_at, ; read-back: id\tid_len\tcontent_id | f439d0b1-7f78-49cb-9250-0ec0c9e6a6bc\t36\tf439d0b1-7f78-49cb-9250-0ec0c9e6a6bc"
+    },
+    {
+      "case_id": "CC-09-violation-empty-id",
+      "purpose": "violation",
+      "target_ids": [
+        "pc-03e7ed0064f7"
+      ],
+      "endpoint": "/canaryConfig",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18204/canaryConfig?configurationAccountName=sql-account",
+      "response_status": 200,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/CC-09-violation-empty-id.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "32d3d49cefd7712e0f67cdfc2455a2d141c43105a77f81284d8dd9edecede4cc"
+        },
+        {
+          "path": "logs/cases/CC-09-violation-empty-id.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "7aa1a98de24a421a116b1d50c7de7b79d73df2f501da70c577732ebe08e46b31"
+        },
+        {
+          "path": "raw/readback/CC-09-violation-empty-id.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "4775487e996f10225d21b662c926013e76cee66fec16bf5e57ef8cd8d7796b0c"
+        }
+      ],
+      "observation": "HTTP 200; SQL: select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as ; select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as ; insert into canary_config (content, created_at, updated_at, ; read-back: id\tid_len | a14c712e-8fb6-4493-a918-536e37b0ad62\t36"
+    },
+    {
+      "case_id": "CC-10-violation-null-content",
+      "purpose": "violation",
+      "target_ids": [
+        "pc-697814377ac0"
+      ],
+      "endpoint": "/canaryConfig",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18204/canaryConfig?configurationAccountName=sql-account",
+      "response_status": 400,
+      "reached_persistence": false,
+      "evidence": [
+        {
+          "path": "raw/CC-10-violation-null-content.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "9ed81e5a5e351bd85af4c799c392df7dba4ccc672370122d19e4288de33cd5de"
+        },
+        {
+          "path": "logs/cases/CC-10-violation-null-content.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "raw/readback/CC-10-violation-null-content.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "de1ccf3d709b72fc66aa2f1cb7043e086484dd387ca8d624753cc7abe40d8dee"
+        }
+      ],
+      "observation": "HTTP 400; read-back: n | 4"
+    },
+    {
+      "case_id": "MS-01-control-create",
+      "purpose": "control",
+      "target_ids": [
+        "pc-34efbcce606b",
+        "pc-b2886370da3b",
+        "pc-2b8c47e5d7bd",
+        "pc-2611c9ac3275",
+        "pc-4ff0c7f191dd",
+        "pc-0a2ac553dd29",
+        "pc-aadee8576d99",
+        "pc-4ee8f253c4e1",
+        "pc-bcfeaadde2a6",
+        "pc-f2aa380a79e9"
+      ],
+      "endpoint": "/metricSetList",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18204/metricSetList?accountName=sql-account",
+      "response_status": 200,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/MS-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "6d62ade3c0f3fb8f2ae12f7e8e962ffc2d7a3fe66f46e46db81567d0d66f3036"
+        },
+        {
+          "path": "logs/cases/MS-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d6914ab17c9c8c7183c825ba0c9e36076c0b160dd6a92db11fb945324cb876a1"
+        },
+        {
+          "path": "raw/readback/MS-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "bb934a6aa3b7e455819642cb5383ba4788667497e797b8c68920965d9c7f91a7"
+        }
+      ],
+      "observation": "HTTP 200; SQL: select sqlmetrics0_.id as id1_3_0_, sqlmetrics0_.content as ; insert into metric_sets (content, created_at, updated_at, id; read-back: id\tid_len\tjson_valid\tjson_type\tcreated_at\tupdated_at | 2d48be40-abd8-40f3-ae73-ab1682c1c3e3\t36\t1\tARRAY\t2026-09-29 12:27:29\t2026-09-29 12:27:29"
+    },
+    {
+      "case_id": "MS-02-violation-null-content",
+      "purpose": "violation",
+      "target_ids": [
+        "pc-2b8c47e5d7bd"
+      ],
+      "endpoint": "/metricSetList",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18204/metricSetList?accountName=sql-account",
+      "response_status": 400,
+      "reached_persistence": false,
+      "evidence": [
+        {
+          "path": "raw/MS-02-violation-null-content.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "2235cbe20731aa759e903de890a1901e50d34d05b54f3539eaa7302238490c91"
+        },
+        {
+          "path": "logs/cases/MS-02-violation-null-content.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "raw/readback/MS-02-violation-null-content.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "1276ad3afafed0be12e10b6921eab9241a260066391778b060e693ce4af774af"
+        }
+      ],
+      "observation": "HTTP 400; read-back: n | 1"
+    },
+    {
+      "case_id": "MSP-01-control-create",
+      "purpose": "control",
+      "target_ids": [
+        "pc-88c6ef457170",
+        "pc-a56ff232d178",
+        "pc-c69dfeadd911",
+        "pc-ab279b731a74",
+        "pc-914538813632",
+        "pc-216b2a3dbc5e",
+        "pc-893aeb4d6f06",
+        "pc-6e7266c1819b",
+        "pc-25e267f034f9",
+        "pc-5f7f9ca6c44d"
+      ],
+      "endpoint": "/metricSetPairList",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18204/metricSetPairList?accountName=sql-account",
+      "response_status": 200,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/MSP-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "c6c5acce1351430e506aadd48b9764c3cc9401150171aec7dd5df47e280aab53"
+        },
+        {
+          "path": "logs/cases/MSP-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d7d7ee826eacb821f1a09beeacb56a3885b7ddc95bf64b86954dc1af75e2a199"
+        },
+        {
+          "path": "raw/readback/MSP-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "1693ca8715a5d2c56995ddb4dc286ce0193eae04be32f9265ae8b13a2af14815"
+        }
+      ],
+      "observation": "HTTP 200; SQL: select sqlmetrics0_.id as id1_2_0_, sqlmetrics0_.content as ; insert into metric_set_pairs (content, created_at, updated_a; read-back: id\tid_len\tjson_valid\tjson_type\tcreated_at\tupdated_at | 81251910-c49f-44d9-8b0e-cb974af438d3\t36\t1\tARRAY\t2026-09-29 12:27:30\t2026-09-29 12:27:30"
+    },
+    {
+      "case_id": "MSP-02-violation-null-content",
+      "purpose": "violation",
+      "target_ids": [
+        "pc-c69dfeadd911"
+      ],
+      "endpoint": "/metricSetPairList",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18204/metricSetPairList?accountName=sql-account",
+      "response_status": 400,
+      "reached_persistence": false,
+      "evidence": [
+        {
+          "path": "raw/MSP-02-violation-null-content.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "733314ebca4132f660707f64b2798fbd91f1352f00434817a6e72524b4ee0ef3"
+        },
+        {
+          "path": "logs/cases/MSP-02-violation-null-content.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "raw/readback/MSP-02-violation-null-content.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "a7e4a84acd6e316e8531b706814891dc144b01e463806a639ea8428bc031dc28"
+        }
+      ],
+      "observation": "HTTP 400; read-back: n | 1"
+    }
+  ],
+  "results": [
+    {
+      "target_id": "pc-5a7d64fe7c3a",
+      "target_kind": "constraint",
+      "outcome": "APPLICATION_REJECTED",
+      "exact_predicate_confirmed": true,
+      "observed_enforcement": "application",
+      "application_layer_implemented": true,
+      "response_handling": "elegant",
+      "case_ids": [
+        "CC-01-control-create",
+        "CC-05-violation-duplicate-id",
+        "CC-07-update-same-id",
+        "CA-05-violation-duplicate-id",
+        "CA-06-update-same-id"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CC-05-violation-duplicate-id.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "2025af406831c5f14b92c7dc39cc67db13202c0c6d74ff5973d05e3dd0dc8bb3"
+        },
+        {
+          "path": "logs/cases/CC-05-violation-duplicate-id.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "fb130ffe7a9e225ccaa11cf21a50f7d1c39c230777875e1ea040b0c49fd1f4fa"
+        },
+        {
+          "path": "raw/readback/CC-05-violation-duplicate-id.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "29195e02d16ca18a9463d2a79c539884c9ba194037ca6b151c49ad9e20d436d0"
+        },
+        {
+          "path": "raw/CC-07-update-same-id.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "230a2cb267e22142065c38751dd2fe7df5b9380eb34d127bb1c6afca502811ab"
+        },
+        {
+          "path": "logs/cases/CC-07-update-same-id.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "436ec58f2d892af8de9a06c863ba0b9562f66d318eb89c5f4437b7cf0aec4658"
+        },
+        {
+          "path": "raw/readback/CC-07-update-same-id.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "8375a8a9bb2639eb2af5065d85acec3fd146de65fb6b76c611b81fbc63f13fc6"
+        },
+        {
+          "path": "raw/CA-05-violation-duplicate-id.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "fc54280c742378b40d9d56a7809b743b43a353c8e7b60b37fd038cb67092dfe7"
+        },
+        {
+          "path": "logs/cases/CA-05-violation-duplicate-id.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "da44776c8bd500d3446cc12180cdf049052e71a2ab97db077d505c01bfe65792"
+        },
+        {
+          "path": "raw/readback/CA-05-violation-duplicate-id.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "3ed25451bd0173380b47818e830269b4130c190d96244b4eb860c32261d7873d"
+        },
+        {
+          "path": "raw/CA-06-update-same-id.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "8773143f384011f7a550bdca7b35507a0b8c69f7599dacd6255a010489556bc7"
+        },
+        {
+          "path": "logs/cases/CA-06-update-same-id.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "a6986ce373eb200fde319b417705074831fd3ab1aa8b63956a79a0a975342ef6"
+        },
+        {
+          "path": "raw/readback/CA-06-update-same-id.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "bf4934e69734d69a02f53c9bea563978bb5eaa0ef4e1934318ba80cc1c3f93ea"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/model/SqlBaseObject.java",
+          "kind": "source",
+          "description": "@Id String id on @MappedSuperclass (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/model/SqlBaseObject.java)",
+          "sha256": "478bcb19fb911569474b846ed0b213350a9b704b3a9d4dc9160fd7b54bc3a238"
+        }
+      ],
+      "rationale": "ORM @Id on SqlBaseObject.id (inherited by all four entities). Exercised through canary_config and canary_archive: duplicate-id creates were rejected by application existence checks with HTTP 400 (no INSERT issued); PUT with an existing id caused Hibernate merge -> 'update ... where id=?' and read-back shows exactly one row, i.e. id identifies the persistent row.",
+      "confidence": 0.85,
+      "limitations": [
+        "metric_sets/metric_set_pairs ids are always server-generated UUIDs and could not be duplicated via the API.",
+        "Id is application-assigned (no generator); JPA save() merges on an existing id, so identity is enforced by the controllers' pre-checks rather than the ORM for create paths."
+      ]
+    },
+    {
+      "target_id": "pc-cf94e5cb7efc",
+      "target_kind": "constraint",
+      "outcome": "DATABASE_ENFORCED_UNHANDLED",
+      "exact_predicate_confirmed": true,
+      "observed_enforcement": "database",
+      "application_layer_implemented": false,
+      "response_handling": "unhandled",
+      "case_ids": [
+        "CA-01-control-create",
+        "CA-03-boundary-id-255",
+        "CA-04-violation-id-256"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CA-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "96ab6c95b56edd1823ec0c8c8996f3b2c0fba3e6b29837bdda316bc7a26090a0"
+        },
+        {
+          "path": "logs/cases/CA-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "17a61a793f7c2fc8b4aef83adba45808cfd94d7309839b35b3d9c05f16cc1188"
+        },
+        {
+          "path": "raw/readback/CA-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "20c34df02e3bcedc591238d15145c0ce4905f94658ef039ce9b445927df656c0"
+        },
+        {
+          "path": "raw/CA-03-boundary-id-255.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "351236619196f98d9631abeffd5b924c5689a14fa97187a0b7b5182863e93e4b"
+        },
+        {
+          "path": "logs/cases/CA-03-boundary-id-255.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "a631d2bed195428457d2c081a1b0eac6415f596d5bdd29b332d99176e46e3d74"
+        },
+        {
+          "path": "raw/readback/CA-03-boundary-id-255.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "9e6ba04b29477ea2df13d34cc8a1f171cdaf7f89673dc2fb7a6d1ccca824859e"
+        },
+        {
+          "path": "raw/CA-04-violation-id-256.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "d837d009237adfd2bc4f4f1ce41f811064c1fa5d7254af37583385cd390dc064"
+        },
+        {
+          "path": "logs/cases/CA-04-violation-id-256.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "07e705ad5cc33f80b5c8acba1fe6f6c6bd1470a14b2de66ec91922419c9775d6"
+        },
+        {
+          "path": "raw/readback/CA-04-violation-id-256.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "3514731af0430e0174e69802aab9cd6516a4b805c3a227b766ea25dd980898a9"
+        },
+        {
+          "path": "logs/schema-mysql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output of Liquibase-created MySQL schema and DATABASECHANGELOG (postgres changeset MARK_RAN)",
+          "sha256": "755935daa6a374cd0bc01d0317e8043efb24bf3fd6ac2a27a05a8dcea639a916"
+        }
+      ],
+      "rationale": "canary_archive.id has length 255. The id is client-controlled via POST /canaryResultArchive (query param pipelineId). A 255-character id was persisted (read-back CHAR_LENGTH=255). A 256-character id passed all application checks, Hibernate issued 'insert into canary_archive', and MySQL (strict mode) rejected it with SQL Error 1406/22001 'Data too long for column id'; Spring translated it to DataIntegrityViolationException and kork's generic handler returned HTTP 500 'Internal Server Error' exposing the exception class. Read-back shows no row persisted. The application has no length validation.",
+      "confidence": 0.95,
+      "limitations": [
+        "Behaviour depends on MySQL STRICT_TRANS_TABLES (enabled, default); non-strict MySQL would silently truncate."
+      ]
+    },
+    {
+      "target_id": "pc-b223c202dd17",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "CA-01-control-create",
+        "CA-08-violation-null-content"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CA-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "96ab6c95b56edd1823ec0c8c8996f3b2c0fba3e6b29837bdda316bc7a26090a0"
+        },
+        {
+          "path": "logs/cases/CA-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "17a61a793f7c2fc8b4aef83adba45808cfd94d7309839b35b3d9c05f16cc1188"
+        },
+        {
+          "path": "raw/readback/CA-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "20c34df02e3bcedc591238d15145c0ce4905f94658ef039ce9b445927df656c0"
+        },
+        {
+          "path": "raw/CA-08-violation-null-content.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "5b0815f409bc6e637a82cb13068d39c46009f0ec5175a23dec60511ad76fa913"
+        },
+        {
+          "path": "logs/cases/CA-08-violation-null-content.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "raw/readback/CA-08-violation-null-content.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "b7941ca6b9e13225114bacfc1c216ad3e6ef7ab80bfb7e9ffb80ed0be63981bd"
+        }
+      ],
+      "rationale": "canary_archive.content must not be null: content is always ObjectMapper.writeValueAsString(obj) of the bound request body, which is never SQL NULL. The closest API attempt (JSON body literal null) was rejected by Spring request-body binding with HTTP 400 before the controller ran (no SQL issued, row count unchanged); that is a binding failure, not enforcement of this predicate.",
+      "confidence": 0.85,
+      "limitations": [
+        "A null domain object would serialize to the JSON text 'null', not SQL NULL, so the column predicate is unreachable from the API."
+      ]
+    },
+    {
+      "target_id": "pc-89d1cd05bf3c",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "CA-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CA-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "96ab6c95b56edd1823ec0c8c8996f3b2c0fba3e6b29837bdda316bc7a26090a0"
+        },
+        {
+          "path": "logs/cases/CA-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "17a61a793f7c2fc8b4aef83adba45808cfd94d7309839b35b3d9c05f16cc1188"
+        },
+        {
+          "path": "raw/readback/CA-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "20c34df02e3bcedc591238d15145c0ce4905f94658ef039ce9b445927df656c0"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets createdAt/updatedAt = Instant.now() (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "canary_archive.created_at must not be null: SqlStorageService.storeObject always sets createdAt and updatedAt to Instant.now(); no request field maps to these columns (client-supplied createdTimestamp in canary configs only affects the JSON content). Control read-back shows a server-generated DATETIME value.",
+      "confidence": 0.9,
+      "limitations": [
+        "Observed that MySQL DATETIME (no fractional precision) stores Instant values truncated to seconds; this is deployed-schema behaviour, not a predicate violation."
+      ]
+    },
+    {
+      "target_id": "pc-3c41052834d2",
+      "target_kind": "constraint",
+      "outcome": "APPLICATION_TRANSFORMED",
+      "exact_predicate_confirmed": true,
+      "observed_enforcement": "application",
+      "application_layer_implemented": true,
+      "response_handling": "elegant",
+      "case_ids": [
+        "CA-07-violation-null-id"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CA-07-violation-null-id.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "8986956c38d44ff663a75a30829a4dd2bc9d28ba408b6f3fa67ae9bd4dbe6e70"
+        },
+        {
+          "path": "logs/cases/CA-07-violation-null-id.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "61b00fce384d1ec2c7a7b915e23d63abe3dd1bf5d896f4fc2a024276f9e10ed4"
+        },
+        {
+          "path": "raw/readback/CA-07-violation-null-id.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "2adbed6dfb19a4c8c11b40593893cf72b4eeeeb6c391c5d55bb8fdcdddbc6d2d"
+        },
+        {
+          "path": "raw/final-db-readback.tsv",
+          "kind": "read-back",
+          "description": "Final state of all four tables after all cases",
+          "sha256": "a051f92921749b89e394919903e8abd12f57967563ae5086ba20829026137c6f"
+        }
+      ],
+      "rationale": "canary_archive.id must not be null. POST /canaryResultArchive without pipelineId returned 200 with a generated UUID; the controller sets pipelineId = UUID.randomUUID() when null. Read-back shows the row with a 36-char UUID id.",
+      "confidence": 0.9,
+      "limitations": [
+        "PUT path uses a mandatory non-null path variable."
+      ]
+    },
+    {
+      "target_id": "pc-89db031a1827",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "CA-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CA-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "96ab6c95b56edd1823ec0c8c8996f3b2c0fba3e6b29837bdda316bc7a26090a0"
+        },
+        {
+          "path": "logs/cases/CA-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "17a61a793f7c2fc8b4aef83adba45808cfd94d7309839b35b3d9c05f16cc1188"
+        },
+        {
+          "path": "raw/readback/CA-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "20c34df02e3bcedc591238d15145c0ce4905f94658ef039ce9b445927df656c0"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets createdAt/updatedAt = Instant.now() (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "canary_archive.updated_at must not be null: SqlStorageService.storeObject always sets createdAt and updatedAt to Instant.now(); no request field maps to these columns (client-supplied createdTimestamp in canary configs only affects the JSON content). Control read-back shows a server-generated DATETIME value.",
+      "confidence": 0.9,
+      "limitations": [
+        "Observed that MySQL DATETIME (no fractional precision) stores Instant values truncated to seconds; this is deployed-schema behaviour, not a predicate violation."
+      ]
+    },
+    {
+      "target_id": "pc-000a33b9c80b",
+      "target_kind": "constraint",
+      "outcome": "APPLICATION_REJECTED",
+      "exact_predicate_confirmed": true,
+      "observed_enforcement": "application",
+      "application_layer_implemented": true,
+      "response_handling": "elegant",
+      "case_ids": [
+        "CA-01-control-create",
+        "CA-05-violation-duplicate-id",
+        "CA-06-update-same-id"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CA-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "96ab6c95b56edd1823ec0c8c8996f3b2c0fba3e6b29837bdda316bc7a26090a0"
+        },
+        {
+          "path": "logs/cases/CA-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "17a61a793f7c2fc8b4aef83adba45808cfd94d7309839b35b3d9c05f16cc1188"
+        },
+        {
+          "path": "raw/readback/CA-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "20c34df02e3bcedc591238d15145c0ce4905f94658ef039ce9b445927df656c0"
+        },
+        {
+          "path": "raw/CA-05-violation-duplicate-id.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "fc54280c742378b40d9d56a7809b743b43a353c8e7b60b37fd038cb67092dfe7"
+        },
+        {
+          "path": "logs/cases/CA-05-violation-duplicate-id.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "da44776c8bd500d3446cc12180cdf049052e71a2ab97db077d505c01bfe65792"
+        },
+        {
+          "path": "raw/readback/CA-05-violation-duplicate-id.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "3ed25451bd0173380b47818e830269b4130c190d96244b4eb860c32261d7873d"
+        },
+        {
+          "path": "raw/CA-06-update-same-id.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "8773143f384011f7a550bdca7b35507a0b8c69f7599dacd6255a010489556bc7"
+        },
+        {
+          "path": "logs/cases/CA-06-update-same-id.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "a6986ce373eb200fde319b417705074831fd3ab1aa8b63956a79a0a975342ef6"
+        },
+        {
+          "path": "raw/readback/CA-06-update-same-id.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "bf4934e69734d69a02f53c9bea563978bb5eaa0ef4e1934318ba80cc1c3f93ea"
+        },
+        {
+          "path": "logs/schema-mysql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output of Liquibase-created MySQL schema and DATABASECHANGELOG (postgres changeset MARK_RAN)",
+          "sha256": "755935daa6a374cd0bc01d0317e8043efb24bf3fd6ac2a27a05a8dcea639a916"
+        }
+      ],
+      "rationale": "canary_archive.id identifies a row. A second POST /canaryResultArchive?pipelineId=ca-valid-001 was rejected with HTTP 400 \"Archived canary result 'ca-valid-001' already exists.\" after only a SELECT; read-back shows original content (application=verifapp). PUT on the same id updated the single row (count 1).",
+      "confidence": 0.9,
+      "limitations": [
+        "DB PK violation itself not reached; concurrent duplicate creation not tested.",
+        "Lookup is case-insensitive under utf8mb4_0900_ai_ci collation."
+      ]
+    },
+    {
+      "target_id": "pc-fdc864d03407",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "CA-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CA-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "96ab6c95b56edd1823ec0c8c8996f3b2c0fba3e6b29837bdda316bc7a26090a0"
+        },
+        {
+          "path": "logs/cases/CA-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "17a61a793f7c2fc8b4aef83adba45808cfd94d7309839b35b3d9c05f16cc1188"
+        },
+        {
+          "path": "raw/readback/CA-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "20c34df02e3bcedc591238d15145c0ce4905f94658ef039ce9b445927df656c0"
+        },
+        {
+          "path": "logs/schema-mysql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output of Liquibase-created MySQL schema and DATABASECHANGELOG (postgres changeset MARK_RAN)",
+          "sha256": "755935daa6a374cd0bc01d0317e8043efb24bf3fd6ac2a27a05a8dcea639a916"
+        }
+      ],
+      "rationale": "canary_archive.content has type JSON (deployed as MySQL json). Content is produced exclusively by Jackson serialization of a typed request object, so the client cannot make the application write non-JSON text. Control read-back: JSON_VALID(content)=1.",
+      "confidence": 0.8,
+      "limitations": [
+        "MySQL-specific JSON limits (e.g. max nesting depth 100) were not probed; the typed request models expose no free-form deeply nested fields."
+      ]
+    },
+    {
+      "target_id": "pc-343b4ffdfac5",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "CA-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CA-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "96ab6c95b56edd1823ec0c8c8996f3b2c0fba3e6b29837bdda316bc7a26090a0"
+        },
+        {
+          "path": "logs/cases/CA-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "17a61a793f7c2fc8b4aef83adba45808cfd94d7309839b35b3d9c05f16cc1188"
+        },
+        {
+          "path": "raw/readback/CA-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "20c34df02e3bcedc591238d15145c0ce4905f94658ef039ce9b445927df656c0"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets createdAt/updatedAt = Instant.now() (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "canary_archive.created_at has type datetime: SqlStorageService.storeObject always sets createdAt and updatedAt to Instant.now(); no request field maps to these columns (client-supplied createdTimestamp in canary configs only affects the JSON content). Control read-back shows a server-generated DATETIME value.",
+      "confidence": 0.9,
+      "limitations": [
+        "Observed that MySQL DATETIME (no fractional precision) stores Instant values truncated to seconds; this is deployed-schema behaviour, not a predicate violation."
+      ]
+    },
+    {
+      "target_id": "pc-11859c35fe9a",
+      "target_kind": "constraint",
+      "outcome": "DATABASE_ENFORCED_UNHANDLED",
+      "exact_predicate_confirmed": true,
+      "observed_enforcement": "database",
+      "application_layer_implemented": false,
+      "response_handling": "unhandled",
+      "case_ids": [
+        "CA-01-control-create",
+        "CA-03-boundary-id-255",
+        "CA-04-violation-id-256"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CA-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "96ab6c95b56edd1823ec0c8c8996f3b2c0fba3e6b29837bdda316bc7a26090a0"
+        },
+        {
+          "path": "logs/cases/CA-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "17a61a793f7c2fc8b4aef83adba45808cfd94d7309839b35b3d9c05f16cc1188"
+        },
+        {
+          "path": "raw/readback/CA-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "20c34df02e3bcedc591238d15145c0ce4905f94658ef039ce9b445927df656c0"
+        },
+        {
+          "path": "raw/CA-03-boundary-id-255.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "351236619196f98d9631abeffd5b924c5689a14fa97187a0b7b5182863e93e4b"
+        },
+        {
+          "path": "logs/cases/CA-03-boundary-id-255.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "a631d2bed195428457d2c081a1b0eac6415f596d5bdd29b332d99176e46e3d74"
+        },
+        {
+          "path": "raw/readback/CA-03-boundary-id-255.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "9e6ba04b29477ea2df13d34cc8a1f171cdaf7f89673dc2fb7a6d1ccca824859e"
+        },
+        {
+          "path": "raw/CA-04-violation-id-256.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "d837d009237adfd2bc4f4f1ce41f811064c1fa5d7254af37583385cd390dc064"
+        },
+        {
+          "path": "logs/cases/CA-04-violation-id-256.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "07e705ad5cc33f80b5c8acba1fe6f6c6bd1470a14b2de66ec91922419c9775d6"
+        },
+        {
+          "path": "raw/readback/CA-04-violation-id-256.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "3514731af0430e0174e69802aab9cd6516a4b805c3a227b766ea25dd980898a9"
+        },
+        {
+          "path": "logs/schema-mysql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output of Liquibase-created MySQL schema and DATABASECHANGELOG (postgres changeset MARK_RAN)",
+          "sha256": "755935daa6a374cd0bc01d0317e8043efb24bf3fd6ac2a27a05a8dcea639a916"
+        }
+      ],
+      "rationale": "canary_archive.id has type VARCHAR(255). The id is client-controlled via POST /canaryResultArchive (query param pipelineId). A 255-character id was persisted (read-back CHAR_LENGTH=255). A 256-character id passed all application checks, Hibernate issued 'insert into canary_archive', and MySQL (strict mode) rejected it with SQL Error 1406/22001 'Data too long for column id'; Spring translated it to DataIntegrityViolationException and kork's generic handler returned HTTP 500 'Internal Server Error' exposing the exception class. Read-back shows no row persisted. The application has no length validation.",
+      "confidence": 0.95,
+      "limitations": [
+        "Behaviour depends on MySQL STRICT_TRANS_TABLES (enabled, default); non-strict MySQL would silently truncate."
+      ]
+    },
+    {
+      "target_id": "pc-990df09fb055",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "CA-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CA-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "96ab6c95b56edd1823ec0c8c8996f3b2c0fba3e6b29837bdda316bc7a26090a0"
+        },
+        {
+          "path": "logs/cases/CA-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "17a61a793f7c2fc8b4aef83adba45808cfd94d7309839b35b3d9c05f16cc1188"
+        },
+        {
+          "path": "raw/readback/CA-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "20c34df02e3bcedc591238d15145c0ce4905f94658ef039ce9b445927df656c0"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets createdAt/updatedAt = Instant.now() (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "canary_archive.updated_at has type datetime: SqlStorageService.storeObject always sets createdAt and updatedAt to Instant.now(); no request field maps to these columns (client-supplied createdTimestamp in canary configs only affects the JSON content). Control read-back shows a server-generated DATETIME value.",
+      "confidence": 0.9,
+      "limitations": [
+        "Observed that MySQL DATETIME (no fractional precision) stores Instant values truncated to seconds; this is deployed-schema behaviour, not a predicate violation."
+      ]
+    },
+    {
+      "target_id": "pc-900bdfd125e0",
+      "target_kind": "constraint",
+      "outcome": "DATABASE_ENFORCED_UNHANDLED",
+      "exact_predicate_confirmed": true,
+      "observed_enforcement": "database",
+      "application_layer_implemented": false,
+      "response_handling": "unhandled",
+      "case_ids": [
+        "CC-01-control-create",
+        "CC-03-boundary-id-255",
+        "CC-04-violation-id-256"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CC-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "397d283bc497c5ce1c465c6aa379f6036360f84ba7eed08204a79c6c126b5c87"
+        },
+        {
+          "path": "logs/cases/CC-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "eea5fbde162ec9b9b496fadd33a7785d5635d19acf479e8689012d636930a371"
+        },
+        {
+          "path": "raw/readback/CC-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "0f8e14dd270def7a79bfaeb6dc30fc7fce05cdba6d4083a6374f5bdbbde33a8a"
+        },
+        {
+          "path": "raw/CC-03-boundary-id-255.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "63bc6b348c2aeffd8d2dfb85d95fb00217ee85fc4fa16a5aac30204776048331"
+        },
+        {
+          "path": "logs/cases/CC-03-boundary-id-255.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "829f58bf62ae8044618d6852c1866fab26945f5c3ae65b0683771099ad8a8a44"
+        },
+        {
+          "path": "raw/readback/CC-03-boundary-id-255.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "50701ff4dc90d8aa2b22c9de415e71eba49e99696772d6e8b98958e86f454a43"
+        },
+        {
+          "path": "raw/CC-04-violation-id-256.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "64fc5b7b09de2733b3eaefe5650ce7648e528e023b97eea69f3513f8edfa882a"
+        },
+        {
+          "path": "logs/cases/CC-04-violation-id-256.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "b319994bb77b8a0808f9f3f437f75762342a964719c2364421d9a35407b84b23"
+        },
+        {
+          "path": "raw/readback/CC-04-violation-id-256.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "3af6d8def93efd4d02264b7b35fd57dca836a3bc436a93a734790c1ba578fc3a"
+        },
+        {
+          "path": "logs/schema-mysql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output of Liquibase-created MySQL schema and DATABASECHANGELOG (postgres changeset MARK_RAN)",
+          "sha256": "755935daa6a374cd0bc01d0317e8043efb24bf3fd6ac2a27a05a8dcea639a916"
+        }
+      ],
+      "rationale": "canary_config.id has length 255. The id is client-controlled via POST /canaryConfig (body field id). A 255-character id was persisted (read-back CHAR_LENGTH=255). A 256-character id passed all application checks, Hibernate issued 'insert into canary_config', and MySQL (strict mode) rejected it with SQL Error 1406/22001 'Data too long for column id'; Spring translated it to DataIntegrityViolationException and kork's generic handler returned HTTP 500 'Internal Server Error' exposing the exception class. Read-back shows no row persisted. The application has no length validation.",
+      "confidence": 0.95,
+      "limitations": [
+        "Behaviour depends on MySQL STRICT_TRANS_TABLES (enabled, default); non-strict MySQL would silently truncate."
+      ]
+    },
+    {
+      "target_id": "pc-697814377ac0",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "CC-01-control-create",
+        "CC-10-violation-null-content"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CC-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "397d283bc497c5ce1c465c6aa379f6036360f84ba7eed08204a79c6c126b5c87"
+        },
+        {
+          "path": "logs/cases/CC-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "eea5fbde162ec9b9b496fadd33a7785d5635d19acf479e8689012d636930a371"
+        },
+        {
+          "path": "raw/readback/CC-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "0f8e14dd270def7a79bfaeb6dc30fc7fce05cdba6d4083a6374f5bdbbde33a8a"
+        },
+        {
+          "path": "raw/CC-10-violation-null-content.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "9ed81e5a5e351bd85af4c799c392df7dba4ccc672370122d19e4288de33cd5de"
+        },
+        {
+          "path": "logs/cases/CC-10-violation-null-content.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "raw/readback/CC-10-violation-null-content.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "de1ccf3d709b72fc66aa2f1cb7043e086484dd387ca8d624753cc7abe40d8dee"
+        }
+      ],
+      "rationale": "canary_config.content must not be null: content is always ObjectMapper.writeValueAsString(obj) of the bound request body, which is never SQL NULL. The closest API attempt (JSON body literal null) was rejected by Spring request-body binding with HTTP 400 before the controller ran (no SQL issued, row count unchanged); that is a binding failure, not enforcement of this predicate.",
+      "confidence": 0.85,
+      "limitations": [
+        "A null domain object would serialize to the JSON text 'null', not SQL NULL, so the column predicate is unreachable from the API."
+      ]
+    },
+    {
+      "target_id": "pc-03dd49ea23ba",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "CC-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CC-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "397d283bc497c5ce1c465c6aa379f6036360f84ba7eed08204a79c6c126b5c87"
+        },
+        {
+          "path": "logs/cases/CC-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "eea5fbde162ec9b9b496fadd33a7785d5635d19acf479e8689012d636930a371"
+        },
+        {
+          "path": "raw/readback/CC-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "0f8e14dd270def7a79bfaeb6dc30fc7fce05cdba6d4083a6374f5bdbbde33a8a"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets createdAt/updatedAt = Instant.now() (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "canary_config.created_at must not be null: SqlStorageService.storeObject always sets createdAt and updatedAt to Instant.now(); no request field maps to these columns (client-supplied createdTimestamp in canary configs only affects the JSON content). Control read-back shows a server-generated DATETIME value.",
+      "confidence": 0.9,
+      "limitations": [
+        "Observed that MySQL DATETIME (no fractional precision) stores Instant values truncated to seconds; this is deployed-schema behaviour, not a predicate violation."
+      ]
+    },
+    {
+      "target_id": "pc-03e7ed0064f7",
+      "target_kind": "constraint",
+      "outcome": "APPLICATION_TRANSFORMED",
+      "exact_predicate_confirmed": true,
+      "observed_enforcement": "application",
+      "application_layer_implemented": true,
+      "response_handling": "elegant",
+      "case_ids": [
+        "CC-08-violation-null-id",
+        "CC-09-violation-empty-id"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CC-08-violation-null-id.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "6e3487d34ac9e457af4cce3f3aa86f23a4175160478cac910ad5d01d18989aab"
+        },
+        {
+          "path": "logs/cases/CC-08-violation-null-id.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "65ef40fe4c3f1299f2ca7af23e100fc92c8a0c515d35694ca0a529be69851541"
+        },
+        {
+          "path": "raw/readback/CC-08-violation-null-id.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "2384a0533b950a67160aa4c886731e8d273354bb7649644d6c8003c76bcd7645"
+        },
+        {
+          "path": "raw/CC-09-violation-empty-id.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "32d3d49cefd7712e0f67cdfc2455a2d141c43105a77f81284d8dd9edecede4cc"
+        },
+        {
+          "path": "logs/cases/CC-09-violation-empty-id.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "7aa1a98de24a421a116b1d50c7de7b79d73df2f501da70c577732ebe08e46b31"
+        },
+        {
+          "path": "raw/readback/CC-09-violation-empty-id.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "4775487e996f10225d21b662c926013e76cee66fec16bf5e57ef8cd8d7796b0c"
+        },
+        {
+          "path": "raw/final-db-readback.tsv",
+          "kind": "read-back",
+          "description": "Final state of all four tables after all cases",
+          "sha256": "a051f92921749b89e394919903e8abd12f57967563ae5086ba20829026137c6f"
+        }
+      ],
+      "rationale": "canary_config.id must not be null. POST /canaryConfig with id omitted (null) and with id \"\" both returned 200; the controller replaces an empty id with UUID.randomUUID() before storeObject. Read-back shows rows with 36-char UUID ids (also written into content.id), so a null id never reaches the INSERT.",
+      "confidence": 0.9,
+      "limitations": [
+        "No path found that passes a null id to storage; PUT uses a non-null path variable."
+      ]
+    },
+    {
+      "target_id": "pc-454b6220f809",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "CC-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CC-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "397d283bc497c5ce1c465c6aa379f6036360f84ba7eed08204a79c6c126b5c87"
+        },
+        {
+          "path": "logs/cases/CC-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "eea5fbde162ec9b9b496fadd33a7785d5635d19acf479e8689012d636930a371"
+        },
+        {
+          "path": "raw/readback/CC-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "0f8e14dd270def7a79bfaeb6dc30fc7fce05cdba6d4083a6374f5bdbbde33a8a"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets createdAt/updatedAt = Instant.now() (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "canary_config.updated_at must not be null: SqlStorageService.storeObject always sets createdAt and updatedAt to Instant.now(); no request field maps to these columns (client-supplied createdTimestamp in canary configs only affects the JSON content). Control read-back shows a server-generated DATETIME value.",
+      "confidence": 0.9,
+      "limitations": [
+        "Observed that MySQL DATETIME (no fractional precision) stores Instant values truncated to seconds; this is deployed-schema behaviour, not a predicate violation."
+      ]
+    },
+    {
+      "target_id": "pc-82610b8aefc0",
+      "target_kind": "constraint",
+      "outcome": "APPLICATION_REJECTED",
+      "exact_predicate_confirmed": true,
+      "observed_enforcement": "application",
+      "application_layer_implemented": true,
+      "response_handling": "elegant",
+      "case_ids": [
+        "CC-01-control-create",
+        "CC-05-violation-duplicate-id",
+        "CC-06-boundary-duplicate-id-case-variant",
+        "CC-07-update-same-id"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CC-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "397d283bc497c5ce1c465c6aa379f6036360f84ba7eed08204a79c6c126b5c87"
+        },
+        {
+          "path": "logs/cases/CC-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "eea5fbde162ec9b9b496fadd33a7785d5635d19acf479e8689012d636930a371"
+        },
+        {
+          "path": "raw/readback/CC-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "0f8e14dd270def7a79bfaeb6dc30fc7fce05cdba6d4083a6374f5bdbbde33a8a"
+        },
+        {
+          "path": "raw/CC-05-violation-duplicate-id.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "2025af406831c5f14b92c7dc39cc67db13202c0c6d74ff5973d05e3dd0dc8bb3"
+        },
+        {
+          "path": "logs/cases/CC-05-violation-duplicate-id.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "fb130ffe7a9e225ccaa11cf21a50f7d1c39c230777875e1ea040b0c49fd1f4fa"
+        },
+        {
+          "path": "raw/readback/CC-05-violation-duplicate-id.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "29195e02d16ca18a9463d2a79c539884c9ba194037ca6b151c49ad9e20d436d0"
+        },
+        {
+          "path": "raw/CC-06-boundary-duplicate-id-case-variant.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "a6f27112b0d06fb3518515ee89248a02e77701eb5c1f209482b057f7b96431a1"
+        },
+        {
+          "path": "logs/cases/CC-06-boundary-duplicate-id-case-variant.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d9806bed97f06bf1f35cef82b94fff327d17545332ac3fa6b62dd9ea1232f8b7"
+        },
+        {
+          "path": "raw/readback/CC-06-boundary-duplicate-id-case-variant.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "29195e02d16ca18a9463d2a79c539884c9ba194037ca6b151c49ad9e20d436d0"
+        },
+        {
+          "path": "raw/CC-07-update-same-id.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "230a2cb267e22142065c38751dd2fe7df5b9380eb34d127bb1c6afca502811ab"
+        },
+        {
+          "path": "logs/cases/CC-07-update-same-id.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "436ec58f2d892af8de9a06c863ba0b9562f66d318eb89c5f4437b7cf0aec4658"
+        },
+        {
+          "path": "raw/readback/CC-07-update-same-id.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "8375a8a9bb2639eb2af5065d85acec3fd146de65fb6b76c611b81fbc63f13fc6"
+        },
+        {
+          "path": "logs/schema-mysql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output of Liquibase-created MySQL schema and DATABASECHANGELOG (postgres changeset MARK_RAN)",
+          "sha256": "755935daa6a374cd0bc01d0317e8043efb24bf3fd6ac2a27a05a8dcea639a916"
+        }
+      ],
+      "rationale": "canary_config.id identifies a row. After creating cc-valid-001, a second POST with the same id was rejected by the controller's existence pre-check (loadObject -> findById) with HTTP 400 \"Canary config 'cc-valid-001' already exists.\"; only a SELECT was issued (no INSERT) and read-back shows the original row unchanged. PUT on the same id issued an UPDATE (row count stays 1), consistent with id identifying the row. The DB PK itself was never reached by the duplicate insert.",
+      "confidence": 0.9,
+      "limitations": [
+        "The case-variant id 'CC-VALID-001' was also rejected because the MySQL utf8mb4_0900_ai_ci collation makes the PK/lookup case-insensitive - stricter than exact-string identity; this is deployed-schema behaviour, not the extracted predicate.",
+        "Concurrent duplicate POSTs (race past the pre-check) were not tested; JPA save() would merge rather than fail."
+      ]
+    },
+    {
+      "target_id": "pc-28c967fd981a",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "CC-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CC-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "397d283bc497c5ce1c465c6aa379f6036360f84ba7eed08204a79c6c126b5c87"
+        },
+        {
+          "path": "logs/cases/CC-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "eea5fbde162ec9b9b496fadd33a7785d5635d19acf479e8689012d636930a371"
+        },
+        {
+          "path": "raw/readback/CC-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "0f8e14dd270def7a79bfaeb6dc30fc7fce05cdba6d4083a6374f5bdbbde33a8a"
+        },
+        {
+          "path": "logs/schema-mysql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output of Liquibase-created MySQL schema and DATABASECHANGELOG (postgres changeset MARK_RAN)",
+          "sha256": "755935daa6a374cd0bc01d0317e8043efb24bf3fd6ac2a27a05a8dcea639a916"
+        }
+      ],
+      "rationale": "canary_config.content has type JSON (deployed as MySQL json). Content is produced exclusively by Jackson serialization of a typed request object, so the client cannot make the application write non-JSON text. Control read-back: JSON_VALID(content)=1.",
+      "confidence": 0.8,
+      "limitations": [
+        "MySQL-specific JSON limits (e.g. max nesting depth 100) were not probed; the typed request models expose no free-form deeply nested fields."
+      ]
+    },
+    {
+      "target_id": "pc-cd98250264a6",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "CC-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CC-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "397d283bc497c5ce1c465c6aa379f6036360f84ba7eed08204a79c6c126b5c87"
+        },
+        {
+          "path": "logs/cases/CC-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "eea5fbde162ec9b9b496fadd33a7785d5635d19acf479e8689012d636930a371"
+        },
+        {
+          "path": "raw/readback/CC-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "0f8e14dd270def7a79bfaeb6dc30fc7fce05cdba6d4083a6374f5bdbbde33a8a"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets createdAt/updatedAt = Instant.now() (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "canary_config.created_at has type datetime: SqlStorageService.storeObject always sets createdAt and updatedAt to Instant.now(); no request field maps to these columns (client-supplied createdTimestamp in canary configs only affects the JSON content). Control read-back shows a server-generated DATETIME value.",
+      "confidence": 0.9,
+      "limitations": [
+        "Observed that MySQL DATETIME (no fractional precision) stores Instant values truncated to seconds; this is deployed-schema behaviour, not a predicate violation."
+      ]
+    },
+    {
+      "target_id": "pc-d4dc77dfb22b",
+      "target_kind": "constraint",
+      "outcome": "DATABASE_ENFORCED_UNHANDLED",
+      "exact_predicate_confirmed": true,
+      "observed_enforcement": "database",
+      "application_layer_implemented": false,
+      "response_handling": "unhandled",
+      "case_ids": [
+        "CC-01-control-create",
+        "CC-03-boundary-id-255",
+        "CC-04-violation-id-256"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CC-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "397d283bc497c5ce1c465c6aa379f6036360f84ba7eed08204a79c6c126b5c87"
+        },
+        {
+          "path": "logs/cases/CC-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "eea5fbde162ec9b9b496fadd33a7785d5635d19acf479e8689012d636930a371"
+        },
+        {
+          "path": "raw/readback/CC-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "0f8e14dd270def7a79bfaeb6dc30fc7fce05cdba6d4083a6374f5bdbbde33a8a"
+        },
+        {
+          "path": "raw/CC-03-boundary-id-255.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "63bc6b348c2aeffd8d2dfb85d95fb00217ee85fc4fa16a5aac30204776048331"
+        },
+        {
+          "path": "logs/cases/CC-03-boundary-id-255.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "829f58bf62ae8044618d6852c1866fab26945f5c3ae65b0683771099ad8a8a44"
+        },
+        {
+          "path": "raw/readback/CC-03-boundary-id-255.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "50701ff4dc90d8aa2b22c9de415e71eba49e99696772d6e8b98958e86f454a43"
+        },
+        {
+          "path": "raw/CC-04-violation-id-256.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "64fc5b7b09de2733b3eaefe5650ce7648e528e023b97eea69f3513f8edfa882a"
+        },
+        {
+          "path": "logs/cases/CC-04-violation-id-256.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "b319994bb77b8a0808f9f3f437f75762342a964719c2364421d9a35407b84b23"
+        },
+        {
+          "path": "raw/readback/CC-04-violation-id-256.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "3af6d8def93efd4d02264b7b35fd57dca836a3bc436a93a734790c1ba578fc3a"
+        },
+        {
+          "path": "logs/schema-mysql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output of Liquibase-created MySQL schema and DATABASECHANGELOG (postgres changeset MARK_RAN)",
+          "sha256": "755935daa6a374cd0bc01d0317e8043efb24bf3fd6ac2a27a05a8dcea639a916"
+        }
+      ],
+      "rationale": "canary_config.id has type VARCHAR(255). The id is client-controlled via POST /canaryConfig (body field id). A 255-character id was persisted (read-back CHAR_LENGTH=255). A 256-character id passed all application checks, Hibernate issued 'insert into canary_config', and MySQL (strict mode) rejected it with SQL Error 1406/22001 'Data too long for column id'; Spring translated it to DataIntegrityViolationException and kork's generic handler returned HTTP 500 'Internal Server Error' exposing the exception class. Read-back shows no row persisted. The application has no length validation.",
+      "confidence": 0.95,
+      "limitations": [
+        "Behaviour depends on MySQL STRICT_TRANS_TABLES (enabled, default); non-strict MySQL would silently truncate."
+      ]
+    },
+    {
+      "target_id": "pc-e3c4f3bbce3b",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "CC-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/CC-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "397d283bc497c5ce1c465c6aa379f6036360f84ba7eed08204a79c6c126b5c87"
+        },
+        {
+          "path": "logs/cases/CC-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "eea5fbde162ec9b9b496fadd33a7785d5635d19acf479e8689012d636930a371"
+        },
+        {
+          "path": "raw/readback/CC-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "0f8e14dd270def7a79bfaeb6dc30fc7fce05cdba6d4083a6374f5bdbbde33a8a"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets createdAt/updatedAt = Instant.now() (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "canary_config.updated_at has type datetime: SqlStorageService.storeObject always sets createdAt and updatedAt to Instant.now(); no request field maps to these columns (client-supplied createdTimestamp in canary configs only affects the JSON content). Control read-back shows a server-generated DATETIME value.",
+      "confidence": 0.9,
+      "limitations": [
+        "Observed that MySQL DATETIME (no fractional precision) stores Instant values truncated to seconds; this is deployed-schema behaviour, not a predicate violation."
+      ]
+    },
+    {
+      "target_id": "pc-b2886370da3b",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MS-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MS-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "6d62ade3c0f3fb8f2ae12f7e8e962ffc2d7a3fe66f46e46db81567d0d66f3036"
+        },
+        {
+          "path": "logs/cases/MS-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d6914ab17c9c8c7183c825ba0c9e36076c0b160dd6a92db11fb945324cb876a1"
+        },
+        {
+          "path": "raw/readback/MS-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "bb934a6aa3b7e455819642cb5383ba4788667497e797b8c68920965d9c7f91a7"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets id from objectKey (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "metric_sets.id length 255: every write path (POST /metricSetList, and internal metric-fetch/judge tasks) uses a server-generated UUID.randomUUID() as the id, so a client cannot supply a null, over-long, non-string or duplicate id. Control shows a 36-char UUID persisted.",
+      "confidence": 0.85,
+      "limitations": [
+        "Only the public HTTP API was considered; the StorageDataMigrator (config-driven) was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-2b8c47e5d7bd",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MS-01-control-create",
+        "MS-02-violation-null-content"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MS-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "6d62ade3c0f3fb8f2ae12f7e8e962ffc2d7a3fe66f46e46db81567d0d66f3036"
+        },
+        {
+          "path": "logs/cases/MS-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d6914ab17c9c8c7183c825ba0c9e36076c0b160dd6a92db11fb945324cb876a1"
+        },
+        {
+          "path": "raw/readback/MS-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "bb934a6aa3b7e455819642cb5383ba4788667497e797b8c68920965d9c7f91a7"
+        },
+        {
+          "path": "raw/MS-02-violation-null-content.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "2235cbe20731aa759e903de890a1901e50d34d05b54f3539eaa7302238490c91"
+        },
+        {
+          "path": "logs/cases/MS-02-violation-null-content.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "raw/readback/MS-02-violation-null-content.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "1276ad3afafed0be12e10b6921eab9241a260066391778b060e693ce4af774af"
+        }
+      ],
+      "rationale": "metric_sets.content must not be null: content is always ObjectMapper.writeValueAsString(obj) of the bound request body, which is never SQL NULL. The closest API attempt (JSON body literal null) was rejected by Spring request-body binding with HTTP 400 before the controller ran (no SQL issued, row count unchanged); that is a binding failure, not enforcement of this predicate.",
+      "confidence": 0.85,
+      "limitations": [
+        "A null domain object would serialize to the JSON text 'null', not SQL NULL, so the column predicate is unreachable from the API."
+      ]
+    },
+    {
+      "target_id": "pc-aadee8576d99",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MS-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MS-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "6d62ade3c0f3fb8f2ae12f7e8e962ffc2d7a3fe66f46e46db81567d0d66f3036"
+        },
+        {
+          "path": "logs/cases/MS-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d6914ab17c9c8c7183c825ba0c9e36076c0b160dd6a92db11fb945324cb876a1"
+        },
+        {
+          "path": "raw/readback/MS-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "bb934a6aa3b7e455819642cb5383ba4788667497e797b8c68920965d9c7f91a7"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets createdAt/updatedAt = Instant.now() (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "metric_sets.created_at must not be null: SqlStorageService.storeObject always sets createdAt and updatedAt to Instant.now(); no request field maps to these columns (client-supplied createdTimestamp in canary configs only affects the JSON content). Control read-back shows a server-generated DATETIME value.",
+      "confidence": 0.9,
+      "limitations": [
+        "Observed that MySQL DATETIME (no fractional precision) stores Instant values truncated to seconds; this is deployed-schema behaviour, not a predicate violation."
+      ]
+    },
+    {
+      "target_id": "pc-bcfeaadde2a6",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MS-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MS-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "6d62ade3c0f3fb8f2ae12f7e8e962ffc2d7a3fe66f46e46db81567d0d66f3036"
+        },
+        {
+          "path": "logs/cases/MS-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d6914ab17c9c8c7183c825ba0c9e36076c0b160dd6a92db11fb945324cb876a1"
+        },
+        {
+          "path": "raw/readback/MS-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "bb934a6aa3b7e455819642cb5383ba4788667497e797b8c68920965d9c7f91a7"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets id from objectKey (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "metric_sets.id not-null: every write path (POST /metricSetList, and internal metric-fetch/judge tasks) uses a server-generated UUID.randomUUID() as the id, so a client cannot supply a null, over-long, non-string or duplicate id. Control shows a 36-char UUID persisted.",
+      "confidence": 0.85,
+      "limitations": [
+        "Only the public HTTP API was considered; the StorageDataMigrator (config-driven) was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-4ee8f253c4e1",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MS-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MS-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "6d62ade3c0f3fb8f2ae12f7e8e962ffc2d7a3fe66f46e46db81567d0d66f3036"
+        },
+        {
+          "path": "logs/cases/MS-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d6914ab17c9c8c7183c825ba0c9e36076c0b160dd6a92db11fb945324cb876a1"
+        },
+        {
+          "path": "raw/readback/MS-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "bb934a6aa3b7e455819642cb5383ba4788667497e797b8c68920965d9c7f91a7"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets createdAt/updatedAt = Instant.now() (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "metric_sets.updated_at must not be null: SqlStorageService.storeObject always sets createdAt and updatedAt to Instant.now(); no request field maps to these columns (client-supplied createdTimestamp in canary configs only affects the JSON content). Control read-back shows a server-generated DATETIME value.",
+      "confidence": 0.9,
+      "limitations": [
+        "Observed that MySQL DATETIME (no fractional precision) stores Instant values truncated to seconds; this is deployed-schema behaviour, not a predicate violation."
+      ]
+    },
+    {
+      "target_id": "pc-f2aa380a79e9",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MS-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MS-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "6d62ade3c0f3fb8f2ae12f7e8e962ffc2d7a3fe66f46e46db81567d0d66f3036"
+        },
+        {
+          "path": "logs/cases/MS-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d6914ab17c9c8c7183c825ba0c9e36076c0b160dd6a92db11fb945324cb876a1"
+        },
+        {
+          "path": "raw/readback/MS-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "bb934a6aa3b7e455819642cb5383ba4788667497e797b8c68920965d9c7f91a7"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets id from objectKey (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "metric_sets.id primary key: every write path (POST /metricSetList, and internal metric-fetch/judge tasks) uses a server-generated UUID.randomUUID() as the id, so a client cannot supply a null, over-long, non-string or duplicate id. Control shows a 36-char UUID persisted.",
+      "confidence": 0.85,
+      "limitations": [
+        "Only the public HTTP API was considered; the StorageDataMigrator (config-driven) was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-2611c9ac3275",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MS-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MS-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "6d62ade3c0f3fb8f2ae12f7e8e962ffc2d7a3fe66f46e46db81567d0d66f3036"
+        },
+        {
+          "path": "logs/cases/MS-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d6914ab17c9c8c7183c825ba0c9e36076c0b160dd6a92db11fb945324cb876a1"
+        },
+        {
+          "path": "raw/readback/MS-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "bb934a6aa3b7e455819642cb5383ba4788667497e797b8c68920965d9c7f91a7"
+        },
+        {
+          "path": "logs/schema-mysql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output of Liquibase-created MySQL schema and DATABASECHANGELOG (postgres changeset MARK_RAN)",
+          "sha256": "755935daa6a374cd0bc01d0317e8043efb24bf3fd6ac2a27a05a8dcea639a916"
+        }
+      ],
+      "rationale": "metric_sets.content has type JSON (deployed as MySQL json). Content is produced exclusively by Jackson serialization of a typed request object, so the client cannot make the application write non-JSON text. Control read-back: JSON_VALID(content)=1.",
+      "confidence": 0.8,
+      "limitations": [
+        "MySQL-specific JSON limits (e.g. max nesting depth 100) were not probed; the typed request models expose no free-form deeply nested fields."
+      ]
+    },
+    {
+      "target_id": "pc-4ff0c7f191dd",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MS-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MS-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "6d62ade3c0f3fb8f2ae12f7e8e962ffc2d7a3fe66f46e46db81567d0d66f3036"
+        },
+        {
+          "path": "logs/cases/MS-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d6914ab17c9c8c7183c825ba0c9e36076c0b160dd6a92db11fb945324cb876a1"
+        },
+        {
+          "path": "raw/readback/MS-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "bb934a6aa3b7e455819642cb5383ba4788667497e797b8c68920965d9c7f91a7"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets createdAt/updatedAt = Instant.now() (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "metric_sets.created_at has type datetime: SqlStorageService.storeObject always sets createdAt and updatedAt to Instant.now(); no request field maps to these columns (client-supplied createdTimestamp in canary configs only affects the JSON content). Control read-back shows a server-generated DATETIME value.",
+      "confidence": 0.9,
+      "limitations": [
+        "Observed that MySQL DATETIME (no fractional precision) stores Instant values truncated to seconds; this is deployed-schema behaviour, not a predicate violation."
+      ]
+    },
+    {
+      "target_id": "pc-34efbcce606b",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MS-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MS-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "6d62ade3c0f3fb8f2ae12f7e8e962ffc2d7a3fe66f46e46db81567d0d66f3036"
+        },
+        {
+          "path": "logs/cases/MS-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d6914ab17c9c8c7183c825ba0c9e36076c0b160dd6a92db11fb945324cb876a1"
+        },
+        {
+          "path": "raw/readback/MS-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "bb934a6aa3b7e455819642cb5383ba4788667497e797b8c68920965d9c7f91a7"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets id from objectKey (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "metric_sets.id VARCHAR(255) type: every write path (POST /metricSetList, and internal metric-fetch/judge tasks) uses a server-generated UUID.randomUUID() as the id, so a client cannot supply a null, over-long, non-string or duplicate id. Control shows a 36-char UUID persisted.",
+      "confidence": 0.85,
+      "limitations": [
+        "Only the public HTTP API was considered; the StorageDataMigrator (config-driven) was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-0a2ac553dd29",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MS-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MS-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "6d62ade3c0f3fb8f2ae12f7e8e962ffc2d7a3fe66f46e46db81567d0d66f3036"
+        },
+        {
+          "path": "logs/cases/MS-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d6914ab17c9c8c7183c825ba0c9e36076c0b160dd6a92db11fb945324cb876a1"
+        },
+        {
+          "path": "raw/readback/MS-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "bb934a6aa3b7e455819642cb5383ba4788667497e797b8c68920965d9c7f91a7"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets createdAt/updatedAt = Instant.now() (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "metric_sets.updated_at has type datetime: SqlStorageService.storeObject always sets createdAt and updatedAt to Instant.now(); no request field maps to these columns (client-supplied createdTimestamp in canary configs only affects the JSON content). Control read-back shows a server-generated DATETIME value.",
+      "confidence": 0.9,
+      "limitations": [
+        "Observed that MySQL DATETIME (no fractional precision) stores Instant values truncated to seconds; this is deployed-schema behaviour, not a predicate violation."
+      ]
+    },
+    {
+      "target_id": "pc-a56ff232d178",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MSP-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MSP-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "c6c5acce1351430e506aadd48b9764c3cc9401150171aec7dd5df47e280aab53"
+        },
+        {
+          "path": "logs/cases/MSP-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d7d7ee826eacb821f1a09beeacb56a3885b7ddc95bf64b86954dc1af75e2a199"
+        },
+        {
+          "path": "raw/readback/MSP-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "1693ca8715a5d2c56995ddb4dc286ce0193eae04be32f9265ae8b13a2af14815"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets id from objectKey (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "metric_set_pairs.id length 255: every write path (POST /metricSetPairList, and internal metric-fetch/judge tasks) uses a server-generated UUID.randomUUID() as the id, so a client cannot supply a null, over-long, non-string or duplicate id. Control shows a 36-char UUID persisted.",
+      "confidence": 0.85,
+      "limitations": [
+        "Only the public HTTP API was considered; the StorageDataMigrator (config-driven) was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-c69dfeadd911",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MSP-01-control-create",
+        "MSP-02-violation-null-content"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MSP-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "c6c5acce1351430e506aadd48b9764c3cc9401150171aec7dd5df47e280aab53"
+        },
+        {
+          "path": "logs/cases/MSP-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d7d7ee826eacb821f1a09beeacb56a3885b7ddc95bf64b86954dc1af75e2a199"
+        },
+        {
+          "path": "raw/readback/MSP-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "1693ca8715a5d2c56995ddb4dc286ce0193eae04be32f9265ae8b13a2af14815"
+        },
+        {
+          "path": "raw/MSP-02-violation-null-content.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "733314ebca4132f660707f64b2798fbd91f1352f00434817a6e72524b4ee0ef3"
+        },
+        {
+          "path": "logs/cases/MSP-02-violation-null-content.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "raw/readback/MSP-02-violation-null-content.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "a7e4a84acd6e316e8531b706814891dc144b01e463806a639ea8428bc031dc28"
+        }
+      ],
+      "rationale": "metric_set_pairs.content must not be null: content is always ObjectMapper.writeValueAsString(obj) of the bound request body, which is never SQL NULL. The closest API attempt (JSON body literal null) was rejected by Spring request-body binding with HTTP 400 before the controller ran (no SQL issued, row count unchanged); that is a binding failure, not enforcement of this predicate.",
+      "confidence": 0.85,
+      "limitations": [
+        "A null domain object would serialize to the JSON text 'null', not SQL NULL, so the column predicate is unreachable from the API."
+      ]
+    },
+    {
+      "target_id": "pc-893aeb4d6f06",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MSP-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MSP-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "c6c5acce1351430e506aadd48b9764c3cc9401150171aec7dd5df47e280aab53"
+        },
+        {
+          "path": "logs/cases/MSP-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d7d7ee826eacb821f1a09beeacb56a3885b7ddc95bf64b86954dc1af75e2a199"
+        },
+        {
+          "path": "raw/readback/MSP-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "1693ca8715a5d2c56995ddb4dc286ce0193eae04be32f9265ae8b13a2af14815"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets createdAt/updatedAt = Instant.now() (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "metric_set_pairs.created_at must not be null: SqlStorageService.storeObject always sets createdAt and updatedAt to Instant.now(); no request field maps to these columns (client-supplied createdTimestamp in canary configs only affects the JSON content). Control read-back shows a server-generated DATETIME value.",
+      "confidence": 0.9,
+      "limitations": [
+        "Observed that MySQL DATETIME (no fractional precision) stores Instant values truncated to seconds; this is deployed-schema behaviour, not a predicate violation."
+      ]
+    },
+    {
+      "target_id": "pc-25e267f034f9",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MSP-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MSP-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "c6c5acce1351430e506aadd48b9764c3cc9401150171aec7dd5df47e280aab53"
+        },
+        {
+          "path": "logs/cases/MSP-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d7d7ee826eacb821f1a09beeacb56a3885b7ddc95bf64b86954dc1af75e2a199"
+        },
+        {
+          "path": "raw/readback/MSP-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "1693ca8715a5d2c56995ddb4dc286ce0193eae04be32f9265ae8b13a2af14815"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets id from objectKey (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "metric_set_pairs.id not-null: every write path (POST /metricSetPairList, and internal metric-fetch/judge tasks) uses a server-generated UUID.randomUUID() as the id, so a client cannot supply a null, over-long, non-string or duplicate id. Control shows a 36-char UUID persisted.",
+      "confidence": 0.85,
+      "limitations": [
+        "Only the public HTTP API was considered; the StorageDataMigrator (config-driven) was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-6e7266c1819b",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MSP-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MSP-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "c6c5acce1351430e506aadd48b9764c3cc9401150171aec7dd5df47e280aab53"
+        },
+        {
+          "path": "logs/cases/MSP-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d7d7ee826eacb821f1a09beeacb56a3885b7ddc95bf64b86954dc1af75e2a199"
+        },
+        {
+          "path": "raw/readback/MSP-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "1693ca8715a5d2c56995ddb4dc286ce0193eae04be32f9265ae8b13a2af14815"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets createdAt/updatedAt = Instant.now() (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "metric_set_pairs.updated_at must not be null: SqlStorageService.storeObject always sets createdAt and updatedAt to Instant.now(); no request field maps to these columns (client-supplied createdTimestamp in canary configs only affects the JSON content). Control read-back shows a server-generated DATETIME value.",
+      "confidence": 0.9,
+      "limitations": [
+        "Observed that MySQL DATETIME (no fractional precision) stores Instant values truncated to seconds; this is deployed-schema behaviour, not a predicate violation."
+      ]
+    },
+    {
+      "target_id": "pc-5f7f9ca6c44d",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MSP-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MSP-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "c6c5acce1351430e506aadd48b9764c3cc9401150171aec7dd5df47e280aab53"
+        },
+        {
+          "path": "logs/cases/MSP-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d7d7ee826eacb821f1a09beeacb56a3885b7ddc95bf64b86954dc1af75e2a199"
+        },
+        {
+          "path": "raw/readback/MSP-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "1693ca8715a5d2c56995ddb4dc286ce0193eae04be32f9265ae8b13a2af14815"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets id from objectKey (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "metric_set_pairs.id primary key: every write path (POST /metricSetPairList, and internal metric-fetch/judge tasks) uses a server-generated UUID.randomUUID() as the id, so a client cannot supply a null, over-long, non-string or duplicate id. Control shows a 36-char UUID persisted.",
+      "confidence": 0.85,
+      "limitations": [
+        "Only the public HTTP API was considered; the StorageDataMigrator (config-driven) was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-ab279b731a74",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MSP-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MSP-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "c6c5acce1351430e506aadd48b9764c3cc9401150171aec7dd5df47e280aab53"
+        },
+        {
+          "path": "logs/cases/MSP-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d7d7ee826eacb821f1a09beeacb56a3885b7ddc95bf64b86954dc1af75e2a199"
+        },
+        {
+          "path": "raw/readback/MSP-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "1693ca8715a5d2c56995ddb4dc286ce0193eae04be32f9265ae8b13a2af14815"
+        },
+        {
+          "path": "logs/schema-mysql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output of Liquibase-created MySQL schema and DATABASECHANGELOG (postgres changeset MARK_RAN)",
+          "sha256": "755935daa6a374cd0bc01d0317e8043efb24bf3fd6ac2a27a05a8dcea639a916"
+        }
+      ],
+      "rationale": "metric_set_pairs.content has type JSON (deployed as MySQL json). Content is produced exclusively by Jackson serialization of a typed request object, so the client cannot make the application write non-JSON text. Control read-back: JSON_VALID(content)=1.",
+      "confidence": 0.8,
+      "limitations": [
+        "MySQL-specific JSON limits (e.g. max nesting depth 100) were not probed; the typed request models expose no free-form deeply nested fields."
+      ]
+    },
+    {
+      "target_id": "pc-914538813632",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MSP-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MSP-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "c6c5acce1351430e506aadd48b9764c3cc9401150171aec7dd5df47e280aab53"
+        },
+        {
+          "path": "logs/cases/MSP-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d7d7ee826eacb821f1a09beeacb56a3885b7ddc95bf64b86954dc1af75e2a199"
+        },
+        {
+          "path": "raw/readback/MSP-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "1693ca8715a5d2c56995ddb4dc286ce0193eae04be32f9265ae8b13a2af14815"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets createdAt/updatedAt = Instant.now() (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "metric_set_pairs.created_at has type datetime: SqlStorageService.storeObject always sets createdAt and updatedAt to Instant.now(); no request field maps to these columns (client-supplied createdTimestamp in canary configs only affects the JSON content). Control read-back shows a server-generated DATETIME value.",
+      "confidence": 0.9,
+      "limitations": [
+        "Observed that MySQL DATETIME (no fractional precision) stores Instant values truncated to seconds; this is deployed-schema behaviour, not a predicate violation."
+      ]
+    },
+    {
+      "target_id": "pc-88c6ef457170",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MSP-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MSP-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "c6c5acce1351430e506aadd48b9764c3cc9401150171aec7dd5df47e280aab53"
+        },
+        {
+          "path": "logs/cases/MSP-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d7d7ee826eacb821f1a09beeacb56a3885b7ddc95bf64b86954dc1af75e2a199"
+        },
+        {
+          "path": "raw/readback/MSP-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "1693ca8715a5d2c56995ddb4dc286ce0193eae04be32f9265ae8b13a2af14815"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets id from objectKey (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "metric_set_pairs.id VARCHAR(255) type: every write path (POST /metricSetPairList, and internal metric-fetch/judge tasks) uses a server-generated UUID.randomUUID() as the id, so a client cannot supply a null, over-long, non-string or duplicate id. Control shows a 36-char UUID persisted.",
+      "confidence": 0.85,
+      "limitations": [
+        "Only the public HTTP API was considered; the StorageDataMigrator (config-driven) was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-216b2a3dbc5e",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "MSP-01-control-create"
+      ],
+      "evidence": [
+        {
+          "path": "raw/MSP-01-control-create.json",
+          "kind": "http-exchange",
+          "description": "Full request/response exchange with MySQL read-back",
+          "sha256": "c6c5acce1351430e506aadd48b9764c3cc9401150171aec7dd5df47e280aab53"
+        },
+        {
+          "path": "logs/cases/MSP-01-control-create.log",
+          "kind": "application-log",
+          "description": "Application log slice (Hibernate SQL, bindings, exceptions) captured during this case",
+          "sha256": "d7d7ee826eacb821f1a09beeacb56a3885b7ddc95bf64b86954dc1af75e2a199"
+        },
+        {
+          "path": "raw/readback/MSP-01-control-create.txt",
+          "kind": "read-back",
+          "description": "Direct MySQL read-back of persisted state after this case",
+          "sha256": "1693ca8715a5d2c56995ddb4dc286ce0193eae04be32f9265ae8b13a2af14815"
+        },
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java",
+          "kind": "source",
+          "description": "storeObject sets createdAt/updatedAt = Instant.now() (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/SqlStorageService.java)",
+          "sha256": "2e01ae9d17d5f3b7cfc2b900501c0dcd90ab192c95f888fe7e9f1a0de583e478"
+        }
+      ],
+      "rationale": "metric_set_pairs.updated_at has type datetime: SqlStorageService.storeObject always sets createdAt and updatedAt to Instant.now(); no request field maps to these columns (client-supplied createdTimestamp in canary configs only affects the JSON content). Control read-back shows a server-generated DATETIME value.",
+      "confidence": 0.9,
+      "limitations": [
+        "Observed that MySQL DATETIME (no fractional precision) stores Instant values truncated to seconds; this is deployed-schema behaviour, not a predicate violation."
+      ]
+    },
+    {
+      "target_id": "pc-fdf41b7b35f8",
+      "target_kind": "constraint",
+      "outcome": "VARIANT_NOT_DEPLOYED",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [],
+      "evidence": [
+        {
+          "path": "logs/schema-mysql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output of Liquibase-created MySQL schema and DATABASECHANGELOG (postgres changeset MARK_RAN)",
+          "sha256": "755935daa6a374cd0bc01d0317e8043efb24bf3fd6ac2a27a05a8dcea639a916"
+        }
+      ],
+      "rationale": "canary_archive.content JSONB comes from the postgresql-only changeset (dbms precondition, onFail MARK_RAN). The deployment used MySQL 8.0.42 (no PostgreSQL server available locally and no permitted port for one), where Liquibase marked the changeset as ran without applying it; the column is MySQL json.",
+      "confidence": 0.95,
+      "limitations": [
+        "PostgreSQL variant not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-76e10d4548d7",
+      "target_kind": "constraint",
+      "outcome": "VARIANT_NOT_DEPLOYED",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [],
+      "evidence": [
+        {
+          "path": "logs/schema-mysql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output of Liquibase-created MySQL schema and DATABASECHANGELOG (postgres changeset MARK_RAN)",
+          "sha256": "755935daa6a374cd0bc01d0317e8043efb24bf3fd6ac2a27a05a8dcea639a916"
+        }
+      ],
+      "rationale": "canary_config.content JSONB comes from the postgresql-only changeset (dbms precondition, onFail MARK_RAN). The deployment used MySQL 8.0.42 (no PostgreSQL server available locally and no permitted port for one), where Liquibase marked the changeset as ran without applying it; the column is MySQL json.",
+      "confidence": 0.95,
+      "limitations": [
+        "PostgreSQL variant not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-044910f711c0",
+      "target_kind": "constraint",
+      "outcome": "VARIANT_NOT_DEPLOYED",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [],
+      "evidence": [
+        {
+          "path": "logs/schema-mysql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output of Liquibase-created MySQL schema and DATABASECHANGELOG (postgres changeset MARK_RAN)",
+          "sha256": "755935daa6a374cd0bc01d0317e8043efb24bf3fd6ac2a27a05a8dcea639a916"
+        }
+      ],
+      "rationale": "metric_set_pairs.content JSONB comes from the postgresql-only changeset (dbms precondition, onFail MARK_RAN). The deployment used MySQL 8.0.42 (no PostgreSQL server available locally and no permitted port for one), where Liquibase marked the changeset as ran without applying it; the column is MySQL json.",
+      "confidence": 0.95,
+      "limitations": [
+        "PostgreSQL variant not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-a0ad056986da",
+      "target_kind": "constraint",
+      "outcome": "VARIANT_NOT_DEPLOYED",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [],
+      "evidence": [
+        {
+          "path": "logs/schema-mysql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output of Liquibase-created MySQL schema and DATABASECHANGELOG (postgres changeset MARK_RAN)",
+          "sha256": "755935daa6a374cd0bc01d0317e8043efb24bf3fd6ac2a27a05a8dcea639a916"
+        }
+      ],
+      "rationale": "metric_sets.content JSONB comes from the postgresql-only changeset (dbms precondition, onFail MARK_RAN). The deployment used MySQL 8.0.42 (no PostgreSQL server available locally and no permitted port for one), where Liquibase marked the changeset as ran without applying it; the column is MySQL json.",
+      "confidence": 0.95,
+      "limitations": [
+        "PostgreSQL variant not exercised."
+      ]
+    },
+    {
+      "target_id": "dep-66b9ecab929e",
+      "target_kind": "dependency",
+      "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [],
+      "evidence": [
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/model/SqlCanaryArchive.java",
+          "kind": "source",
+          "description": "SqlCanaryArchive extends SqlBaseObject (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/model/SqlCanaryArchive.java)",
+          "sha256": "8d909309c73439b42bcb6aeec5b01b6e295ca7f84e1f9b654dace0fdc4e12ee7"
+        }
+      ],
+      "rationale": "ORM inheritance dependency SqlCanaryArchive -> SqlBaseObject (@MappedSuperclass). This is a structural mapping relationship with no runtime-violable predicate; its effect (inherited id/content/created_at/updated_at columns) was observed indirectly in the Hibernate INSERT statements of the control cases.",
+      "confidence": 0.95,
+      "limitations": []
+    },
+    {
+      "target_id": "dep-60bfac11e620",
+      "target_kind": "dependency",
+      "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [],
+      "evidence": [
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/model/SqlCanaryConfig.java",
+          "kind": "source",
+          "description": "SqlCanaryConfig extends SqlBaseObject (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/model/SqlCanaryConfig.java)",
+          "sha256": "dfeda96b0d38de449446110ec6b21b0a0ee4ea0e54d7a5ad5cb8c9733ce3bd63"
+        }
+      ],
+      "rationale": "ORM inheritance dependency SqlCanaryConfig -> SqlBaseObject (@MappedSuperclass). This is a structural mapping relationship with no runtime-violable predicate; its effect (inherited id/content/created_at/updated_at columns) was observed indirectly in the Hibernate INSERT statements of the control cases.",
+      "confidence": 0.95,
+      "limitations": []
+    },
+    {
+      "target_id": "dep-4f212f5e936f",
+      "target_kind": "dependency",
+      "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [],
+      "evidence": [
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/model/SqlMetricSetPairs.java",
+          "kind": "source",
+          "description": "SqlMetricSetPairs extends SqlBaseObject (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/model/SqlMetricSetPairs.java)",
+          "sha256": "63cbc18d4755fa7e8656f672f79c8f850bb93515f7fd5d3b9dfda44c572de511"
+        }
+      ],
+      "rationale": "ORM inheritance dependency SqlMetricSetPairs -> SqlBaseObject (@MappedSuperclass). This is a structural mapping relationship with no runtime-violable predicate; its effect (inherited id/content/created_at/updated_at columns) was observed indirectly in the Hibernate INSERT statements of the control cases.",
+      "confidence": 0.95,
+      "limitations": []
+    },
+    {
+      "target_id": "dep-934e5c07c2b4",
+      "target_kind": "dependency",
+      "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [],
+      "evidence": [
+        {
+          "path": "source/kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/model/SqlMetricSets.java",
+          "kind": "source",
+          "description": "SqlMetricSets extends SqlBaseObject (copy of application source file kayenta-sql/src/main/java/com/netflix/kayenta/sql/storage/model/SqlMetricSets.java)",
+          "sha256": "33f73d7a95febe66d47259246976356656926bbe52495ca35c79cb060c01be65"
+        }
+      ],
+      "rationale": "ORM inheritance dependency SqlMetricSets -> SqlBaseObject (@MappedSuperclass). This is a structural mapping relationship with no runtime-violable predicate; its effect (inherited id/content/created_at/updated_at columns) was observed indirectly in the Hibernate INSERT statements of the control cases.",
+      "confidence": 0.95,
+      "limitations": []
+    }
+  ],
+  "warnings": [
+    "Two compatibility-only patches were applied (patches/kayenta-sql-harness.patch): junixsocket runtime dependency so JDBC can use a unix socket (no DB TCP port was permitted), and a harness configuration that registers a deterministic SQL storage account name + account credentials, because upstream SqlStorageService receives account names via an injected List<String> containing only a random currentInstanceId, making SQL storage unroutable. No persistence logic was changed.",
+    "Runtime database is MySQL 8.0.42 (default schema context); PostgreSQL JSONB variant not deployed."
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "case_id": "MS-01-control-create",
+  "purpose": "control",
+  "target_ids": [
+    "pc-34efbcce606b",
+    "pc-b2886370da3b",
+    "pc-2b8c47e5d7bd",
+    "pc-2611c9ac3275",
+    "pc-4ff0c7f191dd",
+    "pc-0a2ac553dd29",
+    "pc-aadee8576d99",
+    "pc-4ee8f253c4e1",
+    "pc-bcfeaadde2a6",
+    "pc-f2aa380a79e9"
+  ],
+  "timestamp": "2026-09-29T12:27:28-0400",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18204/metricSetList?accountName=sql-account",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": [
+      {
+        "name": "cpu",
+        "tags": {
+          "a": "b"
+        },
+        "startTimeMillis": 0,
+        "startTimeIso": "1970-01-01T00:00:00Z",
+        "endTimeMillis": 60000,
+        "endTimeIso": "1970-01-01T00:01:00Z",
+        "stepMillis": 60000,
+        "values": [
+          1.0,
+          2.0
+        ]
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"metricSetListId\":\"2d48be40-abd8-40f3-ae73-ab1682c1c3e3\"}"
+  },
+  "readback_sql": "SELECT id, CHAR_LENGTH(id) AS id_len, JSON_VALID(content) AS json_valid, JSON_TYPE(content) AS json_type, created_at, updated_at FROM metric_sets",
+  "readback_result": "id\tid_len\tjson_valid\tjson_type\tcreated_at\tupdated_at\n2d48be40-abd8-40f3-ae73-ab1682c1c3e3\t36\t1\tARRAY\t2026-09-29 12:27:29\t2026-09-29 12:27:29"
+}

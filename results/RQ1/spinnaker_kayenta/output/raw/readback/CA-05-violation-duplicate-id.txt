@@ -1,0 +1,4 @@
+-- MySQL read-back executed immediately after the request
+-- SQL: SELECT id, JSON_UNQUOTE(JSON_EXTRACT(content,'$.application')) AS application FROM canary_archive WHERE id='ca-valid-001'
+id	application
+ca-valid-001	verifapp

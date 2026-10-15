@@ -1,0 +1,6 @@
+[2026-09-29 20:19:48.476] [DEBUG] [http-nio-127.0.0.1-18205-exec-4] [c.v.s.j.c.m.repository.UserRoleRepository.select] >>> ==>  Preparing: SELECT `user_name`, `role_key`, `namespace`, `need_approval`, `created_by`, `create_time`, `last_updated_by`, `last_update_time`, `is_deleted` FROM `user_role` WHERE 1 = 1 AND `user_name` = ? AND `is_deleted` = '0' 
+[2026-09-29 20:19:48.476] [DEBUG] [http-nio-127.0.0.1-18205-exec-4] [c.v.s.j.c.m.repository.UserRoleRepository.select] >>> ==> Parameters: guest(String)
+[2026-09-29 20:19:48.476] [DEBUG] [http-nio-127.0.0.1-18205-exec-4] [c.v.s.j.c.m.repository.UserRoleRepository.select] >>> <==      Total: 1
+[2026-09-29 20:19:48.489] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==>  Preparing: select id, property, value from sys_config where id in (select max(id) from sys_config where property in ( ? ) group by property) 
+[2026-09-29 20:19:48.489] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==> Parameters: REFRESH_REGISTRY_CENTER_UUID(String)
+[2026-09-29 20:19:48.489] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> <==      Total: 1

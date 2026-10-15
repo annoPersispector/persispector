@@ -1,0 +1,33 @@
+{
+ "case_id": "ns-control-create",
+ "purpose": "control",
+ "target_hint": [
+  "namespace_info.*",
+  "namespace_zkcluster_mapping.*"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "body": {
+   "namespace": "pvns1",
+   "zkCluster": "cluster1"
+  },
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 201,
+  "headers": {
+   "Content-Length": "0",
+   "Date": "Wed, 30 Sep 2026 00:17:04 GMT",
+   "Connection": "close"
+  },
+  "body": "",
+  "json": null
+ },
+ "elapsed_seconds": 0.04,
+ "timestamp": "2026-09-29T20:17:05-0400"
+}

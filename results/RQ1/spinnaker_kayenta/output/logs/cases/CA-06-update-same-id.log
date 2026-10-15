@@ -1,0 +1,9 @@
+2026-09-29 12:27:26.323 DEBUG 1164260 --- [.1-18204-exec-3] org.hibernate.SQL                        : select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as content2_0_0_, sqlcanarya0_.created_at as created_3_0_0_, sqlcanarya0_.updated_at as updated_4_0_0_ from canary_archive sqlcanarya0_ where sqlcanarya0_.id=?
+2026-09-29 12:27:26.323 TRACE 1164260 --- [.1-18204-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ca-valid-001]
+2026-09-29 12:27:26.326 DEBUG 1164260 --- [.1-18204-exec-3] org.hibernate.SQL                        : select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as content2_0_0_, sqlcanarya0_.created_at as created_3_0_0_, sqlcanarya0_.updated_at as updated_4_0_0_ from canary_archive sqlcanarya0_ where sqlcanarya0_.id=?
+2026-09-29 12:27:26.326 TRACE 1164260 --- [.1-18204-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ca-valid-001]
+2026-09-29 12:27:26.327 DEBUG 1164260 --- [.1-18204-exec-3] org.hibernate.SQL                        : update canary_archive set content=?, created_at=?, updated_at=? where id=?
+2026-09-29 12:27:26.328 TRACE 1164260 --- [.1-18204-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [{"application":"updatedapp","pipelineId":"p","stageStatus":{"s1":"succeeded"},"complete":true,"status":"succeeded"}]
+2026-09-29 12:27:26.328 TRACE 1164260 --- [.1-18204-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [TIMESTAMP] - [2026-09-29T16:27:26.325889716Z]
+2026-09-29 12:27:26.328 TRACE 1164260 --- [.1-18204-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [TIMESTAMP] - [2026-09-29T16:27:26.325890028Z]
+2026-09-29 12:27:26.328 TRACE 1164260 --- [.1-18204-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [ca-valid-001]

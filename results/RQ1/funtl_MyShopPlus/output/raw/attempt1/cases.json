@@ -1,0 +1,984 @@
+[
+ {
+  "case_id": "C01-control-valid",
+  "purpose": "control",
+  "target_ids": [
+   "pc-c82aa238dd70",
+   "pc-9b7836344020",
+   "pc-06d6fa8e45f7",
+   "pc-892ebfa4030e"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 500,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/C01-control-valid.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/C01-control-valid.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/C01-control-valid.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/C01-control-valid.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 500; body={\"timestamp\":\"2026-09-30 00:14:22\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"Failed to invoke remote method: get, provider: dubbo://127.0.0.1:20882/com.funtl.myshop.plus.provider.api.UmsAdminService?application=business-reg&check=false&generic=false&interface=com.funtl.myshop.plus.provider.api.UmsAdminService&lazy=false&pid=1156891&qos.enable=false&reference.filter=-sentinel.dubbo.co; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "C01-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-c82aa238dd70"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/C01-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "C02-boundary-max-lengths",
+  "purpose": "boundary",
+  "target_ids": [
+   "pc-c82aa238dd70",
+   "pc-9b7836344020",
+   "pc-d50de559463c",
+   "pc-e43967957866",
+   "pc-06d6fa8e45f7",
+   "pc-892ebfa4030e",
+   "pc-07d96eea81e8",
+   "pc-5963beda89f5",
+   "pc-2b498cc952d3",
+   "pc-fac4a3c36dd7"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 500,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/C02-boundary-max-lengths.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/C02-boundary-max-lengths.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/C02-boundary-max-lengths.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/C02-boundary-max-lengths.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 500; body={\"timestamp\":\"2026-09-30 00:14:24\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"Failed to invoke remote method: get, provider: dubbo://127.0.0.1:20882/com.funtl.myshop.plus.provider.api.UmsAdminService?application=business-reg&check=false&generic=false&interface=com.funtl.myshop.plus.provider.api.UmsAdminService&lazy=false&pid=1156891&qos.enable=false&reference.filter=-sentinel.dubbo.co; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "C02-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-c82aa238dd70",
+   "pc-d50de559463c",
+   "pc-06d6fa8e45f7",
+   "pc-07d96eea81e8",
+   "pc-2b498cc952d3"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/C02-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V01-username-65",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-c82aa238dd70",
+   "pc-9b7836344020"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 500,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/V01-username-65.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V01-username-65.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V01-username-65.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V01-username-65.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 500; body={\"timestamp\":\"2026-09-30 00:14:25\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"Failed to invoke remote method: get, provider: dubbo://127.0.0.1:20882/com.funtl.myshop.plus.provider.api.UmsAdminService?application=business-reg&check=false&generic=false&interface=com.funtl.myshop.plus.provider.api.UmsAdminService&lazy=false&pid=1156891&qos.enable=false&reference.filter=-sentinel.dubbo.co; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "V01-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-c82aa238dd70",
+   "pc-9b7836344020"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V01-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V02-icon-501",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-d50de559463c",
+   "pc-e43967957866"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 500,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/V02-icon-501.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V02-icon-501.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V02-icon-501.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V02-icon-501.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 500; body={\"timestamp\":\"2026-09-30 00:14:26\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"Failed to invoke remote method: get, provider: dubbo://127.0.0.1:20882/com.funtl.myshop.plus.provider.api.UmsAdminService?application=business-reg&check=false&generic=false&interface=com.funtl.myshop.plus.provider.api.UmsAdminService&lazy=false&pid=1156891&qos.enable=false&reference.filter=-sentinel.dubbo.co; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "V02-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-d50de559463c",
+   "pc-e43967957866"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V02-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V03-email-101",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-06d6fa8e45f7",
+   "pc-892ebfa4030e"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 500,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/V03-email-101.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V03-email-101.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V03-email-101.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V03-email-101.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 500; body={\"timestamp\":\"2026-09-30 00:14:27\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"Failed to invoke remote method: get, provider: dubbo://127.0.0.1:20882/com.funtl.myshop.plus.provider.api.UmsAdminService?application=business-reg&check=false&generic=false&interface=com.funtl.myshop.plus.provider.api.UmsAdminService&lazy=false&pid=1156891&qos.enable=false&reference.filter=-sentinel.dubbo.co; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "V03-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-06d6fa8e45f7",
+   "pc-892ebfa4030e"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V03-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V04-nickname-201",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-07d96eea81e8",
+   "pc-5963beda89f5"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 500,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/V04-nickname-201.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V04-nickname-201.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V04-nickname-201.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V04-nickname-201.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 500; body={\"timestamp\":\"2026-09-30 00:14:28\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"Failed to invoke remote method: get, provider: dubbo://127.0.0.1:20882/com.funtl.myshop.plus.provider.api.UmsAdminService?application=business-reg&check=false&generic=false&interface=com.funtl.myshop.plus.provider.api.UmsAdminService&lazy=false&pid=1156891&qos.enable=false&reference.filter=-sentinel.dubbo.co; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "V04-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-07d96eea81e8",
+   "pc-5963beda89f5"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V04-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V05-note-501",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-2b498cc952d3",
+   "pc-fac4a3c36dd7"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 500,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/V05-note-501.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V05-note-501.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V05-note-501.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V05-note-501.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 500; body={\"timestamp\":\"2026-09-30 00:14:29\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"Failed to invoke remote method: get, provider: dubbo://127.0.0.1:20882/com.funtl.myshop.plus.provider.api.UmsAdminService?application=business-reg&check=false&generic=false&interface=com.funtl.myshop.plus.provider.api.UmsAdminService&lazy=false&pid=1156891&qos.enable=false&reference.filter=-sentinel.dubbo.co; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "V05-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-2b498cc952d3",
+   "pc-fac4a3c36dd7"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V05-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V06-password-100",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-c94103dbb013",
+   "pc-4025353f3429"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 500,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/V06-password-100.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V06-password-100.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V06-password-100.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V06-password-100.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 500; body={\"timestamp\":\"2026-09-30 00:14:30\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"Failed to invoke remote method: get, provider: dubbo://127.0.0.1:20882/com.funtl.myshop.plus.provider.api.UmsAdminService?application=business-reg&check=false&generic=false&interface=com.funtl.myshop.plus.provider.api.UmsAdminService&lazy=false&pid=1156891&qos.enable=false&reference.filter=-sentinel.dubbo.co; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "V06-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-c94103dbb013",
+   "pc-4025353f3429"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V06-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V07-id-duplicate-pk",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-830c39ccfb6b"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 500,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/V07-id-duplicate-pk.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V07-id-duplicate-pk.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V07-id-duplicate-pk.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V07-id-duplicate-pk.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 500; body={\"timestamp\":\"2026-09-30 00:14:31\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"Failed to invoke remote method: get, provider: dubbo://127.0.0.1:20882/com.funtl.myshop.plus.provider.api.UmsAdminService?application=business-reg&check=false&generic=false&interface=com.funtl.myshop.plus.provider.api.UmsAdminService&lazy=false&pid=1156891&qos.enable=false&reference.filter=-sentinel.dubbo.co; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "V07-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-830c39ccfb6b"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V07-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V08-id-null",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-566dafe4ec19"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 500,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/V08-id-null.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V08-id-null.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V08-id-null.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V08-id-null.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 500; body={\"timestamp\":\"2026-09-30 00:14:32\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"Failed to invoke remote method: get, provider: dubbo://127.0.0.1:20882/com.funtl.myshop.plus.provider.api.UmsAdminService?application=business-reg&check=false&generic=false&interface=com.funtl.myshop.plus.provider.api.UmsAdminService&lazy=false&pid=1156891&qos.enable=false&reference.filter=-sentinel.dubbo.co; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "V08-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-566dafe4ec19"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V08-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V09-id-over-bigint",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-4077068a2bf5"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 400,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/V09-id-over-bigint.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V09-id-over-bigint.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V09-id-over-bigint.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V09-id-over-bigint.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 400; body={\"timestamp\":\"2026-09-30 00:14:33\",\"status\":400,\"error\":\"Bad Request\",\"message\":\"JSON parse error: Numeric value (9223372036854775808) out of range of long; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Numeric value (9223372036854775808) out of range of long\\n at [Source: (PushbackInputStream); line: 1, column: 8] (through reference chain: com.funtl.myshop.plus.provider; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "V09-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-4077068a2bf5"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V09-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V10-id-non-integer",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-4077068a2bf5"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 400,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/V10-id-non-integer.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V10-id-non-integer.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V10-id-non-integer.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V10-id-non-integer.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 400; body={\"timestamp\":\"2026-09-30 00:14:34\",\"status\":400,\"error\":\"Bad Request\",\"message\":\"JSON parse error: Cannot deserialize value of type `java.lang.Long` from String \\\"abc\\\": not a valid Long value; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.lang.Long` from String \\\"abc\\\": not a valid Long value\\n at [Source: (PushbackInputStrea; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "C03-id-bigint-max",
+  "purpose": "boundary",
+  "target_ids": [
+   "pc-4077068a2bf5"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 500,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/C03-id-bigint-max.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/C03-id-bigint-max.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/C03-id-bigint-max.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/C03-id-bigint-max.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 500; body={\"timestamp\":\"2026-09-30 00:14:35\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"Failed to invoke remote method: get, provider: dubbo://127.0.0.1:20882/com.funtl.myshop.plus.provider.api.UmsAdminService?application=business-reg&check=false&generic=false&interface=com.funtl.myshop.plus.provider.api.UmsAdminService&lazy=false&pid=1156891&qos.enable=false&reference.filter=-sentinel.dubbo.co; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "C03-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-4077068a2bf5"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/C03-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V11-status-over-int",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-bcab32ac6f64"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 400,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/V11-status-over-int.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V11-status-over-int.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V11-status-over-int.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V11-status-over-int.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 400; body={\"timestamp\":\"2026-09-30 00:14:36\",\"status\":400,\"error\":\"Bad Request\",\"message\":\"JSON parse error: Numeric value (2147483648) out of range of int; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Numeric value (2147483648) out of range of int\\n at [Source: (PushbackInputStream); line: 1, column: 60] (through reference chain: com.funtl.myshop.plus.provider.domain.UmsAdmin[\\\"; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "V11-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-bcab32ac6f64"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V11-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V12-status-non-integer",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-bcab32ac6f64"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 400,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/V12-status-non-integer.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V12-status-non-integer.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V12-status-non-integer.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V12-status-non-integer.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 400; body={\"timestamp\":\"2026-09-30 00:14:37\",\"status\":400,\"error\":\"Bad Request\",\"message\":\"JSON parse error: Cannot deserialize value of type `java.lang.Integer` from String \\\"x\\\": not a valid Integer value; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.lang.Integer` from String \\\"x\\\": not a valid Integer value\\n at [Source: (PushbackIn; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "C04-status-int-max-display-width",
+  "purpose": "boundary",
+  "target_ids": [
+   "pc-bcab32ac6f64"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 500,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/C04-status-int-max-display-width.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/C04-status-int-max-display-width.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/C04-status-int-max-display-width.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/C04-status-int-max-display-width.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 500; body={\"timestamp\":\"2026-09-30 00:14:38\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"Failed to invoke remote method: get, provider: dubbo://127.0.0.1:20882/com.funtl.myshop.plus.provider.api.UmsAdminService?application=business-reg&check=false&generic=false&interface=com.funtl.myshop.plus.provider.api.UmsAdminService&lazy=false&pid=1156891&qos.enable=false&reference.filter=-sentinel.dubbo.co; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "C04-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-bcab32ac6f64"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/C04-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V13-createtime-loginTime-out-of-range",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-4b80a8cb1221",
+   "pc-f2ed0251561b"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 500,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/V13-createtime-loginTime-out-of-range.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V13-createtime-loginTime-out-of-range.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V13-createtime-loginTime-out-of-range.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V13-createtime-loginTime-out-of-range.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 500; body={\"timestamp\":\"2026-09-30 00:14:39\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"Failed to invoke remote method: get, provider: dubbo://127.0.0.1:20882/com.funtl.myshop.plus.provider.api.UmsAdminService?application=business-reg&check=false&generic=false&interface=com.funtl.myshop.plus.provider.api.UmsAdminService&lazy=false&pid=1156891&qos.enable=false&reference.filter=-sentinel.dubbo.co; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "V13-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-4b80a8cb1221",
+   "pc-f2ed0251561b"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V13-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ },
+ {
+  "case_id": "V14-createtime-garbage",
+  "purpose": "violation",
+  "target_ids": [
+   "pc-4b80a8cb1221",
+   "pc-f2ed0251561b"
+  ],
+  "endpoint": "POST /reg",
+  "request_method": "POST",
+  "request_url": "http://127.0.0.1:18205/reg",
+  "response_status": 400,
+  "reached_persistence": false,
+  "evidence": [
+   {
+    "path": "raw/V14-createtime-garbage.exchange.json",
+    "kind": "http-exchange",
+    "description": "full request/response"
+   },
+   {
+    "path": "logs/cases/V14-createtime-garbage.provider.log",
+    "kind": "application-log",
+    "description": "provider log slice incl. MyBatis SQL debug"
+   },
+   {
+    "path": "logs/cases/V14-createtime-garbage.reg.log",
+    "kind": "application-log",
+    "description": "reg service log slice"
+   },
+   {
+    "path": "logs/cases/V14-createtime-garbage.mysql-general.log",
+    "kind": "sql-trace",
+    "description": "MySQL general-log lines touching ums_admin"
+   }
+  ],
+  "observation": "HTTP 400; body={\"timestamp\":\"2026-09-30 00:14:40\",\"status\":400,\"error\":\"Bad Request\",\"message\":\"JSON parse error: Cannot deserialize value of type `java.util.Date` from String \\\"not-a-date\\\": expected format \\\"yyyy-MM-dd HH:mm:ss\\\"; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.util.Date` from String \\\"not-a-date\\\": expected format \\\"yyyy-MM; insert_statement_reached=False; sql_errors=[]"
+ },
+ {
+  "case_id": "V14-readback",
+  "purpose": "read-back",
+  "target_ids": [
+   "pc-4b80a8cb1221",
+   "pc-f2ed0251561b"
+  ],
+  "endpoint": null,
+  "request_method": null,
+  "request_url": null,
+  "response_status": null,
+  "reached_persistence": null,
+  "evidence": [
+   {
+    "path": "raw/V14-readback.json",
+    "kind": "read-back",
+    "description": "SQL read-back of ums_admin row"
+   }
+  ],
+  "observation": "(no rows)"
+ }
+]

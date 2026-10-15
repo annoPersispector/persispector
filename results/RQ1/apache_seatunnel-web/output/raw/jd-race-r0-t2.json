@@ -1,0 +1,35 @@
+{
+  "case_id": "jd-race-r0-t2",
+  "purpose": "violation",
+  "targets": [],
+  "note": "concurrent race for composite unique; log slices overlap",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/job/definition",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "name": "jd_race0",
+      "description": "d",
+      "jobType": "DATA_INTEGRATION"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:32:51 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 60020,
+      "msg": "task name already exists",
+      "data": null,
+      "failed": true,
+      "success": false
+    }
+  },
+  "log_slice": "logs/cases/jd-race-r0-t2.log"
+}

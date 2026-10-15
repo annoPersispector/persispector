@@ -1,0 +1,30 @@
+{
+  "case_id": "bookmark-readback-get",
+  "purpose": "read-back",
+  "target_ids": [],
+  "note": "",
+  "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:18209/bookmarkUser?datasource=docker-presto&engine=presto",
+    "headers": {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "some.auth.header": "alice"
+    },
+    "form": null,
+    "param_lengths": {
+      "datasource": 13,
+      "engine": 6
+    },
+    "header_lengths": {
+      "Content-Type": 33,
+      "some.auth.header": 5
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"error\":null,\"bookmarkList\":[{\"datasource\":\"docker-presto\",\"engine\":\"presto\",\"query\":\"select 1\",\"title\":\"t1\",\"user\":\"alice\",\"snippet\":\"s1\",\"bookmark_id\":1},{\"datasource\":\"docker-presto\",\"engine\":\"presto\",\"query\":\"select 2\",\"title\":\"t2\",\"user\":\"alice\",\"snippet\":\"s2\",\"bookmark_id\":2}]}"
+  },
+  "readback_sql": null,
+  "readback_result": null,
+  "log_excerpt_path": "logs/cases/bookmark-readback-get.log"
+}

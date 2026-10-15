@@ -1,0 +1,40 @@
+{
+  "case_id": "jc-readback-1",
+  "purpose": "read-back",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/job/config/23198772738848",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:33:32 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 0,
+      "msg": null,
+      "data": {
+        "id": 23198772738848,
+        "name": "jc_job",
+        "description": "upd",
+        "env": {
+          "job.mode": "BATCH",
+          "parallelism": 1
+        },
+        "engine": "SeaTunnel"
+      },
+      "failed": false,
+      "success": true
+    }
+  },
+  "log_slice": "logs/cases/jc-readback-1.log"
+}

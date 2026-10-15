@@ -1,0 +1,3 @@
+[2026-09-29 20:19:46.845] [DEBUG] [http-nio-127.0.0.1-18205-exec-10] [c.v.s.j.c.m.r.S.selectByLastly] >>> ==>  Preparing: select id, property, value from sys_config where id in (select max(id) from sys_config group by property) 
+[2026-09-29 20:19:46.846] [DEBUG] [http-nio-127.0.0.1-18205-exec-10] [c.v.s.j.c.m.r.S.selectByLastly] >>> ==> Parameters: 
+[2026-09-29 20:19:46.846] [DEBUG] [http-nio-127.0.0.1-18205-exec-10] [c.v.s.j.c.m.r.S.selectByLastly] >>> <==      Total: 13

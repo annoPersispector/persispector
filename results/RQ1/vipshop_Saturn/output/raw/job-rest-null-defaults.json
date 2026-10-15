@@ -1,0 +1,43 @@
+{
+ "case_id": "job-rest-null-defaults",
+ "purpose": "violation",
+ "target_hint": [
+  "job_config.load_level/job_degree/time_zone/timeout_4_alarm_seconds not-null"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/mydomain/jobs",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "body": {
+   "jobName": "pvrestnull",
+   "description": "pv",
+   "jobConfig": {
+    "jobType": "JAVA_JOB",
+    "jobClass": "demo.DemoJavaJob",
+    "cron": "0/30 * * * * ?",
+    "shardingTotalCount": 1,
+    "shardingItemParameters": "0=0",
+    "loadLevel": null,
+    "jobDegree": null,
+    "timeZone": null,
+    "timeout4AlarmSeconds": null
+   }
+  },
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 201,
+  "headers": {
+   "Content-Length": "0",
+   "Date": "Wed, 30 Sep 2026 00:21:35 GMT",
+   "Connection": "close"
+  },
+  "body": "",
+  "json": null
+ },
+ "elapsed_seconds": 0.033,
+ "timestamp": "2026-09-29T20:21:35-0400"
+}

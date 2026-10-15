@@ -1,0 +1,13 @@
+2026-09-29T15:49:27.822226Z 0 [System] [MY-013169] [Server] /artifact/results/RQ1/eventuate-tram_eventuate-tram-examples-customers-and-orders/eventuate-tram_eventuate-tram-examples-customers-and-orders-20260929T154632Z-e0a22c9f/application/.persispector-compat/bin/mysqld (mysqld 8.0.42-0ubuntu0.20.04.1) initializing of server in progress as process 1143300
+2026-09-29T15:49:27.826894Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-09-29T15:49:28.387072Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-09-29T15:49:29.560599Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+2026-09-29T15:49:38.911065Z 0 [System] [MY-010116] [Server] /artifact/results/RQ1/eventuate-tram_eventuate-tram-examples-customers-and-orders/eventuate-tram_eventuate-tram-examples-customers-and-orders-20260929T154632Z-e0a22c9f/application/.persispector-compat/bin/mysqld (mysqld 8.0.42-0ubuntu0.20.04.1) starting as process 1143404
+2026-09-29T15:49:38.919812Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-09-29T15:49:39.145827Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-09-29T15:49:39.363084Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-09-29T15:49:39.363171Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-09-29T15:49:39.397494Z 0 [System] [MY-010931] [Server] /artifact/results/RQ1/eventuate-tram_eventuate-tram-examples-customers-and-orders/eventuate-tram_eventuate-tram-examples-customers-and-orders-20260929T154632Z-e0a22c9f/application/.persispector-compat/bin/mysqld: ready for connections. Version: '8.0.42-0ubuntu0.20.04.1'  socket: '/tmp/pv18202/mysql.sock'  port: 0  (Ubuntu).
+2026-09-29T15:59:26.872706Z 26 [Warning] [MY-013360] [Server] Plugin mysql_native_password reported: ''mysql_native_password' is deprecated and will be removed in a future release. Please use caching_sha2_password instead'
+2026-09-29T16:01:40.528939Z 91 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.0.42-0ubuntu0.20.04.1).
+2026-09-29T16:01:41.932286Z 0 [System] [MY-010910] [Server] /artifact/results/RQ1/eventuate-tram_eventuate-tram-examples-customers-and-orders/eventuate-tram_eventuate-tram-examples-customers-and-orders-20260929T154632Z-e0a22c9f/application/.persispector-compat/bin/mysqld: Shutdown complete (mysqld 8.0.42-0ubuntu0.20.04.1)  (Ubuntu).

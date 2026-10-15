@@ -1,0 +1,38 @@
+{
+  "case_id": "CC-04-violation-id-256",
+  "purpose": "violation",
+  "target_ids": [
+    "pc-900bdfd125e0",
+    "pc-d4dc77dfb22b"
+  ],
+  "timestamp": "2026-09-29T12:27:17-0400",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18204/canaryConfig?configurationAccountName=sql-account",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "cfgvalid",
+      "applications": [
+        "verifapp"
+      ],
+      "metrics": [],
+      "classifier": {
+        "groupWeights": {}
+      },
+      "judge": {
+        "name": "NetflixACAJudge-v1.0",
+        "judgeConfigurations": {}
+      },
+      "configVersion": "1",
+      "id": "cc-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+  },
+  "response": {
+    "status": 500,
+    "body": "{\"timestamp\":\"2026-09-29T16:27:17.504+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"exception\":\"org.springframework.dao.DataIntegrityViolationException\",\"message\":\"could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.DataException: could not execute statement\"}"
+  },
+  "readback_sql": "SELECT COUNT(*) AS n_rows_like_256 FROM canary_config WHERE id LIKE 'cc-bbbb%'",
+  "readback_result": "n_rows_like_256\n0"
+}

@@ -1,0 +1,35 @@
+{
+  "case_id": "C03-violation-payload-1001",
+  "purpose": "violation",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18202/orders",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"customerId\":1,\"orderTotal\":{\"amount\":1.00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001}}",
+    "body_length": 984
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "Content-Type": "application/json",
+      "Transfer-Encoding": "chunked",
+      "Date": "Tue, 29 Sep 2026 16:00:56 GMT",
+      "Connection": "close"
+    },
+    "body": "{\"timestamp\":\"2026-09-29T16:00:56.623+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/orders\"}"
+  },
+  "db_before": {
+    "orders_count": "n\n2",
+    "message_count": "n\n2"
+  },
+  "db_after": {
+    "orders_count": "n\n2",
+    "message_count": "n\n2"
+  },
+  "readback": {
+    "SELECT id, customer_id, amount, state, version FROM orders ORDER BY id DESC LIMIT 3": "id\tcustomer_id\tamount\tstate\tversion\n3\t1\t1.00\tPENDING\t0\n2\t1\t12.34\tPENDING\t0",
+    "SELECT id, destination, LENGTH(headers) AS headers_len, LENGTH(payload) AS payload_len, LEFT(payload,70) AS payload_head, RIGHT(payload,12) AS payload_tail, published FROM message ORDER BY creation_time DESC, id DESC LIMIT 3": "id\tdestination\theaders_len\tpayload_len\tpayload_head\tpayload_tail\tpublished\n000001a0ede5cd04-8aca66a024e50000\tio.eventuate.examples.tram.ordersandcustomers.orders.domain.Order\t391\t1000\t{\"orderDetails\":{\"customerId\":1,\"orderTotal\":{\"amount\":1.0000000000000\t000000001}}}\t0\n000001a0ede58ce2-8aca66a024e50000\tio.eventuate.examples.tram.ordersandcustomers.orders.domain.Order\t391\t63\t{\"orderDetails\":{\"customerId\":1,\"orderTotal\":{\"amount\":12.34}}}\tnt\":12.34}}}\t0"
+  }
+}

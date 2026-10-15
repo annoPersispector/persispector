@@ -1,0 +1,12 @@
+{
+ "case_id": "A07-violation-title-300-update",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select length(title), length(slug) from articles where title like 'WWWW%'",
+ "params": [],
+ "rows": [
+  [
+   300,
+   300
+  ]
+ ]
+}

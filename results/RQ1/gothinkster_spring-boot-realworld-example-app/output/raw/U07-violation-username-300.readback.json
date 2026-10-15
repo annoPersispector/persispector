@@ -1,0 +1,15 @@
+{
+ "case_id": "U07-violation-username-300",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select length(username), typeof(username), email from users where email = ?",
+ "params": [
+  "longname@example.com"
+ ],
+ "rows": [
+  [
+   300,
+   "text",
+   "longname@example.com"
+  ]
+ ]
+}

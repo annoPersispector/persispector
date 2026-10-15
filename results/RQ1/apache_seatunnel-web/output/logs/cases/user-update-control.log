@@ -1,0 +1,16 @@
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@87a9942] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@47095924 wrapping conn1: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 10, 1, <<BLOB>>, 1, 2026-09-29 04:33:25.366, 2026-09-29 04:33:25.366, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@87a9942]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2bed3456] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@722606103 wrapping conn1: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: update `user` set username = ?, password = ?, status = ?, type = ? where id = ?
+==> Parameters: user_ctrl2(String), ac7fd31b1714b3fca180f034ad172d5a(String), 0(Byte), 1(Byte), 2(Integer)
+<==    Updates: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2bed3456]

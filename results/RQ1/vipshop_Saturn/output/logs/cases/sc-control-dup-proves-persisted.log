@@ -1,0 +1,5 @@
+[2026-09-29 20:19:43.960] [DEBUG] [http-nio-127.0.0.1-18205-exec-3] [c.v.s.j.c.m.r.S.selectByProperty] >>> ==>  Preparing: select id, property, value from sys_config where property = ? 
+[2026-09-29 20:19:43.960] [DEBUG] [http-nio-127.0.0.1-18205-exec-3] [c.v.s.j.c.m.r.S.selectByProperty] >>> ==> Parameters: PV_TEST_A(String)
+[2026-09-29 20:19:43.961] [DEBUG] [http-nio-127.0.0.1-18205-exec-3] [c.v.s.j.c.m.r.S.selectByProperty] >>> <==      Total: 1
+[2026-09-29 20:19:43.961] [INFO] [http-nio-127.0.0.1-18205-exec-3] [AUDITLOG] >>> GUI API:[createConfig] path:[/console/configs/console/create] is called by User:[admin] with IP:[127.0.0.1], result is failed. Context info:{key=PV_TEST_A, value=v2}.
+[2026-09-29 20:19:43.962] [ERROR] [http-nio-127.0.0.1-18205-exec-3] [c.v.s.j.c.controller.gui.AbstractGUIController] >>> internal server error happens while calling GUI API:systemConfig PV_TEST_A already existed

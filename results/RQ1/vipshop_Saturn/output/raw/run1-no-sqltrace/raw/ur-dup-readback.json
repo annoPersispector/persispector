@@ -1,0 +1,46 @@
+{
+ "case_id": "ur-dup-readback",
+ "purpose": "read-back",
+ "target_hint": [
+  "user_role.uniq(user_name,role_key,namespace)"
+ ],
+ "note": "",
+ "request": {
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/console/authorizationManage/getUserRoles?userName=guest",
+  "headers": {},
+  "body": null,
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:17:21 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"status\":0,\"message\":\"\",\"obj\":[{\"createdBy\":\"admin\",\"createTime\":1790727440878,\"lastUpdatedBy\":\"admin\",\"lastUpdateTime\":1790727440878,\"isDeleted\":false,\"userName\":\"guest\",\"roleKey\":\"namespace_developer\",\"namespace\":\"pvns1\",\"needApproval\":true,\"user\":\"\",\"role\":\"\"}]}",
+  "json": {
+   "status": 0,
+   "message": "",
+   "obj": [
+    {
+     "createdBy": "admin",
+     "createTime": 1790727440878,
+     "lastUpdatedBy": "admin",
+     "lastUpdateTime": 1790727440878,
+     "isDeleted": false,
+     "userName": "guest",
+     "roleKey": "namespace_developer",
+     "namespace": "pvns1",
+     "needApproval": true,
+     "user": "",
+     "role": ""
+    }
+   ]
+  }
+ },
+ "elapsed_seconds": 0.004,
+ "timestamp": "2026-09-29T20:17:22-0400"
+}

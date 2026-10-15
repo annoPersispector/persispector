@@ -1,0 +1,38 @@
+{
+ "case_id": "F02-readback-file-valid",
+ "request": {
+  "method": "GET",
+  "url": "http://127.0.0.1:18201/jifa-api/files/1",
+  "headers": {
+   "User-Agent": "python-requests/2.31.0",
+   "Accept-Encoding": "gzip, deflate, br",
+   "Accept": "*/*",
+   "Connection": "keep-alive",
+   "Authorization": "<JWT-REDACTED>"
+  },
+  "body": null
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+   "X-Content-Type-Options": "nosniff",
+   "X-XSS-Protection": "0",
+   "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+   "Pragma": "no-cache",
+   "Expires": "0",
+   "X-Frame-Options": "DENY",
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Tue, 29 Sep 2026 15:18:13 GMT",
+   "Keep-Alive": "timeout=60",
+   "Connection": "keep-alive"
+  },
+  "body": "{\"id\":1,\"uniqueName\":\"6986423c-905a-4ce5-ab85-dac0a5c28695\",\"originalName\":\"gc-valid.log\",\"type\":\"GC_LOG\",\"size\":19,\"createdTime\":\"2026-09-29 11:18:13\"}"
+ },
+ "correlated_log_lines": [
+  "2026-09-29T11:18:13.771-04:00 DEBUG 1126360 --- [.1-18201-exec-7] org.hibernate.SQL                        : select fe1_0.id,fe1_0.created_time,fe1_0.original_name,fe1_0.size,fe1_0.type,fe1_0.unique_name,fe1_0.user_id from files fe1_0 where fe1_0.id=?",
+  "2026-09-29T11:18:13.771-04:00 TRACE 1126360 --- [.1-18201-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]"
+ ],
+ "extra": null
+}

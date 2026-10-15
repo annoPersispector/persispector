@@ -1,0 +1,32 @@
+{
+ "case_id": "ns-null-namespace-explicit",
+ "purpose": "violation",
+ "target_hint": [
+  "namespace_info.namespace not-null"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "body": {
+   "namespace": null,
+   "zkCluster": "cluster1"
+  },
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 201,
+  "headers": {
+   "Content-Length": "0",
+   "Date": "Wed, 30 Sep 2026 00:17:05 GMT",
+   "Connection": "close"
+  },
+  "body": "",
+  "json": null
+ },
+ "elapsed_seconds": 0.008,
+ "timestamp": "2026-09-29T20:17:06-0400"
+}

@@ -1,0 +1,74 @@
+*************************** 1. row ***************************
+       Table: query
+Create Table: CREATE TABLE `query` (
+  `datasource` varchar(256) NOT NULL,
+  `engine` varchar(256) NOT NULL,
+  `query_id` varchar(256) NOT NULL,
+  `fetch_result_time_string` varchar(256) DEFAULT NULL,
+  `query_string` mediumtext,
+  `user` varchar(256) DEFAULT NULL,
+  `status` varchar(256) DEFAULT NULL,
+  `elapsed_time_millis` int DEFAULT NULL,
+  `result_file_size` bigint DEFAULT NULL,
+  `linenumber` int DEFAULT NULL,
+  PRIMARY KEY (`datasource`,`engine`,`query_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+*************************** 1. row ***************************
+       Table: publish
+Create Table: CREATE TABLE `publish` (
+  `publish_id` varchar(256) NOT NULL,
+  `datasource` varchar(256) DEFAULT NULL,
+  `engine` varchar(256) DEFAULT NULL,
+  `query_id` varchar(256) DEFAULT NULL,
+  `user` varchar(256) DEFAULT NULL,
+  `viewers` text,
+  PRIMARY KEY (`publish_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+*************************** 1. row ***************************
+       Table: bookmark
+Create Table: CREATE TABLE `bookmark` (
+  `bookmark_id` int NOT NULL AUTO_INCREMENT,
+  `datasource` varchar(256) DEFAULT NULL,
+  `engine` varchar(256) DEFAULT NULL,
+  `query` text,
+  `title` varchar(256) DEFAULT NULL,
+  `user` varchar(256) DEFAULT NULL,
+  `snippet` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`bookmark_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+*************************** 1. row ***************************
+       Table: comment
+Create Table: CREATE TABLE `comment` (
+  `datasource` varchar(256) NOT NULL,
+  `engine` varchar(256) NOT NULL,
+  `query_id` varchar(256) NOT NULL,
+  `content` text,
+  `update_time_string` varchar(256) DEFAULT NULL,
+  `user` varchar(256) DEFAULT NULL,
+  `like_count` int DEFAULT NULL,
+  PRIMARY KEY (`datasource`,`engine`,`query_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+*************************** 1. row ***************************
+       Table: starred_schema
+Create Table: CREATE TABLE `starred_schema` (
+  `starred_schema_id` int NOT NULL AUTO_INCREMENT,
+  `datasource` varchar(256) NOT NULL,
+  `engine` varchar(256) NOT NULL,
+  `catalog` varchar(256) NOT NULL,
+  `schema` varchar(256) NOT NULL,
+  `user` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`starred_schema_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+*************************** 1. row ***************************
+       Table: session_property
+Create Table: CREATE TABLE `session_property` (
+  `session_property_id` int NOT NULL AUTO_INCREMENT,
+  `datasource` varchar(256) NOT NULL,
+  `engine` varchar(256) NOT NULL,
+  `query_id` varchar(256) NOT NULL,
+  `session_key` varchar(256) NOT NULL,
+  `session_value` varchar(256) NOT NULL,
+  PRIMARY KEY (`session_property_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+@@version	@@sql_mode	@@character_set_database	@@collation_database
+8.0.42-0ubuntu0.20.04.1	ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION	utf8mb4	utf8mb4_0900_ai_ci

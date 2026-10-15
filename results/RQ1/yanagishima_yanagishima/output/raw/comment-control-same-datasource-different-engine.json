@@ -1,0 +1,37 @@
+{
+  "case_id": "comment-control-same-datasource-different-engine",
+  "purpose": "control",
+  "target_ids": [],
+  "note": "",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18209/comment",
+    "headers": {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "some.auth.header": "alice"
+    },
+    "form": {
+      "datasource": "docker-presto",
+      "engine": "hive",
+      "queryid": "20260929_000000_00001_aaaaa",
+      "content": "hive comment"
+    },
+    "param_lengths": {
+      "datasource": 13,
+      "engine": 4,
+      "queryid": 27,
+      "content": 12
+    },
+    "header_lengths": {
+      "Content-Type": 33,
+      "some.auth.header": 5
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"updateTimeString\":\"2026-09-29T02:56:58.238286-04:00[America/New_York]\",\"engine\":\"hive\",\"datasource\":\"docker-presto\",\"likeCount\":0,\"user\":{\"id\":\"alice\"},\"content\":\"hive comment\",\"queryid\":\"20260929_000000_00001_aaaaa\"}"
+  },
+  "readback_sql": "SELECT datasource, engine, query_id, LEFT(content,40) content, user, like_count FROM comment WHERE datasource='docker-presto' ORDER BY query_id",
+  "readback_result": "+---------------+--------+-----------------------------+--------------------+-------+-------------+\n| datasource    | engine | query_id                    | content            | user  | like_count  |\n+---------------+--------+-----------------------------+--------------------+-------+-------------+\n| docker-presto | hive   | 20260929_000000_00001_aaaaa | hive comment       | alice |           0 |\n| docker-presto | presto | 20260929_000000_00001_aaaaa | third-case-variant | carol | -2147483648 |\n| docker-presto | presto | 20260929_000000_00003_ccccc | other query        | alice |           0 |\n+---------------+--------+-----------------------------+--------------------+-------+-------------+",
+  "log_excerpt_path": "logs/cases/comment-control-same-datasource-different-engine.log"
+}

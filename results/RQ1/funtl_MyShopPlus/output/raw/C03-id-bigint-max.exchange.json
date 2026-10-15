@@ -1,0 +1,30 @@
+{
+ "case_id": "C03-id-bigint-max",
+ "purpose": "boundary",
+ "target_ids": [
+  "pc-4077068a2bf5"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/reg",
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8"
+  },
+  "body": {
+   "id": 9223372036854775000,
+   "username": "pv121525maxid",
+   "password": "123456"
+  }
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Tue, 29 Sep 2026 16:15:39 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"code\":200,\"message\":\"用户注册成功\",\"data\":{\"id\":9223372036854775000,\"username\":\"pv121525maxid\",\"password\":\"$2a$10$jF.oOCxKkzf26sjhgucFreACndbaQS.IfukTL.GO/V/L7iJ9vZsSS\",\"icon\":null,\"email\":null,\"nickName\":null,\"note\":null,\"createTime\":\"2026-09-30 00:15:39\",\"loginTime\":\"2026-09-30 00:15:39\",\"status\":0}}"
+ }
+}

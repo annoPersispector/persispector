@@ -1,0 +1,5 @@
+[2026-09-29 20:19:35.750] [DEBUG] [http-nio-127.0.0.1-18205-exec-3] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==>  Preparing: select id, is_deleted, create_time, created_by, last_update_time, last_updated_by, namespace, bus_id, content from namespace_info where namespace = ? limit 0,1 
+[2026-09-29 20:19:35.750] [DEBUG] [http-nio-127.0.0.1-18205-exec-3] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==> Parameters: pvns1(String)
+[2026-09-29 20:19:35.750] [DEBUG] [http-nio-127.0.0.1-18205-exec-3] [c.v.s.j.c.m.r.N.selectByNamespace] >>> <==      Total: 1
+[2026-09-29 20:19:35.751] [INFO] [http-nio-127.0.0.1-18205-exec-3] [AUDITLOG] >>> GUI API:[createNamespace] path:[/console/namespaces] is called by User:[admin] with IP:[127.0.0.1], result is failed. Context info:{namespace=pvns1, zkClusterKey=cluster1}.
+[2026-09-29 20:19:35.751] [ERROR] [http-nio-127.0.0.1-18205-exec-3] [c.v.s.j.c.controller.gui.AbstractGUIController] >>> internal server error happens while calling GUI API:Invalid request. Namespace: {pvns1} already existed

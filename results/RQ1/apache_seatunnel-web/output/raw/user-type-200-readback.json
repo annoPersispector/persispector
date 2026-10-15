@@ -1,0 +1,47 @@
+{
+  "case_id": "user-type-200-readback",
+  "purpose": "read-back",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/user?pageNo=1&pageSize=50&name=user_ty200",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:36:48 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 0,
+      "msg": null,
+      "data": {
+        "data": [
+          {
+            "id": 2,
+            "name": "user_ty200",
+            "token": null,
+            "status": 0,
+            "type": -56,
+            "createTime": "2026-09-29 08:36:47",
+            "updateTime": "2026-09-29 08:36:47"
+          }
+        ],
+        "totalCount": 1,
+        "totalPage": 1,
+        "pageNo": 1,
+        "pageSize": 50
+      },
+      "failed": false,
+      "success": true
+    }
+  },
+  "log_slice": "logs/cases/user-type-200-readback.log"
+}

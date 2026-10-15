@@ -1,0 +1,36 @@
+{
+ "case_id": "A03-violation-dup-slug-create",
+ "purpose": "violation",
+ "target_ids": [
+  "pc-e4f422b7bd9e"
+ ],
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18208/articles",
+  "headers": {
+   "Content-Type": "application/json",
+   "Authorization": "Token <JWT-REDACTED>"
+  },
+  "body": {
+   "article": {
+    "title": "Dup Title",
+    "description": "desc",
+    "body": "body",
+    "tagList": [
+     "x"
+    ]
+   }
+  }
+ },
+ "response": {
+  "status": 422,
+  "body": {
+   "errors": {
+    "title": [
+     "article name exists"
+    ]
+   }
+  }
+ },
+ "note": ""
+}

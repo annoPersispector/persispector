@@ -1,0 +1,35 @@
+{
+ "case_id": "ns-null-zkcluster-explicit",
+ "purpose": "violation",
+ "target_hint": [
+  "namespace_zkcluster_mapping.zk_cluster_key not-null"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/rest/v1/namespaces",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "body": {
+   "namespace": "pvns4",
+   "zkCluster": null
+  },
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 400,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:21:33 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"message\":\"Fail to create new namespace {pvns4} for reason {not found zkclusternull}\"}",
+  "json": {
+   "message": "Fail to create new namespace {pvns4} for reason {not found zkclusternull}"
+  }
+ },
+ "elapsed_seconds": 0.003,
+ "timestamp": "2026-09-29T20:21:35-0400"
+}

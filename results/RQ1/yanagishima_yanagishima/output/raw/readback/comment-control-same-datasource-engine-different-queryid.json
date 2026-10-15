@@ -1,0 +1,7 @@
+{
+  "case_id": "comment-control-same-datasource-engine-different-queryid",
+  "purpose": "control",
+  "api_readback": null,
+  "db_readback_sql": "SELECT datasource, engine, query_id, LEFT(content,40) content, user, like_count FROM comment WHERE datasource='docker-presto' ORDER BY query_id",
+  "db_readback_result": "+---------------+--------+-----------------------------+--------------------+-------+-------------+\n| datasource    | engine | query_id                    | content            | user  | like_count  |\n+---------------+--------+-----------------------------+--------------------+-------+-------------+\n| docker-presto | presto | 20260929_000000_00001_aaaaa | third-case-variant | carol | -2147483648 |\n| docker-presto | presto | 20260929_000000_00003_ccccc | other query        | alice |           0 |\n+---------------+--------+-----------------------------+--------------------+-------+-------------+"
+}

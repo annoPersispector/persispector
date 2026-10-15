@@ -1,0 +1,3 @@
+Hibernate: select publish0_.publish_id as publish_1_2_, publish0_.datasource as datasour2_2_, publish0_.engine as engine3_2_, publish0_.query_id as query_id4_2_, publish0_.user as user5_2_, publish0_.viewers as viewers6_2_ from publish publish0_ where publish0_.datasource=? and publish0_.engine=? and publish0_.query_id=?
+Hibernate: select publish0_.publish_id as publish_1_2_0_, publish0_.datasource as datasour2_2_0_, publish0_.engine as engine3_2_0_, publish0_.query_id as query_id4_2_0_, publish0_.user as user5_2_0_, publish0_.viewers as viewers6_2_0_ from publish publish0_ where publish0_.publish_id=?
+Hibernate: update publish set datasource=?, engine=?, query_id=?, user=?, viewers=? where publish_id=?

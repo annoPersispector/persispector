@@ -1,0 +1,1 @@
+2026/09/29 02:56:21.905 -0400 WARN [DefaultHandlerExceptionResolver] [Yanagishima] Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'schema' is not present]

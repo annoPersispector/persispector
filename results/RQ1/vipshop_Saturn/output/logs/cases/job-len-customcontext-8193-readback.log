@@ -1,0 +1,5 @@
+[2026-09-29 20:19:20.207] [INFO] [http-nio-127.0.0.1-18205-exec-6] [AUDITLOG] >>> REST API:[query] path:[/rest/v1/mydomain/jobs/pvcc1] is called by IP:[127.0.0.1], result is failed.
+[2026-09-29 20:19:20.207] [WARN] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.controller.rest.AbstractRestController] >>> resource not found while calling REST API:The job {pvcc1} does not exists.
+[2026-09-29 20:19:20.485] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==>  Preparing: select id, property, value from sys_config where id in (select max(id) from sys_config where property in ( ? ) group by property) 
+[2026-09-29 20:19:20.486] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==> Parameters: REFRESH_REGISTRY_CENTER_UUID(String)
+[2026-09-29 20:19:20.486] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> <==      Total: 1

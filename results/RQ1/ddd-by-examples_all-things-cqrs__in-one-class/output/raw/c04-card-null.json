@@ -1,0 +1,21 @@
+{
+ "case_id": "c04-card-null",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18207/",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "body": "{\"card\": null, \"amount\": 5}"
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Tue, 29 Sep 2026 07:51:27 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"timestamp\":\"2026-09-29T07:51:27.809+0000\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"The given id must not be null!; nested exception is java.lang.IllegalArgumentException: The given id must not be null!\",\"path\":\"/\"}"
+ }
+}

@@ -1,0 +1,23 @@
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@75b8e3a3] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@833962440 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 6, 1, <<BLOB>>, 1, 2026-09-29 04:37:38.494, 2026-09-29 04:37:38.494, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@75b8e3a3]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46fec7e1] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@316198678 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,version_id,plugin_id,connector_type,datasource_id,datasource_option,select_table_fields,scene_mode,transform_options,output_schema,config,type,name,create_time,update_time,workspace_id FROM t_st_job_task WHERE (version_id = ? AND plugin_id = ? AND workspace_id = ?)
+==> Parameters: 23198804288544(Long), tb(String), 1(Long)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46fec7e1]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@204f9315] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1005530581 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: INSERT INTO t_st_job_task ( id, version_id, plugin_id, connector_type, transform_options, type, name, workspace_id ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
+==> Parameters: 23198804448160(Long), 23198804288544(Long), tb(String), FilterRowKind(String), {"exclude_kinds":["INSERT"]}(String), TRANSFORM(String), tb(String), 1(Long)
+<==    Updates: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@204f9315]

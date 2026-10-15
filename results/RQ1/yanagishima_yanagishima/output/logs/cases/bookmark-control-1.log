@@ -1,0 +1,1 @@
+Hibernate: insert into bookmark (datasource, engine, query, snippet, title, user) values (?, ?, ?, ?, ?, ?)

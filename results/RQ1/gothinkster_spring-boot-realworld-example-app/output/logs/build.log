@@ -1,0 +1,21 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. See https://docs.gradle.org/7.4/userguide/gradle_daemon.html#sec:disabling_the_daemon.
+Daemon will be stopped at the end of the build 
+
+> Configure project :
+DGS CodeGen added [com.netflix.graphql.dgs.codegen:graphql-dgs-codegen-client-core:5.0.6] to the implementation dependencies.
+
+> Task :generateJava
+
+> Task :compileJava
+Note: /artifact/results/RQ1/gothinkster_spring-boot-realworld-example-app/gothinkster_spring-boot-realworld-example-app-20260929T070552Z-beeffd7f/application/src/main/java/io/spring/graphql/exception/GraphQLCustomizeExceptionHandler.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /artifact/results/RQ1/gothinkster_spring-boot-realworld-example-app/gothinkster_spring-boot-realworld-example-app-20260929T070552Z-beeffd7f/application/src/main/java/io/spring/graphql/exception/GraphQLCustomizeExceptionHandler.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :processResources
+> Task :classes
+> Task :bootJarMainClassName
+> Task :bootJar
+
+BUILD SUCCESSFUL in 8s
+5 actionable tasks: 5 executed

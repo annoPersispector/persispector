@@ -1,0 +1,26 @@
+{
+ "case_id": "A17-boundary-follow-nonexistent",
+ "purpose": "boundary",
+ "target_ids": [
+  "pc-f10d889965df"
+ ],
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18208/profiles/nobody/follow",
+  "headers": {
+   "Content-Type": "application/json",
+   "Authorization": "Token <JWT-REDACTED>"
+  },
+  "body": null
+ },
+ "response": {
+  "status": 404,
+  "body": {
+   "timestamp": "2026-09-29T07:08:42.938+00:00",
+   "status": 404,
+   "error": "Not Found",
+   "path": "/profiles/nobody/follow"
+  }
+ },
+ "note": ""
+}

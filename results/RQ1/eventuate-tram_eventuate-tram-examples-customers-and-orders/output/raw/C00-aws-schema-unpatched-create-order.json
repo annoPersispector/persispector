@@ -1,0 +1,35 @@
+{
+  "case_id": "C00-aws-schema-unpatched-create-order",
+  "purpose": "control",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18202/orders",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"customerId\": 1, \"orderTotal\": {\"amount\": \"12.34\"}}",
+    "body_length": 52
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "Content-Type": "application/json",
+      "Transfer-Encoding": "chunked",
+      "Date": "Tue, 29 Sep 2026 16:00:14 GMT",
+      "Connection": "close"
+    },
+    "body": "{\"timestamp\":\"2026-09-29T16:00:14.372+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/orders\"}"
+  },
+  "db_before": {
+    "orders_count": "n\n0",
+    "message_count": "n\n0"
+  },
+  "db_after": {
+    "orders_count": "n\n0",
+    "message_count": "n\n0"
+  },
+  "readback": {
+    "SELECT id, customer_id, amount, state, version FROM orders ORDER BY id DESC LIMIT 3": "",
+    "SELECT id, destination, LENGTH(headers) AS headers_len, headers, LENGTH(payload) AS payload_len, LEFT(payload,200) AS payload_head, published, creation_time FROM message ORDER BY creation_time DESC LIMIT 3": ""
+  }
+}

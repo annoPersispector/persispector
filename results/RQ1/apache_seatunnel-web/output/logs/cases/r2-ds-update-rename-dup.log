@@ -1,0 +1,27 @@
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@f4f4f73] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@558637344 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 2, 1, <<BLOB>>, 1, 2026-09-29 04:35:56.987, 2026-09-29 04:35:56.987, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@f4f4f73]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@15d30673] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1670424192 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,datasource_name,plugin_name,plugin_version,datasource_config,description,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_datasource WHERE (id = ? AND workspace_id = ?)
+==> Parameters: 23198791360544(Long), 1(Long)
+<==    Columns: id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id
+<==        Row: 23198791360544, ds_other, JDBC-Mysql, 1.0.0, {"url":"jdbc:mysql://127.0.0.1:1/x","driver":"com.mysql.cj.jdbc.Driver","user":"u","password":"p"}, d, 1, 1, 2026-09-29 04:35:57.509, 2026-09-29 04:35:57.509, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@15d30673]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@23013140] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@928428240 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,datasource_name,plugin_name,plugin_version,datasource_config,description,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_datasource WHERE (datasource_name = ? AND id <> ? AND workspace_id = ?)
+==> Parameters: ds_vt(String), 23198791360544(Long), 1(Long)
+<==    Columns: id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id
+<==        Row: 23198791306016, ds_vt, JDBC-Mysql, 1.0.0, {"url":"jdbc:mysql://127.0.0.1:1/x","driver":"com.mysql.cj.jdbc.Driver","user":"u","password":"p"}, d, 1, 1, 2026-09-29 04:35:57.088, 2026-09-29 04:35:57.088, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@23013140]

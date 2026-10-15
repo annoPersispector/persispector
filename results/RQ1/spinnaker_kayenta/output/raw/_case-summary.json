@@ -1,0 +1,232 @@
+{
+  "CC-01-control-create": {
+    "status": 200,
+    "resp": "{\"canaryConfigId\":\"cc-valid-001\"}",
+    "readback": "id\tid_len\tjson_valid\tjson_type\tcreated_at\tupdated_at\ncc-valid-001\t12\t1\tOBJECT\t2026-09-29 12:27:15\t2026-09-29 12:27:15",
+    "log_errors": [],
+    "log_sql": [
+      "DEBUG 1164260 --- [.1-18204-exec-8] org.hibernate.SQL                        : select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as content2_1_0_, sqlcanaryc0_.created_at as created_3_1_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-8] org.hibernate.SQL                        : select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as content2_1_0_, sqlcanaryc0_.created_at as created_3_1_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-8] org.hibernate.SQL                        : insert into canary_config (content, created_at, updated_at, id) values (?, ?, ?, ?)"
+    ]
+  },
+  "CC-02-readback-api": {
+    "status": 200,
+    "resp": "{\"createdTimestamp\":1790699235206,\"updatedTimestamp\":1790699235206,\"createdTimestampIso\":\"2026-09-29T16:27:15.206Z\",\"updatedTimestampIso\":\"2026-09-29T16:27:15.206Z\",\"name\":\"cfgvalid\",\"id\":\"cc-valid-001\",\"configVersion\":\"1\",\"applications\":[\"verifapp\"],\"judge\":{\"name\":\"NetflixACAJudge-v1.0\",\"judgeConfigurations\":{}},\"metrics\":[],\"classifier\":{\"groupWeights\":{}}}",
+    "readback": "n\n1",
+    "log_errors": [],
+    "log_sql": [
+      "DEBUG 1164260 --- [.1-18204-exec-9] org.hibernate.SQL                        : select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as content2_1_0_, sqlcanaryc0_.created_at as created_3_1_0_, sql"
+    ]
+  },
+  "CC-03-boundary-id-255": {
+    "status": 200,
+    "resp": "{\"canaryConfigId\":\"cc-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"}",
+    "readback": "id\tid_len\tjson_valid\tjson_type\tcreated_at\tupdated_at\ncc-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\t255\t1\tOBJECT\t2026-09-29 12:27:17\t2026-09-29 12:27:17",
+    "log_errors": [],
+    "log_sql": [
+      "DEBUG 1164260 --- [1-18204-exec-10] org.hibernate.SQL                        : select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as content2_1_0_, sqlcanaryc0_.created_at as created_3_1_0_, sql",
+      "DEBUG 1164260 --- [1-18204-exec-10] org.hibernate.SQL                        : select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as content2_1_0_, sqlcanaryc0_.created_at as created_3_1_0_, sql",
+      "DEBUG 1164260 --- [1-18204-exec-10] org.hibernate.SQL                        : insert into canary_config (content, created_at, updated_at, id) values (?, ?, ?, ?)"
+    ]
+  },
+  "CC-04-violation-id-256": {
+    "status": 500,
+    "resp": "{\"timestamp\":\"2026-09-29T16:27:17.504+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"exception\":\"org.springframework.dao.DataIntegrityViolationException\",\"message\":\"could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.DataException: could not execute statement\"}",
+    "readback": "n_rows_like_256\n0",
+    "log_errors": [
+      "com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'id' at row 1",
+      "2026-09-29 12:27:17.486  WARN 1164260 --- [.1-18204-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1406, SQLState: 22001",
+      "2026-09-29 12:27:17.486 ERROR 1164260 --- [.1-18204-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncation: Data too long for column 'id' at row 1",
+      "2026-09-29 12:27:17.492  WARN 1164260 --- [.1-18204-exec-1] c.n.s.k.w.e.GenericExceptionHandlers     : Handled error in generic exception handler",
+      "Caused by: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'id' at row 1",
+      "2026-09-29 12:27:17.493 ERROR 1164260 --- [.1-18204-exec-1] c.n.s.k.w.e.GenericExceptionHandlers     : Internal Server Error",
+      "Caused by: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'id' at row 1"
+    ],
+    "log_sql": [
+      "DEBUG 1164260 --- [.1-18204-exec-1] org.hibernate.SQL                        : select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as content2_1_0_, sqlcanaryc0_.created_at as created_3_1_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-1] org.hibernate.SQL                        : select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as content2_1_0_, sqlcanaryc0_.created_at as created_3_1_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-1] org.hibernate.SQL                        : insert into canary_config (content, created_at, updated_at, id) values (?, ?, ?, ?)"
+    ]
+  },
+  "CC-05-violation-duplicate-id": {
+    "status": 400,
+    "resp": "{\"message\":\"Canary config 'cc-valid-001' already exists.\"}",
+    "readback": "id\tname\ncc-valid-001\tcfgvalid",
+    "log_errors": [],
+    "log_sql": [
+      "DEBUG 1164260 --- [.1-18204-exec-2] org.hibernate.SQL                        : select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as content2_1_0_, sqlcanaryc0_.created_at as created_3_1_0_, sql"
+    ]
+  },
+  "CC-06-boundary-duplicate-id-case-variant": {
+    "status": 400,
+    "resp": "{\"message\":\"Canary config 'CC-VALID-001' already exists.\"}",
+    "readback": "id\tname\ncc-valid-001\tcfgvalid",
+    "log_errors": [],
+    "log_sql": [
+      "DEBUG 1164260 --- [.1-18204-exec-3] org.hibernate.SQL                        : select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as content2_1_0_, sqlcanaryc0_.created_at as created_3_1_0_, sql"
+    ]
+  },
+  "CC-07-update-same-id": {
+    "status": 200,
+    "resp": "{\"canaryConfigId\":\"cc-valid-001\"}",
+    "readback": "id\tname\tcreated_at\tupdated_at\tn\ncc-valid-001\tcfgupdated\t2026-09-29 12:27:20\t2026-09-29 12:27:20\t1",
+    "log_errors": [],
+    "log_sql": [
+      "DEBUG 1164260 --- [.1-18204-exec-4] org.hibernate.SQL                        : select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as content2_1_0_, sqlcanaryc0_.created_at as created_3_1_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-4] org.hibernate.SQL                        : select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as content2_1_0_, sqlcanaryc0_.created_at as created_3_1_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-4] org.hibernate.SQL                        : update canary_config set content=?, created_at=?, updated_at=? where id=?"
+    ]
+  },
+  "CC-08-violation-null-id": {
+    "status": 200,
+    "resp": "{\"canaryConfigId\":\"f439d0b1-7f78-49cb-9250-0ec0c9e6a6bc\"}",
+    "readback": "id\tid_len\tcontent_id\nf439d0b1-7f78-49cb-9250-0ec0c9e6a6bc\t36\tf439d0b1-7f78-49cb-9250-0ec0c9e6a6bc",
+    "log_errors": [],
+    "log_sql": [
+      "DEBUG 1164260 --- [.1-18204-exec-5] org.hibernate.SQL                        : select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as content2_1_0_, sqlcanaryc0_.created_at as created_3_1_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-5] org.hibernate.SQL                        : select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as content2_1_0_, sqlcanaryc0_.created_at as created_3_1_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-5] org.hibernate.SQL                        : insert into canary_config (content, created_at, updated_at, id) values (?, ?, ?, ?)"
+    ]
+  },
+  "CC-09-violation-empty-id": {
+    "status": 200,
+    "resp": "{\"canaryConfigId\":\"a14c712e-8fb6-4493-a918-536e37b0ad62\"}",
+    "readback": "id\tid_len\na14c712e-8fb6-4493-a918-536e37b0ad62\t36",
+    "log_errors": [],
+    "log_sql": [
+      "DEBUG 1164260 --- [.1-18204-exec-6] org.hibernate.SQL                        : select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as content2_1_0_, sqlcanaryc0_.created_at as created_3_1_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-6] org.hibernate.SQL                        : select sqlcanaryc0_.id as id1_1_0_, sqlcanaryc0_.content as content2_1_0_, sqlcanaryc0_.created_at as created_3_1_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-6] org.hibernate.SQL                        : insert into canary_config (content, created_at, updated_at, id) values (?, ?, ?, ?)"
+    ]
+  },
+  "CC-10-violation-null-content": {
+    "status": 400,
+    "resp": "",
+    "readback": "n\n4",
+    "log_errors": [],
+    "log_sql": []
+  },
+  "CA-01-control-create": {
+    "status": 200,
+    "resp": "{\"pipelineId\":\"ca-valid-001\"}",
+    "readback": "id\tid_len\tjson_valid\tjson_type\tcreated_at\tupdated_at\nca-valid-001\t12\t1\tOBJECT\t2026-09-29 12:27:23\t2026-09-29 12:27:23",
+    "log_errors": [],
+    "log_sql": [
+      "DEBUG 1164260 --- [.1-18204-exec-8] org.hibernate.SQL                        : select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as content2_0_0_, sqlcanarya0_.created_at as created_3_0_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-8] org.hibernate.SQL                        : select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as content2_0_0_, sqlcanarya0_.created_at as created_3_0_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-8] org.hibernate.SQL                        : insert into canary_archive (content, created_at, updated_at, id) values (?, ?, ?, ?)"
+    ]
+  },
+  "CA-02-readback-api": {
+    "status": 200,
+    "resp": "{\"application\":\"verifapp\",\"pipelineId\":\"p\",\"stageStatus\":{\"s1\":\"succeeded\"},\"complete\":true,\"status\":\"succeeded\"}",
+    "readback": null,
+    "log_errors": [],
+    "log_sql": [
+      "DEBUG 1164260 --- [.1-18204-exec-9] org.hibernate.SQL                        : select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as content2_0_0_, sqlcanarya0_.created_at as created_3_0_0_, sql"
+    ]
+  },
+  "CA-03-boundary-id-255": {
+    "status": 200,
+    "resp": "{\"pipelineId\":\"ca-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"}",
+    "readback": "id\tid_len\tjson_valid\tjson_type\tcreated_at\tupdated_at\nca-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\t255\t1\tOBJECT\t2026-09-29 12:27:24\t2026-09-29 12:27:24",
+    "log_errors": [],
+    "log_sql": [
+      "DEBUG 1164260 --- [1-18204-exec-10] org.hibernate.SQL                        : select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as content2_0_0_, sqlcanarya0_.created_at as created_3_0_0_, sql",
+      "DEBUG 1164260 --- [1-18204-exec-10] org.hibernate.SQL                        : select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as content2_0_0_, sqlcanarya0_.created_at as created_3_0_0_, sql",
+      "DEBUG 1164260 --- [1-18204-exec-10] org.hibernate.SQL                        : insert into canary_archive (content, created_at, updated_at, id) values (?, ?, ?, ?)"
+    ]
+  },
+  "CA-04-violation-id-256": {
+    "status": 500,
+    "resp": "{\"timestamp\":\"2026-09-29T16:27:24.881+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"exception\":\"org.springframework.dao.DataIntegrityViolationException\",\"message\":\"could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.DataException: could not execute statement\"}",
+    "readback": "n_rows_like_256\n0",
+    "log_errors": [
+      "com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'id' at row 1",
+      "2026-09-29 12:27:24.874  WARN 1164260 --- [.1-18204-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1406, SQLState: 22001",
+      "2026-09-29 12:27:24.874 ERROR 1164260 --- [.1-18204-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncation: Data too long for column 'id' at row 1",
+      "2026-09-29 12:27:24.878  WARN 1164260 --- [.1-18204-exec-1] c.n.s.k.w.e.GenericExceptionHandlers     : Handled error in generic exception handler",
+      "Caused by: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'id' at row 1",
+      "2026-09-29 12:27:24.879 ERROR 1164260 --- [.1-18204-exec-1] c.n.s.k.w.e.GenericExceptionHandlers     : Internal Server Error",
+      "Caused by: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'id' at row 1"
+    ],
+    "log_sql": [
+      "DEBUG 1164260 --- [.1-18204-exec-1] org.hibernate.SQL                        : select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as content2_0_0_, sqlcanarya0_.created_at as created_3_0_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-1] org.hibernate.SQL                        : select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as content2_0_0_, sqlcanarya0_.created_at as created_3_0_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-1] org.hibernate.SQL                        : insert into canary_archive (content, created_at, updated_at, id) values (?, ?, ?, ?)"
+    ]
+  },
+  "CA-05-violation-duplicate-id": {
+    "status": 400,
+    "resp": "{\"message\":\"Archived canary result 'ca-valid-001' already exists.\"}",
+    "readback": "id\tapplication\nca-valid-001\tverifapp",
+    "log_errors": [],
+    "log_sql": [
+      "DEBUG 1164260 --- [.1-18204-exec-2] org.hibernate.SQL                        : select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as content2_0_0_, sqlcanarya0_.created_at as created_3_0_0_, sql"
+    ]
+  },
+  "CA-06-update-same-id": {
+    "status": 200,
+    "resp": "{\"pipelineId\":\"ca-valid-001\"}",
+    "readback": "id\tapplication\tn\nca-valid-001\tupdatedapp\t1",
+    "log_errors": [],
+    "log_sql": [
+      "DEBUG 1164260 --- [.1-18204-exec-3] org.hibernate.SQL                        : select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as content2_0_0_, sqlcanarya0_.created_at as created_3_0_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-3] org.hibernate.SQL                        : select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as content2_0_0_, sqlcanarya0_.created_at as created_3_0_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-3] org.hibernate.SQL                        : update canary_archive set content=?, created_at=?, updated_at=? where id=?"
+    ]
+  },
+  "CA-07-violation-null-id": {
+    "status": 200,
+    "resp": "{\"pipelineId\":\"4b929a4c-f5c9-466b-b6ec-1d8ab9a159cb\"}",
+    "readback": "id\tid_len\n4b929a4c-f5c9-466b-b6ec-1d8ab9a159cb\t36",
+    "log_errors": [],
+    "log_sql": [
+      "DEBUG 1164260 --- [.1-18204-exec-4] org.hibernate.SQL                        : select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as content2_0_0_, sqlcanarya0_.created_at as created_3_0_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-4] org.hibernate.SQL                        : select sqlcanarya0_.id as id1_0_0_, sqlcanarya0_.content as content2_0_0_, sqlcanarya0_.created_at as created_3_0_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-4] org.hibernate.SQL                        : insert into canary_archive (content, created_at, updated_at, id) values (?, ?, ?, ?)"
+    ]
+  },
+  "CA-08-violation-null-content": {
+    "status": 400,
+    "resp": "",
+    "readback": "n\n0",
+    "log_errors": [],
+    "log_sql": []
+  },
+  "MS-01-control-create": {
+    "status": 200,
+    "resp": "{\"metricSetListId\":\"2d48be40-abd8-40f3-ae73-ab1682c1c3e3\"}",
+    "readback": "id\tid_len\tjson_valid\tjson_type\tcreated_at\tupdated_at\n2d48be40-abd8-40f3-ae73-ab1682c1c3e3\t36\t1\tARRAY\t2026-09-29 12:27:29\t2026-09-29 12:27:29",
+    "log_errors": [],
+    "log_sql": [
+      "DEBUG 1164260 --- [.1-18204-exec-6] org.hibernate.SQL                        : select sqlmetrics0_.id as id1_3_0_, sqlmetrics0_.content as content2_3_0_, sqlmetrics0_.created_at as created_3_3_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-6] org.hibernate.SQL                        : insert into metric_sets (content, created_at, updated_at, id) values (?, ?, ?, ?)"
+    ]
+  },
+  "MS-02-violation-null-content": {
+    "status": 400,
+    "resp": "",
+    "readback": "n\n1",
+    "log_errors": [],
+    "log_sql": []
+  },
+  "MSP-01-control-create": {
+    "status": 200,
+    "resp": "{\"metricSetPairListId\":\"81251910-c49f-44d9-8b0e-cb974af438d3\"}",
+    "readback": "id\tid_len\tjson_valid\tjson_type\tcreated_at\tupdated_at\n81251910-c49f-44d9-8b0e-cb974af438d3\t36\t1\tARRAY\t2026-09-29 12:27:30\t2026-09-29 12:27:30",
+    "log_errors": [],
+    "log_sql": [
+      "DEBUG 1164260 --- [.1-18204-exec-8] org.hibernate.SQL                        : select sqlmetrics0_.id as id1_2_0_, sqlmetrics0_.content as content2_2_0_, sqlmetrics0_.created_at as created_3_2_0_, sql",
+      "DEBUG 1164260 --- [.1-18204-exec-8] org.hibernate.SQL                        : insert into metric_set_pairs (content, created_at, updated_at, id) values (?, ?, ?, ?)"
+    ]
+  },
+  "MSP-02-violation-null-content": {
+    "status": 400,
+    "resp": "",
+    "readback": "n\n1",
+    "log_errors": [],
+    "log_sql": []
+  }
+}

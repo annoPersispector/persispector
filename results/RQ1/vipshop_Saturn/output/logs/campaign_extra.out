@@ -1,0 +1,7 @@
+login-admin-3                            POST   200 '{"status":0,"message":"","obj":""}' sqlerr=0
+ur-null-namespaces                       POST   200 '{"status":1,"message":"Required String parameter \'namespaces\' is not present","obj":""}' sqlerr=0
+ns-null-zkcluster-explicit               POST   400 '{"message":"Fail to create new namespace {pvns4} for reason {not found zkclusternull}"}' sqlerr=0
+job-len-namespace-path-256               POST   200 '{"status":1,"message":"find registryCenterConfiguration failed","obj":""}' sqlerr=0
+job-rest-null-defaults                   POST   201 '' sqlerr=0
+job-rest-null-defaults-readback          GET    200 '{"status":0,"message":"","obj":{"jobName":"pvrestnull","jobClass":"demo.DemoJavaJob","shardingTotalCount":1,"timeZone":"Asia/Shanghai","cron":"0/30 * * * * ?","' sqlerr=0
+job-rest-len-jobname-256                 POST   500 '{"message":"org.springframework.dao.DataIntegrityViolationException: \\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for col' sqlerr=18

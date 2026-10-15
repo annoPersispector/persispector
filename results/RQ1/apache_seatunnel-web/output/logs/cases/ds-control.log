@@ -1,0 +1,23 @@
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@460f4d27] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1932505591 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 6, 1, <<BLOB>>, 1, 2026-09-29 04:32:21.089, 2026-09-29 04:32:21.089, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@460f4d27]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@99b0ba0] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@658488150 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,datasource_name,plugin_name,plugin_version,datasource_config,description,create_user_id,update_user_id,create_time,update_time,workspace_id FROM t_st_datasource WHERE (datasource_name = ? AND id <> ? AND workspace_id = ?)
+==> Parameters: ds_ctrl(String), 0(Long), 1(Long)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@99b0ba0]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@19812018] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@322143887 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: INSERT INTO t_st_datasource ( id, datasource_name, plugin_name, plugin_version, datasource_config, description, create_user_id, update_user_id, create_time, update_time, workspace_id ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+==> Parameters: 23198763672352(Long), ds_ctrl(String), JDBC-Mysql(String), 1.0.0(String), {"url":"jdbc:mysql://127.0.0.1:1/x","driver":"com.mysql.cj.jdbc.Driver","user":"u","password":"p"}(String), d(String), 1(Integer), 1(Integer), 2026-09-29 04:32:21.202(Timestamp), 2026-09-29 04:32:21.202(Timestamp), 1(Long)
+<==    Updates: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@19812018]

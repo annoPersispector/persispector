@@ -1,0 +1,32 @@
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@11308425] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1653426199 wrapping conn3: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 10, 1, <<BLOB>>, 1, 2026-09-29 04:33:25.366, 2026-09-29 04:33:25.366, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@11308425]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3ad4a411] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@840011436 wrapping conn3: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select count(1) from `user`
+==> Parameters: 
+<==    Columns: COUNT(1)
+<==        Row: 6
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3ad4a411]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7c62ee2b] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@957657358 wrapping conn3: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, username, `password`, `status`, `type`, create_time, update_time, auth_provider from `user` limit ?, ?
+==> Parameters: 0(Integer), 50(Integer)
+<==    Columns: id, username, password, status, type, create_time, update_time, auth_provider
+<==        Row: 1, admin, 7f97da8846fed829bb8d1fd9f8030f3b, 0, 0, 2026-09-29 04:30:32.239, 2026-09-29 04:30:32.239, DB
+<==        Row: 2, user_ctrl, ac7fd31b1714b3fca180f034ad172d5a, 0, 1, 2026-09-29 04:33:25.378, 2026-09-29 04:33:25.378, DB
+<==        Row: 3, mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm, ac7fd31b1714b3fca180f034ad172d5a, 0, 1, 2026-09-29 04:33:25.797, 2026-09-29 04:33:25.797, DB
+<==        Row: 5, user_pw300, ad4c10691b4bba181770fc0222eea5a7, 0, 1, 2026-09-29 04:33:26.626, 2026-09-29 04:33:26.626, DB
+<==        Row: 7, user_st200, ac7fd31b1714b3fca180f034ad172d5a, -56, 1, 2026-09-29 04:33:28.709, 2026-09-29 04:33:28.709, DB
+<==        Row: 8, user_ty5, ac7fd31b1714b3fca180f034ad172d5a, 0, 5, 2026-09-29 04:33:29.534, 2026-09-29 04:33:29.534, DB
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7c62ee2b]

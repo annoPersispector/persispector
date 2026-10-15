@@ -1,0 +1,75 @@
+{
+ "schema_version": "persistence-runtime-verification-v1",
+ "application": "ddd-by-examples_all-things-cqrs__in-one-class",
+ "source_revision": null,
+ "isolated_application_path": "../application",
+ "build_system": "maven (system mvn 3.9.9; spring-boot-starter-parent 2.0.4.RELEASE)",
+ "java_version": "OpenJDK 1.8 (/usr/lib/jvm/java-8-openjdk-amd64) - JDK 17 default is incompatible with Lombok 1.18.0 / Boot 2.0.4",
+ "runtime_database": "H2 1.4.197 in-memory (jdbc:h2:mem:testdb), schema.sql + data.sql executed by Spring Boot datasource initializer, ddl-auto=none",
+ "schema_context_id": "dbctx-2c246b7230ae",
+ "base_urls": [
+  "http://127.0.0.1:18207"
+ ],
+ "ports": [
+  18207
+ ],
+ "health_checks": [
+  "http://127.0.0.1:18207/actuator/health -> {\"status\":\"UP\"}"
+ ],
+ "commands": [
+  {
+   "purpose": "build",
+   "command": "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 mvn -q -B -DskipTests package",
+   "working_directory": "../application",
+   "exit_code": 0
+  },
+  {
+   "purpose": "start",
+   "command": "/usr/lib/jvm/java-8-openjdk-amd64/bin/java -jar target/in-one-class-0.0.1-SNAPSHOT.jar --server.port=18207 --server.address=127.0.0.1 --spring.jpa.show-sql=true --logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE --logging.level.org.hibernate.SQL=DEBUG > logs/app.log",
+   "working_directory": "../application",
+   "exit_code": null
+  },
+  {
+   "purpose": "health-check",
+   "command": "curl -s http://127.0.0.1:18207/actuator/health",
+   "working_directory": ".",
+   "exit_code": 0
+  },
+  {
+   "purpose": "test-driver",
+   "command": "python3 raw/harness.py (cases fed on stdin)",
+   "working_directory": ".",
+   "exit_code": 0
+  },
+  {
+   "purpose": "stop",
+   "command": "kill <pid from logs/app.pid>",
+   "working_directory": ".",
+   "exit_code": 0
+  }
+ ],
+ "patches": [],
+ "logs": [
+  {
+   "path": "logs/build.log",
+   "kind": "deployment-log",
+   "description": "Maven build output (quiet mode, empty on success)",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "path": "logs/app.log",
+   "kind": "application-log",
+   "description": "Full application log incl. Hibernate SQL and bind-parameter trace",
+   "sha256": "c87cd4f3c45859ee1fe7dd68823af42f32e04e0c716229bb707b9c9ba9b9abdc"
+  }
+ ],
+ "cleanup_performed": true,
+ "notes": [
+  "No source patches were needed; SQL tracing enabled via command-line properties only.",
+  "Controller is @RestController(\"/withdrawals\") which names the bean, so endpoints are POST / and GET /?cardId=.",
+  "Application process stopped after testing; port 18207 verified free.",
+  "In-memory DB state discarded on stop.",
+  "Results revised after validator feedback; no redeployment was needed and the existing evidence is unchanged.",
+  "Second revision: added read-back evidence references for the API read-back cases c02 and c10. No redeployment was needed."
+ ]
+}

@@ -1,0 +1,7 @@
+[2026-09-29 20:19:43.554] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.S.selectByProperty] >>> ==>  Preparing: select id, property, value from sys_config where property = ? 
+[2026-09-29 20:19:43.554] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.S.selectByProperty] >>> ==> Parameters: PV_TEST_A(String)
+[2026-09-29 20:19:43.554] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.S.selectByProperty] >>> <==      Total: 0
+[2026-09-29 20:19:43.554] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.SystemConfigRepository.insert] >>> ==>  Preparing: insert into sys_config(property, value) values(?, ?) 
+[2026-09-29 20:19:43.555] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.SystemConfigRepository.insert] >>> ==> Parameters: PV_TEST_A(String), v(String)
+[2026-09-29 20:19:43.555] [DEBUG] [http-nio-127.0.0.1-18205-exec-2] [c.v.s.j.c.m.r.SystemConfigRepository.insert] >>> <==    Updates: 1
+[2026-09-29 20:19:43.555] [INFO] [http-nio-127.0.0.1-18205-exec-2] [AUDITLOG] >>> GUI API:[createConfig] path:[/console/configs/console/create] is called by User:[admin] with IP:[127.0.0.1], result is success. Context info:{key=PV_TEST_A, value=v}.

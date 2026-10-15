@@ -1,0 +1,45 @@
+{
+ "case_id": "A05b-readback-other-title",
+ "purpose": "read-back",
+ "target_ids": [
+  "pc-e4f422b7bd9e"
+ ],
+ "request": {
+  "method": "GET",
+  "url": "http://127.0.0.1:18208/articles/other-title",
+  "headers": {
+   "Content-Type": "application/json",
+   "Authorization": "Token <JWT-REDACTED>"
+  },
+  "body": null
+ },
+ "response": {
+  "status": 200,
+  "body": {
+   "article": {
+    "id": "a775d7fe-78c8-4e82-93cc-64d8fc73f8c4",
+    "slug": "other-title",
+    "title": "Other Title",
+    "description": "desc",
+    "body": "body",
+    "favorited": false,
+    "favoritesCount": 0,
+    "createdAt": "2026-09-29T07:08:36.894Z",
+    "updatedAt": "2026-09-29T07:08:36.894Z",
+    "tagList": [
+     "alpha"
+    ],
+    "cursor": {
+     "data": "2026-09-29T07:08:36.894Z"
+    },
+    "author": {
+     "username": "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv",
+     "bio": "",
+     "image": "https://img.example/iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.png",
+     "following": false
+    }
+   }
+  }
+ },
+ "note": ""
+}

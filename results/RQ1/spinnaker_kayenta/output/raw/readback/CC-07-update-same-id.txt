@@ -1,0 +1,4 @@
+-- MySQL read-back executed immediately after the request
+-- SQL: SELECT id, JSON_UNQUOTE(JSON_EXTRACT(content,'$.name')) AS name, created_at, updated_at, (SELECT COUNT(*) FROM canary_config WHERE id='cc-valid-001') AS n FROM canary_config WHERE id='cc-valid-001'
+id	name	created_at	updated_at	n
+cc-valid-001	cfgupdated	2026-09-29 12:27:20	2026-09-29 12:27:20	1

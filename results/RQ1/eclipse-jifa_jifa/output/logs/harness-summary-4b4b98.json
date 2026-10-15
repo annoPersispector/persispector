@@ -1,0 +1,251 @@
+{
+ "run": "4b4b98",
+ "ids": {
+  "fid": "1",
+  "fid256": "2",
+  "tid": "1",
+  "t256": "3"
+ },
+ "cases": {
+  "U01-setup-register-valid": {
+   "status": 200,
+   "body": "",
+   "sql_errors": [],
+   "writes": [
+    "insert into users (admin,created_time,last_modified_time,name,id) values (?,?,?,?,default)",
+    "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)"
+   ]
+  },
+  "U02-readback-login-valid": {
+   "status": 200,
+   "body": "",
+   "sql_errors": [],
+   "writes": []
+  },
+  "U03-violation-username-duplicate": {
+   "status": 500,
+   "body": "{\"errorCode\":\"USERNAME_EXISTS\",\"message\":\"Username exists\"}",
+   "sql_errors": [],
+   "writes": []
+  },
+  "U04-violation-username-null": {
+   "status": 500,
+   "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"NULL not allowed for column \\\"USERNAME\\\"; SQL statement:\\ninsert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23502-220]\"}",
+   "sql_errors": [
+    "2026-09-29T11:18:06.570-04:00  WARN 1126360 --- [.1-18201-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 23502, SQLState: 23502",
+    "2026-09-29T11:18:06.570-04:00 ERROR 1126360 --- [.1-18201-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : NULL not allowed for column \"USERNAME\"; SQL statement:",
+    "\tat org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.5.3.Final.jar!/:6.5.3.Final]"
+   ],
+   "writes": [
+    "insert into users (admin,created_time,last_modified_time,name,id) values (?,?,?,?,default)",
+    "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)"
+   ]
+  },
+  "U05-boundary-username-128": {
+   "status": 200,
+   "body": "",
+   "sql_errors": [],
+   "writes": [
+    "insert into users (admin,created_time,last_modified_time,name,id) values (?,?,?,?,default)",
+    "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)"
+   ]
+  },
+  "U06-violation-username-129": {
+   "status": 500,
+   "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"Value too long for column \\\"USERNAME CHARACTER VARYING(128)\\\": \\\"'c4b4b98xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx... (129)\\\"; SQL statement:\\ninsert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [22001-220]\"}",
+   "sql_errors": [
+    "2026-09-29T11:18:07.953-04:00  WARN 1126360 --- [.1-18201-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 22001, SQLState: 22001",
+    "2026-09-29T11:18:07.953-04:00 ERROR 1126360 --- [.1-18201-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : Value too long for column \"USERNAME CHARACTER VARYING(128)\": \"'c4b4b98xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx... (129)\"; SQL statement:",
+    "\tat org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.5.3.Final.jar!/:6.5.3.Final]"
+   ],
+   "writes": [
+    "insert into users (admin,created_time,last_modified_time,name,id) values (?,?,?,?,default)",
+    "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)"
+   ]
+  },
+  "U06b-readback-login-username-129": {
+   "status": 500,
+   "body": "{\"errorCode\":\"USER_NOT_FOUND\",\"message\":\"User not found\"}",
+   "sql_errors": [],
+   "writes": []
+  },
+  "U07-boundary-name-64": {
+   "status": 200,
+   "body": "",
+   "sql_errors": [],
+   "writes": [
+    "insert into users (admin,created_time,last_modified_time,name,id) values (?,?,?,?,default)",
+    "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)"
+   ]
+  },
+  "U08-violation-name-65": {
+   "status": 500,
+   "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"Value too long for column \\\"NAME CHARACTER VARYING(64)\\\": \\\"'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM' (65)\\\"; SQL statement:\\ninsert into users (admin,created_time,last_modified_time,name,id) values (?,?,?,?,default) [22001-220]\"}",
+   "sql_errors": [
+    "2026-09-29T11:18:09.935-04:00  WARN 1126360 --- [.1-18201-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 22001, SQLState: 22001",
+    "2026-09-29T11:18:09.935-04:00 ERROR 1126360 --- [.1-18201-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : Value too long for column \"NAME CHARACTER VARYING(64)\": \"'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM' (65)\"; SQL statement:",
+    "\tat org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.5.3.Final.jar!/:6.5.3.Final]"
+   ],
+   "writes": [
+    "insert into users (admin,created_time,last_modified_time,name,id) values (?,?,?,?,default)"
+   ]
+  },
+  "U08b-readback-login-after-name-65": {
+   "status": 500,
+   "body": "{\"errorCode\":\"USER_NOT_FOUND\",\"message\":\"User not found\"}",
+   "sql_errors": [],
+   "writes": []
+  },
+  "U09-violation-attempt-long-password-100": {
+   "status": 500,
+   "body": "{\"errorCode\":\"ILLEGAL_ARGUMENT\",\"message\":\"password cannot be more than 72 bytes\"}",
+   "sql_errors": [],
+   "writes": []
+  },
+  "U10-control-long-password-70": {
+   "status": 200,
+   "body": "",
+   "sql_errors": [],
+   "writes": [
+    "insert into users (admin,created_time,last_modified_time,name,id) values (?,?,?,?,default)",
+    "insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)"
+   ]
+  },
+  "U10b-readback-login-long-password-70": {
+   "status": 200,
+   "body": "",
+   "sql_errors": [],
+   "writes": []
+  },
+  "F01-control-upload-valid": {
+   "status": 200,
+   "body": "1",
+   "sql_errors": [],
+   "writes": [
+    "insert into files (created_time,original_name,size,type,unique_name,user_id,id) values (?,?,?,?,?,?,default)"
+   ]
+  },
+  "F02-readback-file-valid": {
+   "status": 200,
+   "body": "{\"id\":1,\"uniqueName\":\"6986423c-905a-4ce5-ab85-dac0a5c28695\",\"originalName\":\"gc-valid.log\",\"type\":\"GC_LOG\",\"size\":19,\"createdTime\":\"2026-09-29 11:18:13\"}",
+   "sql_errors": [],
+   "writes": []
+  },
+  "F03-boundary-upload-originalName-256": {
+   "status": 200,
+   "body": "2",
+   "sql_errors": [],
+   "writes": [
+    "insert into files (created_time,original_name,size,type,unique_name,user_id,id) values (?,?,?,?,?,?,default)"
+   ]
+  },
+  "F03b-readback-file-256": {
+   "status": 200,
+   "body": "{\"id\":2,\"uniqueName\":\"9441b908-dd32-4fe1-b1f3-1f17f2adfe16\",\"originalName\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.log\",\"type\":\"GC_LOG\",\"size\":19,\"createdTime\":\"2026-09-29 11:18:14\"}",
+   "sql_errors": [],
+   "writes": []
+  },
+  "F04-violation-upload-originalName-257": {
+   "status": 500,
+   "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"Value too long for column \\\"ORIGINAL_NAME CHARACTER VARYING(256)\\\": \\\"'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz... (257)\\\"; SQL statement:\\ninsert into files (created_time,original_name,size,type,unique_name,user_id,id) values (?,?,?,?,?,?,default) [22001-220]\"}",
+   "sql_errors": [
+    "2026-09-29T11:18:15.602-04:00  WARN 1126360 --- [.1-18201-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 22001, SQLState: 22001",
+    "2026-09-29T11:18:15.602-04:00 ERROR 1126360 --- [.1-18201-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : Value too long for column \"ORIGINAL_NAME CHARACTER VARYING(256)\": \"'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz... (257)\"; SQL statement:",
+    "\tat org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.5.3.Final.jar!/:6.5.3.Final]"
+   ],
+   "writes": [
+    "insert into files (created_time,original_name,size,type,unique_name,user_id,id) values (?,?,?,?,?,?,default)"
+   ]
+  },
+  "F04b-readback-file-list": {
+   "status": 200,
+   "body": "{\"data\":[{\"id\":2,\"uniqueName\":\"9441b908-dd32-4fe1-b1f3-1f17f2adfe16\",\"originalName\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.log\",\"type\":\"GC_LOG\",\"size\":19,\"createdTime\":\"2026-09-29 11:18",
+   "sql_errors": [],
+   "writes": []
+  },
+  "F05-violation-upload-type-missing": {
+   "status": 400,
+   "body": "{\"errorCode\":\"ILLEGAL_ARGUMENT\",\"message\":\"Required request parameter 'type' for method parameter type FileType is not present\"}",
+   "sql_errors": [],
+   "writes": []
+  },
+  "F06-violation-upload-type-invalid": {
+   "status": 500,
+   "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"No enum constant org.eclipse.jifa.server.enums.FileType.NOT_A_TYPE\"}",
+   "sql_errors": [],
+   "writes": []
+  },
+  "T01-control-transfer-text-valid": {
+   "status": 200,
+   "body": "1",
+   "sql_errors": [],
+   "writes": [
+    "insert into transferring_files (created_time,failure_message,last_modified_time,original_name,total_size,transfer_state,transferred_size,type,unique_name,user_i",
+    "update transferring_files set failure_message=?,last_modified_time=?,total_size=?,transfer_state=?,transferred_size=?,user_id=? where id=?",
+    "insert into files (created_time,original_name,size,type,unique_name,user_id,id) values (?,?,?,?,?,?,default)",
+    "update transferring_files set failure_message=?,last_modified_time=?,total_size=?,transfer_state=?,transferred_size=?,user_id=? where id=?"
+   ]
+  },
+  "T02-readback-transfer-progress-valid": {
+   "status": 200,
+   "body": "{\"state\":\"SUCCESS\",\"totalSize\":9,\"transferredSize\":9,\"fileId\":4}",
+   "sql_errors": [],
+   "writes": []
+  },
+  "T03-violation-transfer-type-null": {
+   "status": 500,
+   "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"Validation failed for argument [0] in public long org.eclipse.jifa.server.controller.FileController.transfer(org.eclipse.jifa.server.domain.dto.FileTransferRequest) throws java.lang.Throwable: [Field error in object 'fileTransferRequest' on field 'type': rejected value [null]; codes [Constraint.fileTransferRequest.type,Constraint.type,Constraint.org.eclipse",
+   "sql_errors": [],
+   "writes": []
+  },
+  "T04-violation-transfer-filename-null": {
+   "status": 500,
+   "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"Validation failed for argument [0] in public long org.eclipse.jifa.server.controller.FileController.transfer(org.eclipse.jifa.server.domain.dto.FileTransferRequest) throws java.lang.Throwable: [Field error in object 'fileTransferRequest' on field 'filename': rejected value [null]; codes [Constraint.fileTransferRequest.filename,Constraint.filename,Constraint",
+   "sql_errors": [],
+   "writes": []
+  },
+  "T05-violation-transfer-filename-257": {
+   "status": 500,
+   "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"Value too long for column \\\"ORIGINAL_NAME CHARACTER VARYING(256)\\\": \\\"'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy... (257)\\\"; SQL statement:\\ninsert into transferring_files (created_time,failure_message,last_modified_time,original_name,total_size,transfer_state,transferred_size,type,unique_name,user_id,id) values (?,?,?,",
+   "sql_errors": [
+    "2026-09-29T11:18:22.024-04:00  WARN 1126360 --- [.1-18201-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 22001, SQLState: 22001",
+    "2026-09-29T11:18:22.024-04:00 ERROR 1126360 --- [.1-18201-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : Value too long for column \"ORIGINAL_NAME CHARACTER VARYING(256)\": \"'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy... (257)\"; SQL statement:",
+    "\tat org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.5.3.Final.jar!/:6.5.3.Final]"
+   ],
+   "writes": [
+    "insert into transferring_files (created_time,failure_message,last_modified_time,original_name,total_size,transfer_state,transferred_size,type,unique_name,user_i"
+   ]
+  },
+  "T06-boundary-transfer-filename-256": {
+   "status": 200,
+   "body": "3",
+   "sql_errors": [],
+   "writes": [
+    "insert into transferring_files (created_time,failure_message,last_modified_time,original_name,total_size,transfer_state,transferred_size,type,unique_name,user_i",
+    "update transferring_files set failure_message=?,last_modified_time=?,total_size=?,transfer_state=?,transferred_size=?,user_id=? where id=?",
+    "insert into files (created_time,original_name,size,type,unique_name,user_id,id) values (?,?,?,?,?,?,default)",
+    "update transferring_files set failure_message=?,last_modified_time=?,total_size=?,transfer_state=?,transferred_size=?,user_id=? where id=?"
+   ]
+  },
+  "T06b-readback-transfer-progress-256": {
+   "status": 200,
+   "body": "{\"state\":\"SUCCESS\",\"totalSize\":1,\"transferredSize\":1,\"fileId\":5}",
+   "sql_errors": [],
+   "writes": []
+  },
+  "D01-control-delete-file": {
+   "status": 200,
+   "body": "",
+   "sql_errors": [],
+   "writes": [
+    "insert into deleted_files (created_time,original_created_time,original_name,size,type,unique_name,user_id,id) values (?,?,?,?,?,?,?,default)"
+   ]
+  },
+  "D02-readback-deleted-file": {
+   "status": 500,
+   "body": "{\"errorCode\":\"FILE_NOT_FOUND\",\"message\":\"File not found\"}",
+   "sql_errors": [],
+   "writes": []
+  }
+ }
+}

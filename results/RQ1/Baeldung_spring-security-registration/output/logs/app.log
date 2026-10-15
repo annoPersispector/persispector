@@ -1,0 +1,849 @@
+web - 2026-09-29 02:36:57,980 [background-preinit] INFO  o.h.v.i.u.Version - HV000001: Hibernate Validator 8.0.0.Final
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+web - 2026-09-29 02:36:58,032 [main] INFO  c.b.Application - Starting Application using Java 17.0.15 with PID 926763 (/artifact/results/RQ1/Baeldung_spring-security-registration/Baeldung_spring-security-registration-20260929T063401Z-2d6e2ecf/application/target/classes started by anonymous in /artifact/results/RQ1/Baeldung_spring-security-registration/Baeldung_spring-security-registration-20260929T063401Z-2d6e2ecf/application)
+web - 2026-09-29 02:36:58,033 [main] DEBUG c.b.Application - Running with Spring Boot v3.1.0, Spring v6.0.9
+web - 2026-09-29 02:36:58,033 [main] INFO  c.b.Application - The following 1 profile is active: "dev"
+web - 2026-09-29 02:36:59,078 [main] INFO  o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-127.0.0.1-18206"]
+web - 2026-09-29 02:36:59,078 [main] INFO  o.a.c.c.StandardService - Starting service [Tomcat]
+web - 2026-09-29 02:36:59,078 [main] INFO  o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.8]
+web - 2026-09-29 02:36:59,143 [main] INFO  o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+web - 2026-09-29 02:36:59,219 [main] INFO  o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+web - 2026-09-29 02:36:59,243 [main] INFO  o.h.Version - HHH000412: Hibernate ORM core version 6.2.2.Final
+web - 2026-09-29 02:36:59,244 [main] INFO  o.h.c.Environment - HHH000406: Using bytecode reflection optimizer
+web - 2026-09-29 02:36:59,305 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
+web - 2026-09-29 02:36:59,389 [main] INFO  c.z.h.HikariDataSource - HikariPool-1 - Starting...
+web - 2026-09-29 02:36:59,486 [main] INFO  c.z.h.p.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:registration_02 user=SA
+web - 2026-09-29 02:36:59,487 [main] INFO  c.z.h.HikariDataSource - HikariPool-1 - Start completed.
+web - 2026-09-29 02:36:59,518 [main] INFO  o.h.o.dialect - HHH035001: Using dialect: org.hibernate.dialect.H2Dialect, version: 2.1.214
+web - 2026-09-29 02:36:59,678 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
+web - 2026-09-29 02:37:00,131 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+web - 2026-09-29 02:37:00,145 [main] DEBUG o.h.SQL - create table device_metadata (id bigint not null, device_details varchar(255), last_logged_in timestamp(6), location varchar(255), user_id bigint, primary key (id))
+web - 2026-09-29 02:37:00,148 [main] DEBUG o.h.SQL - create table new_location_token (id bigint not null, token varchar(255), user_location_id bigint not null, primary key (id))
+web - 2026-09-29 02:37:00,149 [main] DEBUG o.h.SQL - create table password_reset_token (id bigint not null, expiry_date timestamp(6), token varchar(255), user_id bigint not null, primary key (id))
+web - 2026-09-29 02:37:00,150 [main] DEBUG o.h.SQL - create table privilege (id bigint not null, name varchar(255), primary key (id))
+web - 2026-09-29 02:37:00,150 [main] DEBUG o.h.SQL - create table role (id bigint not null, name varchar(255), primary key (id))
+web - 2026-09-29 02:37:00,151 [main] DEBUG o.h.SQL - create table roles_privileges (role_id bigint not null, privilege_id bigint not null)
+web - 2026-09-29 02:37:00,151 [main] DEBUG o.h.SQL - create table user_account (id bigint not null, email varchar(255), enabled boolean not null, first_name varchar(255), is_using2fa boolean not null, last_name varchar(255), password varchar(60), secret varchar(255), primary key (id))
+web - 2026-09-29 02:37:00,152 [main] DEBUG o.h.SQL - create table user_location (id bigint not null, country varchar(255), enabled boolean not null, user_id bigint not null, primary key (id))
+web - 2026-09-29 02:37:00,152 [main] DEBUG o.h.SQL - create table users_roles (user_id bigint not null, role_id bigint not null)
+web - 2026-09-29 02:37:00,153 [main] DEBUG o.h.SQL - create table verification_token (id bigint not null, expiry_date timestamp(6), token varchar(255), user_id bigint not null, primary key (id))
+web - 2026-09-29 02:37:00,153 [main] DEBUG o.h.SQL - alter table if exists new_location_token drop constraint if exists UK_o0yhxr0s5vnv32rv2b157mhbm
+web - 2026-09-29 02:37:00,154 [main] DEBUG o.h.SQL - alter table if exists new_location_token add constraint UK_o0yhxr0s5vnv32rv2b157mhbm unique (user_location_id)
+web - 2026-09-29 02:37:00,155 [main] DEBUG o.h.SQL - alter table if exists password_reset_token drop constraint if exists UK_f90ivichjaokvmovxpnlm5nin
+web - 2026-09-29 02:37:00,155 [main] DEBUG o.h.SQL - alter table if exists password_reset_token add constraint UK_f90ivichjaokvmovxpnlm5nin unique (user_id)
+web - 2026-09-29 02:37:00,155 [main] DEBUG o.h.SQL - alter table if exists verification_token drop constraint if exists UK_q6jibbenp7o9v6tq178xg88hg
+web - 2026-09-29 02:37:00,155 [main] DEBUG o.h.SQL - alter table if exists verification_token add constraint UK_q6jibbenp7o9v6tq178xg88hg unique (user_id)
+web - 2026-09-29 02:37:00,157 [main] DEBUG o.h.SQL - create sequence device_metadata_seq start with 1 increment by 50
+web - 2026-09-29 02:37:00,159 [main] DEBUG o.h.SQL - create sequence new_location_token_seq start with 1 increment by 50
+web - 2026-09-29 02:37:00,159 [main] DEBUG o.h.SQL - create sequence password_reset_token_seq start with 1 increment by 50
+web - 2026-09-29 02:37:00,159 [main] DEBUG o.h.SQL - create sequence privilege_seq start with 1 increment by 50
+web - 2026-09-29 02:37:00,159 [main] DEBUG o.h.SQL - create sequence role_seq start with 1 increment by 50
+web - 2026-09-29 02:37:00,159 [main] DEBUG o.h.SQL - create sequence user_account_seq start with 1 increment by 50
+web - 2026-09-29 02:37:00,159 [main] DEBUG o.h.SQL - create sequence user_location_seq start with 1 increment by 50
+web - 2026-09-29 02:37:00,160 [main] DEBUG o.h.SQL - create sequence verification_token_seq start with 1 increment by 50
+web - 2026-09-29 02:37:00,160 [main] DEBUG o.h.SQL - alter table if exists new_location_token add constraint FKt4d61xu4ompo2fy5upb033mwm foreign key (user_location_id) references user_location
+web - 2026-09-29 02:37:00,163 [main] DEBUG o.h.SQL - alter table if exists password_reset_token add constraint FKns9q9f0f318uaoxiqn6lka9ux foreign key (user_id) references user_account
+web - 2026-09-29 02:37:00,163 [main] DEBUG o.h.SQL - alter table if exists roles_privileges add constraint FK5yjwxw2gvfyu76j3rgqwo685u foreign key (privilege_id) references privilege
+web - 2026-09-29 02:37:00,164 [main] DEBUG o.h.SQL - alter table if exists roles_privileges add constraint FK9h2vewsqh8luhfq71xokh4who foreign key (role_id) references role
+web - 2026-09-29 02:37:00,166 [main] DEBUG o.h.SQL - alter table if exists user_location add constraint FKewiig159t5fn9jt50sra34adr foreign key (user_id) references user_account
+web - 2026-09-29 02:37:00,167 [main] DEBUG o.h.SQL - alter table if exists users_roles add constraint FKt4v0rrweyk393bdgt107vdx0x foreign key (role_id) references role
+web - 2026-09-29 02:37:00,167 [main] DEBUG o.h.SQL - alter table if exists users_roles add constraint FKci4mdvg1fmo9eqmwno1y9o0fa foreign key (user_id) references user_account
+web - 2026-09-29 02:37:00,168 [main] DEBUG o.h.SQL - alter table if exists verification_token add constraint FK_VERIFY_USER foreign key (user_id) references user_account
+web - 2026-09-29 02:37:00,938 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+web - 2026-09-29 02:37:00,984 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/, /loginRememberMe, /customLogin, /registration.html, /registrationCaptcha.html, /registrationReCaptchaV3.html, /logout.html, /homepage.html, /expiredAccount.html, /emailError.html, /home.html, /invalidSession.html, /admin.html, /successRegister.html, /forgetPassword.html, /updatePassword.html, /changePassword.html, /users.html, /qrcode.html] in 'viewControllerHandlerMapping'
+web - 2026-09-29 02:37:01,046 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/resources/**] in 'resourceHandlerMapping'
+web - 2026-09-29 02:37:01,048 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/**] in 'defaultServletHandlerMapping'
+web - 2026-09-29 02:37:01,177 [main] WARN  o.s.s.c.a.w.b.WebSecurity - You are asking Spring Security to ignore Ant [pattern='/resources/**', /h2/**]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+web - 2026-09-29 02:37:01,300 [main] INFO  o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-127.0.0.1-18206"]
+web - 2026-09-29 02:37:01,379 [main] DEBUG o.h.SQL - select p1_0.id,p1_0.name from privilege p1_0 where p1_0.name=?
+web - 2026-09-29 02:37:01,379 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [READ_PRIVILEGE]
+web - 2026-09-29 02:37:01,386 [main] DEBUG o.h.SQL - select next value for privilege_seq
+web - 2026-09-29 02:37:01,403 [main] DEBUG o.h.SQL - insert into privilege (name,id) values (?,?)
+web - 2026-09-29 02:37:01,404 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [READ_PRIVILEGE]
+web - 2026-09-29 02:37:01,404 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [1]
+web - 2026-09-29 02:37:01,406 [main] DEBUG o.h.SQL - select p1_0.id,p1_0.name from privilege p1_0 where p1_0.name=?
+web - 2026-09-29 02:37:01,406 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [WRITE_PRIVILEGE]
+web - 2026-09-29 02:37:01,407 [main] DEBUG o.h.SQL - select next value for privilege_seq
+web - 2026-09-29 02:37:01,408 [main] DEBUG o.h.SQL - insert into privilege (name,id) values (?,?)
+web - 2026-09-29 02:37:01,408 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [WRITE_PRIVILEGE]
+web - 2026-09-29 02:37:01,408 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [2]
+web - 2026-09-29 02:37:01,409 [main] DEBUG o.h.SQL - select p1_0.id,p1_0.name from privilege p1_0 where p1_0.name=?
+web - 2026-09-29 02:37:01,409 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [CHANGE_PASSWORD_PRIVILEGE]
+web - 2026-09-29 02:37:01,411 [main] DEBUG o.h.SQL - select r1_0.id,r1_0.name from role r1_0 where r1_0.name=?
+web - 2026-09-29 02:37:01,411 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [ROLE_ADMIN]
+web - 2026-09-29 02:37:01,412 [main] DEBUG o.h.SQL - select next value for role_seq
+web - 2026-09-29 02:37:01,417 [main] DEBUG o.h.SQL - insert into privilege (name,id) values (?,?)
+web - 2026-09-29 02:37:01,418 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [CHANGE_PASSWORD_PRIVILEGE]
+web - 2026-09-29 02:37:01,418 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [3]
+web - 2026-09-29 02:37:01,418 [main] DEBUG o.h.SQL - insert into role (name,id) values (?,?)
+web - 2026-09-29 02:37:01,418 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [ROLE_ADMIN]
+web - 2026-09-29 02:37:01,418 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [1]
+web - 2026-09-29 02:37:01,420 [main] DEBUG o.h.SQL - insert into roles_privileges (role_id,privilege_id) values (?,?)
+web - 2026-09-29 02:37:01,421 [main] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:37:01,421 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [1]
+web - 2026-09-29 02:37:01,421 [main] DEBUG o.h.SQL - insert into roles_privileges (role_id,privilege_id) values (?,?)
+web - 2026-09-29 02:37:01,421 [main] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:37:01,421 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [2]
+web - 2026-09-29 02:37:01,421 [main] DEBUG o.h.SQL - insert into roles_privileges (role_id,privilege_id) values (?,?)
+web - 2026-09-29 02:37:01,421 [main] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:37:01,421 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [3]
+web - 2026-09-29 02:37:01,422 [main] DEBUG o.h.SQL - select r1_0.id,r1_0.name from role r1_0 where r1_0.name=?
+web - 2026-09-29 02:37:01,422 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [ROLE_USER]
+web - 2026-09-29 02:37:01,423 [main] DEBUG o.h.SQL - select next value for role_seq
+web - 2026-09-29 02:37:01,425 [main] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,u1_0.secret from user_account u1_0 where u1_0.email=?
+web - 2026-09-29 02:37:01,426 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [test@test.com]
+web - 2026-09-29 02:37:01,522 [http-nio-127.0.0.1-18206-exec-1] INFO  o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+web - 2026-09-29 02:37:01,522 [http-nio-127.0.0.1-18206-exec-1] INFO  o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+web - 2026-09-29 02:37:01,522 [http-nio-127.0.0.1-18206-exec-1] DEBUG o.s.w.s.DispatcherServlet - Detected StandardServletMultipartResolver
+web - 2026-09-29 02:37:01,522 [http-nio-127.0.0.1-18206-exec-1] DEBUG o.s.w.s.DispatcherServlet - Detected CookieLocaleResolver
+web - 2026-09-29 02:37:01,522 [http-nio-127.0.0.1-18206-exec-1] DEBUG o.s.w.s.DispatcherServlet - Detected FixedThemeResolver
+web - 2026-09-29 02:37:01,523 [http-nio-127.0.0.1-18206-exec-1] DEBUG o.s.w.s.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@5ab780ce
+web - 2026-09-29 02:37:01,523 [http-nio-127.0.0.1-18206-exec-1] DEBUG o.s.w.s.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@44264fb6
+web - 2026-09-29 02:37:01,523 [http-nio-127.0.0.1-18206-exec-1] DEBUG o.s.w.s.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+web - 2026-09-29 02:37:01,523 [http-nio-127.0.0.1-18206-exec-1] INFO  o.s.w.s.DispatcherServlet - Completed initialization in 1 ms
+web - 2026-09-29 02:37:01,532 [http-nio-127.0.0.1-18206-exec-1] DEBUG o.s.w.s.DispatcherServlet - GET "/login", parameters={}
+web - 2026-09-29 02:37:01,561 [main] DEBUG o.h.SQL - select next value for user_account_seq
+web - 2026-09-29 02:37:01,563 [main] DEBUG o.h.SQL - insert into role (name,id) values (?,?)
+web - 2026-09-29 02:37:01,563 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [ROLE_USER]
+web - 2026-09-29 02:37:01,563 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [2]
+web - 2026-09-29 02:37:01,564 [main] DEBUG o.h.SQL - insert into user_account (email,enabled,first_name,is_using2fa,last_name,password,secret,id) values (?,?,?,?,?,?,?,?)
+web - 2026-09-29 02:37:01,564 [main] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [test@test.com]
+web - 2026-09-29 02:37:01,564 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BOOLEAN] - [true]
+web - 2026-09-29 02:37:01,564 [main] TRACE o.h.o.j.bind - binding parameter [3] as [VARCHAR] - [Test]
+web - 2026-09-29 02:37:01,564 [main] TRACE o.h.o.j.bind - binding parameter [4] as [BOOLEAN] - [false]
+web - 2026-09-29 02:37:01,564 [main] TRACE o.h.o.j.bind - binding parameter [5] as [VARCHAR] - [Test]
+web - 2026-09-29 02:37:01,564 [main] TRACE o.h.o.j.bind - binding parameter [6] as [VARCHAR] - [$2a$11$36KNxJiInpkPQhYs5g3/rubLBsHU6SokF.KbDWfLNb5oTucScsUva]
+web - 2026-09-29 02:37:01,564 [main] TRACE o.h.o.j.bind - binding parameter [7] as [VARCHAR] - [X6P6O5O6MR5JYKCO]
+web - 2026-09-29 02:37:01,564 [main] TRACE o.h.o.j.bind - binding parameter [8] as [BIGINT] - [1]
+web - 2026-09-29 02:37:01,564 [main] DEBUG o.h.SQL - insert into roles_privileges (role_id,privilege_id) values (?,?)
+web - 2026-09-29 02:37:01,564 [main] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [2]
+web - 2026-09-29 02:37:01,565 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [1]
+web - 2026-09-29 02:37:01,565 [main] DEBUG o.h.SQL - insert into roles_privileges (role_id,privilege_id) values (?,?)
+web - 2026-09-29 02:37:01,565 [main] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [2]
+web - 2026-09-29 02:37:01,565 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [3]
+web - 2026-09-29 02:37:01,565 [main] DEBUG o.h.SQL - insert into users_roles (user_id,role_id) values (?,?)
+web - 2026-09-29 02:37:01,565 [main] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:37:01,565 [main] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [1]
+web - 2026-09-29 02:37:01,568 [main] INFO  c.b.Application - Started Application in 3.758 seconds (process running for 4.096)
+web - 2026-09-29 02:37:01,756 [http-nio-127.0.0.1-18206-exec-1] DEBUG o.s.w.s.DispatcherServlet - Completed 200 OK
+web - 2026-09-29 02:37:33,760 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,u1_0.secret from user_account u1_0 where u1_0.email=?
+web - 2026-09-29 02:37:33,761 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [test@test.com]
+web - 2026-09-29 02:37:33,769 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - select r1_0.user_id,r1_1.id,r1_1.name from users_roles r1_0 join role r1_1 on r1_1.id=r1_0.role_id where r1_0.user_id=?
+web - 2026-09-29 02:37:33,770 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:37:33,922 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,u1_0.secret from user_account u1_0 where u1_0.email=?
+web - 2026-09-29 02:37:33,922 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [test@test.com]
+web - 2026-09-29 02:37:33,923 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - select r1_0.user_id,r1_1.id,r1_1.name from users_roles r1_0 join role r1_1 on r1_1.id=r1_0.role_id where r1_0.user_id=?
+web - 2026-09-29 02:37:33,923 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:37:33,924 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - select p1_0.role_id,p1_1.id,p1_1.name from roles_privileges p1_0 join privilege p1_1 on p1_1.id=p1_0.privilege_id where p1_0.role_id=?
+web - 2026-09-29 02:37:33,924 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [1]
+web - 2026-09-29 02:37:34,043 [http-nio-127.0.0.1-18206-exec-2] DEBUG c.b.s.g.CustomAuthenticationProvider - Authenticated user
+web - 2026-09-29 02:37:34,052 [http-nio-127.0.0.1-18206-exec-2] DEBUG c.b.s.CustomRememberMeServices - Did not send remember-me cookie (principal did not set parameter 'remember-me')
+web - 2026-09-29 02:37:34,052 [http-nio-127.0.0.1-18206-exec-2] DEBUG c.b.s.CustomRememberMeServices - Remember-me login not requested.
+web - 2026-09-29 02:37:34,475 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,476 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,476 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,477 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,477 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,477 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,477 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,478 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,478 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,478 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,478 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,479 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,479 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,479 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,479 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,480 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,480 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,480 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,480 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,480 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,481 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,481 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,481 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,481 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,481 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,482 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ParameterizableViewController [view="forward:/login"]
+web - 2026-09-29 02:37:34,494 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,501 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,502 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,502 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,502 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,502 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,503 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,503 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,503 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,504 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,504 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,504 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,504 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,505 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,505 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,505 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,505 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,505 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,506 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,506 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,506 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,506 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,507 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,507 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,507 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,507 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,515 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,515 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,516 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,516 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,516 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,516 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,516 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,516 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,517 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,517 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,517 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,517 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,517 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,518 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,518 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,518 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,518 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,518 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,518 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,519 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,519 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,519 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,519 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,519 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,519 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,532 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,532 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,532 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,532 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,532 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,533 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,533 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,533 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,533 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,533 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,533 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,533 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,534 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,534 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,534 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,534 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,534 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,534 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,534 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,535 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,535 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,535 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,535 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,535 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,535 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:34,541 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.DispatcherServlet - POST "/user/registration", parameters={masked}
+web - 2026-09-29 02:37:34,573 [http-nio-127.0.0.1-18206-exec-8] DEBUG c.b.w.c.RegistrationRestController - Registering user account with information: UserDto [firstName=Pv, lastName=Check, email=pv.control@example.test, isUsing2FA=false, role=null]
+web - 2026-09-29 02:37:34,574 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,u1_0.secret from user_account u1_0 where u1_0.email=?
+web - 2026-09-29 02:37:34,574 [http-nio-127.0.0.1-18206-exec-8] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [pv.control@example.test]
+web - 2026-09-29 02:37:34,692 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.h.SQL - select r1_0.id,r1_0.name from role r1_0 where r1_0.name=?
+web - 2026-09-29 02:37:34,693 [http-nio-127.0.0.1-18206-exec-8] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [ROLE_USER]
+web - 2026-09-29 02:37:34,693 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.h.SQL - select next value for user_account_seq
+web - 2026-09-29 02:37:34,694 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.h.SQL - insert into user_account (email,enabled,first_name,is_using2fa,last_name,password,secret,id) values (?,?,?,?,?,?,?,?)
+web - 2026-09-29 02:37:34,694 [http-nio-127.0.0.1-18206-exec-8] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [pv.control@example.test]
+web - 2026-09-29 02:37:34,694 [http-nio-127.0.0.1-18206-exec-8] TRACE o.h.o.j.bind - binding parameter [2] as [BOOLEAN] - [false]
+web - 2026-09-29 02:37:34,694 [http-nio-127.0.0.1-18206-exec-8] TRACE o.h.o.j.bind - binding parameter [3] as [VARCHAR] - [Pv]
+web - 2026-09-29 02:37:34,694 [http-nio-127.0.0.1-18206-exec-8] TRACE o.h.o.j.bind - binding parameter [4] as [BOOLEAN] - [false]
+web - 2026-09-29 02:37:34,694 [http-nio-127.0.0.1-18206-exec-8] TRACE o.h.o.j.bind - binding parameter [5] as [VARCHAR] - [Check]
+web - 2026-09-29 02:37:34,694 [http-nio-127.0.0.1-18206-exec-8] TRACE o.h.o.j.bind - binding parameter [6] as [VARCHAR] - [$2a$11$nhznys0uM3Ds.jCZgQxe2Oxq6t10r3uFBNJaX5c4slfG8XBXFP6bm]
+web - 2026-09-29 02:37:34,694 [http-nio-127.0.0.1-18206-exec-8] TRACE o.h.o.j.bind - binding parameter [7] as [VARCHAR] - [JEXE5RVSKV7IIT4A]
+web - 2026-09-29 02:37:34,694 [http-nio-127.0.0.1-18206-exec-8] TRACE o.h.o.j.bind - binding parameter [8] as [BIGINT] - [2]
+web - 2026-09-29 02:37:34,695 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.h.SQL - insert into users_roles (user_id,role_id) values (?,?)
+web - 2026-09-29 02:37:34,695 [http-nio-127.0.0.1-18206-exec-8] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [2]
+web - 2026-09-29 02:37:34,695 [http-nio-127.0.0.1-18206-exec-8] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [2]
+web - 2026-09-29 02:37:34,698 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.h.SQL - select next value for verification_token_seq
+web - 2026-09-29 02:37:34,699 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.h.SQL - insert into verification_token (expiry_date,token,user_id,id) values (?,?,?,?)
+web - 2026-09-29 02:37:34,699 [http-nio-127.0.0.1-18206-exec-8] TRACE o.h.o.j.bind - binding parameter [1] as [TIMESTAMP] - [2026-09-30 02:37:34.697]
+web - 2026-09-29 02:37:34,700 [http-nio-127.0.0.1-18206-exec-8] TRACE o.h.o.j.bind - binding parameter [2] as [VARCHAR] - [2f8c5d72-2b2d-46bb-96b6-f093c25ff171]
+web - 2026-09-29 02:37:34,700 [http-nio-127.0.0.1-18206-exec-8] TRACE o.h.o.j.bind - binding parameter [3] as [BIGINT] - [2]
+web - 2026-09-29 02:37:34,700 [http-nio-127.0.0.1-18206-exec-8] TRACE o.h.o.j.bind - binding parameter [4] as [BIGINT] - [1]
+web - 2026-09-29 02:37:34,818 [http-nio-127.0.0.1-18206-exec-9] INFO  o.a.c.h.Http11Processor - Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+j.l.IllegalArgumentException: Invalid character found in method name [0x160x030x030x010xb30x010x000x010xaf0x030x030xaa0xab0xe9~0x0dH0xc20xdd'g0xee0x02'0x000xaf0xcd0xe60x0d_62Nr0xe70xf2a0xc0%0x0b04} ]. HTTP method names must be tokens
+	at o.a.c.h.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:407)
+	at o.a.c.h.Http11Processor.service(Http11Processor.java:263)
+	at o.a.c.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at o.a.c.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+	at o.a.t.u.n.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	... 5 frames truncated
+web - 2026-09-29 02:37:34,823 [http-nio-127.0.0.1-18206-exec-8] ERROR c.b.w.e.RestResponseEntityExceptionHandler - 500 Status Code
+o.s.m.MailSendException: Mail server connection failed. Failed messages: jakarta.mail.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206;
+  nested exception is:
+	javax.net.ssl.SSLException: Unsupported or unrecognized SSL message
+	at o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:448)
+	at o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:323)
+	at o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:312)
+	at c.b.r.l.RegistrationListener.confirmRegistration(RegistrationListener.java:43)
+	at c.b.r.l.RegistrationListener.onApplicationEvent(RegistrationListener.java:34)
+	... 96 frames truncated
+Caused by: j.m.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206
+	at c.s.m.s.SMTPTransport.openServer(SMTPTransport.java:2261)
+	at c.s.m.s.SMTPTransport.protocolConnect(SMTPTransport.java:754)
+	at j.m.Service.connect(Service.java:342)
+	at o.s.m.j.JavaMailSenderImpl.connectTransport(JavaMailSenderImpl.java:518)
+	at o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:437)
+	... 100 common frames omitted
+Caused by: j.n.s.SSLException: Unsupported or unrecognized SSL message
+	at s.s.s.SSLSocketInputRecord.handleUnknownRecord(SSLSocketInputRecord.java:457)
+	at s.s.s.SSLSocketInputRecord.decode(SSLSocketInputRecord.java:175)
+	at s.s.s.SSLTransport.decode(SSLTransport.java:111)
+	at s.s.s.SSLSocketImpl.decode(SSLSocketImpl.java:1510)
+	at s.s.s.SSLSocketImpl.readHandshakeRecord(SSLSocketImpl.java:1425)
+	... 6 frames truncated
+	... 104 common frames omitted
+web - 2026-09-29 02:37:34,840 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+web - 2026-09-29 02:37:35,249 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.s.w.s.DispatcherServlet - POST "/user/registration", parameters={masked}
+web - 2026-09-29 02:37:35,253 [http-nio-127.0.0.1-18206-exec-10] DEBUG c.b.w.c.RegistrationRestController - Registering user account with information: UserDto [firstName=Pv, lastName=Check, email=pv.b30@example.test, isUsing2FA=false, role=null]
+web - 2026-09-29 02:37:35,255 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,u1_0.secret from user_account u1_0 where u1_0.email=?
+web - 2026-09-29 02:37:35,256 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [pv.b30@example.test]
+web - 2026-09-29 02:37:35,379 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select r1_0.id,r1_0.name from role r1_0 where r1_0.name=?
+web - 2026-09-29 02:37:35,379 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [ROLE_USER]
+web - 2026-09-29 02:37:35,380 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - insert into user_account (email,enabled,first_name,is_using2fa,last_name,password,secret,id) values (?,?,?,?,?,?,?,?)
+web - 2026-09-29 02:37:35,380 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [pv.b30@example.test]
+web - 2026-09-29 02:37:35,380 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [2] as [BOOLEAN] - [false]
+web - 2026-09-29 02:37:35,380 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [3] as [VARCHAR] - [Pv]
+web - 2026-09-29 02:37:35,380 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [4] as [BOOLEAN] - [false]
+web - 2026-09-29 02:37:35,380 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [5] as [VARCHAR] - [Check]
+web - 2026-09-29 02:37:35,380 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [6] as [VARCHAR] - [$2a$11$YMAc/84Lxe01qquFS/.z4eGTCPphJOOvMH2yGe2ssxM4omPZEm7NG]
+web - 2026-09-29 02:37:35,380 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [7] as [VARCHAR] - [QTZ2ILIEWQOCGPKJ]
+web - 2026-09-29 02:37:35,380 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [8] as [BIGINT] - [3]
+web - 2026-09-29 02:37:35,380 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - insert into users_roles (user_id,role_id) values (?,?)
+web - 2026-09-29 02:37:35,380 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [3]
+web - 2026-09-29 02:37:35,380 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [2] as [BIGINT] - [2]
+web - 2026-09-29 02:37:35,381 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select next value for verification_token_seq
+web - 2026-09-29 02:37:35,382 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - insert into verification_token (expiry_date,token,user_id,id) values (?,?,?,?)
+web - 2026-09-29 02:37:35,382 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [TIMESTAMP] - [2026-09-30 02:37:35.381]
+web - 2026-09-29 02:37:35,382 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [2] as [VARCHAR] - [f09e0c1d-959b-4506-b6c0-3322b9427d97]
+web - 2026-09-29 02:37:35,382 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [3] as [BIGINT] - [3]
+web - 2026-09-29 02:37:35,382 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [4] as [BIGINT] - [2]
+web - 2026-09-29 02:37:35,386 [http-nio-127.0.0.1-18206-exec-10] ERROR c.b.w.e.RestResponseEntityExceptionHandler - 500 Status Code
+o.s.m.MailSendException: Mail server connection failed. Failed messages: jakarta.mail.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206;
+  nested exception is:
+	javax.net.ssl.SSLException: Unsupported or unrecognized SSL message
+	at o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:448)
+	at o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:323)
+	at o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:312)
+	at c.b.r.l.RegistrationListener.confirmRegistration(RegistrationListener.java:43)
+	at c.b.r.l.RegistrationListener.onApplicationEvent(RegistrationListener.java:34)
+	... 96 frames truncated
+Caused by: j.m.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206
+	at c.s.m.s.SMTPTransport.openServer(SMTPTransport.java:2261)
+	at c.s.m.s.SMTPTransport.protocolConnect(SMTPTransport.java:754)
+	at j.m.Service.connect(Service.java:342)
+	at o.s.m.j.JavaMailSenderImpl.connectTransport(JavaMailSenderImpl.java:518)
+	at o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:437)
+	... 100 common frames omitted
+Caused by: j.n.s.SSLException: Unsupported or unrecognized SSL message
+	at s.s.s.SSLSocketInputRecord.handleUnknownRecord(SSLSocketInputRecord.java:457)
+	at s.s.s.SSLSocketInputRecord.decode(SSLSocketInputRecord.java:175)
+	at s.s.s.SSLTransport.decode(SSLTransport.java:111)
+	at s.s.s.SSLSocketImpl.decode(SSLSocketImpl.java:1510)
+	at s.s.s.SSLSocketImpl.readHandshakeRecord(SSLSocketImpl.java:1425)
+	... 6 frames truncated
+	... 104 common frames omitted
+web - 2026-09-29 02:37:35,387 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.s.w.s.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+web - 2026-09-29 02:37:35,797 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.DispatcherServlet - POST "/user/registration", parameters={masked}
+web - 2026-09-29 02:37:35,817 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.DispatcherServlet - Completed 400 BAD_REQUEST
+web - 2026-09-29 02:37:36,224 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.DispatcherServlet - POST "/user/registration", parameters={masked}
+web - 2026-09-29 02:37:36,228 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.DispatcherServlet - Completed 400 BAD_REQUEST
+web - 2026-09-29 02:37:36,637 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.s.w.s.DispatcherServlet - POST "/user/registration", parameters={masked}
+web - 2026-09-29 02:37:36,643 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.s.w.s.DispatcherServlet - Completed 400 BAD_REQUEST
+web - 2026-09-29 02:37:37,047 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,048 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,048 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,048 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,048 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,048 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,049 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,049 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,049 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,049 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,049 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,049 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,049 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,049 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,050 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,050 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,050 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,050 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,050 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,050 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,050 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,051 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,051 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,051 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,051 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,055 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,055 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,056 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,056 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,056 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,056 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,056 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,056 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,057 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,057 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,057 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,057 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,057 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,057 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,058 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,058 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,058 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,058 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,058 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,059 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,059 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,059 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,059 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,059 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,059 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,063 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,063 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,063 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,064 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,064 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,064 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,064 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,064 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,064 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,064 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,064 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,064 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,064 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,064 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,064 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,064 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,065 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,065 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,065 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,065 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,065 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,065 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,065 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,065 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,065 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,068 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,069 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,069 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,069 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,069 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,069 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,069 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,069 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,069 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,069 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,069 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,069 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,070 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,070 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,070 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,070 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,070 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,070 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,070 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,070 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,070 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,070 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,070 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,070 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,070 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,074 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,074 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,074 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,074 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,075 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,075 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,075 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,075 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,075 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,075 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,075 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,076 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,076 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,076 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,076 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,076 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,076 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,076 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,076 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,077 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,077 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,077 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,077 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,077 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,077 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,086 [http-nio-127.0.0.1-18206-exec-1] DEBUG o.s.w.s.DispatcherServlet - POST "/user/resetPassword", parameters={masked}
+web - 2026-09-29 02:37:37,088 [http-nio-127.0.0.1-18206-exec-1] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,u1_0.secret from user_account u1_0 where u1_0.email=?
+web - 2026-09-29 02:37:37,088 [http-nio-127.0.0.1-18206-exec-1] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [pv.control@example.test]
+web - 2026-09-29 02:37:37,089 [http-nio-127.0.0.1-18206-exec-1] DEBUG o.h.SQL - select r1_0.user_id,r1_1.id,r1_1.name from users_roles r1_0 join role r1_1 on r1_1.id=r1_0.role_id where r1_0.user_id=?
+web - 2026-09-29 02:37:37,089 [http-nio-127.0.0.1-18206-exec-1] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [2]
+web - 2026-09-29 02:37:37,091 [http-nio-127.0.0.1-18206-exec-1] DEBUG o.h.SQL - select next value for password_reset_token_seq
+web - 2026-09-29 02:37:37,091 [http-nio-127.0.0.1-18206-exec-1] DEBUG o.h.SQL - insert into password_reset_token (expiry_date,token,user_id,id) values (?,?,?,?)
+web - 2026-09-29 02:37:37,091 [http-nio-127.0.0.1-18206-exec-1] TRACE o.h.o.j.bind - binding parameter [1] as [TIMESTAMP] - [2026-09-30 02:37:37.09]
+web - 2026-09-29 02:37:37,091 [http-nio-127.0.0.1-18206-exec-1] TRACE o.h.o.j.bind - binding parameter [2] as [VARCHAR] - [14c97f71-ecb6-463a-ba2b-423855299fe3]
+web - 2026-09-29 02:37:37,091 [http-nio-127.0.0.1-18206-exec-1] TRACE o.h.o.j.bind - binding parameter [3] as [BIGINT] - [2]
+web - 2026-09-29 02:37:37,091 [http-nio-127.0.0.1-18206-exec-1] TRACE o.h.o.j.bind - binding parameter [4] as [BIGINT] - [1]
+web - 2026-09-29 02:37:37,096 [http-nio-127.0.0.1-18206-exec-1] ERROR c.b.w.e.RestResponseEntityExceptionHandler - 500 Status Code
+o.s.m.MailSendException: Mail server connection failed. Failed messages: jakarta.mail.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206;
+  nested exception is:
+	javax.net.ssl.SSLException: Unsupported or unrecognized SSL message
+	at o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:448)
+	at o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:323)
+	at o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:312)
+	at c.b.w.c.RegistrationRestController.resetPassword(RegistrationRestController.java:83)
+	at j.i.r.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java)
+	... 88 frames truncated
+Caused by: j.m.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206
+	at c.s.m.s.SMTPTransport.openServer(SMTPTransport.java:2261)
+	at c.s.m.s.SMTPTransport.protocolConnect(SMTPTransport.java:754)
+	at j.m.Service.connect(Service.java:342)
+	at o.s.m.j.JavaMailSenderImpl.connectTransport(JavaMailSenderImpl.java:518)
+	at o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:437)
+	... 92 common frames omitted
+Caused by: j.n.s.SSLException: Unsupported or unrecognized SSL message
+	at s.s.s.SSLSocketInputRecord.handleUnknownRecord(SSLSocketInputRecord.java:457)
+	at s.s.s.SSLSocketInputRecord.decode(SSLSocketInputRecord.java:175)
+	at s.s.s.SSLTransport.decode(SSLTransport.java:111)
+	at s.s.s.SSLSocketImpl.decode(SSLSocketImpl.java:1510)
+	at s.s.s.SSLSocketImpl.readHandshakeRecord(SSLSocketImpl.java:1425)
+	... 6 frames truncated
+	... 96 common frames omitted
+web - 2026-09-29 02:37:37,097 [http-nio-127.0.0.1-18206-exec-1] DEBUG o.s.w.s.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+web - 2026-09-29 02:37:37,506 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,506 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,507 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,507 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,507 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,508 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,508 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,508 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,508 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,508 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,508 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,508 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,508 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,508 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,509 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,509 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,509 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,509 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,509 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,509 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,509 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,509 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,510 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,510 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,510 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,513 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,514 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,514 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,514 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,514 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,514 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,514 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,514 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,514 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,514 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,515 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,515 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,515 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,515 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,515 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,515 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,515 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,515 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,515 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,516 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,516 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,516 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,516 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,516 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,516 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:37,520 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.s.w.s.DispatcherServlet - POST "/user/savePassword", parameters={masked}
+web - 2026-09-29 02:37:37,524 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.s.w.s.DispatcherServlet - Completed 400 BAD_REQUEST
+web - 2026-09-29 02:37:37,934 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.DispatcherServlet - POST "/user/savePassword", parameters={masked}
+web - 2026-09-29 02:37:37,946 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.h.SQL - select p1_0.id,p1_0.expiry_date,p1_0.token,p1_0.user_id from password_reset_token p1_0 where p1_0.token=?
+web - 2026-09-29 02:37:37,947 [http-nio-127.0.0.1-18206-exec-5] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [14c97f71-ecb6-463a-ba2b-423855299fe3]
+web - 2026-09-29 02:37:37,951 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,r1_0.user_id,r1_1.id,r1_1.name,u1_0.secret from user_account u1_0 left join (users_roles r1_0 join role r1_1 on r1_1.id=r1_0.role_id) on u1_0.id=r1_0.user_id where u1_0.id=?
+web - 2026-09-29 02:37:37,952 [http-nio-127.0.0.1-18206-exec-5] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [2]
+web - 2026-09-29 02:37:37,955 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.h.SQL - select p1_0.id,p1_0.expiry_date,p1_0.token,p1_0.user_id from password_reset_token p1_0 where p1_0.token=?
+web - 2026-09-29 02:37:37,955 [http-nio-127.0.0.1-18206-exec-5] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [14c97f71-ecb6-463a-ba2b-423855299fe3]
+web - 2026-09-29 02:37:38,076 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.h.SQL - update user_account set email=?,enabled=?,first_name=?,is_using2fa=?,last_name=?,password=?,secret=? where id=?
+web - 2026-09-29 02:37:38,077 [http-nio-127.0.0.1-18206-exec-5] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [pv.control@example.test]
+web - 2026-09-29 02:37:38,077 [http-nio-127.0.0.1-18206-exec-5] TRACE o.h.o.j.bind - binding parameter [2] as [BOOLEAN] - [false]
+web - 2026-09-29 02:37:38,077 [http-nio-127.0.0.1-18206-exec-5] TRACE o.h.o.j.bind - binding parameter [3] as [VARCHAR] - [Pv]
+web - 2026-09-29 02:37:38,077 [http-nio-127.0.0.1-18206-exec-5] TRACE o.h.o.j.bind - binding parameter [4] as [BOOLEAN] - [false]
+web - 2026-09-29 02:37:38,077 [http-nio-127.0.0.1-18206-exec-5] TRACE o.h.o.j.bind - binding parameter [5] as [VARCHAR] - [Check]
+web - 2026-09-29 02:37:38,077 [http-nio-127.0.0.1-18206-exec-5] TRACE o.h.o.j.bind - binding parameter [6] as [VARCHAR] - [$2a$11$iI8TTa16IIvxUXKmX2x3je.buCA6iFWWKDJHChANjCZpelSFgf1IO]
+web - 2026-09-29 02:37:38,077 [http-nio-127.0.0.1-18206-exec-5] TRACE o.h.o.j.bind - binding parameter [7] as [VARCHAR] - [JEXE5RVSKV7IIT4A]
+web - 2026-09-29 02:37:38,077 [http-nio-127.0.0.1-18206-exec-5] TRACE o.h.o.j.bind - binding parameter [8] as [BIGINT] - [2]
+web - 2026-09-29 02:37:38,080 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.DispatcherServlet - Completed 200 OK
+web - 2026-09-29 02:37:38,487 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,487 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,487 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,487 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,487 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,487 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,487 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,487 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,487 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,487 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,487 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,488 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,488 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,488 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,488 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,488 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,488 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,488 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,488 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,488 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,488 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,488 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,488 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,488 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,488 [http-nio-127.0.0.1-18206-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,493 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.DispatcherServlet - POST "/user/resetPassword", parameters={masked}
+web - 2026-09-29 02:37:38,495 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,u1_0.secret from user_account u1_0 where u1_0.email=?
+web - 2026-09-29 02:37:38,495 [http-nio-127.0.0.1-18206-exec-7] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [pv.control@example.test]
+web - 2026-09-29 02:37:38,496 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.h.SQL - select r1_0.user_id,r1_1.id,r1_1.name from users_roles r1_0 join role r1_1 on r1_1.id=r1_0.role_id where r1_0.user_id=?
+web - 2026-09-29 02:37:38,496 [http-nio-127.0.0.1-18206-exec-7] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [2]
+web - 2026-09-29 02:37:38,497 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.h.SQL - select next value for password_reset_token_seq
+web - 2026-09-29 02:37:38,498 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.h.SQL - insert into password_reset_token (expiry_date,token,user_id,id) values (?,?,?,?)
+web - 2026-09-29 02:37:38,498 [http-nio-127.0.0.1-18206-exec-7] TRACE o.h.o.j.bind - binding parameter [1] as [TIMESTAMP] - [2026-09-30 02:37:38.497]
+web - 2026-09-29 02:37:38,498 [http-nio-127.0.0.1-18206-exec-7] TRACE o.h.o.j.bind - binding parameter [2] as [VARCHAR] - [a338b809-4483-4037-b5de-9d5e0a44b3b8]
+web - 2026-09-29 02:37:38,498 [http-nio-127.0.0.1-18206-exec-7] TRACE o.h.o.j.bind - binding parameter [3] as [BIGINT] - [2]
+web - 2026-09-29 02:37:38,498 [http-nio-127.0.0.1-18206-exec-7] TRACE o.h.o.j.bind - binding parameter [4] as [BIGINT] - [2]
+web - 2026-09-29 02:37:38,500 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.h.e.j.s.SqlExceptionHelper - could not execute statement [insert into password_reset_token (expiry_date,token,user_id,id) values (?,?,?,?)]
+o.h.j.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "PUBLIC.UK_F90IVICHJAOKVMOVXPNLM5NIN_INDEX_C ON PUBLIC.PASSWORD_RESET_TOKEN(USER_ID NULLS FIRST) VALUES ( /* 1 */ CAST(2 AS BIGINT) )"; SQL statement:
+insert into password_reset_token (expiry_date,token,user_id,id) values (?,?,?,?) [23505-214]
+	at o.h.m.DbException.getJdbcSQLException(DbException.java:508)
+	at o.h.m.DbException.getJdbcSQLException(DbException.java:477)
+	at o.h.m.DbException.get(DbException.java:223)
+	at o.h.m.DbException.get(DbException.java:199)
+	at o.h.i.Index.getDuplicateKeyException(Index.java:525)
+	... 135 frames truncated
+web - 2026-09-29 02:37:38,500 [http-nio-127.0.0.1-18206-exec-7] WARN  o.h.e.j.s.SqlExceptionHelper - SQL Error: 23505, SQLState: 23505
+web - 2026-09-29 02:37:38,500 [http-nio-127.0.0.1-18206-exec-7] ERROR o.h.e.j.s.SqlExceptionHelper - Unique index or primary key violation: "PUBLIC.UK_F90IVICHJAOKVMOVXPNLM5NIN_INDEX_C ON PUBLIC.PASSWORD_RESET_TOKEN(USER_ID NULLS FIRST) VALUES ( /* 1 */ CAST(2 AS BIGINT) )"; SQL statement:
+insert into password_reset_token (expiry_date,token,user_id,id) values (?,?,?,?) [23505-214]
+web - 2026-09-29 02:37:38,503 [http-nio-127.0.0.1-18206-exec-7] ERROR c.b.w.e.RestResponseEntityExceptionHandler - 500 Status Code
+o.s.d.DataIntegrityViolationException: could not execute statement [Unique index or primary key violation: "PUBLIC.UK_F90IVICHJAOKVMOVXPNLM5NIN_INDEX_C ON PUBLIC.PASSWORD_RESET_TOKEN(USER_ID NULLS FIRST) VALUES ( /* 1 */ CAST(2 AS BIGINT) )"; SQL statement:
+insert into password_reset_token (expiry_date,token,user_id,id) values (?,?,?,?) [23505-214]] [insert into password_reset_token (expiry_date,token,user_id,id) values (?,?,?,?)]; SQL [insert into password_reset_token (expiry_date,token,user_id,id) values (?,?,?,?)]; constraint ["PUBLIC.UK_F90IVICHJAOKVMOVXPNLM5NIN_INDEX_C ON PUBLIC.PASSWORD_RESET_TOKEN(USER_ID NULLS FIRST) VALUES ( /* 1 */ CAST(2 AS BIGINT) )"; SQL statement:
+insert into password_reset_token (expiry_date,token,user_id,id) values (?,?,?,?) [23505-214]]
+	at o.s.o.j.v.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:269)
+	at o.s.o.j.v.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:229)
+	at o.s.o.j.JpaTransactionManager.doCommit(JpaTransactionManager.java:565)
+	at o.s.t.s.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743)
+	at o.s.t.s.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711)
+	... 97 frames truncated
+Caused by: o.h.e.ConstraintViolationException: could not execute statement [Unique index or primary key violation: "PUBLIC.UK_F90IVICHJAOKVMOVXPNLM5NIN_INDEX_C ON PUBLIC.PASSWORD_RESET_TOKEN(USER_ID NULLS FIRST) VALUES ( /* 1 */ CAST(2 AS BIGINT) )"; SQL statement:
+insert into password_reset_token (expiry_date,token,user_id,id) values (?,?,?,?) [23505-214]] [insert into password_reset_token (expiry_date,token,user_id,id) values (?,?,?,?)]
+	at o.h.e.i.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:60)
+	at o.h.e.i.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:56)
+	at o.h.e.j.s.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at o.h.e.j.i.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:278)
+	at o.h.e.j.m.i.AbstractMutationExecutor.performNonBatchedMutation(AbstractMutationExecutor.java:108)
+	... 22 frames truncated
+	... 99 common frames omitted
+Caused by: o.h.j.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "PUBLIC.UK_F90IVICHJAOKVMOVXPNLM5NIN_INDEX_C ON PUBLIC.PASSWORD_RESET_TOKEN(USER_ID NULLS FIRST) VALUES ( /* 1 */ CAST(2 AS BIGINT) )"; SQL statement:
+insert into password_reset_token (expiry_date,token,user_id,id) values (?,?,?,?) [23505-214]
+	at o.h.m.DbException.getJdbcSQLException(DbException.java:508)
+	at o.h.m.DbException.getJdbcSQLException(DbException.java:477)
+	at o.h.m.DbException.get(DbException.java:223)
+	at o.h.m.DbException.get(DbException.java:199)
+	at o.h.i.Index.getDuplicateKeyException(Index.java:525)
+	... 13 frames truncated
+	... 122 common frames omitted
+web - 2026-09-29 02:37:38,504 [http-nio-127.0.0.1-18206-exec-7] DEBUG o.s.w.s.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+web - 2026-09-29 02:37:38,941 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,941 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,942 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,942 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,942 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,942 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,943 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,943 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,943 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,943 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,943 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,944 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,944 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,944 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,944 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,945 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,945 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,945 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,945 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,945 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,946 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,946 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,946 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,946 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,946 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,954 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,955 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,955 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,955 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,955 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,956 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,956 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,956 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,956 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,956 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,957 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,957 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,957 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,957 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,957 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,957 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,958 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,958 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,958 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,958 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,958 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,958 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,959 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,959 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,959 [http-nio-127.0.0.1-18206-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:38,963 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.s.w.s.DispatcherServlet - GET "/user/resendRegistrationToken?token=f09e0c1d-959b-4506-b6c0-3322b9427d97", parameters={masked}
+web - 2026-09-29 02:37:38,964 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select v1_0.id,v1_0.expiry_date,v1_0.token,v1_0.user_id from verification_token v1_0 where v1_0.token=?
+web - 2026-09-29 02:37:38,965 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [f09e0c1d-959b-4506-b6c0-3322b9427d97]
+web - 2026-09-29 02:37:38,965 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,r1_0.user_id,r1_1.id,r1_1.name,u1_0.secret from user_account u1_0 left join (users_roles r1_0 join role r1_1 on r1_1.id=r1_0.role_id) on u1_0.id=r1_0.user_id where u1_0.id=?
+web - 2026-09-29 02:37:38,966 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [3]
+web - 2026-09-29 02:37:38,967 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - update verification_token set expiry_date=?,token=?,user_id=? where id=?
+web - 2026-09-29 02:37:38,967 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [TIMESTAMP] - [Wed Sep 30 02:37:38 EDT 2026]
+web - 2026-09-29 02:37:38,967 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [2] as [VARCHAR] - [530edeea-8dfb-4397-86cd-5bdb4f2b2585]
+web - 2026-09-29 02:37:38,967 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [3] as [BIGINT] - [3]
+web - 2026-09-29 02:37:38,967 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [4] as [BIGINT] - [2]
+web - 2026-09-29 02:37:38,968 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.h.SQL - select v1_0.id,v1_0.expiry_date,v1_0.token,v1_0.user_id from verification_token v1_0 where v1_0.token=?
+web - 2026-09-29 02:37:38,968 [http-nio-127.0.0.1-18206-exec-10] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [530edeea-8dfb-4397-86cd-5bdb4f2b2585]
+web - 2026-09-29 02:37:38,972 [http-nio-127.0.0.1-18206-exec-10] ERROR c.b.w.e.RestResponseEntityExceptionHandler - 500 Status Code
+o.s.m.MailSendException: Mail server connection failed. Failed messages: jakarta.mail.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206;
+  nested exception is:
+	javax.net.ssl.SSLException: Unsupported or unrecognized SSL message
+	at o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:448)
+	at o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:323)
+	at o.s.m.j.JavaMailSenderImpl.send(JavaMailSenderImpl.java:312)
+	at c.b.w.c.RegistrationRestController.resendRegistrationToken(RegistrationRestController.java:72)
+	at j.i.r.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java)
+	... 88 frames truncated
+Caused by: j.m.MessagingException: Could not connect to SMTP host: 127.0.0.1, port: 18206
+	at c.s.m.s.SMTPTransport.openServer(SMTPTransport.java:2261)
+	at c.s.m.s.SMTPTransport.protocolConnect(SMTPTransport.java:754)
+	at j.m.Service.connect(Service.java:342)
+	at o.s.m.j.JavaMailSenderImpl.connectTransport(JavaMailSenderImpl.java:518)
+	at o.s.m.j.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:437)
+	... 92 common frames omitted
+Caused by: j.n.s.SSLException: Unsupported or unrecognized SSL message
+	at s.s.s.SSLSocketInputRecord.handleUnknownRecord(SSLSocketInputRecord.java:457)
+	at s.s.s.SSLSocketInputRecord.decode(SSLSocketInputRecord.java:175)
+	at s.s.s.SSLTransport.decode(SSLTransport.java:111)
+	at s.s.s.SSLSocketImpl.decode(SSLSocketImpl.java:1510)
+	at s.s.s.SSLSocketImpl.readHandshakeRecord(SSLSocketImpl.java:1425)
+	... 6 frames truncated
+	... 96 common frames omitted
+web - 2026-09-29 02:37:38,973 [http-nio-127.0.0.1-18206-exec-10] DEBUG o.s.w.s.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+web - 2026-09-29 02:37:39,382 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.DispatcherServlet - GET "/user/resendRegistrationToken?token=00000000-0000-0000-0000-000000000000", parameters={masked}
+web - 2026-09-29 02:37:39,385 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.h.SQL - select v1_0.id,v1_0.expiry_date,v1_0.token,v1_0.user_id from verification_token v1_0 where v1_0.token=?
+web - 2026-09-29 02:37:39,385 [http-nio-127.0.0.1-18206-exec-2] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [00000000-0000-0000-0000-000000000000]
+web - 2026-09-29 02:37:39,387 [http-nio-127.0.0.1-18206-exec-2] ERROR c.b.w.e.RestResponseEntityExceptionHandler - 500 Status Code
+j.l.NullPointerException: Cannot invoke "com.baeldung.persistence.model.VerificationToken.updateToken(String)" because "vToken" is null
+	at c.b.s.UserService.generateNewVerificationToken(UserService.java:145)
+	at j.i.r.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java)
+	at j.i.r.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at j.i.r.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at j.l.r.Method.invoke(Method.java:569)
+	... 101 frames truncated
+web - 2026-09-29 02:37:39,389 [http-nio-127.0.0.1-18206-exec-2] DEBUG o.s.w.s.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+web - 2026-09-29 02:37:39,797 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,797 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,798 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,798 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,798 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,798 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,799 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,799 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,799 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,799 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,800 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,800 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,800 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,800 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,800 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,801 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,801 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,801 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,801 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,801 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,801 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,801 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,801 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,801 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,801 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:39,808 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.s.w.s.DispatcherServlet - GET "/registrationConfirm?token=530edeea-8dfb-4397-86cd-5bdb4f2b2585", parameters={masked}
+web - 2026-09-29 02:37:39,810 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.h.SQL - select v1_0.id,v1_0.expiry_date,v1_0.token,v1_0.user_id from verification_token v1_0 where v1_0.token=?
+web - 2026-09-29 02:37:39,810 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [530edeea-8dfb-4397-86cd-5bdb4f2b2585]
+web - 2026-09-29 02:37:39,811 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,r1_0.user_id,r1_1.id,r1_1.name,u1_0.secret from user_account u1_0 left join (users_roles r1_0 join role r1_1 on r1_1.id=r1_0.role_id) on u1_0.id=r1_0.user_id where u1_0.id=?
+web - 2026-09-29 02:37:39,811 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [3]
+web - 2026-09-29 02:37:39,813 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.h.SQL - update user_account set email=?,enabled=?,first_name=?,is_using2fa=?,last_name=?,password=?,secret=? where id=?
+web - 2026-09-29 02:37:39,813 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [pv.b30@example.test]
+web - 2026-09-29 02:37:39,813 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [2] as [BOOLEAN] - [true]
+web - 2026-09-29 02:37:39,813 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [3] as [VARCHAR] - [Pv]
+web - 2026-09-29 02:37:39,813 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [4] as [BOOLEAN] - [false]
+web - 2026-09-29 02:37:39,813 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [5] as [VARCHAR] - [Check]
+web - 2026-09-29 02:37:39,813 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [6] as [VARCHAR] - [$2a$11$YMAc/84Lxe01qquFS/.z4eGTCPphJOOvMH2yGe2ssxM4omPZEm7NG]
+web - 2026-09-29 02:37:39,813 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [7] as [VARCHAR] - [QTZ2ILIEWQOCGPKJ]
+web - 2026-09-29 02:37:39,813 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [8] as [BIGINT] - [3]
+web - 2026-09-29 02:37:39,814 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.h.SQL - select v1_0.id,v1_0.expiry_date,v1_0.token,v1_0.user_id from verification_token v1_0 where v1_0.token=?
+web - 2026-09-29 02:37:39,814 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [530edeea-8dfb-4397-86cd-5bdb4f2b2585]
+web - 2026-09-29 02:37:39,815 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.h.SQL - select p1_0.role_id,p1_1.id,p1_1.name from roles_privileges p1_0 join privilege p1_1 on p1_1.id=p1_0.privilege_id where p1_0.role_id=?
+web - 2026-09-29 02:37:39,816 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [2]
+web - 2026-09-29 02:37:39,820 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.s.w.s.v.RedirectView - View name 'redirect:', model {lang=en, messageKey=message.accountVerified}
+web - 2026-09-29 02:37:39,820 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.s.w.s.DispatcherServlet - Completed 302 FOUND
+web - 2026-09-29 02:37:40,229 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,230 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,230 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,230 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,230 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,230 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,231 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,231 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,231 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,232 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,232 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,232 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,232 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,233 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,233 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,233 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,233 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,233 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,233 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,233 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,233 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,233 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,233 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,233 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:37:40,233 [http-nio-127.0.0.1-18206-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler@75c2cca4
+web - 2026-09-29 02:38:01,126 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.DispatcherServlet - GET "/login", parameters={}
+web - 2026-09-29 02:38:01,133 [http-nio-127.0.0.1-18206-exec-9] DEBUG o.s.w.s.DispatcherServlet - Completed 200 OK
+web - 2026-09-29 02:38:06,892 [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+web - 2026-09-29 02:38:06,893 [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.

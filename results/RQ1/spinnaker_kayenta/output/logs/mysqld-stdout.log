@@ -1,0 +1,2 @@
+mysqld-bin: Can't open shared library '/tmp/lib/mysql/plugin/component_reference_cache.so' (errno: 2 /tmp/lib/mysql/plugin/component_reference_cache.so: cannot open shared object file: No such file or directory)
+mysqld-bin: Cannot load component from specified URN: 'file://component_reference_cache'.

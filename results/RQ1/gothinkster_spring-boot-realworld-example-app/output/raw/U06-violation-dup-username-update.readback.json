@@ -1,0 +1,16 @@
+{
+ "case_id": "U06-violation-dup-username-update",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select username, email from users order by username",
+ "params": [],
+ "rows": [
+  [
+   "alice",
+   "alice@example.com"
+  ],
+  [
+   "bob",
+   "bob@example.com"
+  ]
+ ]
+}

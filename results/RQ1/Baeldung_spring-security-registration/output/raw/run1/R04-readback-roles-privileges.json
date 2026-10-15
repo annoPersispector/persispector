@@ -1,0 +1,45 @@
+{
+  "case_id": "R04-readback-roles-privileges",
+  "kind": "read-back",
+  "channel": "H2 web console /h2/query.do (SELECT only)",
+  "sql": "SELECT RP.ROLE_ID, R.NAME, RP.PRIVILEGE_ID, P.NAME FROM ROLES_PRIVILEGES RP JOIN ROLE R ON R.ID=RP.ROLE_ID JOIN PRIVILEGE P ON P.ID=RP.PRIVILEGE_ID ORDER BY 1,3",
+  "status": 200,
+  "rows": [
+    [
+      "ROLE_ID",
+      "NAME",
+      "PRIVILEGE_ID",
+      "NAME"
+    ],
+    [
+      "1",
+      "ROLE_ADMIN",
+      "1",
+      "READ_PRIVILEGE"
+    ],
+    [
+      "1",
+      "ROLE_ADMIN",
+      "2",
+      "WRITE_PRIVILEGE"
+    ],
+    [
+      "1",
+      "ROLE_ADMIN",
+      "3",
+      "CHANGE_PASSWORD_PRIVILEGE"
+    ],
+    [
+      "2",
+      "ROLE_USER",
+      "1",
+      "READ_PRIVILEGE"
+    ],
+    [
+      "2",
+      "ROLE_USER",
+      "3",
+      "CHANGE_PASSWORD_PRIVILEGE"
+    ]
+  ]
+}

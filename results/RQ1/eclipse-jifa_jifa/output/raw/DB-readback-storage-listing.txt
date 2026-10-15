@@ -1,0 +1,17 @@
+../application/.jifa-storage/gc-log:
+0cccb151-8c21-4d2d-92aa-d9980061eab2
+20774e20-455b-4bf3-9bb6-fd056c5a02fa
+9441b908-dd32-4fe1-b1f3-1f17f2adfe16
+95861c97-16c6-46f2-a980-77d151714f58
+
+../application/.jifa-storage/gc-log/0cccb151-8c21-4d2d-92aa-d9980061eab2:
+0cccb151-8c21-4d2d-92aa-d9980061eab2
+
+../application/.jifa-storage/gc-log/20774e20-455b-4bf3-9bb6-fd056c5a02fa:
+20774e20-455b-4bf3-9bb6-fd056c5a02fa
+
+../application/.jifa-storage/gc-log/9441b908-dd32-4fe1-b1f3-1f17f2adfe16:
+9441b908-dd32-4fe1-b1f3-1f17f2adfe16
+
+../application/.jifa-storage/gc-log/95861c97-16c6-46f2-a980-77d151714f58:
+95861c97-16c6-46f2-a980-77d151714f58

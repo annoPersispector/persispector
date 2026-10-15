@@ -1,0 +1,16 @@
+[2026-09-29 20:19:38.218] [DEBUG] [http-nio-127.0.0.1-18205-exec-9] [c.v.s.j.c.m.r.Z.selectByClusterKey] >>> ==>  Preparing: select id, create_time, created_by, last_update_time, last_updated_by, zk_cluster_key, alias, connect_string, description from zk_cluster_info where zk_cluster_key = ? limit 0,1 
+[2026-09-29 20:19:38.218] [DEBUG] [http-nio-127.0.0.1-18205-exec-9] [c.v.s.j.c.m.r.Z.selectByClusterKey] >>> ==> Parameters: pvzk2(String)
+[2026-09-29 20:19:38.218] [DEBUG] [http-nio-127.0.0.1-18205-exec-9] [c.v.s.j.c.m.r.Z.selectByClusterKey] >>> <==      Total: 0
+[2026-09-29 20:19:38.219] [DEBUG] [http-nio-127.0.0.1-18205-exec-9] [c.v.s.j.c.m.r.ZkClusterInfoRepository.insert] >>> ==>  Preparing: insert into zk_cluster_info(create_time, created_by, last_update_time, last_updated_by, zk_cluster_key, alias, connect_string, description) values(?, ?,?,?,?,?,?,?) 
+[2026-09-29 20:19:38.219] [DEBUG] [http-nio-127.0.0.1-18205-exec-9] [c.v.s.j.c.m.r.ZkClusterInfoRepository.insert] >>> ==> Parameters: 2026-09-29 20:19:38.218(Timestamp), (String), 2026-09-29 20:19:38.218(Timestamp), (String), pvzk2(String), pvalias(String), 127.0.0.1:2181(String), null
+[2026-09-29 20:19:38.219] [DEBUG] [http-nio-127.0.0.1-18205-exec-9] [c.v.s.j.c.m.r.ZkClusterInfoRepository.insert] >>> <==    Updates: 1
+[2026-09-29 20:19:38.220] [DEBUG] [http-nio-127.0.0.1-18205-exec-9] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==>  Preparing: select id, property, value from sys_config where id in (select max(id) from sys_config where property in ( ? ) group by property) 
+[2026-09-29 20:19:38.220] [DEBUG] [http-nio-127.0.0.1-18205-exec-9] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==> Parameters: REFRESH_REGISTRY_CENTER_UUID(String)
+[2026-09-29 20:19:38.220] [DEBUG] [http-nio-127.0.0.1-18205-exec-9] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> <==      Total: 1
+[2026-09-29 20:19:38.220] [DEBUG] [http-nio-127.0.0.1-18205-exec-9] [c.v.s.j.c.m.r.SystemConfigRepository.updateById] >>> ==>  Preparing: update sys_config set property = ?, value = ? where id = ? 
+[2026-09-29 20:19:38.220] [DEBUG] [http-nio-127.0.0.1-18205-exec-9] [c.v.s.j.c.m.r.SystemConfigRepository.updateById] >>> ==> Parameters: REFRESH_REGISTRY_CENTER_UUID(String), 937e3ac3-0f2c-4b6e-beba-86e82dfe9997(String), 11(Long)
+[2026-09-29 20:19:38.221] [DEBUG] [http-nio-127.0.0.1-18205-exec-9] [c.v.s.j.c.m.r.SystemConfigRepository.updateById] >>> <==    Updates: 1
+[2026-09-29 20:19:38.221] [INFO] [http-nio-127.0.0.1-18205-exec-9] [AUDITLOG] >>> GUI API:[createZkCluster] path:[/console/zkClusters] is called by User:[admin] with IP:[127.0.0.1], result is success. Context info:{zkClusterKey=pvzk2, alias=pvalias, connectString=127.0.0.1:2181, description=null}.
+[2026-09-29 20:19:38.487] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==>  Preparing: select id, property, value from sys_config where id in (select max(id) from sys_config where property in ( ? ) group by property) 
+[2026-09-29 20:19:38.487] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==> Parameters: REFRESH_REGISTRY_CENTER_UUID(String)
+[2026-09-29 20:19:38.488] [DEBUG] [refresh-RegCenter-if-necessary-timer] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> <==      Total: 1

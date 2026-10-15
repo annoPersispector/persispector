@@ -1,0 +1,2 @@
+[2026-09-29 20:15:54.808] [INFO] [http-nio-127.0.0.1-18205-exec-6] [AUDITLOG] >>> REST API:[query] path:[/rest/v1/mydomain/jobs/pvdeg1] is called by IP:[127.0.0.1], result is failed.
+[2026-09-29 20:15:54.809] [WARN] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.controller.rest.AbstractRestController] >>> resource not found while calling REST API:The job {pvdeg1} does not exists.

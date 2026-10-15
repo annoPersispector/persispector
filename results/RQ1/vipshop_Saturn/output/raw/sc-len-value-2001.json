@@ -1,0 +1,37 @@
+{
+ "case_id": "sc-len-value-2001",
+ "purpose": "violation",
+ "target_hint": [
+  "sys_config.value length"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/configs/console/create",
+  "headers": {
+   "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+  },
+  "body": {
+   "key": "PV_TEST_B",
+   "value": "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
+  },
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:19:44 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"status\":1,\"message\":\"\\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \\\"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\\\u5c5e\\\\u6027\\\\u503c')\\\": \\\"'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv... (2001)\\\"; SQL statement:\\ninsert into sys_config(property, value) values(?, ?) [22001-192]\\n### The error may involve com.vip.saturn.job.console.mybatis.repository.SystemConfigRepository.insert-Inline\\n### The error occurred while setting parameters\\n### SQL: insert into sys_config(property, value) values(?, ?)\\n### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \\\"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\\\u5c5e\\\\u6027\\\\u503c')\\\": \\\"'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv... (2001)\\\"; SQL statement:\\ninsert into sys_config(property, value) values(?, ?) [22001-192]\\n; SQL []; Value too long for column \\\"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\\\u5c5e\\\\u6027\\\\u503c')\\\": \\\"'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv... (2001)\\\"; SQL statement:\\ninsert into sys_config(property, value) values(?, ?) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \\\"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\\\u5c5e\\\\u6027\\\\u503c')\\\": \\\"'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv... (2001)\\\"; SQL statement:\\ninsert into sys_config(property, value) values(?, ?) [22001-192]\",\"obj\":\"\"}",
+  "json": {
+   "status": 1,
+   "message": "\n### Error updating database.  Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u503c')\": \"'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv... (2001)\"; SQL statement:\ninsert into sys_config(property, value) values(?, ?) [22001-192]\n### The error may involve com.vip.saturn.job.console.mybatis.repository.SystemConfigRepository.insert-Inline\n### The error occurred while setting parameters\n### SQL: insert into sys_config(property, value) values(?, ?)\n### Cause: org.h2.jdbc.JdbcSQLException: Value too long for column \"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u503c')\": \"'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv... (2001)\"; SQL statement:\ninsert into sys_config(property, value) values(?, ?) [22001-192]\n; SQL []; Value too long for column \"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u503c')\": \"'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv... (2001)\"; SQL statement:\ninsert into sys_config(property, value) values(?, ?) [22001-192]; nested exception is org.h2.jdbc.JdbcSQLException: Value too long for column \"VALUE VARCHAR(2000) NOT NULL COMMENT STRINGDECODE('\\u5c5e\\u6027\\u503c')\": \"'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv... (2001)\"; SQL statement:\ninsert into sys_config(property, value) values(?, ?) [22001-192]",
+   "obj": ""
+  }
+ },
+ "elapsed_seconds": 0.009,
+ "timestamp": "2026-09-29T20:19:44-0400"
+}

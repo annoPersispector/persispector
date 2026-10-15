@@ -27,8 +27,8 @@ share/python-wheels/
 MANIFEST
 
 # PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+#  Usually these files are written by a python script from a template, so it
+#  can add execution metadata before creating the bundle.
 *.manifest
 *.spec
 
@@ -119,3 +119,14 @@ labels.db
 analysis.json
 
 .codex
+
+# Subject bundles are distributed as a separate dataset archive.
+dataset/*
+!dataset/README.md
+!dataset/MANIFEST.md
+
+# Outputs produced by the artifact runner scripts.
+/reproduced/
+
+dataset.zip
+dataset/

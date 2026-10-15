@@ -1,0 +1,16 @@
+{
+ "case_id": "A05-violation-dup-slug-update",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select slug, title from articles order by slug",
+ "params": [],
+ "rows": [
+  [
+   "dup-title",
+   "Dup Title"
+  ],
+  [
+   "other-title",
+   "Other Title"
+  ]
+ ]
+}

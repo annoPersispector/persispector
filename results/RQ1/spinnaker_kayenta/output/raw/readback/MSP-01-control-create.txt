@@ -1,0 +1,4 @@
+-- MySQL read-back executed immediately after the request
+-- SQL: SELECT id, CHAR_LENGTH(id) AS id_len, JSON_VALID(content) AS json_valid, JSON_TYPE(content) AS json_type, created_at, updated_at FROM metric_set_pairs
+id	id_len	json_valid	json_type	created_at	updated_at
+81251910-c49f-44d9-8b0e-cb974af438d3	36	1	ARRAY	2026-09-29 12:27:30	2026-09-29 12:27:30

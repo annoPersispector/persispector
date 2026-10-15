@@ -1,0 +1,2 @@
+web - 2026-09-29 02:37:36,224 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.DispatcherServlet - POST "/user/registration", parameters={masked}
+web - 2026-09-29 02:37:36,228 [http-nio-127.0.0.1-18206-exec-3] DEBUG o.s.w.s.DispatcherServlet - Completed 400 BAD_REQUEST

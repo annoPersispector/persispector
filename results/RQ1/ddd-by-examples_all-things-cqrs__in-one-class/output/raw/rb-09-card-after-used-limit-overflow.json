@@ -1,0 +1,18 @@
+{
+ "case_id": "rb-09-card-after-used-limit-overflow",
+ "channel": "H2 web console (same JVM, port 18207) read-back",
+ "sql": "SELECT * FROM CREDIT_CARD",
+ "parsed_rows": [
+  [
+   "ID",
+   "INITIAL_LIMIT",
+   "USED_LIMIT"
+  ],
+  [
+   "3a3e99f0-5ad9-47fa-961d-d75fab32ef0e",
+   "10000.00",
+   "-8999999999999986.99"
+  ]
+ ],
+ "response_html": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n<!--\nCopyright 2004-2018 H2 Group. Multiple-Licensed under the MPL 2.0,\nand the EPL 1.0 (http://h2database.com/html/license.html).\nInitial Developer: H2 Group\n-->\n<html>\n<head>\n    <meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\" />\n    <title>H2 Console</title>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"stylesheet.css\" />\n    <script type=\"text/javascript\" src=\"table.js\"></script>\n</head>\n<body class=\"result\">\n\n<div id=\"output\">\nSELECT * FROM CREDIT_CARD;<br /><table cellspacing=0 cellpadding=0><tr><th>ID</th><th>INITIAL_LIMIT</th><th>USED_LIMIT</th></tr><tr><td>3a3e99f0-5ad9-47fa-961d-d75fab32ef0e</td><td>10000.00</td><td>-8999999999999986.99</td></tr></table>(1 row, 0 ms)<br />\n</div>\n\n<table id=\"h2auto\" class=\"autoComp\"><tbody></tbody></table>\n\n</body></html>\n"
+}

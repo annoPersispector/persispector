@@ -1,0 +1,18 @@
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6c17d32d] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@371955458 wrapping conn3: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, user_id, token, token_status, create_time, update_time, workspace_id from user_login_log where workspace_id = ? and user_id = ? order by id desc limit 1
+==> Parameters: 1(Long), 1(Integer)
+<==    Columns: id, user_id, token, token_status, create_time, update_time, workspace_id
+<==        Row: 14, 1, <<BLOB>>, 1, 2026-09-29 04:34:36.384, 2026-09-29 04:34:36.384, 1
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6c17d32d]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@574ef5dc] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1491735015 wrapping conn3: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT COUNT(*) AS total FROM t_st_virtual_table WHERE (workspace_id = ?)
+==> Parameters: 1(Long)
+<==    Columns: total
+<==        Row: 0
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@574ef5dc]

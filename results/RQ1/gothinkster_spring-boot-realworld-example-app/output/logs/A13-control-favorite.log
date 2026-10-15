@@ -1,0 +1,23 @@
+2026-09-29 03:08:41.397 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findById       : ==>  Preparing: select id, username, email, password, bio, image from users where id = ?
+2026-09-29 03:08:41.397 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findById       : ==> Parameters: 6617cc9f-8f05-4d27-8453-7f3646664798(String)
+2026-09-29 03:08:41.397 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.UserMapper.findById       : <==      Total: 1
+2026-09-29 03:08:41.400 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.ArticleMapper.findBySlug  : ==>  Preparing: select A.id articleId, A.slug articleSlug, A.title articleTitle, A.description articleDescription, A.body articleBody, A.user_id articleUserId, A.created_at articleCreatedAt, A.updated_at articleUpdatedAt, T.id tagId, T.name tagName from articles A left join article_tags AT on A.id = AT.article_id left join tags T on T.id = AT.tag_id where A.slug = ?
+2026-09-29 03:08:41.400 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.ArticleMapper.findBySlug  : ==> Parameters: other-title(String)
+2026-09-29 03:08:41.401 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.mapper.ArticleMapper.findBySlug  : <==      Total: 1
+2026-09-29 03:08:41.411 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.m.ArticleFavoriteMapper.find     : ==>  Preparing: select AF.article_id articleFavoriteArticleId, AF.user_id articleFavoriteUserId from article_favorites AF where AF.article_id = ? and AF.user_id = ?
+2026-09-29 03:08:41.411 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.m.ArticleFavoriteMapper.find     : ==> Parameters: a775d7fe-78c8-4e82-93cc-64d8fc73f8c4(String), 6617cc9f-8f05-4d27-8453-7f3646664798(String)
+2026-09-29 03:08:41.412 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.m.ArticleFavoriteMapper.insert   : ==>  Preparing: insert into article_favorites (article_id, user_id) values (?, ?)
+2026-09-29 03:08:41.412 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.m.ArticleFavoriteMapper.insert   : ==> Parameters: a775d7fe-78c8-4e82-93cc-64d8fc73f8c4(String), 6617cc9f-8f05-4d27-8453-7f3646664798(String)
+2026-09-29 03:08:41.423 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.m.ArticleFavoriteMapper.insert   : <==    Updates: 1
+2026-09-29 03:08:41.423 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.r.ArticleReadService.findBySlug  : ==>  Preparing: select A.id articleId, A.slug articleSlug, A.title articleTitle, A.description articleDescription, A.body articleBody, A.created_at articleCreatedAt, A.updated_at articleUpdatedAt, T.name tagName, U.id userId, U.username userUsername, U.bio userBio, U.image userImage from articles A left join article_tags AT on A.id = AT.article_id left join tags T on T.id = AT.tag_id left join users U on U.id = A.user_id where A.slug = ?
+2026-09-29 03:08:41.423 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.r.ArticleReadService.findBySlug  : ==> Parameters: other-title(String)
+2026-09-29 03:08:41.424 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.r.ArticleReadService.findBySlug  : <==      Total: 1
+2026-09-29 03:08:41.424 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.r.A.isUserFavorite               : ==>  Preparing: select count(1) from article_favorites where user_id = ? and article_id = ?
+2026-09-29 03:08:41.424 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.r.A.isUserFavorite               : ==> Parameters: 6617cc9f-8f05-4d27-8453-7f3646664798(String), a775d7fe-78c8-4e82-93cc-64d8fc73f8c4(String)
+2026-09-29 03:08:41.424 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.r.A.isUserFavorite               : <==      Total: 1
+2026-09-29 03:08:41.424 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.r.A.articleFavoriteCount         : ==>  Preparing: select count(1) from article_favorites where article_id = ?
+2026-09-29 03:08:41.424 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.r.A.articleFavoriteCount         : ==> Parameters: a775d7fe-78c8-4e82-93cc-64d8fc73f8c4(String)
+2026-09-29 03:08:41.424 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.r.A.articleFavoriteCount         : <==      Total: 1
+2026-09-29 03:08:41.424 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.r.U.isUserFollowing              : ==>  Preparing: select count(1) from follows where user_id = ? and follow_id = ?
+2026-09-29 03:08:41.424 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.r.U.isUserFollowing              : ==> Parameters: 6617cc9f-8f05-4d27-8453-7f3646664798(String), a1e8e8bc-b1f3-48a8-a8b2-e5ca28ad086c(String)
+2026-09-29 03:08:41.424 DEBUG 942119 --- [.1-18208-exec-6] i.s.i.m.r.U.isUserFollowing              : <==      Total: 1

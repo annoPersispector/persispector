@@ -1,0 +1,31 @@
+{
+ "case_id": "A16-control-follow",
+ "purpose": "control",
+ "target_ids": [
+  "pc-f10d889965df",
+  "pc-e611bd7bff61",
+  "pc-27a12ece99bb",
+  "pc-bc0d5fb992b2"
+ ],
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18208/profiles/longmail/follow",
+  "headers": {
+   "Content-Type": "application/json",
+   "Authorization": "Token <JWT-REDACTED>"
+  },
+  "body": null
+ },
+ "response": {
+  "status": 200,
+  "body": {
+   "profile": {
+    "username": "longmail",
+    "bio": "",
+    "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+    "following": true
+   }
+  }
+ },
+ "note": ""
+}

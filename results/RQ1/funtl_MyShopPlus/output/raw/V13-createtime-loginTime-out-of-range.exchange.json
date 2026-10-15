@@ -1,0 +1,32 @@
+{
+ "case_id": "V13-createtime-loginTime-out-of-range",
+ "purpose": "violation",
+ "target_ids": [
+  "pc-4b80a8cb1221",
+  "pc-f2ed0251561b"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/reg",
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8"
+  },
+  "body": {
+   "username": "pv121525dt",
+   "password": "123456",
+   "createTime": "10000-01-01 00:00:00",
+   "loginTime": "10000-01-01 00:00:00"
+  }
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Tue, 29 Sep 2026 16:15:43 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"code\":200,\"message\":\"用户注册成功\",\"data\":{\"id\":9223372036854775002,\"username\":\"pv121525dt\",\"password\":\"$2a$10$zPyVIcEEKvGtmEge.sCO.e1LO6LPt/U5DsE9jwm.6y.7594C2MSOW\",\"icon\":null,\"email\":null,\"nickName\":null,\"note\":null,\"createTime\":\"2026-09-30 00:15:43\",\"loginTime\":\"2026-09-30 00:15:43\",\"status\":0}}"
+ }
+}

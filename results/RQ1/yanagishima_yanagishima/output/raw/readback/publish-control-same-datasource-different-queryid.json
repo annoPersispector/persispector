@@ -1,0 +1,7 @@
+{
+  "case_id": "publish-control-same-datasource-different-queryid",
+  "purpose": "control",
+  "api_readback": null,
+  "db_readback_sql": "SELECT publish_id, datasource, engine, query_id, user FROM publish WHERE datasource LIKE 'docker-presto%' ORDER BY publish_id",
+  "db_readback_result": "+----------------------------------+---------------+--------+-----------------------------+-------+\n| publish_id                       | datasource    | engine | query_id                    | user  |\n+----------------------------------+---------------+--------+-----------------------------+-------+\n| dc1247064a6078d5d188c8999c7bb353 | docker-presto | presto | 20260929_000000_00004_ddddd | alice |\n| e97657f6ee2a677bd8f5353f59cc3052 | docker-presto | presto | 20260929_000000_00002_bbbbb | alice |\n+----------------------------------+---------------+--------+-----------------------------+-------+"
+}

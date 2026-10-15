@@ -1,0 +1,13 @@
+{
+ "case_id": "A14-violation-favorite-duplicate-sequential",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select article_id, user_id, count(*) from article_favorites group by article_id, user_id",
+ "params": [],
+ "rows": [
+  [
+   "a775d7fe-78c8-4e82-93cc-64d8fc73f8c4",
+   "6617cc9f-8f05-4d27-8453-7f3646664798",
+   1
+  ]
+ ]
+}

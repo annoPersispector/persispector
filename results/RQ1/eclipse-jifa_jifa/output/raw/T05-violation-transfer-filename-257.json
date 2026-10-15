@@ -1,0 +1,69 @@
+{
+ "case_id": "T05-violation-transfer-filename-257",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18201/jifa-api/files/transfer",
+  "headers": {
+   "User-Agent": "python-requests/2.31.0",
+   "Accept-Encoding": "gzip, deflate, br",
+   "Accept": "*/*",
+   "Connection": "keep-alive",
+   "Authorization": "<JWT-REDACTED>",
+   "Content-Length": "322",
+   "Content-Type": "application/json"
+  },
+  "body": "{\"type\": \"GC_LOG\", \"method\": \"TEXT\", \"filename\": \"yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy.log\", \"text\": \"x\"}"
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+   "X-Content-Type-Options": "nosniff",
+   "X-XSS-Protection": "0",
+   "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+   "Pragma": "no-cache",
+   "Expires": "0",
+   "X-Frame-Options": "DENY",
+   "Content-Length": "436",
+   "Date": "Tue, 29 Sep 2026 15:18:22 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"Value too long for column \\\"ORIGINAL_NAME CHARACTER VARYING(256)\\\": \\\"'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy... (257)\\\"; SQL statement:\\ninsert into transferring_files (created_time,failure_message,last_modified_time,original_name,total_size,transfer_state,transferred_size,type,unique_name,user_id,id) values (?,?,?,?,?,?,?,?,?,?,default) [22001-220]\"}"
+ },
+ "correlated_log_lines": [
+  "2026-09-29T11:18:22.023-04:00 DEBUG 1126360 --- [.1-18201-exec-5] org.hibernate.SQL                        : insert into transferring_files (created_time,failure_message,last_modified_time,original_name,total_size,transfer_state,transferred_size,type,unique_name,user_id,id) values (?,?,?,?,?,?,?,?,?,?,default)",
+  "2026-09-29T11:18:22.023-04:00 TRACE 1126360 --- [.1-18201-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (1:TIMESTAMP) <- [2026-09-29T11:18:22.023212]",
+  "2026-09-29T11:18:22.023-04:00 TRACE 1126360 --- [.1-18201-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [null]",
+  "2026-09-29T11:18:22.023-04:00 TRACE 1126360 --- [.1-18201-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (3:TIMESTAMP) <- [2026-09-29T11:18:22.023230]",
+  "2026-09-29T11:18:22.023-04:00 TRACE 1126360 --- [.1-18201-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (4:VARCHAR) <- [yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy.log]",
+  "2026-09-29T11:18:22.023-04:00 TRACE 1126360 --- [.1-18201-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (5:BIGINT) <- [0]",
+  "2026-09-29T11:18:22.023-04:00 TRACE 1126360 --- [.1-18201-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (6:ENUM) <- [IN_PROGRESS]",
+  "2026-09-29T11:18:22.023-04:00 TRACE 1126360 --- [.1-18201-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (7:BIGINT) <- [0]",
+  "2026-09-29T11:18:22.023-04:00 TRACE 1126360 --- [.1-18201-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (8:ENUM) <- [GC_LOG]",
+  "2026-09-29T11:18:22.023-04:00 TRACE 1126360 --- [.1-18201-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (9:VARCHAR) <- [406b4e8f-04d1-4b8b-bf25-ce844df0a72d]",
+  "2026-09-29T11:18:22.023-04:00 TRACE 1126360 --- [.1-18201-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (10:BIGINT) <- [2]",
+  "2026-09-29T11:18:22.024-04:00  WARN 1126360 --- [.1-18201-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 22001, SQLState: 22001",
+  "2026-09-29T11:18:22.024-04:00 ERROR 1126360 --- [.1-18201-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : Value too long for column \"ORIGINAL_NAME CHARACTER VARYING(256)\": \"'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy... (257)\"; SQL statement:",
+  "2026-09-29T11:18:22.025-04:00 ERROR 1126360 --- [.1-18201-exec-5] o.e.j.s.c.GlobalExceptionHandler         : Error occurred when handling http request '/jifa-api/files/transfer'",
+  "org.springframework.dao.DataIntegrityViolationException: could not execute statement [Value too long for column \"ORIGINAL_NAME CHARACTER VARYING(256)\": \"'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy... (257)\"; SQL statement:",
+  "\tat org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:293) ~[spring-orm-6.1.19.jar!/:6.1.19]",
+  "\tat org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:241) ~[spring-orm-6.1.19.jar!/:6.1.19]",
+  "\tat org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550) ~[spring-orm-6.1.19.jar!/:6.1.19]",
+  "\tat org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-6.1.19.jar!/:6.1.19]",
+  "\tat org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:160) ~[spring-tx-6.1.19.jar!/:6.1.19]",
+  "\tat org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.3.9.jar!/:6.3.9]",
+  "\tat org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.3.9.jar!/:6.3.9]",
+  "Caused by: org.hibernate.exception.DataException: could not execute statement [Value too long for column \"ORIGINAL_NAME CHARACTER VARYING(256)\": \"'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy... (257)\"; SQL statement:",
+  "\tat org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:55) ~[hibernate-core-6.5.3.Final.jar!/:6.5.3.Final]",
+  "\tat org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58) ~[hibernate-core-6.5.3.Final.jar!/:6.5.3.Final]",
+  "\tat org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.5.3.Final.jar!/:6.5.3.Final]",
+  "\tat org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138) ~[spring-tx-6.1.19.jar!/:6.1.19]",
+  "Caused by: org.h2.jdbc.JdbcSQLDataException: Value too long for column \"ORIGINAL_NAME CHARACTER VARYING(256)\": \"'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy... (257)\"; SQL statement:",
+  "\tat org.h2.message.DbException.getJdbcSQLException(DbException.java:518) ~[h2-2.2.220.jar!/:na]",
+  "\tat org.h2.message.DbException.getJdbcSQLException(DbException.java:489) ~[h2-2.2.220.jar!/:na]",
+  "\tat org.h2.message.DbException.get(DbException.java:223) ~[h2-2.2.220.jar!/:na]",
+  "\tat org.h2.message.DbException.getValueTooLongException(DbException.java:334) ~[h2-2.2.220.jar!/:na]",
+  "\tat org.h2.value.Value.getValueTooLongException(Value.java:2594) ~[h2-2.2.220.jar!/:na]"
+ ],
+ "extra": null
+}

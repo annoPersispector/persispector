@@ -1,0 +1,12 @@
+{
+ "case_id": "A17-boundary-follow-nonexistent",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select count(*), sum(follow_id is null) from follows",
+ "params": [],
+ "rows": [
+  [
+   1,
+   0
+  ]
+ ]
+}

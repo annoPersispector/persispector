@@ -1,0 +1,17 @@
+2026-09-29 04:36:48.645 seatunnel artifact-host WARN [tr:,sp:] [qtp1371182382-24] [UserContextInterceptor.preHandle():56] - No user context found in request attributes
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4dc64e8e] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@929806804 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: select id, username, `password`, `status`, `type`, create_time, update_time, auth_provider from `user` where status = 0 and username = ? and password = ? and auth_provider = ?
+==> Parameters: admin(String), 7f97da8846fed829bb8d1fd9f8030f3b(String), DB(String)
+<==    Columns: id, username, password, status, type, create_time, update_time, auth_provider
+<==        Row: 1, admin, 7f97da8846fed829bb8d1fd9f8030f3b, 0, 0, 2026-09-29 04:35:29.608, 2026-09-29 04:35:29.608, DB
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4dc64e8e]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7387038c] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1204734203 wrapping conn0: url=jdbc:h2:mem:seatunnel user=SA] will not be managed by Spring
+==>  Preparing: SELECT id,workspace_name,description,create_time,update_time FROM workspace WHERE (workspace_name = ?)
+==> Parameters: no_such_ws(String)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7387038c]

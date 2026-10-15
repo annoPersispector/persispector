@@ -1,0 +1,13 @@
+{
+ "case_id": "U12-violation-image-604-update",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select username, length(image), typeof(image) from users where username = 'alice'",
+ "params": [],
+ "rows": [
+  [
+   "alice",
+   604,
+   "text"
+  ]
+ ]
+}

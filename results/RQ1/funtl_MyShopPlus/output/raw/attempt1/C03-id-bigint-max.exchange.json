@@ -1,0 +1,30 @@
+{
+ "case_id": "C03-id-bigint-max",
+ "purpose": "boundary",
+ "target_ids": [
+  "pc-4077068a2bf5"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/reg",
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8"
+  },
+  "body": {
+   "id": 9223372036854775000,
+   "username": "pv121422maxid",
+   "password": "123456"
+  }
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Tue, 29 Sep 2026 16:14:35 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"timestamp\":\"2026-09-30 00:14:35\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"Failed to invoke remote method: get, provider: dubbo://127.0.0.1:20882/com.funtl.myshop.plus.provider.api.UmsAdminService?application=business-reg&check=false&generic=false&interface=com.funtl.myshop.plus.provider.api.UmsAdminService&lazy=false&pid=1156891&qos.enable=false&reference.filter=-sentinel.dubbo.consumer.filter&register.ip=127.0.1.1&remote.application=&revision=0.0.1-SNAPSHOT&side=consumer&sticky=false, cause: org.apache.dubbo.remoting.RemotingException: org.apache.dubbo.remoting.RemotingException: Not found exported service: com.funtl.myshop.plus.provider.api.UmsAdminService:20882 in [com.funtl.myshop.plus.provider.api.UmsAdminService:1.0.0:20882, com.funtl.myshop.plus.provider.api.EchoService:1.0.0:20882], may be version or group mismatch , channel: consumer: /127.0.0.1:37474 --> provider: /127.0.1.1:20882, message:RpcInvocation [methodName=get, parameterTypes=[class java.lang.String], arguments=[pv121422maxid], attachments={path=com.funtl.myshop.plus.provider.api.UmsAdminService, input=282, dubboApplication=business-reg, dubbo=2.0.2, interface=com.funtl.myshop.plus.provider.api.UmsAdminService, version=0.0.0}]\\norg.apache.dubbo.remoting.RemotingException: Not found exported service: com.funtl.myshop.plus.provider.api.UmsAdminService:20882 in [com.funtl.myshop.plus.provider.api.UmsAdminService:1.0.0:20882, com.funtl.myshop.plus.provider.api.EchoService:1.0.0:20882], may be version or group mismatch , channel: consumer: /127.0.0.1:37474 --> provider: /127.0.1.1:20882, message:RpcInvocation [methodName=get, parameterTypes=[class java.lang.String], arguments=[pv121422maxid], attachments={path=com.funtl.myshop.plus.provider.api.UmsAdminService, input=282, dubboApplication=business-reg, dubbo=2.0.2, interface=com.funtl.myshop.plus.provider.api.UmsAdminService, version=0.0.0}]\\n\\tat org.apache.dubbo.rpc.protocol.dubbo.DubboProtocol.getInvoker(DubboProtocol.java:266)\\n\\tat org.apache.dubbo.rpc.protocol.dubbo.DubboProtocol$1.reply(DubboProtocol.java:127)\\n\\tat org.apache.dubbo.remoting.exchange.support.header.HeaderExchangeHandler.handleRequest(HeaderExchangeHandler.java:102)\\n\\tat org.apache.dubbo.remoting.exchange.support.header.HeaderExchangeHandler.received(HeaderExchangeHandler.java:193)\\n\\tat org.apache.dubbo.remoting.transport.DecodeHandler.received(DecodeHandler.java:51)\\n\\tat org.apache.dubbo.remoting.transport.dispatcher.ChannelEventRunnable.run(ChannelEventRunnable.java:57)\\n\\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\\n\\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\\n\\tat java.lang.Thread.run(Thread.java:750)\\n\",\"path\":\"/reg\"}"
+ }
+}

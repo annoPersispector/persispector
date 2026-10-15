@@ -1,0 +1,9 @@
+2026-09-29 12:15:39.175 DEBUG 1156472 --- [20882-thread-43] c.f.m.p.p.m.U.selectOneByExample         : ==>  Preparing: SELECT id,username,`password`,icon,email,nick_name,note,create_time,login_time,`status` FROM ums_admin WHERE ( ( username = ? ) ) 
+2026-09-29 12:15:39.175 DEBUG 1156472 --- [20882-thread-43] c.f.m.p.p.m.U.selectOneByExample         : ==> Parameters: pv121525maxid(String)
+2026-09-29 12:15:39.176 DEBUG 1156472 --- [20882-thread-43] c.f.m.p.p.m.U.selectOneByExample         : <==      Total: 0
+2026-09-29 12:15:39.245 DEBUG 1156472 --- [20882-thread-44] c.f.m.p.p.mapper.UmsAdminMapper.insert   : ==>  Preparing: INSERT INTO ums_admin ( id,username,`password`,icon,email,nick_name,note,create_time,login_time,`status` ) VALUES( ?,?,?,?,?,?,?,?,?,? ) 
+2026-09-29 12:15:39.246 DEBUG 1156472 --- [20882-thread-44] c.f.m.p.p.mapper.UmsAdminMapper.insert   : ==> Parameters: 9223372036854775000(Long), pv121525maxid(String), $2a$10$jF.oOCxKkzf26sjhgucFreACndbaQS.IfukTL.GO/V/L7iJ9vZsSS(String), null, null, null, null, 2026-09-29 12:15:39.178(Timestamp), 2026-09-29 12:15:39.178(Timestamp), 0(Integer)
+2026-09-29 12:15:39.254 DEBUG 1156472 --- [20882-thread-44] c.f.m.p.p.mapper.UmsAdminMapper.insert   : <==    Updates: 1
+2026-09-29 12:15:39.258 DEBUG 1156472 --- [20882-thread-45] c.f.m.p.p.m.U.selectOneByExample         : ==>  Preparing: SELECT id,username,`password`,icon,email,nick_name,note,create_time,login_time,`status` FROM ums_admin WHERE ( ( username = ? ) ) 
+2026-09-29 12:15:39.258 DEBUG 1156472 --- [20882-thread-45] c.f.m.p.p.m.U.selectOneByExample         : ==> Parameters: pv121525maxid(String)
+2026-09-29 12:15:39.259 DEBUG 1156472 --- [20882-thread-45] c.f.m.p.p.m.U.selectOneByExample         : <==      Total: 1

@@ -1,0 +1,67 @@
+{
+ "case_id": "U04-violation-username-null",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18201/jifa-api/user",
+  "headers": {
+   "User-Agent": "python-requests/2.31.0",
+   "Accept-Encoding": "gzip, deflate, br",
+   "Accept": "*/*",
+   "Connection": "keep-alive",
+   "Content-Length": "382",
+   "Content-Type": "application/json"
+  },
+  "body": "{\"name\": \"NoUsername\", \"password\": \"<RSA-ENCRYPTED:password>\"}"
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+   "X-Content-Type-Options": "nosniff",
+   "X-XSS-Protection": "0",
+   "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+   "Pragma": "no-cache",
+   "Expires": "0",
+   "X-Frame-Options": "DENY",
+   "Content-Length": "209",
+   "Date": "Tue, 29 Sep 2026 15:18:06 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"NULL not allowed for column \\\"USERNAME\\\"; SQL statement:\\ninsert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default) [23502-220]\"}"
+ },
+ "correlated_log_lines": [
+  "2026-09-29T11:18:06.489-04:00 DEBUG 1126360 --- [.1-18201-exec-1] org.hibernate.SQL                        : select lde1_0.id,lde1_0.created_time,lde1_0.password_hash,lde1_0.user_id,lde1_0.username from login_data lde1_0 where lde1_0.username is null",
+  "2026-09-29T11:18:06.566-04:00 DEBUG 1126360 --- [.1-18201-exec-1] org.hibernate.SQL                        : insert into users (admin,created_time,last_modified_time,name,id) values (?,?,?,?,default)",
+  "2026-09-29T11:18:06.566-04:00 TRACE 1126360 --- [.1-18201-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:BOOLEAN) <- [false]",
+  "2026-09-29T11:18:06.566-04:00 TRACE 1126360 --- [.1-18201-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (2:TIMESTAMP) <- [2026-09-29T11:18:06.566338]",
+  "2026-09-29T11:18:06.567-04:00 TRACE 1126360 --- [.1-18201-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (3:TIMESTAMP) <- [2026-09-29T11:18:06.566365]",
+  "2026-09-29T11:18:06.567-04:00 TRACE 1126360 --- [.1-18201-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (4:VARCHAR) <- [NoUsername]",
+  "2026-09-29T11:18:06.568-04:00 DEBUG 1126360 --- [.1-18201-exec-1] org.hibernate.SQL                        : insert into login_data (created_time,password_hash,user_id,username,id) values (?,?,?,?,default)",
+  "2026-09-29T11:18:06.568-04:00 TRACE 1126360 --- [.1-18201-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:TIMESTAMP) <- [2026-09-29T11:18:06.568056]",
+  "2026-09-29T11:18:06.568-04:00 TRACE 1126360 --- [.1-18201-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [<BCRYPT-REDACTED>]",
+  "2026-09-29T11:18:06.568-04:00 TRACE 1126360 --- [.1-18201-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (3:BIGINT) <- [3]",
+  "2026-09-29T11:18:06.568-04:00 TRACE 1126360 --- [.1-18201-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (4:VARCHAR) <- [null]",
+  "2026-09-29T11:18:06.570-04:00  WARN 1126360 --- [.1-18201-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 23502, SQLState: 23502",
+  "2026-09-29T11:18:06.570-04:00 ERROR 1126360 --- [.1-18201-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : NULL not allowed for column \"USERNAME\"; SQL statement:",
+  "2026-09-29T11:18:06.582-04:00 ERROR 1126360 --- [.1-18201-exec-1] o.e.j.s.c.GlobalExceptionHandler         : Error occurred when handling http request '/jifa-api/user'",
+  "org.springframework.dao.DataIntegrityViolationException: could not execute statement [NULL not allowed for column \"USERNAME\"; SQL statement:",
+  "\tat org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:290) ~[spring-orm-6.1.19.jar!/:6.1.19]",
+  "\tat org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:241) ~[spring-orm-6.1.19.jar!/:6.1.19]",
+  "\tat org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550) ~[spring-orm-6.1.19.jar!/:6.1.19]",
+  "\tat org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-6.1.19.jar!/:6.1.19]",
+  "\tat org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:160) ~[spring-tx-6.1.19.jar!/:6.1.19]",
+  "\tat org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.3.9.jar!/:6.3.9]",
+  "\tat org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.3.9.jar!/:6.3.9]",
+  "Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement [NULL not allowed for column \"USERNAME\"; SQL statement:",
+  "\tat org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:62) ~[hibernate-core-6.5.3.Final.jar!/:6.5.3.Final]",
+  "\tat org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58) ~[hibernate-core-6.5.3.Final.jar!/:6.5.3.Final]",
+  "\tat org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.5.3.Final.jar!/:6.5.3.Final]",
+  "\tat org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138) ~[spring-tx-6.1.19.jar!/:6.1.19]",
+  "Caused by: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: NULL not allowed for column \"USERNAME\"; SQL statement:",
+  "\tat org.h2.message.DbException.getJdbcSQLException(DbException.java:520) ~[h2-2.2.220.jar!/:na]",
+  "\tat org.h2.message.DbException.getJdbcSQLException(DbException.java:489) ~[h2-2.2.220.jar!/:na]",
+  "\tat org.h2.message.DbException.get(DbException.java:223) ~[h2-2.2.220.jar!/:na]",
+  "\tat org.h2.message.DbException.get(DbException.java:199) ~[h2-2.2.220.jar!/:na]"
+ ],
+ "extra": null
+}

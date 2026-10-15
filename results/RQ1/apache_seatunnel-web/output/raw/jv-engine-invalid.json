@@ -1,0 +1,38 @@
+{
+  "case_id": "jv-engine-invalid",
+  "purpose": "violation",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/job/config/23198804288544",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "name": "line_job",
+      "description": "d",
+      "env": {
+        "job.mode": "BATCH"
+      },
+      "engine": "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:37:42 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 99999,
+      "msg": "Unknown exception. JSON parse error: Cannot deserialize value of type `org.apache.seatunnel.app.common.EngineType` from String \"EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\": not one of the values accepted for Enum class: [Flink, Spark, SeaTunnel]; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `org.apache.seatunnel.app.common.EngineType` from String \"EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\": not one of the values accepted for Enum class: [Flink, Spark, SeaTunnel]\n at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 1, column: 82] (through reference chain: org.apache.seatunnel.app.domain.request.job.JobConfig[\"engine\"])",
+      "data": null,
+      "failed": true,
+      "success": false
+    }
+  },
+  "log_slice": "logs/cases/jv-engine-invalid.log"
+}

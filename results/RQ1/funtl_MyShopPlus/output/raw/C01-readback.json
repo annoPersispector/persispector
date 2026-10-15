@@ -1,0 +1,5 @@
+{
+ "case_id": "C01-readback",
+ "query": "SELECT id, username, password, CHAR_LENGTH(password) AS pw_len, CHAR_LENGTH(icon) AS icon_len, CHAR_LENGTH(email) AS email_len, CHAR_LENGTH(nick_name) AS nick_len, CHAR_LENGTH(note) AS note_len, create_time, login_time, status FROM ums_admin WHERE username = 'pv121525ok'",
+ "result": "id\tusername\tpassword\tpw_len\ticon_len\temail_len\tnick_len\tnote_len\tcreate_time\tlogin_time\tstatus\n5\tpv121525ok\t$2a$10$d5GKU85xYGA5Cjm371AplOgO419NpvY7ubIAGHe7CbIXnM9XCnsEq\t60\t14\t5\t4\t1\t2026-09-30 00:15:26\t2026-09-30 00:15:26\t1\n"
+}

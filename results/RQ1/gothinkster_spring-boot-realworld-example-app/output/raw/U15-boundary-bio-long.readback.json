@@ -1,0 +1,13 @@
+{
+ "case_id": "U15-boundary-bio-long",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select username, length(bio), typeof(bio) from users where username = 'bob'",
+ "params": [],
+ "rows": [
+  [
+   "bob",
+   100000,
+   "text"
+  ]
+ ]
+}

@@ -1,0 +1,7 @@
+{
+  "case_id": "starred-control-1",
+  "purpose": "control",
+  "api_readback": null,
+  "db_readback_sql": "SELECT starred_schema_id, datasource, engine, catalog, `schema`, CHAR_LENGTH(user) ulen FROM starred_schema ORDER BY starred_schema_id",
+  "db_readback_result": "+-------------------+---------------+--------+---------+--------+------+\n| starred_schema_id | datasource    | engine | catalog | schema | ulen |\n+-------------------+---------------+--------+---------+--------+------+\n|                 1 | docker-presto | presto | tpch    | sf1    |    5 |\n+-------------------+---------------+--------+---------+--------+------+"
+}

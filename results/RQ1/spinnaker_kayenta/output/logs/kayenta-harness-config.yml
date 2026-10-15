@@ -1,0 +1,33 @@
+server:
+  address: 127.0.0.1
+  port: 18204
+redis:
+  connection: redis://127.0.0.1:16379
+services:
+  redis:
+    baseUrl: redis://127.0.0.1:16379
+kayenta:
+  sql:
+    enabled: true
+    harness-account-name: sql-account
+  memory:
+    enabled: false
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/kayenta?socketFactory=org.newsclub.net.mysql.AFUNIXDatabaseSocketFactoryCJ&junixsocket.file=/tmp/kayenta-verif-8d598796/mysql/run/mysqld.sock&sslMode=DISABLED&allowPublicKeyRetrieval=true
+    username: kayenta
+    password: kayenta
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog-master.yml
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.engine.jdbc.spi.SqlExceptionHelper: DEBUG
+    liquibase: INFO

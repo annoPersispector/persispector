@@ -1,0 +1,41 @@
+{
+ "case_id": "job-len-jobtype-256",
+ "purpose": "violation",
+ "target_hint": [
+  "job_config.job_type length"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/namespaces/mydomain/jobs/jobs",
+  "headers": {
+   "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+  },
+  "body": {
+   "jobName": "pvjt1",
+   "jobType": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+   "jobClass": "demo.DemoJavaJob",
+   "cron": "0/30 * * * * ?",
+   "shardingTotalCount": "1",
+   "shardingItemParameters": "0=0",
+   "description": "pv"
+  }
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:15:51 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"status\":1,\"message\":\"作业类型未知\",\"obj\":\"\"}",
+  "json": {
+   "status": 1,
+   "message": "作业类型未知",
+   "obj": ""
+  }
+ },
+ "elapsed_seconds": 0.009,
+ "timestamp": "2026-09-29T20:15:51-0400"
+}

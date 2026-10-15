@@ -1,0 +1,35 @@
+{
+ "case_id": "U08-violation-email-313",
+ "purpose": "violation",
+ "target_ids": [
+  "pc-f222071f805c",
+  "pc-6329c3a12c81"
+ ],
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18208/users",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "body": {
+   "user": {
+    "username": "longmail",
+    "email": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee@dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd.dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd.dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd.dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd.com",
+    "password": "secret123"
+   }
+  }
+ },
+ "response": {
+  "status": 201,
+  "body": {
+   "user": {
+    "email": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee@dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd.dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd.dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd.dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd.com",
+    "username": "longmail",
+    "bio": "",
+    "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+    "token": "<JWT-REDACTED>"
+   }
+  }
+ },
+ "note": ""
+}

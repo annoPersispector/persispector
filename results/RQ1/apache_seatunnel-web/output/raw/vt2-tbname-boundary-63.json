@@ -1,0 +1,47 @@
+{
+  "case_id": "vt2-tbname-boundary-63",
+  "purpose": "boundary",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/virtual_table/create",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "datasourceId": "23198791306016",
+      "databaseName": "vdb",
+      "tableName": "ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt",
+      "description": "d",
+      "tableFields": [
+        {
+          "fieldName": "id",
+          "fieldType": "INT",
+          "nullable": false,
+          "primaryKey": true
+        }
+      ],
+      "databaseProperties": {
+        "k": "v"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:36:01 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 0,
+      "msg": null,
+      "data": "23198791909536",
+      "failed": false,
+      "success": true
+    }
+  },
+  "log_slice": "logs/cases/vt2-tbname-boundary-63.log"
+}

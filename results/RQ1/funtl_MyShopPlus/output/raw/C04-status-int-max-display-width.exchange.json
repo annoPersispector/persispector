@@ -1,0 +1,30 @@
+{
+ "case_id": "C04-status-int-max-display-width",
+ "purpose": "boundary",
+ "target_ids": [
+  "pc-bcab32ac6f64"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/reg",
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8"
+  },
+  "body": {
+   "username": "pv121525st3",
+   "password": "123456",
+   "status": 2147483647
+  }
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Tue, 29 Sep 2026 16:15:42 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"code\":200,\"message\":\"用户注册成功\",\"data\":{\"id\":9223372036854775001,\"username\":\"pv121525st3\",\"password\":\"$2a$10$0vSPxqbr3yiml/AaUgjWkuoH1qU/JglrRdWP7B1/rB5yDBc/JKUpq\",\"icon\":null,\"email\":null,\"nickName\":null,\"note\":null,\"createTime\":\"2026-09-30 00:15:42\",\"loginTime\":\"2026-09-30 00:15:42\",\"status\":2147483647}}"
+ }
+}

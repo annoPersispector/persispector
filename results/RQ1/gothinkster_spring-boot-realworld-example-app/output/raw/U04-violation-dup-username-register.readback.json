@@ -1,0 +1,18 @@
+{
+ "case_id": "U04-violation-dup-username-register",
+ "database": "runtime/verify.db (SQLite)",
+ "sql": "select username, email, count(*) over () from users order by username",
+ "params": [],
+ "rows": [
+  [
+   "alice",
+   "alice@example.com",
+   2
+  ],
+  [
+   "bob",
+   "bob@example.com",
+   2
+  ]
+ ]
+}

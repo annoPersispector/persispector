@@ -1,0 +1,2 @@
+Hibernate: select comment0_.datasource as datasour1_1_, comment0_.engine as engine2_1_, comment0_.query_id as query_id3_1_, comment0_.content as content4_1_, comment0_.like_count as like_cou5_1_, comment0_.update_time_string as update_t6_1_, comment0_.user as user7_1_ from comment comment0_ where comment0_.datasource=? and comment0_.engine=? and comment0_.query_id=?
+Hibernate: update comment set content=?, like_count=?, update_time_string=?, user=? where datasource=? and engine=? and query_id=?

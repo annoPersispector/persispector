@@ -1,0 +1,35 @@
+{
+ "case_id": "A10-violation-tag-name-null",
+ "purpose": "violation",
+ "target_ids": [
+  "pc-b85db3b823bb"
+ ],
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18208/articles",
+  "headers": {
+   "Content-Type": "application/json",
+   "Authorization": "Token <JWT-REDACTED>"
+  },
+  "body": {
+   "article": {
+    "title": "Null Tag",
+    "description": "desc",
+    "body": "body",
+    "tagList": [
+     null
+    ]
+   }
+  }
+ },
+ "response": {
+  "status": 500,
+  "body": {
+   "timestamp": "2026-09-29T07:08:40.424+00:00",
+   "status": 500,
+   "error": "Internal Server Error",
+   "path": "/articles"
+  }
+ },
+ "note": ""
+}

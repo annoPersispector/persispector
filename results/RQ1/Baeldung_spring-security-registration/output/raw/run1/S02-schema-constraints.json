@@ -1,0 +1,109 @@
+{
+  "case_id": "S02-schema-constraints",
+  "kind": "read-back",
+  "channel": "H2 web console /h2/query.do (SELECT only)",
+  "sql": "SELECT TABLE_NAME, CONSTRAINT_NAME, CONSTRAINT_TYPE FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_SCHEMA='PUBLIC' ORDER BY TABLE_NAME, CONSTRAINT_TYPE",
+  "status": 200,
+  "rows": [
+    [
+      "TABLE_NAME",
+      "CONSTRAINT_NAME",
+      "CONSTRAINT_TYPE"
+    ],
+    [
+      "DEVICE_METADATA",
+      "CONSTRAINT_F",
+      "PRIMARY KEY"
+    ],
+    [
+      "NEW_LOCATION_TOKEN",
+      "FKT4D61XU4OMPO2FY5UPB033MWM",
+      "FOREIGN KEY"
+    ],
+    [
+      "NEW_LOCATION_TOKEN",
+      "CONSTRAINT_6",
+      "PRIMARY KEY"
+    ],
+    [
+      "NEW_LOCATION_TOKEN",
+      "UK_O0YHXR0S5VNV32RV2B157MHBM",
+      "UNIQUE"
+    ],
+    [
+      "PASSWORD_RESET_TOKEN",
+      "FKNS9Q9F0F318UAOXIQN6LKA9UX",
+      "FOREIGN KEY"
+    ],
+    [
+      "PASSWORD_RESET_TOKEN",
+      "CONSTRAINT_C",
+      "PRIMARY KEY"
+    ],
+    [
+      "PASSWORD_RESET_TOKEN",
+      "UK_F90IVICHJAOKVMOVXPNLM5NIN",
+      "UNIQUE"
+    ],
+    [
+      "PRIVILEGE",
+      "CONSTRAINT_4",
+      "PRIMARY KEY"
+    ],
+    [
+      "ROLE",
+      "CONSTRAINT_2",
+      "PRIMARY KEY"
+    ],
+    [
+      "ROLES_PRIVILEGES",
+      "FK9H2VEWSQH8LUHFQ71XOKH4WHO",
+      "FOREIGN KEY"
+    ],
+    [
+      "ROLES_PRIVILEGES",
+      "FK5YJWXW2GVFYU76J3RGQWO685U",
+      "FOREIGN KEY"
+    ],
+    [
+      "USERS_ROLES",
+      "FKCI4MDVG1FMO9EQMWNO1Y9O0FA",
+      "FOREIGN KEY"
+    ],
+    [
+      "USERS_ROLES",
+      "FKT4V0RRWEYK393BDGT107VDX0X",
+      "FOREIGN KEY"
+    ],
+    [
+      "USER_ACCOUNT",
+      "CONSTRAINT_9",
+      "PRIMARY KEY"
+    ],
+    [
+      "USER_LOCATION",
+      "FKEWIIG159T5FN9JT50SRA34ADR",
+      "FOREIGN KEY"
+    ],
+    [
+      "USER_LOCATION",
+      "CONSTRAINT_B",
+      "PRIMARY KEY"
+    ],
+    [
+      "VERIFICATION_TOKEN",
+      "FK_VERIFY_USER",
+      "FOREIGN KEY"
+    ],
+    [
+      "VERIFICATION_TOKEN",
+      "CONSTRAINT_8",
+      "PRIMARY KEY"
+    ],
+    [
+      "VERIFICATION_TOKEN",
+      "UK_Q6JIBBENP7O9V6TQ178XG88HG",
+      "UNIQUE"
+    ]
+  ]
+}

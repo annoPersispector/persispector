@@ -1,0 +1,65 @@
+{
+ "case_id": "job-null-defaults-empty-readback-rest",
+ "purpose": "read-back",
+ "target_hint": [
+  "job_config not-null defaults"
+ ],
+ "note": "",
+ "request": {
+  "method": "GET",
+  "url": "http://127.0.0.1:18205/rest/v1/mydomain/jobs/pvnull1",
+  "headers": {},
+  "body": null
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:15:54 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"jobName\":\"pvnull1\",\"description\":\"pv\",\"enabled\":false,\"runningStatus\":\"STOPPED\",\"jobConfig\":{\"jobClass\":\"demo.DemoJavaJob\",\"jobType\":\"JAVA_JOB\",\"shardingTotalCount\":1,\"shardingItemParameters\":\"0=0\",\"jobParameter\":\"\",\"timeZone\":\"Asia/Shanghai\",\"cron\":\"0/30 * * * * ?\",\"pausePeriodDate\":\"\",\"pausePeriodTime\":\"\",\"timeout4AlarmSeconds\":0,\"timeoutSeconds\":0,\"channelName\":\"\",\"queueName\":\"\",\"loadLevel\":1,\"jobDegree\":0,\"enabledReport\":true,\"preferList\":\"\",\"useDispreferList\":true,\"localMode\":false,\"useSerial\":false,\"dependencies\":\"\",\"groups\":\"\",\"showNormalLog\":false,\"processCountInterValSeconds\":300},\"statistics\":{\"lastBeginTime\":\"\",\"lastCompleteTime\":\"\",\"nextFireTime\":\"\",\"processCount\":\"\",\"processErrorCount\":\"\"}}",
+  "json": {
+   "jobName": "pvnull1",
+   "description": "pv",
+   "enabled": false,
+   "runningStatus": "STOPPED",
+   "jobConfig": {
+    "jobClass": "demo.DemoJavaJob",
+    "jobType": "JAVA_JOB",
+    "shardingTotalCount": 1,
+    "shardingItemParameters": "0=0",
+    "jobParameter": "",
+    "timeZone": "Asia/Shanghai",
+    "cron": "0/30 * * * * ?",
+    "pausePeriodDate": "",
+    "pausePeriodTime": "",
+    "timeout4AlarmSeconds": 0,
+    "timeoutSeconds": 0,
+    "channelName": "",
+    "queueName": "",
+    "loadLevel": 1,
+    "jobDegree": 0,
+    "enabledReport": true,
+    "preferList": "",
+    "useDispreferList": true,
+    "localMode": false,
+    "useSerial": false,
+    "dependencies": "",
+    "groups": "",
+    "showNormalLog": false,
+    "processCountInterValSeconds": 300
+   },
+   "statistics": {
+    "lastBeginTime": "",
+    "lastCompleteTime": "",
+    "nextFireTime": "",
+    "processCount": "",
+    "processErrorCount": ""
+   }
+  }
+ },
+ "elapsed_seconds": 0.024,
+ "timestamp": "2026-09-29T20:15:56-0400"
+}

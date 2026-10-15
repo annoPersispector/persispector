@@ -1,0 +1,4 @@
+# Observed contents of ~/.npmrc (mode 600, mtime 2026-09-29 20:10:44 -0400) right after build attempt 1,
+# written by the upstream saturn-console-web/npm-config.sh ('npm config set ...'). Not reverted (permission denied).
+registry=https://registry.npm.taobao.org/
+sass_binary_site=https://npm.taobao.org/mirrors/node-sass/

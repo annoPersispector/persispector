@@ -1,0 +1,212 @@
+{
+ "case_id": "R01-violation-race-dup-username",
+ "purpose": "violation",
+ "target_ids": [
+  "pc-0d84cdc3d396"
+ ],
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18208/users",
+  "concurrency": 12,
+  "bodies": [
+   {
+    "user": {
+     "username": "racer",
+     "email": "racer0@example.com",
+     "password": "secret123"
+    }
+   },
+   {
+    "user": {
+     "username": "racer",
+     "email": "racer1@example.com",
+     "password": "secret123"
+    }
+   },
+   {
+    "user": {
+     "username": "racer",
+     "email": "racer2@example.com",
+     "password": "secret123"
+    }
+   },
+   {
+    "user": {
+     "username": "racer",
+     "email": "racer3@example.com",
+     "password": "secret123"
+    }
+   },
+   {
+    "user": {
+     "username": "racer",
+     "email": "racer4@example.com",
+     "password": "secret123"
+    }
+   },
+   {
+    "user": {
+     "username": "racer",
+     "email": "racer5@example.com",
+     "password": "secret123"
+    }
+   },
+   {
+    "user": {
+     "username": "racer",
+     "email": "racer6@example.com",
+     "password": "secret123"
+    }
+   },
+   {
+    "user": {
+     "username": "racer",
+     "email": "racer7@example.com",
+     "password": "secret123"
+    }
+   },
+   {
+    "user": {
+     "username": "racer",
+     "email": "racer8@example.com",
+     "password": "secret123"
+    }
+   },
+   {
+    "user": {
+     "username": "racer",
+     "email": "racer9@example.com",
+     "password": "secret123"
+    }
+   },
+   {
+    "user": {
+     "username": "racer",
+     "email": "racer10@example.com",
+     "password": "secret123"
+    }
+   },
+   {
+    "user": {
+     "username": "racer",
+     "email": "racer11@example.com",
+     "password": "secret123"
+    }
+   }
+  ],
+  "authorization": null
+ },
+ "responses": [
+  {
+   "status": 500,
+   "body": {
+    "timestamp": "2026-09-29T07:08:02.663+00:00",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/users"
+   }
+  },
+  {
+   "status": 500,
+   "body": {
+    "timestamp": "2026-09-29T07:08:02.665+00:00",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/users"
+   }
+  },
+  {
+   "status": 500,
+   "body": {
+    "timestamp": "2026-09-29T07:08:02.664+00:00",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/users"
+   }
+  },
+  {
+   "status": 500,
+   "body": {
+    "timestamp": "2026-09-29T07:08:02.667+00:00",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/users"
+   }
+  },
+  {
+   "status": 500,
+   "body": {
+    "timestamp": "2026-09-29T07:08:02.665+00:00",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/users"
+   }
+  },
+  {
+   "status": 500,
+   "body": {
+    "timestamp": "2026-09-29T07:08:02.663+00:00",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/users"
+   }
+  },
+  {
+   "status": 500,
+   "body": {
+    "timestamp": "2026-09-29T07:08:02.666+00:00",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/users"
+   }
+  },
+  {
+   "status": 500,
+   "body": {
+    "timestamp": "2026-09-29T07:08:02.663+00:00",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/users"
+   }
+  },
+  {
+   "status": 500,
+   "body": {
+    "timestamp": "2026-09-29T07:08:02.664+00:00",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/users"
+   }
+  },
+  {
+   "status": 500,
+   "body": {
+    "timestamp": "2026-09-29T07:08:02.677+00:00",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/users"
+   }
+  },
+  {
+   "status": 500,
+   "body": {
+    "timestamp": "2026-09-29T07:08:02.664+00:00",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/users"
+   }
+  },
+  {
+   "status": 201,
+   "body": {
+    "user": {
+     "email": "racer11@example.com",
+     "username": "racer",
+     "bio": "",
+     "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+     "token": "<JWT-REDACTED>"
+    }
+   }
+  }
+ ]
+}

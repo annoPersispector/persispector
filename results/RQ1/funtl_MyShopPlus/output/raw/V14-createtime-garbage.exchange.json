@@ -1,0 +1,32 @@
+{
+ "case_id": "V14-createtime-garbage",
+ "purpose": "violation",
+ "target_ids": [
+  "pc-4b80a8cb1221",
+  "pc-f2ed0251561b"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/reg",
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8"
+  },
+  "body": {
+   "username": "pv121525dt2",
+   "password": "123456",
+   "createTime": "not-a-date",
+   "loginTime": "not-a-date"
+  }
+ },
+ "response": {
+  "status": 400,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Tue, 29 Sep 2026 16:15:44 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"timestamp\":\"2026-09-30 00:15:44\",\"status\":400,\"error\":\"Bad Request\",\"message\":\"JSON parse error: Cannot deserialize value of type `java.util.Date` from String \\\"not-a-date\\\": expected format \\\"yyyy-MM-dd HH:mm:ss\\\"; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.util.Date` from String \\\"not-a-date\\\": expected format \\\"yyyy-MM-dd HH:mm:ss\\\"\\n at [Source: (PushbackInputStream); line: 1, column: 65] (through reference chain: com.funtl.myshop.plus.provider.domain.UmsAdmin[\\\"createTime\\\"])\",\"path\":\"/reg\"}"
+ }
+}

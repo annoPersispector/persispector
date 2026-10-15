@@ -1,0 +1,38 @@
+{
+ "case_id": "U08b-readback-login-after-name-65",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18201/jifa-api/login",
+  "headers": {
+   "User-Agent": "python-requests/2.31.0",
+   "Accept-Encoding": "gzip, deflate, br",
+   "Accept": "*/*",
+   "Connection": "keep-alive",
+   "Content-Length": "384",
+   "Content-Type": "application/json"
+  },
+  "body": "{\"username\": \"e_4b4b98\", \"password\": \"<RSA-ENCRYPTED>\"}"
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+   "X-Content-Type-Options": "nosniff",
+   "X-XSS-Protection": "0",
+   "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+   "Pragma": "no-cache",
+   "Expires": "0",
+   "X-Frame-Options": "DENY",
+   "Content-Length": "57",
+   "Date": "Tue, 29 Sep 2026 15:18:10 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"errorCode\":\"USER_NOT_FOUND\",\"message\":\"User not found\"}"
+ },
+ "correlated_log_lines": [
+  "2026-09-29T11:18:10.544-04:00 DEBUG 1126360 --- [.1-18201-exec-9] org.hibernate.SQL                        : select lde1_0.id,lde1_0.created_time,lde1_0.password_hash,lde1_0.user_id,lde1_0.username from login_data lde1_0 where lde1_0.username=?",
+  "2026-09-29T11:18:10.545-04:00 TRACE 1126360 --- [.1-18201-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [e_4b4b98]",
+  "2026-09-29T11:18:10.545-04:00 ERROR 1126360 --- [.1-18201-exec-9] o.e.j.s.c.GlobalExceptionHandler         : User not found"
+ ],
+ "extra": null
+}

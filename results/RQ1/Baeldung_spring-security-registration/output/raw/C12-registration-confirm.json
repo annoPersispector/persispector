@@ -1,0 +1,35 @@
+{
+  "case_id": "C12-registration-confirm",
+  "note": "control: confirm registration (updates user_account.enabled via token.user)",
+  "timestamp": "2026-09-29T06:37:39Z",
+  "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:18206/registrationConfirm?token=530edeea-8dfb-4397-86cd-5bdb4f2b2585",
+    "headers": {
+      "User-Agent": "python-requests/2.31.0",
+      "Accept-Encoding": "gzip, deflate, br",
+      "Accept": "*/*",
+      "Connection": "keep-alive"
+    },
+    "form": {}
+  },
+  "response": {
+    "status": 302,
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "X-XSS-Protection": "0",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "Pragma": "no-cache",
+      "Expires": "0",
+      "X-Frame-Options": "DENY",
+      "Location": "http://127.0.0.1:18206/console?lang=en&messageKey=message.accountVerified",
+      "Content-Language": "en",
+      "Content-Length": "0",
+      "Date": "Tue, 29 Sep 2026 06:37:39 GMT",
+      "Keep-Alive": "timeout=60",
+      "Connection": "keep-alive"
+    },
+    "body": ""
+  },
+  "correlated_log": "web - 2026-09-29 02:37:39,808 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.s.w.s.DispatcherServlet - GET \"/registrationConfirm?token=530edeea-8dfb-4397-86cd-5bdb4f2b2585\", parameters={masked}\nweb - 2026-09-29 02:37:39,810 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.h.SQL - select v1_0.id,v1_0.expiry_date,v1_0.token,v1_0.user_id from verification_token v1_0 where v1_0.token=?\nweb - 2026-09-29 02:37:39,810 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [530edeea-8dfb-4397-86cd-5bdb4f2b2585]\nweb - 2026-09-29 02:37:39,811 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.h.SQL - select u1_0.id,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_using2fa,u1_0.last_name,u1_0.password,r1_0.user_id,r1_1.id,r1_1.name,u1_0.secret from user_account u1_0 left join (users_roles r1_0 join role r1_1 on r1_1.id=r1_0.role_id) on u1_0.id=r1_0.user_id where u1_0.id=?\nweb - 2026-09-29 02:37:39,811 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [3]\nweb - 2026-09-29 02:37:39,813 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.h.SQL - update user_account set email=?,enabled=?,first_name=?,is_using2fa=?,last_name=?,password=?,secret=? where id=?\nweb - 2026-09-29 02:37:39,813 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [pv.b30@example.test]\nweb - 2026-09-29 02:37:39,813 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [2] as [BOOLEAN] - [true]\nweb - 2026-09-29 02:37:39,813 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [3] as [VARCHAR] - [Pv]\nweb - 2026-09-29 02:37:39,813 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [4] as [BOOLEAN] - [false]\nweb - 2026-09-29 02:37:39,813 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [5] as [VARCHAR] - [Check]\nweb - 2026-09-29 02:37:39,813 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [6] as [VARCHAR] - [$2a$11$YMAc/84Lxe01qquFS/.z4eGTCPphJOOvMH2yGe2ssxM4omPZEm7NG]\nweb - 2026-09-29 02:37:39,813 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [7] as [VARCHAR] - [QTZ2ILIEWQOCGPKJ]\nweb - 2026-09-29 02:37:39,813 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [8] as [BIGINT] - [3]\nweb - 2026-09-29 02:37:39,814 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.h.SQL - select v1_0.id,v1_0.expiry_date,v1_0.token,v1_0.user_id from verification_token v1_0 where v1_0.token=?\nweb - 2026-09-29 02:37:39,814 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [1] as [VARCHAR] - [530edeea-8dfb-4397-86cd-5bdb4f2b2585]\nweb - 2026-09-29 02:37:39,815 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.h.SQL - select p1_0.role_id,p1_1.id,p1_1.name from roles_privileges p1_0 join privilege p1_1 on p1_1.id=p1_0.privilege_id where p1_0.role_id=?\nweb - 2026-09-29 02:37:39,816 [http-nio-127.0.0.1-18206-exec-4] TRACE o.h.o.j.bind - binding parameter [1] as [BIGINT] - [2]\nweb - 2026-09-29 02:37:39,820 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.s.w.s.v.RedirectView - View name 'redirect:', model {lang=en, messageKey=message.accountVerified}\nweb - 2026-09-29 02:37:39,820 [http-nio-127.0.0.1-18206-exec-4] DEBUG o.s.w.s.DispatcherServlet - Completed 302 FOUND\n"
+}

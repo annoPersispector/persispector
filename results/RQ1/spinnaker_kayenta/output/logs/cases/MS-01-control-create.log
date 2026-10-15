@@ -1,0 +1,7 @@
+2026-09-29 12:27:28.543 DEBUG 1164260 --- [.1-18204-exec-6] org.hibernate.SQL                        : select sqlmetrics0_.id as id1_3_0_, sqlmetrics0_.content as content2_3_0_, sqlmetrics0_.created_at as created_3_3_0_, sqlmetrics0_.updated_at as updated_4_3_0_ from metric_sets sqlmetrics0_ where sqlmetrics0_.id=?
+2026-09-29 12:27:28.543 TRACE 1164260 --- [.1-18204-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [2d48be40-abd8-40f3-ae73-ab1682c1c3e3]
+2026-09-29 12:27:28.544 DEBUG 1164260 --- [.1-18204-exec-6] org.hibernate.SQL                        : insert into metric_sets (content, created_at, updated_at, id) values (?, ?, ?, ?)
+2026-09-29 12:27:28.544 TRACE 1164260 --- [.1-18204-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [[{"name":"cpu","tags":{"a":"b"},"startTimeMillis":0,"startTimeIso":"1970-01-01T00:00:00Z","endTimeMillis":60000,"endTimeIso":"1970-01-01T00:01:00Z","stepMillis":60000,"values":[1.0,2.0]}]]
+2026-09-29 12:27:28.544 TRACE 1164260 --- [.1-18204-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [TIMESTAMP] - [2026-09-29T16:27:28.542408685Z]
+2026-09-29 12:27:28.545 TRACE 1164260 --- [.1-18204-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [TIMESTAMP] - [2026-09-29T16:27:28.542409281Z]
+2026-09-29 12:27:28.545 TRACE 1164260 --- [.1-18204-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [2d48be40-abd8-40f3-ae73-ab1682c1c3e3]

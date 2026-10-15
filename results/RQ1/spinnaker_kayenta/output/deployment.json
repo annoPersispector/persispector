@@ -1,0 +1,148 @@
+{
+  "schema_version": "persistence-runtime-verification-v2",
+  "application": "spinnaker_kayenta",
+  "source_revision": null,
+  "isolated_application_path": "/artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application",
+  "build_system": "gradle 7.6.1 (wrapper)",
+  "java_version": "OpenJDK 17.0.15 (/usr/lib/jvm/java-17-openjdk-amd64)",
+  "runtime_database": "MySQL 8.0.42 (Ubuntu build, private instance, skip-networking, unix socket only, STRICT_TRANS_TABLES, utf8mb4_0900_ai_ci); schema created by the application's Liquibase changelog",
+  "schema_context_id": "dbctx-9ed09ac67b2d",
+  "base_urls": [
+    "http://127.0.0.1:18204"
+  ],
+  "ports": [
+    18204,
+    16379
+  ],
+  "health_checks": [
+    "GET http://127.0.0.1:18204/health -> 200 {\"status\":\"UP\", db: MySQL UP}",
+    "GET http://127.0.0.1:18204/credentials -> sql-account [CONFIGURATION_STORE, OBJECT_STORE]",
+    "redis-cli -p 16379 ping -> PONG"
+  ],
+  "commands": [
+    {
+      "purpose": "build",
+      "command": "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 ./gradlew --no-daemon :kayenta-web:installDist -x test",
+      "working_directory": "/artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application",
+      "exit_code": 0
+    },
+    {
+      "purpose": "fetch redis (dependency download)",
+      "command": "apt-get download redis-server redis-tools lua-cjson lua-bitop libjemalloc2 libhiredis0.14 liblua5.1-0 && dpkg -x <deb> x",
+      "working_directory": "/tmp/kayenta-verif-8d598796/redis",
+      "exit_code": 0
+    },
+    {
+      "purpose": "start redis",
+      "command": "LD_LIBRARY_PATH=x/usr/lib/x86_64-linux-gnu:x/usr/lib/x86_64-linux-gnu/lua/5.1 x/usr/bin/redis-server --bind 127.0.0.1 --port 16379 --save '' --appendonly no --daemonize yes --pidfile redis.pid --logfile <output>/logs/redis.log",
+      "working_directory": "/tmp/kayenta-verif-8d598796",
+      "exit_code": 0
+    },
+    {
+      "purpose": "init mysql (binary copied out of /usr/sbin to avoid the AppArmor profile that blocks non-standard datadirs)",
+      "command": "cp /usr/sbin/mysqld mysqld-bin && ./mysqld-bin --defaults-file=mysql/my.cnf --initialize-insecure",
+      "working_directory": "/tmp/kayenta-verif-8d598796",
+      "exit_code": 0
+    },
+    {
+      "purpose": "start mysql",
+      "command": "./mysqld-bin --defaults-file=mysql/my.cnf &  (skip-networking, socket=mysql/run/mysqld.sock, general_log on)",
+      "working_directory": "/tmp/kayenta-verif-8d598796",
+      "exit_code": 0
+    },
+    {
+      "purpose": "create db/user",
+      "command": "mysql -S mysql/run/mysqld.sock -uroot -e \"CREATE DATABASE kayenta; CREATE USER 'kayenta'@'localhost' IDENTIFIED WITH mysql_native_password BY 'kayenta'; GRANT ALL ON kayenta.* TO 'kayenta'@'localhost'\"",
+      "working_directory": "/tmp/kayenta-verif-8d598796",
+      "exit_code": 0
+    },
+    {
+      "purpose": "start application",
+      "command": "JAVA_OPTS=-Xmx1g bin/kayenta --spring.config.additional-location=file:/tmp/kayenta-verif-8d598796/harness.yml (copy: logs/kayenta-harness-config.yml)",
+      "working_directory": "/artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application/kayenta-web/build/install/kayenta",
+      "exit_code": null
+    },
+    {
+      "purpose": "run verification cases",
+      "command": "python3 /tmp/kayenta-verif-8d598796/run_cases.py",
+      "working_directory": "/artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application",
+      "exit_code": 0
+    },
+    {
+      "purpose": "stop application",
+      "command": "kill <wrapper pid>; kill <java pid 1164260>",
+      "working_directory": "/artifact/results/RQ1/spinnaker_kayenta/spinnaker_kayenta-20260929T162038Z-8d598796/application",
+      "exit_code": 0
+    },
+    {
+      "purpose": "stop mysql",
+      "command": "mysqladmin -S mysql/run/mysqld.sock -uroot shutdown",
+      "working_directory": "/tmp/kayenta-verif-8d598796",
+      "exit_code": 0
+    },
+    {
+      "purpose": "stop redis",
+      "command": "kill $(cat redis.pid)",
+      "working_directory": "/tmp/kayenta-verif-8d598796",
+      "exit_code": 0
+    }
+  ],
+  "patches": [
+    {
+      "path": "patches/kayenta-sql-harness.patch",
+      "kind": "patch",
+      "description": "Compatibility-only: junixsocket runtime deps in kayenta-sql.gradle; new HarnessSqlAccountConfiguration registering account 'sql-account' (String bean consumed by SqlStorageService's List<String> accountNames + CONFIGURATION_STORE/OBJECT_STORE credentials). No change to persistence code.",
+      "sha256": "a6fe80f387b7a675715be89ecd6abccb035fb9404e07128ab8fb1c499266c418"
+    }
+  ],
+  "logs": [
+    {
+      "path": "logs/build.log",
+      "kind": "deployment-log",
+      "description": "Gradle build output",
+      "sha256": "a61273854b4de312d18673640add028bb41ddad4bac82ecece37302c9a5505ee"
+    },
+    {
+      "path": "logs/kayenta-app.log",
+      "kind": "application-log",
+      "description": "Full application log incl. Liquibase, Hibernate SQL and bind parameters",
+      "sha256": "f0f1aea40cb493a45ab5961b8b1360dadb8c645d122352078c808e90060df9b9"
+    },
+    {
+      "path": "logs/kayenta-harness-config.yml",
+      "kind": "deployment-log",
+      "description": "Harness Spring configuration",
+      "sha256": "6ea0beb2379e7535395843650a082ac0a7cefe198fa63e082cd33b5ee6fff10e"
+    },
+    {
+      "path": "logs/schema-mysql.txt",
+      "kind": "database-log",
+      "description": "Deployed schema",
+      "sha256": "755935daa6a374cd0bc01d0317e8043efb24bf3fd6ac2a27a05a8dcea639a916"
+    },
+    {
+      "path": "logs/mysql-general.log",
+      "kind": "database-log",
+      "description": "MySQL general query log",
+      "sha256": "5267ffbde06616d1d589a1f274e452528b8e03a862aba86a7e5315358481f9a6"
+    },
+    {
+      "path": "logs/mysql-error.log",
+      "kind": "database-log",
+      "description": "MySQL error log",
+      "sha256": "a862cb5901942c078abcad0d6c76702cd6c50816ae66203a8ea3685ae190ee5a"
+    },
+    {
+      "path": "logs/redis.log",
+      "kind": "deployment-log",
+      "description": "Redis log",
+      "sha256": "1fb14cd1ae5a88d0c4c6fd6716556c6ecb3aeb9c5ea9dfcee4ba944432c32059"
+    }
+  ],
+  "cleanup_performed": true,
+  "notes": [
+    "Kayenta, MySQL and Redis processes started by this run were all stopped; no listeners remain on 18204/16379.",
+    "MySQL used no TCP port (skip-networking); JDBC connected over a unix socket via junixsocket, so only the permitted ports 18204 and 16379 were bound.",
+    "Temporary runtime state (MySQL datadir, Redis binaries, harness scripts) left under /tmp/kayenta-verif-8d598796 (stopped, non-running)."
+  ]
+}

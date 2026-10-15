@@ -1,0 +1,40 @@
+{
+ "case_id": "T03-violation-transfer-type-null",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18201/jifa-api/files/transfer",
+  "headers": {
+   "User-Agent": "python-requests/2.31.0",
+   "Accept-Encoding": "gzip, deflate, br",
+   "Accept": "*/*",
+   "Connection": "keep-alive",
+   "Authorization": "<JWT-REDACTED>",
+   "Content-Length": "59",
+   "Content-Type": "application/json"
+  },
+  "body": "{\"method\": \"TEXT\", \"filename\": \"t-notype.log\", \"text\": \"x\"}"
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+   "X-Content-Type-Options": "nosniff",
+   "X-XSS-Protection": "0",
+   "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+   "Pragma": "no-cache",
+   "Expires": "0",
+   "X-Frame-Options": "DENY",
+   "Content-Length": "636",
+   "Date": "Tue, 29 Sep 2026 15:18:20 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"Validation failed for argument [0] in public long org.eclipse.jifa.server.controller.FileController.transfer(org.eclipse.jifa.server.domain.dto.FileTransferRequest) throws java.lang.Throwable: [Field error in object 'fileTransferRequest' on field 'type': rejected value [null]; codes [Constraint.fileTransferRequest.type,Constraint.type,Constraint.org.eclipse.jifa.server.enums.FileType,Constraint]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [fileTransferRequest.type,type]; arguments []; default message [type]]; default message [must not be null]] \"}"
+ },
+ "correlated_log_lines": [
+  "2026-09-29T11:18:20.808-04:00 ERROR 1126360 --- [.1-18201-exec-3] o.e.j.s.c.GlobalExceptionHandler         : Error occurred when handling http request '/jifa-api/files/transfer'",
+  "org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public long org.eclipse.jifa.server.controller.FileController.transfer(org.eclipse.jifa.server.domain.dto.FileTransferRequest) throws java.lang.Throwable: [Field error in object 'fileTransferRequest' on field 'type': rejected value [null]; codes [Constraint.fileTransferRequest.type,Constraint.type,Constraint.org.eclipse.jifa.server.enums.FileType,Constraint]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [fileTransferRequest.type,type]; arguments []; default message [type]]; default message [must not be null]] ",
+  "\tat org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.3.9.jar!/:6.3.9]",
+  "\tat org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.3.9.jar!/:6.3.9]"
+ ],
+ "extra": null
+}

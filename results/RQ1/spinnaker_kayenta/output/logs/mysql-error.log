@@ -1,0 +1,26 @@
+2026-09-29T16:24:21.195216Z 0 [System] [MY-013169] [Server] /tmp/kayenta-verif-8d598796/mysqld-bin (mysqld 8.0.42-0ubuntu0.20.04.1) initializing of server in progress as process 1163290
+2026-09-29T16:24:21.195235Z 0 [ERROR] [MY-010338] [Server] Can't find error-message file '/tmp/share/mysql/errmsg.sys'. Check error-message file location and 'lc-messages-dir' configuration directive.
+2026-09-29T16:24:21.200954Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-09-29T16:24:21.766660Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-09-29T16:24:23.156732Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+2026-09-29T16:24:26.884377Z 0 [System] [MY-010116] [Server] /tmp/kayenta-verif-8d598796/mysqld-bin (mysqld 8.0.42-0ubuntu0.20.04.1) starting as process 1163369
+2026-09-29T16:24:26.884397Z 0 [ERROR] [MY-010338] [Server] Can't find error-message file '/tmp/share/mysql/errmsg.sys'. Check error-message file location and 'lc-messages-dir' configuration directive.
+2026-09-29T16:24:26.893405Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-09-29T16:24:27.138895Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-09-29T16:24:27.305072Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-09-29T16:24:27.305122Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-09-29T16:24:27.307681Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/tmp' in the path is accessible to all OS users. Consider choosing a different directory.
+2026-09-29T16:24:27.336876Z 0 [System] [MY-010931] [Server] /tmp/kayenta-verif-8d598796/mysqld-bin: ready for connections. Version: '8.0.42-0ubuntu0.20.04.1'  socket: '/tmp/kayenta-verif-8d598796/mysql/run/mysqld.sock'  port: 0  (Ubuntu).
+2026-09-29T16:25:49.729804Z 11 [Warning] [MY-013360] [Server] Plugin mysql_native_password reported: ''mysql_native_password' is deprecated and will be removed in a future release. Please use caching_sha2_password instead'
+2026-09-29T16:28:03.998144Z 46 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.0.42-0ubuntu0.20.04.1).
+2026-09-29T16:28:05.999310Z 0 [Warning] [MY-010909] [Server] /tmp/kayenta-verif-8d598796/mysqld-bin: Forcing close of thread 16  user: 'kayenta'.
+2026-09-29T16:28:05.999523Z 0 [Warning] [MY-010909] [Server] /tmp/kayenta-verif-8d598796/mysqld-bin: Forcing close of thread 17  user: 'kayenta'.
+2026-09-29T16:28:05.999578Z 0 [Warning] [MY-010909] [Server] /tmp/kayenta-verif-8d598796/mysqld-bin: Forcing close of thread 18  user: 'kayenta'.
+2026-09-29T16:28:05.999711Z 0 [Warning] [MY-010909] [Server] /tmp/kayenta-verif-8d598796/mysqld-bin: Forcing close of thread 19  user: 'kayenta'.
+2026-09-29T16:28:05.999848Z 0 [Warning] [MY-010909] [Server] /tmp/kayenta-verif-8d598796/mysqld-bin: Forcing close of thread 20  user: 'kayenta'.
+2026-09-29T16:28:05.999912Z 0 [Warning] [MY-010909] [Server] /tmp/kayenta-verif-8d598796/mysqld-bin: Forcing close of thread 21  user: 'kayenta'.
+2026-09-29T16:28:05.999979Z 0 [Warning] [MY-010909] [Server] /tmp/kayenta-verif-8d598796/mysqld-bin: Forcing close of thread 13  user: 'kayenta'.
+2026-09-29T16:28:06.000028Z 0 [Warning] [MY-010909] [Server] /tmp/kayenta-verif-8d598796/mysqld-bin: Forcing close of thread 22  user: 'kayenta'.
+2026-09-29T16:28:06.000097Z 0 [Warning] [MY-010909] [Server] /tmp/kayenta-verif-8d598796/mysqld-bin: Forcing close of thread 14  user: 'kayenta'.
+2026-09-29T16:28:06.000158Z 0 [Warning] [MY-010909] [Server] /tmp/kayenta-verif-8d598796/mysqld-bin: Forcing close of thread 15  user: 'kayenta'.
+2026-09-29T16:28:06.957255Z 0 [System] [MY-010910] [Server] /tmp/kayenta-verif-8d598796/mysqld-bin: Shutdown complete (mysqld 8.0.42-0ubuntu0.20.04.1)  (Ubuntu).

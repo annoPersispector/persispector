@@ -1,0 +1,7 @@
+{
+  "case_id": "publish-setup-collision-a",
+  "purpose": "setup",
+  "api_readback": null,
+  "db_readback_sql": "SELECT publish_id, datasource, engine, query_id, CHAR_LENGTH(user) ulen, user, LENGTH(viewers) vlen FROM publish ORDER BY publish_id",
+  "db_readback_result": "+----------------------------------+---------------+--------+-----------------------------+------+-------+------+\n| publish_id                       | datasource    | engine | query_id                    | ulen | user  | vlen |\n+----------------------------------+---------------+--------+-----------------------------+------+-------+------+\n| 458222a4869bcf460199afdedf5649ed | x;y           | z      | q                           |    5 | alice | NULL |\n| e97657f6ee2a677bd8f5353f59cc3052 | docker-presto | presto | 20260929_000000_00002_bbbbb |    5 | alice | NULL |\n+----------------------------------+---------------+--------+-----------------------------+------+-------+------+"
+}

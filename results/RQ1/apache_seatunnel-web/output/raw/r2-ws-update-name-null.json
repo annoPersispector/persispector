@@ -1,0 +1,33 @@
+{
+  "case_id": "r2-ws-update-name-null",
+  "purpose": "violation",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/workspace/update/23198793140768",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "description": "d"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:36:12 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 60018,
+      "msg": "param [workspace] can not be null or empty",
+      "data": null,
+      "failed": true,
+      "success": false
+    }
+  },
+  "log_slice": "logs/cases/r2-ws-update-name-null.log"
+}

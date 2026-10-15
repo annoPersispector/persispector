@@ -1,0 +1,22 @@
+[2026-09-29 20:19:32.863] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==>  Preparing: select id, is_deleted, create_time, created_by, last_update_time, last_updated_by, namespace, bus_id, content from namespace_info where namespace = ? limit 0,1 
+[2026-09-29 20:19:32.864] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==> Parameters: null
+[2026-09-29 20:19:32.866] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.N.selectByNamespace] >>> <==      Total: 0
+[2026-09-29 20:19:32.866] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==>  Preparing: select id, is_deleted, create_time, created_by, last_update_time, last_updated_by, namespace, name, zk_cluster_key from namespace_zkcluster_mapping where namespace = ? limit 0,1 
+[2026-09-29 20:19:32.866] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==> Parameters: null
+[2026-09-29 20:19:32.867] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.N.selectByNamespace] >>> <==      Total: 0
+[2026-09-29 20:19:32.867] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.NamespaceInfoRepository.insert] >>> ==>  Preparing: insert into namespace_info( create_time, created_by, namespace, bus_id, content) values (?, ?,?, ?, ?) 
+[2026-09-29 20:19:32.867] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.NamespaceInfoRepository.insert] >>> ==> Parameters: 2026-09-29 20:19:32.867(Timestamp), REST_API(String), null, (String), (String)
+[2026-09-29 20:19:32.868] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.NamespaceInfoRepository.insert] >>> <==    Updates: 1
+[2026-09-29 20:19:32.868] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==>  Preparing: select id, is_deleted, create_time, created_by, last_update_time, last_updated_by, namespace, name, zk_cluster_key from namespace_zkcluster_mapping where namespace = ? limit 0,1 
+[2026-09-29 20:19:32.868] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.N.selectByNamespace] >>> ==> Parameters: null
+[2026-09-29 20:19:32.868] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.N.selectByNamespace] >>> <==      Total: 0
+[2026-09-29 20:19:32.868] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.N.insert] >>> ==>  Preparing: insert into namespace_zkcluster_mapping( create_time, created_by,last_update_time,last_updated_by, namespace, name, zk_cluster_key) values(?, ?,?,?, ?, ?, ?) 
+[2026-09-29 20:19:32.868] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.N.insert] >>> ==> Parameters: 2026-09-29 20:19:32.868(Timestamp), REST_API(String), 2026-09-29 20:19:32.868(Timestamp), REST_API(String), null, (String), cluster1(String)
+[2026-09-29 20:19:32.869] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.N.insert] >>> <==    Updates: 1
+[2026-09-29 20:19:32.869] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==>  Preparing: select id, property, value from sys_config where id in (select max(id) from sys_config where property in ( ? ) group by property) 
+[2026-09-29 20:19:32.869] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> ==> Parameters: REFRESH_REGISTRY_CENTER_UUID(String)
+[2026-09-29 20:19:32.869] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.S.selectByPropertiesAndLastly] >>> <==      Total: 1
+[2026-09-29 20:19:32.870] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.SystemConfigRepository.updateById] >>> ==>  Preparing: update sys_config set property = ?, value = ? where id = ? 
+[2026-09-29 20:19:32.870] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.SystemConfigRepository.updateById] >>> ==> Parameters: REFRESH_REGISTRY_CENTER_UUID(String), e86fb801-fb96-4625-912e-0c3e10fa7807(String), 11(Long)
+[2026-09-29 20:19:32.870] [DEBUG] [http-nio-127.0.0.1-18205-exec-6] [c.v.s.j.c.m.r.SystemConfigRepository.updateById] >>> <==    Updates: 1
+[2026-09-29 20:19:32.871] [INFO] [http-nio-127.0.0.1-18205-exec-6] [AUDITLOG] >>> REST API:[create] path:[/rest/v1/namespaces] is called by IP:[127.0.0.1], result is success.

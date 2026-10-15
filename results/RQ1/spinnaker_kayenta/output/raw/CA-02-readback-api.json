@@ -1,0 +1,20 @@
+{
+  "case_id": "CA-02-readback-api",
+  "purpose": "read-back",
+  "target_ids": [
+    "pc-fdc864d03407"
+  ],
+  "timestamp": "2026-09-29T12:27:23-0400",
+  "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:18204/canaryResultArchive/ca-valid-001?storageAccountName=sql-account",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"application\":\"verifapp\",\"pipelineId\":\"p\",\"stageStatus\":{\"s1\":\"succeeded\"},\"complete\":true,\"status\":\"succeeded\"}"
+  },
+  "readback_sql": null,
+  "readback_result": null
+}

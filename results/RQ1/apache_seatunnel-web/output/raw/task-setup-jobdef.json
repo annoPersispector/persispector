@@ -1,0 +1,35 @@
+{
+  "case_id": "task-setup-jobdef",
+  "purpose": "setup",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/job/definition",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "name": "task_job",
+      "description": "d",
+      "jobType": "DATA_INTEGRATION"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:34:03 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 0,
+      "msg": null,
+      "data": 23198776785696,
+      "failed": false,
+      "success": true
+    }
+  },
+  "log_slice": "logs/cases/task-setup-jobdef.log"
+}

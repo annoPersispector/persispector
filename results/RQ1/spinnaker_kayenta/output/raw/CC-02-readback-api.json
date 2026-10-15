@@ -1,0 +1,20 @@
+{
+  "case_id": "CC-02-readback-api",
+  "purpose": "read-back",
+  "target_ids": [
+    "pc-28c967fd981a"
+  ],
+  "timestamp": "2026-09-29T12:27:15-0400",
+  "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:18204/canaryConfig/cc-valid-001?configurationAccountName=sql-account",
+    "headers": {},
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"createdTimestamp\":1790699235206,\"updatedTimestamp\":1790699235206,\"createdTimestampIso\":\"2026-09-29T16:27:15.206Z\",\"updatedTimestampIso\":\"2026-09-29T16:27:15.206Z\",\"name\":\"cfgvalid\",\"id\":\"cc-valid-001\",\"configVersion\":\"1\",\"applications\":[\"verifapp\"],\"judge\":{\"name\":\"NetflixACAJudge-v1.0\",\"judgeConfigurations\":{}},\"metrics\":[],\"classifier\":{\"groupWeights\":{}}}"
+  },
+  "readback_sql": "SELECT COUNT(*) AS n FROM canary_config",
+  "readback_result": "n\n1"
+}

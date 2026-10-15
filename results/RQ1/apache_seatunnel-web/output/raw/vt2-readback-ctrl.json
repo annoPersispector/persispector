@@ -1,0 +1,57 @@
+{
+  "case_id": "vt2-readback-ctrl",
+  "purpose": "read-back",
+  "targets": [],
+  "note": "",
+  "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/virtual_table/23198791691936",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:36:00 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 0,
+      "msg": null,
+      "data": {
+        "createUserName": null,
+        "createTime": "2026-09-29 08:36:00",
+        "updateUserName": null,
+        "updateTime": "2026-09-29 08:36:00",
+        "tableId": "23198791691936",
+        "datasourceId": "23198791306016",
+        "datasourceName": "ds_vt",
+        "databaseName": "vdb",
+        "pluginName": "JDBC-Mysql",
+        "tableName": "vt_ctrl",
+        "description": "d",
+        "fields": [
+          {
+            "fieldName": "id",
+            "fieldType": "INT",
+            "nullable": false,
+            "defaultValue": null,
+            "primaryKey": true,
+            "fieldComment": null,
+            "fieldExtra": null
+          }
+        ],
+        "datasourceProperties": {
+          "k": "v"
+        }
+      },
+      "failed": false,
+      "success": true
+    }
+  },
+  "log_slice": "logs/cases/vt2-readback-ctrl.log"
+}

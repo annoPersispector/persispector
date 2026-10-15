@@ -1,0 +1,30 @@
+{
+ "case_id": "V09-id-over-bigint",
+ "purpose": "violation",
+ "target_ids": [
+  "pc-4077068a2bf5"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/reg",
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8"
+  },
+  "body": {
+   "id": 9223372036854775808,
+   "username": "pv121525bigid",
+   "password": "123456"
+  }
+ },
+ "response": {
+  "status": 400,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Tue, 29 Sep 2026 16:15:37 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"timestamp\":\"2026-09-30 00:15:37\",\"status\":400,\"error\":\"Bad Request\",\"message\":\"JSON parse error: Numeric value (9223372036854775808) out of range of long; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Numeric value (9223372036854775808) out of range of long\\n at [Source: (PushbackInputStream); line: 1, column: 8] (through reference chain: com.funtl.myshop.plus.provider.domain.UmsAdmin[\\\"id\\\"])\",\"path\":\"/reg\"}"
+ }
+}

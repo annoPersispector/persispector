@@ -1,0 +1,31 @@
+{
+ "case_id": "U06-violation-dup-username-update",
+ "purpose": "violation",
+ "target_ids": [
+  "pc-0d84cdc3d396"
+ ],
+ "request": {
+  "method": "PUT",
+  "url": "http://127.0.0.1:18208/user",
+  "headers": {
+   "Content-Type": "application/json",
+   "Authorization": "Token <JWT-REDACTED>"
+  },
+  "body": {
+   "user": {
+    "username": "alice"
+   }
+  }
+ },
+ "response": {
+  "status": 422,
+  "body": {
+   "errors": {
+    "username": [
+     "username already exist"
+    ]
+   }
+  }
+ },
+ "note": ""
+}

@@ -1,0 +1,3352 @@
+{
+  "schema_version": "persistence-runtime-verification-v2",
+  "application": "eventuate-tram_eventuate-tram-examples-customers-and-orders",
+  "constraint_report_schema_version": "9",
+  "generated_at": "2026-09-29T16:03:49Z",
+  "target_ids": [
+    "pc-099cf5678646",
+    "pc-f43dfb05566b",
+    "pc-74bd05869898",
+    "pc-d8b71ab529b4",
+    "pc-c1e4e8d5a089",
+    "pc-f9b30c932c2d",
+    "pc-01ac5986efff",
+    "pc-4394a7230cae",
+    "pc-361e7c4bb6fd",
+    "pc-d237676cedb4",
+    "pc-9d77fb736505",
+    "pc-940135c9e979",
+    "pc-0369f0033198",
+    "pc-6018b468a9b1",
+    "pc-ad3c0fc2d80c",
+    "pc-11118cd54968",
+    "pc-d4fd61ccc6d9",
+    "pc-dd33722d73c9",
+    "pc-3c17e5e2ccc7",
+    "pc-3b727367a341",
+    "pc-4e8bb0135ac3",
+    "pc-811563b1f88c",
+    "pc-54990eaef35d",
+    "pc-3dee0aef16eb",
+    "pc-2765e9646df9",
+    "pc-4d560ca46b2f",
+    "pc-8a3e729eef3e",
+    "pc-6ea113fb906c",
+    "pc-397d1fc5ae98",
+    "pc-4294b3bdda5c",
+    "pc-dc9773fe1fcc",
+    "pc-6c696f10c153",
+    "pc-efe694587944",
+    "pc-91130a9c8bcc",
+    "pc-f9163c061576",
+    "pc-bfb4d4b29c6e",
+    "pc-32a6d7d70c6c",
+    "pc-2ab8d29c171a",
+    "pc-d5aa112200d3",
+    "pc-861ea786f337",
+    "pc-8920232e6b35",
+    "pc-5727d6335ad1",
+    "pc-12fde0e9ae06",
+    "pc-399722074daa",
+    "pc-5c8234e6211b",
+    "pc-02a06f0b07db",
+    "pc-3b5ac3829dfc",
+    "pc-6f50b5f0d1a6",
+    "pc-02500bf973df",
+    "pc-93359552f371",
+    "pc-4282a731f0a6",
+    "pc-26c4b9b8f61a",
+    "pc-604c7c842b11",
+    "pc-1bc374cb50ca",
+    "pc-8effbc63376e",
+    "pc-6ea2fb2a642e",
+    "pc-377128139439",
+    "pc-df46310dcb68",
+    "pc-bb64b820d6dc",
+    "pc-16b2b52eef5c",
+    "pc-28a1b7c9f701",
+    "pc-c34d976a9ff6",
+    "pc-9d472c5a0ef7",
+    "pc-26e0991730c7",
+    "pc-a6253307a654",
+    "pc-4a76b1c33160",
+    "pc-d12db35033bc",
+    "pc-b4bf9a575416",
+    "pc-07eed4e1ecb4",
+    "pc-9f4220d360fa",
+    "pc-5cac9c46229a",
+    "pc-bdf18ea93113",
+    "pc-821a4ef460f3",
+    "dep-290f0dd7f1b1"
+  ],
+  "cases": [
+    {
+      "case_id": "C00-aws-schema-unpatched-create-order",
+      "purpose": "setup",
+      "target_ids": [
+        "pc-93359552f371",
+        "pc-bb64b820d6dc"
+      ],
+      "endpoint": "POST /orders",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18202/orders",
+      "response_status": 500,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/C00-aws-schema-unpatched-create-order.json",
+          "kind": "http-exchange",
+          "description": "C00-aws-schema-unpatched-create-order: request/response with DB before/after counts and read-back",
+          "sha256": "e2f1c1aa9f34d35da54014c6d4831fc3ee9c3257911fd7cdab7d8da9ea859f98"
+        },
+        {
+          "path": "logs/C00-aws-schema-unpatched-create-order.log",
+          "kind": "application-log",
+          "description": "C00-aws-schema-unpatched-create-order: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "1e3bc859020890efdada28607157c2f46726be1abb1ed4b0f33a2af6ba0b5724"
+        }
+      ],
+      "observation": "Valid order against the unmodified AWS schema: orders insert executed, then insert into eventuate.message failed with SQLSyntaxErrorException \"Unknown column 'message_partition' in 'field list'\"; transaction rolled back (0 orders, 0 messages). Shows the AWS DDL is incompatible with eventuate-common-jdbc 0.21.0; led to compatibility patch patches/01-schema-message-partition.sql."
+    },
+    {
+      "case_id": "C01-control-create-order",
+      "purpose": "control",
+      "target_ids": [
+        "pc-93359552f371",
+        "pc-bb64b820d6dc",
+        "pc-821a4ef460f3",
+        "dep-290f0dd7f1b1"
+      ],
+      "endpoint": "POST /orders",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18202/orders",
+      "response_status": 200,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/C01-control-create-order.json",
+          "kind": "http-exchange",
+          "description": "C01-control-create-order: request/response with DB before/after counts and read-back",
+          "sha256": "4478f4cd79e39c82f86a9b2374dfff060165b3f14ab528179cf184686aae8cf2"
+        },
+        {
+          "path": "logs/C01-control-create-order.log",
+          "kind": "application-log",
+          "description": "C01-control-create-order: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "6d077247344ba7e34f599222fe9829a1c031291903209f22b0f7ed1da0577c9e"
+        }
+      ],
+      "observation": "Valid order {customerId:1, orderTotal.amount:12.34} -> 200 {\"orderId\":2}. Read-back: orders row id=2 customer_id=1 amount=12.34 PENDING; message row with destination=Order class name (65 chars), headers length 391, payload length 63 = {\"orderDetails\":{\"customerId\":1,\"orderTotal\":{\"amount\":12.34}}}."
+    },
+    {
+      "case_id": "C02-boundary-payload-1000",
+      "purpose": "boundary",
+      "target_ids": [
+        "pc-93359552f371",
+        "pc-bb64b820d6dc"
+      ],
+      "endpoint": "POST /orders",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18202/orders",
+      "response_status": 200,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/C02-boundary-payload-1000.json",
+          "kind": "http-exchange",
+          "description": "C02-boundary-payload-1000: request/response with DB before/after counts and read-back",
+          "sha256": "efbcec50a20e7a98f95dadd6978049dccd1e4ed24c5d7199ad16a95805da6289"
+        },
+        {
+          "path": "logs/C02-boundary-payload-1000.log",
+          "kind": "application-log",
+          "description": "C02-boundary-payload-1000: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "890592dfbbea99fd33d20b4c1b98efc751138f8de9bf9a9bbba75bc234d6f20e"
+        }
+      ],
+      "observation": "orderTotal.amount sent as a 942-character JSON number (1.000...0001) so the serialized OrderCreatedEvent payload is exactly 1000 characters -> 200 {\"orderId\":3}. Read-back: message.payload LENGTH=1000, stored intact (tail ...000000001}}}); orders.amount rounded by DECIMAL(38,2) to 1.00 (not a target column)."
+    },
+    {
+      "case_id": "C03-violation-payload-1001",
+      "purpose": "violation",
+      "target_ids": [
+        "pc-93359552f371",
+        "pc-bb64b820d6dc"
+      ],
+      "endpoint": "POST /orders",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18202/orders",
+      "response_status": 500,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/C03-violation-payload-1001.json",
+          "kind": "http-exchange",
+          "description": "C03-violation-payload-1001: request/response with DB before/after counts and read-back",
+          "sha256": "d6540163e2116d3913ceed8d196a74ab54cecb12970bfca97dfe1433b617d657"
+        },
+        {
+          "path": "logs/C03-violation-payload-1001.log",
+          "kind": "application-log",
+          "description": "C03-violation-payload-1001: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "1c73328c8ae565f46b7c5aeb678643bca2df1467f23c326eafeb32f3eb91f810"
+        }
+      ],
+      "observation": "Payload of 1001 characters: orders insert executed (Hibernate log), then insert into eventuate.message failed with MysqlDataTruncation \"Data too long for column 'payload' at row 1\" (DataIntegrityViolationException, logged by MessageProducerImpl 'Sending failed'). Response is generic 500 {\"error\":\"Internal Server Error\"}. Transaction rolled back: orders/message counts unchanged (2/2) and orders id 4 was consumed but never persisted (AUTO_INCREMENT gap)."
+    },
+    {
+      "case_id": "C04-violation-payload-1500",
+      "purpose": "violation",
+      "target_ids": [
+        "pc-93359552f371"
+      ],
+      "endpoint": "POST /orders",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18202/orders",
+      "response_status": 400,
+      "reached_persistence": false,
+      "evidence": [
+        {
+          "path": "raw/C04-violation-payload-1500.json",
+          "kind": "http-exchange",
+          "description": "C04-violation-payload-1500: request/response with DB before/after counts and read-back",
+          "sha256": "c072cb90587d19402afc0a533f9e77c6d5dc03aa816de76f7f3b610f5335369d"
+        },
+        {
+          "path": "logs/C04-violation-payload-1500.log",
+          "kind": "application-log",
+          "description": "C04-violation-payload-1500: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "be8a10f6303b4e7e45018d9bffc6b7d38ba1abd5df64e94d834c3c098d453ed1"
+        }
+      ],
+      "observation": "Payload target 1500 chars required a 1442-char number; Jackson rejected it before the controller (HttpMessageNotReadableException: Number value length (1441) exceeds the maximum allowed (1000)). No SQL issued. Pre-persistence failure unrelated to the predicate; bounds the attack window to payloads of 1001..~1058 chars via this field."
+    },
+    {
+      "case_id": "C05-client-supplied-order-id",
+      "purpose": "violation",
+      "target_ids": [
+        "pc-821a4ef460f3",
+        "dep-290f0dd7f1b1"
+      ],
+      "endpoint": "POST /orders",
+      "request_method": "POST",
+      "request_url": "http://127.0.0.1:18202/orders",
+      "response_status": 200,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/C05-client-supplied-order-id.json",
+          "kind": "http-exchange",
+          "description": "C05-client-supplied-order-id: request/response with DB before/after counts and read-back",
+          "sha256": "6267223bc0e3cc8469006860ea0dee080cf87b1e65769aec71626b790051d793"
+        },
+        {
+          "path": "logs/C05-client-supplied-order-id.log",
+          "kind": "application-log",
+          "description": "C05-client-supplied-order-id: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "be5d39a3265e9b4a22412e0a10dfe3dd5c08323fca1eb28e87216e328b6274b1"
+        }
+      ],
+      "observation": "Body includes \"id\":2 and \"orderId\":2 (an existing order id) plus customerId 7. CreateOrderRequest(customerId, orderTotal) silently ignores them; Hibernate insert omits id (IDENTITY) and a new id 5 was generated. Read-back: order 2 unchanged, new row id=5 customer_id=7 amount=5.00. Duplicate PK cannot be forced via the API."
+    },
+    {
+      "case_id": "C06-readback-orders",
+      "purpose": "read-back",
+      "target_ids": [
+        "pc-821a4ef460f3",
+        "pc-93359552f371"
+      ],
+      "endpoint": "GET /orders",
+      "request_method": "GET",
+      "request_url": "http://127.0.0.1:18202/orders",
+      "response_status": 200,
+      "reached_persistence": true,
+      "evidence": [
+        {
+          "path": "raw/C06-readback-orders.json",
+          "kind": "http-exchange",
+          "description": "C06-readback-orders: request/response with DB before/after counts and read-back",
+          "sha256": "4cda1deab5b7d4541a1ae89f54330ff00fa87d81f247370fd8c3dccc9f6e35fe"
+        },
+        {
+          "path": "logs/C06-readback-orders.log",
+          "kind": "application-log",
+          "description": "C06-readback-orders: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "49d0a7c5597c25729c61395d57ca88581457b41c5b43b10dded3424263a6be20"
+        },
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        }
+      ],
+      "observation": "GET /orders lists orders 2,3,5 only (4 absent -> rolled back by C03). Final DB read-back: events/entities/snapshots/cdc_monitoring/received_messages/offset_store all have 0 rows; message 3 rows; orders 3 rows."
+    }
+  ],
+  "results": [
+    {
+      "target_id": "pc-099cf5678646",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"events.entity_id has length 1000\" belongs to the Eventuate Local event-sourcing table events, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes events: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-f43dfb05566b",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"events.entity_type has length 1000\" belongs to the Eventuate Local event-sourcing table events, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes events: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-74bd05869898",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"events.event_data has length 1000\" belongs to the Eventuate Local event-sourcing table events, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes events: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-d8b71ab529b4",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"events.event_id has length 1000\" belongs to the Eventuate Local event-sourcing table events, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes events: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-c1e4e8d5a089",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"events.event_type has length 1000\" belongs to the Eventuate Local event-sourcing table events, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes events: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-f9b30c932c2d",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"events.metadata has length 1000\" belongs to the Eventuate Local event-sourcing table events, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes events: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-01ac5986efff",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"events.triggering_event has length 1000\" belongs to the Eventuate Local event-sourcing table events, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes events: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-4394a7230cae",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"events.entity_id must not be null\" belongs to the Eventuate Local event-sourcing table events, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes events: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-361e7c4bb6fd",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"events.entity_type must not be null\" belongs to the Eventuate Local event-sourcing table events, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes events: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-d237676cedb4",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"events.event_data must not be null\" belongs to the Eventuate Local event-sourcing table events, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes events: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-9d77fb736505",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"events.event_id identifies a row\" belongs to the Eventuate Local event-sourcing table events, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes events: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-940135c9e979",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"events.entity_id has type VARCHAR(1000)\" belongs to the Eventuate Local event-sourcing table events, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes events: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-0369f0033198",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"events.entity_type has type VARCHAR(1000)\" belongs to the Eventuate Local event-sourcing table events, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes events: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-6018b468a9b1",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"events.event_data has type VARCHAR(1000)\" belongs to the Eventuate Local event-sourcing table events, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes events: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-ad3c0fc2d80c",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"events.event_id has type VARCHAR(1000)\" belongs to the Eventuate Local event-sourcing table events, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes events: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-11118cd54968",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"events.event_type has type VARCHAR(1000)\" belongs to the Eventuate Local event-sourcing table events, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes events: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-d4fd61ccc6d9",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"events.metadata has type VARCHAR(1000)\" belongs to the Eventuate Local event-sourcing table events, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes events: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-dd33722d73c9",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"events.published has type TINYINT\" belongs to the Eventuate Local event-sourcing table events, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes events: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-3c17e5e2ccc7",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"events.triggering_event has type VARCHAR(1000)\" belongs to the Eventuate Local event-sourcing table events, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes events: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-3b727367a341",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"entities.entity_id has length 1000\" belongs to the Eventuate Local event-sourcing table entities, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes entities: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-4e8bb0135ac3",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"entities.entity_type has length 1000\" belongs to the Eventuate Local event-sourcing table entities, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes entities: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-811563b1f88c",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"entities.entity_version has length 1000\" belongs to the Eventuate Local event-sourcing table entities, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes entities: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-54990eaef35d",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"entities.entity_version must not be null\" belongs to the Eventuate Local event-sourcing table entities, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes entities: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-3dee0aef16eb",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"Columns entity_type, entity_id identify a row\" belongs to the Eventuate Local event-sourcing table entities, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes entities: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-2765e9646df9",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"entities.entity_id has type VARCHAR(1000)\" belongs to the Eventuate Local event-sourcing table entities, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes entities: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-4d560ca46b2f",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"entities.entity_type has type VARCHAR(1000)\" belongs to the Eventuate Local event-sourcing table entities, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes entities: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-8a3e729eef3e",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"entities.entity_version has type VARCHAR(1000)\" belongs to the Eventuate Local event-sourcing table entities, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes entities: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-6ea113fb906c",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"snapshots.entity_id has length 1000\" belongs to the Eventuate Local event-sourcing table snapshots, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes snapshots: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-397d1fc5ae98",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"snapshots.entity_type has length 1000\" belongs to the Eventuate Local event-sourcing table snapshots, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes snapshots: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-4294b3bdda5c",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"snapshots.entity_version has length 1000\" belongs to the Eventuate Local event-sourcing table snapshots, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes snapshots: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-dc9773fe1fcc",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"snapshots.snapshot_json has length 1000\" belongs to the Eventuate Local event-sourcing table snapshots, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes snapshots: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-6c696f10c153",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"snapshots.snapshot_type has length 1000\" belongs to the Eventuate Local event-sourcing table snapshots, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes snapshots: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-efe694587944",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"snapshots.triggering_events has length 1000\" belongs to the Eventuate Local event-sourcing table snapshots, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes snapshots: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-91130a9c8bcc",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"snapshots.snapshot_json must not be null\" belongs to the Eventuate Local event-sourcing table snapshots, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes snapshots: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-f9163c061576",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"snapshots.snapshot_type must not be null\" belongs to the Eventuate Local event-sourcing table snapshots, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes snapshots: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-bfb4d4b29c6e",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"Columns entity_type, entity_id, entity_version identify a row\" belongs to the Eventuate Local event-sourcing table snapshots, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes snapshots: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-32a6d7d70c6c",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"snapshots.entity_id has type VARCHAR(1000)\" belongs to the Eventuate Local event-sourcing table snapshots, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes snapshots: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-2ab8d29c171a",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"snapshots.entity_type has type VARCHAR(1000)\" belongs to the Eventuate Local event-sourcing table snapshots, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes snapshots: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-d5aa112200d3",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"snapshots.entity_version has type VARCHAR(1000)\" belongs to the Eventuate Local event-sourcing table snapshots, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes snapshots: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-861ea786f337",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"snapshots.snapshot_json has type VARCHAR(1000)\" belongs to the Eventuate Local event-sourcing table snapshots, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes snapshots: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-8920232e6b35",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"snapshots.snapshot_type has type VARCHAR(1000)\" belongs to the Eventuate Local event-sourcing table snapshots, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes snapshots: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-5727d6335ad1",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        },
+        {
+          "path": "logs/mysql-general.log",
+          "kind": "sql-trace",
+          "description": "MySQL general query log for the whole run",
+          "sha256": "e49073b01163967004a9fceb48d4e602d5ec7b7cab2279492d0e46acf2f72428"
+        }
+      ],
+      "rationale": "Predicate \"snapshots.triggering_events has type VARCHAR(1000)\" belongs to the Eventuate Local event-sourcing table snapshots, created by the AWS init script but never used by this Eventuate Tram application (it persists JPA entities in orders and publishes via the transactional outbox table message). No application code or HTTP endpoint writes snapshots: the MySQL general log contains no DML against it and final read-back shows 0 rows after all cases.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Would only be writable by an Eventuate Local event-sourcing application or the CDC service, neither of which is part of this deployment."
+      ]
+    },
+    {
+      "target_id": "pc-12fde0e9ae06",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "cdc_monitoring (reader_id length 1000) is the Eventuate CDC service heartbeat table (reader_id = configured CDC reader name); not referenced by this application and not reachable from its API. Final read-back shows 0 rows.",
+      "confidence": 0.85,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "CDC service is a separate external component that was not deployed."
+      ]
+    },
+    {
+      "target_id": "pc-399722074daa",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "cdc_monitoring (reader_id primary key) is the Eventuate CDC service heartbeat table (reader_id = configured CDC reader name); not referenced by this application and not reachable from its API. Final read-back shows 0 rows.",
+      "confidence": 0.85,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "CDC service is a separate external component that was not deployed."
+      ]
+    },
+    {
+      "target_id": "pc-5c8234e6211b",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "cdc_monitoring (last_time type BIGINT) is the Eventuate CDC service heartbeat table (reader_id = configured CDC reader name); not referenced by this application and not reachable from its API. Final read-back shows 0 rows.",
+      "confidence": 0.85,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "CDC service is a separate external component that was not deployed."
+      ]
+    },
+    {
+      "target_id": "pc-02a06f0b07db",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "cdc_monitoring (reader_id type VARCHAR(1000)) is the Eventuate CDC service heartbeat table (reader_id = configured CDC reader name); not referenced by this application and not reachable from its API. Final read-back shows 0 rows.",
+      "confidence": 0.85,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "CDC service is a separate external component that was not deployed."
+      ]
+    },
+    {
+      "target_id": "pc-3b5ac3829dfc",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-control-create-order.json",
+          "kind": "http-exchange",
+          "description": "C01-control-create-order: request/response with DB before/after counts and read-back",
+          "sha256": "4478f4cd79e39c82f86a9b2374dfff060165b3f14ab528179cf184686aae8cf2"
+        },
+        {
+          "path": "logs/C01-control-create-order.log",
+          "kind": "application-log",
+          "description": "C01-control-create-order: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "6d077247344ba7e34f599222fe9829a1c031291903209f22b0f7ed1da0577c9e"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "message.destination (length 1000) is always the aggregate type constant \"io.eventuate.examples.tram.ordersandcustomers.orders.domain.Order\" (65 chars) supplied by the framework (DomainEventPublisher uses the entity class name); no request field influences it. Observed in C01/C02/C05 read-back and JdbcTemplate bind logs.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255))."
+      ]
+    },
+    {
+      "target_id": "pc-6f50b5f0d1a6",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C02-boundary-payload-1000",
+        "C05-client-supplied-order-id"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-control-create-order.json",
+          "kind": "http-exchange",
+          "description": "C01-control-create-order: request/response with DB before/after counts and read-back",
+          "sha256": "4478f4cd79e39c82f86a9b2374dfff060165b3f14ab528179cf184686aae8cf2"
+        },
+        {
+          "path": "logs/C01-control-create-order.log",
+          "kind": "application-log",
+          "description": "C01-control-create-order: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "6d077247344ba7e34f599222fe9829a1c031291903209f22b0f7ed1da0577c9e"
+        },
+        {
+          "path": "raw/C02-boundary-payload-1000.json",
+          "kind": "http-exchange",
+          "description": "C02-boundary-payload-1000: request/response with DB before/after counts and read-back",
+          "sha256": "efbcec50a20e7a98f95dadd6978049dccd1e4ed24c5d7199ad16a95805da6289"
+        },
+        {
+          "path": "logs/C02-boundary-payload-1000.log",
+          "kind": "application-log",
+          "description": "C02-boundary-payload-1000: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "890592dfbbea99fd33d20b4c1b98efc751138f8de9bf9a9bbba75bc234d6f20e"
+        },
+        {
+          "path": "raw/C05-client-supplied-order-id.json",
+          "kind": "http-exchange",
+          "description": "C05-client-supplied-order-id: request/response with DB before/after counts and read-back",
+          "sha256": "6267223bc0e3cc8469006860ea0dee080cf87b1e65769aec71626b790051d793"
+        },
+        {
+          "path": "logs/C05-client-supplied-order-id.log",
+          "kind": "application-log",
+          "description": "C05-client-supplied-order-id: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "be5d39a3265e9b4a22412e0a10dfe3dd5c08323fca1eb28e87216e328b6274b1"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "message.headers (length 1000) is a framework-built JSON map (PARTITION_ID, event-aggregate-type, DATE, event-aggregate-id, event-type, DESTINATION, ID); the only variable parts are the server-generated order id, message id and date. Observed length is a constant 391 chars regardless of request content; no HTTP header or body field is propagated into it. Observed in C01/C02/C05 read-back and JdbcTemplate bind logs.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255))."
+      ]
+    },
+    {
+      "target_id": "pc-02500bf973df",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C02-boundary-payload-1000",
+        "C05-client-supplied-order-id"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-control-create-order.json",
+          "kind": "http-exchange",
+          "description": "C01-control-create-order: request/response with DB before/after counts and read-back",
+          "sha256": "4478f4cd79e39c82f86a9b2374dfff060165b3f14ab528179cf184686aae8cf2"
+        },
+        {
+          "path": "logs/C01-control-create-order.log",
+          "kind": "application-log",
+          "description": "C01-control-create-order: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "6d077247344ba7e34f599222fe9829a1c031291903209f22b0f7ed1da0577c9e"
+        },
+        {
+          "path": "raw/C02-boundary-payload-1000.json",
+          "kind": "http-exchange",
+          "description": "C02-boundary-payload-1000: request/response with DB before/after counts and read-back",
+          "sha256": "efbcec50a20e7a98f95dadd6978049dccd1e4ed24c5d7199ad16a95805da6289"
+        },
+        {
+          "path": "logs/C02-boundary-payload-1000.log",
+          "kind": "application-log",
+          "description": "C02-boundary-payload-1000: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "890592dfbbea99fd33d20b4c1b98efc751138f8de9bf9a9bbba75bc234d6f20e"
+        },
+        {
+          "path": "raw/C05-client-supplied-order-id.json",
+          "kind": "http-exchange",
+          "description": "C05-client-supplied-order-id: request/response with DB before/after counts and read-back",
+          "sha256": "6267223bc0e3cc8469006860ea0dee080cf87b1e65769aec71626b790051d793"
+        },
+        {
+          "path": "logs/C05-client-supplied-order-id.log",
+          "kind": "application-log",
+          "description": "C05-client-supplied-order-id: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "be5d39a3265e9b4a22412e0a10dfe3dd5c08323fca1eb28e87216e328b6274b1"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "message.id (length 767) is generated server-side by ApplicationIdGenerator (33-char Int128 string, e.g. 000001a0ede58ce2-8aca66a024e50000) for every message; clients cannot supply, lengthen or duplicate it. Observed in C01/C02/C05 read-back and JdbcTemplate bind logs.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255))."
+      ]
+    },
+    {
+      "target_id": "pc-93359552f371",
+      "target_kind": "constraint",
+      "outcome": "DATABASE_ENFORCED_UNHANDLED",
+      "exact_predicate_confirmed": true,
+      "observed_enforcement": "database",
+      "application_layer_implemented": false,
+      "response_handling": "unhandled",
+      "case_ids": [
+        "C01-control-create-order",
+        "C02-boundary-payload-1000",
+        "C03-violation-payload-1001",
+        "C04-violation-payload-1500",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-control-create-order.json",
+          "kind": "http-exchange",
+          "description": "C01-control-create-order: request/response with DB before/after counts and read-back",
+          "sha256": "4478f4cd79e39c82f86a9b2374dfff060165b3f14ab528179cf184686aae8cf2"
+        },
+        {
+          "path": "logs/C01-control-create-order.log",
+          "kind": "application-log",
+          "description": "C01-control-create-order: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "6d077247344ba7e34f599222fe9829a1c031291903209f22b0f7ed1da0577c9e"
+        },
+        {
+          "path": "raw/C02-boundary-payload-1000.json",
+          "kind": "http-exchange",
+          "description": "C02-boundary-payload-1000: request/response with DB before/after counts and read-back",
+          "sha256": "efbcec50a20e7a98f95dadd6978049dccd1e4ed24c5d7199ad16a95805da6289"
+        },
+        {
+          "path": "logs/C02-boundary-payload-1000.log",
+          "kind": "application-log",
+          "description": "C02-boundary-payload-1000: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "890592dfbbea99fd33d20b4c1b98efc751138f8de9bf9a9bbba75bc234d6f20e"
+        },
+        {
+          "path": "raw/C03-violation-payload-1001.json",
+          "kind": "http-exchange",
+          "description": "C03-violation-payload-1001: request/response with DB before/after counts and read-back",
+          "sha256": "d6540163e2116d3913ceed8d196a74ab54cecb12970bfca97dfe1433b617d657"
+        },
+        {
+          "path": "logs/C03-violation-payload-1001.log",
+          "kind": "application-log",
+          "description": "C03-violation-payload-1001: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "1c73328c8ae565f46b7c5aeb678643bca2df1467f23c326eafeb32f3eb91f810"
+        },
+        {
+          "path": "raw/C04-violation-payload-1500.json",
+          "kind": "http-exchange",
+          "description": "C04-violation-payload-1500: request/response with DB before/after counts and read-back",
+          "sha256": "c072cb90587d19402afc0a533f9e77c6d5dc03aa816de76f7f3b610f5335369d"
+        },
+        {
+          "path": "logs/C04-violation-payload-1500.log",
+          "kind": "application-log",
+          "description": "C04-violation-payload-1500: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "be8a10f6303b4e7e45018d9bffc6b7d38ba1abd5df64e94d834c3c098d453ed1"
+        },
+        {
+          "path": "raw/C06-readback-orders.json",
+          "kind": "http-exchange",
+          "description": "C06-readback-orders: request/response with DB before/after counts and read-back",
+          "sha256": "4cda1deab5b7d4541a1ae89f54330ff00fa87d81f247370fd8c3dccc9f6e35fe"
+        },
+        {
+          "path": "logs/C06-readback-orders.log",
+          "kind": "application-log",
+          "description": "C06-readback-orders: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "49d0a7c5597c25729c61395d57ca88581457b41c5b43b10dded3424263a6be20"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "Exact boundary exercised through POST /orders: the serialized OrderCreatedEvent payload is fully determined by orderTotal.amount. A 1000-char payload was stored intact (read-back LENGTH=1000); a 1001-char payload reached the INSERT into eventuate.message and MySQL (strict mode) rejected it with \"Data too long for column 'payload'\". No application-layer length check exists (no validation annotations or checks on CreateOrderRequest/Money); the error propagates as a generic HTTP 500 and the whole transaction, including the orders row, is rolled back.",
+      "confidence": 0.95,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Enforcement depends on MySQL STRICT_TRANS_TABLES (default sql_mode was active); in non-strict mode MySQL would truncate with a warning.",
+        "Jackson StreamReadConstraints limit numbers to 1000 chars, so only payloads up to ~1058 chars are reachable via this field."
+      ]
+    },
+    {
+      "target_id": "pc-4282a731f0a6",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-control-create-order.json",
+          "kind": "http-exchange",
+          "description": "C01-control-create-order: request/response with DB before/after counts and read-back",
+          "sha256": "4478f4cd79e39c82f86a9b2374dfff060165b3f14ab528179cf184686aae8cf2"
+        },
+        {
+          "path": "logs/C01-control-create-order.log",
+          "kind": "application-log",
+          "description": "C01-control-create-order: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "6d077247344ba7e34f599222fe9829a1c031291903209f22b0f7ed1da0577c9e"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "message.destination (not-null) is always the aggregate type constant \"io.eventuate.examples.tram.ordersandcustomers.orders.domain.Order\" (65 chars) supplied by the framework (DomainEventPublisher uses the entity class name); no request field influences it. Observed in C01/C02/C05 read-back and JdbcTemplate bind logs.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255))."
+      ]
+    },
+    {
+      "target_id": "pc-26c4b9b8f61a",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C02-boundary-payload-1000",
+        "C05-client-supplied-order-id"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-control-create-order.json",
+          "kind": "http-exchange",
+          "description": "C01-control-create-order: request/response with DB before/after counts and read-back",
+          "sha256": "4478f4cd79e39c82f86a9b2374dfff060165b3f14ab528179cf184686aae8cf2"
+        },
+        {
+          "path": "logs/C01-control-create-order.log",
+          "kind": "application-log",
+          "description": "C01-control-create-order: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "6d077247344ba7e34f599222fe9829a1c031291903209f22b0f7ed1da0577c9e"
+        },
+        {
+          "path": "raw/C02-boundary-payload-1000.json",
+          "kind": "http-exchange",
+          "description": "C02-boundary-payload-1000: request/response with DB before/after counts and read-back",
+          "sha256": "efbcec50a20e7a98f95dadd6978049dccd1e4ed24c5d7199ad16a95805da6289"
+        },
+        {
+          "path": "logs/C02-boundary-payload-1000.log",
+          "kind": "application-log",
+          "description": "C02-boundary-payload-1000: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "890592dfbbea99fd33d20b4c1b98efc751138f8de9bf9a9bbba75bc234d6f20e"
+        },
+        {
+          "path": "raw/C05-client-supplied-order-id.json",
+          "kind": "http-exchange",
+          "description": "C05-client-supplied-order-id: request/response with DB before/after counts and read-back",
+          "sha256": "6267223bc0e3cc8469006860ea0dee080cf87b1e65769aec71626b790051d793"
+        },
+        {
+          "path": "logs/C05-client-supplied-order-id.log",
+          "kind": "application-log",
+          "description": "C05-client-supplied-order-id: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "be5d39a3265e9b4a22412e0a10dfe3dd5c08323fca1eb28e87216e328b6274b1"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "message.headers (not-null) is a framework-built JSON map (PARTITION_ID, event-aggregate-type, DATE, event-aggregate-id, event-type, DESTINATION, ID); the only variable parts are the server-generated order id, message id and date. Observed length is a constant 391 chars regardless of request content; no HTTP header or body field is propagated into it. Observed in C01/C02/C05 read-back and JdbcTemplate bind logs.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255))."
+      ]
+    },
+    {
+      "target_id": "pc-604c7c842b11",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C05-client-supplied-order-id"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-control-create-order.json",
+          "kind": "http-exchange",
+          "description": "C01-control-create-order: request/response with DB before/after counts and read-back",
+          "sha256": "4478f4cd79e39c82f86a9b2374dfff060165b3f14ab528179cf184686aae8cf2"
+        },
+        {
+          "path": "logs/C01-control-create-order.log",
+          "kind": "application-log",
+          "description": "C01-control-create-order: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "6d077247344ba7e34f599222fe9829a1c031291903209f22b0f7ed1da0577c9e"
+        },
+        {
+          "path": "raw/C05-client-supplied-order-id.json",
+          "kind": "http-exchange",
+          "description": "C05-client-supplied-order-id: request/response with DB before/after counts and read-back",
+          "sha256": "6267223bc0e3cc8469006860ea0dee080cf87b1e65769aec71626b790051d793"
+        },
+        {
+          "path": "logs/C05-client-supplied-order-id.log",
+          "kind": "application-log",
+          "description": "C05-client-supplied-order-id: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "be5d39a3265e9b4a22412e0a10dfe3dd5c08323fca1eb28e87216e328b6274b1"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "message.payload is always the Jackson serialization of a domain event object (minimum observed 62 chars, e.g. {\"orderDetails\":{...}}); even null/absent request fields serialize as JSON null inside a non-null document, so no API input can make the INSERT bind NULL. Observed in C01/C02/C05 read-back and JdbcTemplate bind logs.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255))."
+      ]
+    },
+    {
+      "target_id": "pc-1bc374cb50ca",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C02-boundary-payload-1000",
+        "C05-client-supplied-order-id"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-control-create-order.json",
+          "kind": "http-exchange",
+          "description": "C01-control-create-order: request/response with DB before/after counts and read-back",
+          "sha256": "4478f4cd79e39c82f86a9b2374dfff060165b3f14ab528179cf184686aae8cf2"
+        },
+        {
+          "path": "logs/C01-control-create-order.log",
+          "kind": "application-log",
+          "description": "C01-control-create-order: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "6d077247344ba7e34f599222fe9829a1c031291903209f22b0f7ed1da0577c9e"
+        },
+        {
+          "path": "raw/C02-boundary-payload-1000.json",
+          "kind": "http-exchange",
+          "description": "C02-boundary-payload-1000: request/response with DB before/after counts and read-back",
+          "sha256": "efbcec50a20e7a98f95dadd6978049dccd1e4ed24c5d7199ad16a95805da6289"
+        },
+        {
+          "path": "logs/C02-boundary-payload-1000.log",
+          "kind": "application-log",
+          "description": "C02-boundary-payload-1000: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "890592dfbbea99fd33d20b4c1b98efc751138f8de9bf9a9bbba75bc234d6f20e"
+        },
+        {
+          "path": "raw/C05-client-supplied-order-id.json",
+          "kind": "http-exchange",
+          "description": "C05-client-supplied-order-id: request/response with DB before/after counts and read-back",
+          "sha256": "6267223bc0e3cc8469006860ea0dee080cf87b1e65769aec71626b790051d793"
+        },
+        {
+          "path": "logs/C05-client-supplied-order-id.log",
+          "kind": "application-log",
+          "description": "C05-client-supplied-order-id: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "be5d39a3265e9b4a22412e0a10dfe3dd5c08323fca1eb28e87216e328b6274b1"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "message.id (primary key) is generated server-side by ApplicationIdGenerator (33-char Int128 string, e.g. 000001a0ede58ce2-8aca66a024e50000) for every message; clients cannot supply, lengthen or duplicate it. Observed in C01/C02/C05 read-back and JdbcTemplate bind logs.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255))."
+      ]
+    },
+    {
+      "target_id": "pc-8effbc63376e",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-control-create-order.json",
+          "kind": "http-exchange",
+          "description": "C01-control-create-order: request/response with DB before/after counts and read-back",
+          "sha256": "4478f4cd79e39c82f86a9b2374dfff060165b3f14ab528179cf184686aae8cf2"
+        },
+        {
+          "path": "logs/C01-control-create-order.log",
+          "kind": "application-log",
+          "description": "C01-control-create-order: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "6d077247344ba7e34f599222fe9829a1c031291903209f22b0f7ed1da0577c9e"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "message.creation_time (BIGINT) is computed in SQL by the framework: ROUND(UNIX_TIMESTAMP(CURTIME(4)) * 1000) (see JdbcTemplate log); no API input reaches it.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255))."
+      ]
+    },
+    {
+      "target_id": "pc-6ea2fb2a642e",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-control-create-order.json",
+          "kind": "http-exchange",
+          "description": "C01-control-create-order: request/response with DB before/after counts and read-back",
+          "sha256": "4478f4cd79e39c82f86a9b2374dfff060165b3f14ab528179cf184686aae8cf2"
+        },
+        {
+          "path": "logs/C01-control-create-order.log",
+          "kind": "application-log",
+          "description": "C01-control-create-order: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "6d077247344ba7e34f599222fe9829a1c031291903209f22b0f7ed1da0577c9e"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "message.destination (type VARCHAR(1000)) is always the aggregate type constant \"io.eventuate.examples.tram.ordersandcustomers.orders.domain.Order\" (65 chars) supplied by the framework (DomainEventPublisher uses the entity class name); no request field influences it. Observed in C01/C02/C05 read-back and JdbcTemplate bind logs.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255))."
+      ]
+    },
+    {
+      "target_id": "pc-377128139439",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C02-boundary-payload-1000",
+        "C05-client-supplied-order-id"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-control-create-order.json",
+          "kind": "http-exchange",
+          "description": "C01-control-create-order: request/response with DB before/after counts and read-back",
+          "sha256": "4478f4cd79e39c82f86a9b2374dfff060165b3f14ab528179cf184686aae8cf2"
+        },
+        {
+          "path": "logs/C01-control-create-order.log",
+          "kind": "application-log",
+          "description": "C01-control-create-order: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "6d077247344ba7e34f599222fe9829a1c031291903209f22b0f7ed1da0577c9e"
+        },
+        {
+          "path": "raw/C02-boundary-payload-1000.json",
+          "kind": "http-exchange",
+          "description": "C02-boundary-payload-1000: request/response with DB before/after counts and read-back",
+          "sha256": "efbcec50a20e7a98f95dadd6978049dccd1e4ed24c5d7199ad16a95805da6289"
+        },
+        {
+          "path": "logs/C02-boundary-payload-1000.log",
+          "kind": "application-log",
+          "description": "C02-boundary-payload-1000: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "890592dfbbea99fd33d20b4c1b98efc751138f8de9bf9a9bbba75bc234d6f20e"
+        },
+        {
+          "path": "raw/C05-client-supplied-order-id.json",
+          "kind": "http-exchange",
+          "description": "C05-client-supplied-order-id: request/response with DB before/after counts and read-back",
+          "sha256": "6267223bc0e3cc8469006860ea0dee080cf87b1e65769aec71626b790051d793"
+        },
+        {
+          "path": "logs/C05-client-supplied-order-id.log",
+          "kind": "application-log",
+          "description": "C05-client-supplied-order-id: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "be5d39a3265e9b4a22412e0a10dfe3dd5c08323fca1eb28e87216e328b6274b1"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "message.headers (type VARCHAR(1000)) is a framework-built JSON map (PARTITION_ID, event-aggregate-type, DATE, event-aggregate-id, event-type, DESTINATION, ID); the only variable parts are the server-generated order id, message id and date. Observed length is a constant 391 chars regardless of request content; no HTTP header or body field is propagated into it. Observed in C01/C02/C05 read-back and JdbcTemplate bind logs.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255))."
+      ]
+    },
+    {
+      "target_id": "pc-df46310dcb68",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C02-boundary-payload-1000",
+        "C05-client-supplied-order-id"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-control-create-order.json",
+          "kind": "http-exchange",
+          "description": "C01-control-create-order: request/response with DB before/after counts and read-back",
+          "sha256": "4478f4cd79e39c82f86a9b2374dfff060165b3f14ab528179cf184686aae8cf2"
+        },
+        {
+          "path": "logs/C01-control-create-order.log",
+          "kind": "application-log",
+          "description": "C01-control-create-order: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "6d077247344ba7e34f599222fe9829a1c031291903209f22b0f7ed1da0577c9e"
+        },
+        {
+          "path": "raw/C02-boundary-payload-1000.json",
+          "kind": "http-exchange",
+          "description": "C02-boundary-payload-1000: request/response with DB before/after counts and read-back",
+          "sha256": "efbcec50a20e7a98f95dadd6978049dccd1e4ed24c5d7199ad16a95805da6289"
+        },
+        {
+          "path": "logs/C02-boundary-payload-1000.log",
+          "kind": "application-log",
+          "description": "C02-boundary-payload-1000: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "890592dfbbea99fd33d20b4c1b98efc751138f8de9bf9a9bbba75bc234d6f20e"
+        },
+        {
+          "path": "raw/C05-client-supplied-order-id.json",
+          "kind": "http-exchange",
+          "description": "C05-client-supplied-order-id: request/response with DB before/after counts and read-back",
+          "sha256": "6267223bc0e3cc8469006860ea0dee080cf87b1e65769aec71626b790051d793"
+        },
+        {
+          "path": "logs/C05-client-supplied-order-id.log",
+          "kind": "application-log",
+          "description": "C05-client-supplied-order-id: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "be5d39a3265e9b4a22412e0a10dfe3dd5c08323fca1eb28e87216e328b6274b1"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "message.id (type VARCHAR(767)) is generated server-side by ApplicationIdGenerator (33-char Int128 string, e.g. 000001a0ede58ce2-8aca66a024e50000) for every message; clients cannot supply, lengthen or duplicate it. Observed in C01/C02/C05 read-back and JdbcTemplate bind logs.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255))."
+      ]
+    },
+    {
+      "target_id": "pc-bb64b820d6dc",
+      "target_kind": "constraint",
+      "outcome": "DATABASE_ENFORCED_UNHANDLED",
+      "exact_predicate_confirmed": true,
+      "observed_enforcement": "database",
+      "application_layer_implemented": false,
+      "response_handling": "unhandled",
+      "case_ids": [
+        "C01-control-create-order",
+        "C02-boundary-payload-1000",
+        "C03-violation-payload-1001",
+        "C04-violation-payload-1500",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-control-create-order.json",
+          "kind": "http-exchange",
+          "description": "C01-control-create-order: request/response with DB before/after counts and read-back",
+          "sha256": "4478f4cd79e39c82f86a9b2374dfff060165b3f14ab528179cf184686aae8cf2"
+        },
+        {
+          "path": "logs/C01-control-create-order.log",
+          "kind": "application-log",
+          "description": "C01-control-create-order: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "6d077247344ba7e34f599222fe9829a1c031291903209f22b0f7ed1da0577c9e"
+        },
+        {
+          "path": "raw/C02-boundary-payload-1000.json",
+          "kind": "http-exchange",
+          "description": "C02-boundary-payload-1000: request/response with DB before/after counts and read-back",
+          "sha256": "efbcec50a20e7a98f95dadd6978049dccd1e4ed24c5d7199ad16a95805da6289"
+        },
+        {
+          "path": "logs/C02-boundary-payload-1000.log",
+          "kind": "application-log",
+          "description": "C02-boundary-payload-1000: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "890592dfbbea99fd33d20b4c1b98efc751138f8de9bf9a9bbba75bc234d6f20e"
+        },
+        {
+          "path": "raw/C03-violation-payload-1001.json",
+          "kind": "http-exchange",
+          "description": "C03-violation-payload-1001: request/response with DB before/after counts and read-back",
+          "sha256": "d6540163e2116d3913ceed8d196a74ab54cecb12970bfca97dfe1433b617d657"
+        },
+        {
+          "path": "logs/C03-violation-payload-1001.log",
+          "kind": "application-log",
+          "description": "C03-violation-payload-1001: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "1c73328c8ae565f46b7c5aeb678643bca2df1467f23c326eafeb32f3eb91f810"
+        },
+        {
+          "path": "raw/C04-violation-payload-1500.json",
+          "kind": "http-exchange",
+          "description": "C04-violation-payload-1500: request/response with DB before/after counts and read-back",
+          "sha256": "c072cb90587d19402afc0a533f9e77c6d5dc03aa816de76f7f3b610f5335369d"
+        },
+        {
+          "path": "logs/C04-violation-payload-1500.log",
+          "kind": "application-log",
+          "description": "C04-violation-payload-1500: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "be8a10f6303b4e7e45018d9bffc6b7d38ba1abd5df64e94d834c3c098d453ed1"
+        },
+        {
+          "path": "raw/C06-readback-orders.json",
+          "kind": "http-exchange",
+          "description": "C06-readback-orders: request/response with DB before/after counts and read-back",
+          "sha256": "4cda1deab5b7d4541a1ae89f54330ff00fa87d81f247370fd8c3dccc9f6e35fe"
+        },
+        {
+          "path": "logs/C06-readback-orders.log",
+          "kind": "application-log",
+          "description": "C06-readback-orders: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "49d0a7c5597c25729c61395d57ca88581457b41c5b43b10dded3424263a6be20"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "Runtime-observable aspect of VARCHAR(1000) was exercised: variable-length strings up to exactly 1000 characters are stored without padding/truncation (LENGTH=1000 read-back, 63-char control stored as 63), and 1001 characters are rejected by the database with a data-truncation error surfaced as a generic 500. SHOW CREATE TABLE confirms payload varchar(1000) NOT NULL in the deployed schema.",
+      "confidence": 0.85,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "A type predicate is only partially observable at runtime; character-set aspects (latin1 here) were not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-16b2b52eef5c",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-control-create-order.json",
+          "kind": "http-exchange",
+          "description": "C01-control-create-order: request/response with DB before/after counts and read-back",
+          "sha256": "4478f4cd79e39c82f86a9b2374dfff060165b3f14ab528179cf184686aae8cf2"
+        },
+        {
+          "path": "logs/C01-control-create-order.log",
+          "kind": "application-log",
+          "description": "C01-control-create-order: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "6d077247344ba7e34f599222fe9829a1c031291903209f22b0f7ed1da0577c9e"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "message.published (SMALLINT) is bound to the constant 0 by the outbox producer (JdbcTemplate bind index 5 = 0); later updated only by the CDC service (not part of this application). No API input reaches it.",
+      "confidence": 0.9,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255))."
+      ]
+    },
+    {
+      "target_id": "pc-28a1b7c9f701",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "received_messages (consumer_id length 767) is written only by the Eventuate Tram SqlTableBasedDuplicateMessageDetector when the order-service consumes Customer events from the message broker (CustomerEventConsumer); consumer_id is a code-defined subscriber id and message_id is the producer-generated message id. No HTTP endpoint of order-service writes this table; final read-back shows 0 rows after all cases.",
+      "confidence": 0.85,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Message consumption requires customer-service + CDC + Kafka (external services not permitted); the Kafka consumer was replaced by an in-process consumer shim, so the consumer path was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-c34d976a9ff6",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "received_messages (message_id length 767) is written only by the Eventuate Tram SqlTableBasedDuplicateMessageDetector when the order-service consumes Customer events from the message broker (CustomerEventConsumer); consumer_id is a code-defined subscriber id and message_id is the producer-generated message id. No HTTP endpoint of order-service writes this table; final read-back shows 0 rows after all cases.",
+      "confidence": 0.85,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Message consumption requires customer-service + CDC + Kafka (external services not permitted); the Kafka consumer was replaced by an in-process consumer shim, so the consumer path was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-9d472c5a0ef7",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "received_messages (PK (consumer_id, message_id)) is written only by the Eventuate Tram SqlTableBasedDuplicateMessageDetector when the order-service consumes Customer events from the message broker (CustomerEventConsumer); consumer_id is a code-defined subscriber id and message_id is the producer-generated message id. No HTTP endpoint of order-service writes this table; final read-back shows 0 rows after all cases.",
+      "confidence": 0.85,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Message consumption requires customer-service + CDC + Kafka (external services not permitted); the Kafka consumer was replaced by an in-process consumer shim, so the consumer path was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-26e0991730c7",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "received_messages (consumer_id type VARCHAR(767)) is written only by the Eventuate Tram SqlTableBasedDuplicateMessageDetector when the order-service consumes Customer events from the message broker (CustomerEventConsumer); consumer_id is a code-defined subscriber id and message_id is the producer-generated message id. No HTTP endpoint of order-service writes this table; final read-back shows 0 rows after all cases.",
+      "confidence": 0.85,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Message consumption requires customer-service + CDC + Kafka (external services not permitted); the Kafka consumer was replaced by an in-process consumer shim, so the consumer path was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-a6253307a654",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "received_messages (creation_time type BIGINT) is written only by the Eventuate Tram SqlTableBasedDuplicateMessageDetector when the order-service consumes Customer events from the message broker (CustomerEventConsumer); consumer_id is a code-defined subscriber id and message_id is the producer-generated message id. No HTTP endpoint of order-service writes this table; final read-back shows 0 rows after all cases.",
+      "confidence": 0.85,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Message consumption requires customer-service + CDC + Kafka (external services not permitted); the Kafka consumer was replaced by an in-process consumer shim, so the consumer path was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-4a76b1c33160",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "received_messages (message_id type VARCHAR(767)) is written only by the Eventuate Tram SqlTableBasedDuplicateMessageDetector when the order-service consumes Customer events from the message broker (CustomerEventConsumer); consumer_id is a code-defined subscriber id and message_id is the producer-generated message id. No HTTP endpoint of order-service writes this table; final read-back shows 0 rows after all cases.",
+      "confidence": 0.85,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "Message consumption requires customer-service + CDC + Kafka (external services not permitted); the Kafka consumer was replaced by an in-process consumer shim, so the consumer path was not exercised."
+      ]
+    },
+    {
+      "target_id": "pc-d12db35033bc",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "eventuate.offset_store (client_name length 255) is used only by the Eventuate CDC service to persist binlog/replication offsets; no code in this application reads or writes it and no API input reaches it. Final read-back shows 0 rows.",
+      "confidence": 0.85,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "CDC service is a separate external component that was not deployed."
+      ]
+    },
+    {
+      "target_id": "pc-b4bf9a575416",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "eventuate.offset_store (serialized_offset length 255) is used only by the Eventuate CDC service to persist binlog/replication offsets; no code in this application reads or writes it and no API input reaches it. Final read-back shows 0 rows.",
+      "confidence": 0.85,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "CDC service is a separate external component that was not deployed."
+      ]
+    },
+    {
+      "target_id": "pc-07eed4e1ecb4",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "eventuate.offset_store (client_name not-null) is used only by the Eventuate CDC service to persist binlog/replication offsets; no code in this application reads or writes it and no API input reaches it. Final read-back shows 0 rows.",
+      "confidence": 0.85,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "CDC service is a separate external component that was not deployed."
+      ]
+    },
+    {
+      "target_id": "pc-9f4220d360fa",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "eventuate.offset_store (client_name primary key) is used only by the Eventuate CDC service to persist binlog/replication offsets; no code in this application reads or writes it and no API input reaches it. Final read-back shows 0 rows.",
+      "confidence": 0.85,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "CDC service is a separate external component that was not deployed."
+      ]
+    },
+    {
+      "target_id": "pc-5cac9c46229a",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "eventuate.offset_store (client_name type VARCHAR(255)) is used only by the Eventuate CDC service to persist binlog/replication offsets; no code in this application reads or writes it and no API input reaches it. Final read-back shows 0 rows.",
+      "confidence": 0.85,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "CDC service is a separate external component that was not deployed."
+      ]
+    },
+    {
+      "target_id": "pc-bdf18ea93113",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        },
+        {
+          "path": "logs/schema-after-aws-sql.txt",
+          "kind": "database-log",
+          "description": "SHOW CREATE TABLE output for all eventuate tables after applying the AWS init SQL (+ message_partition compat column)",
+          "sha256": "b3d06476712fc7a8c6976b52c6a770e074f00443d3c73853fa8e7acde62d2be5"
+        }
+      ],
+      "rationale": "eventuate.offset_store (serialized_offset type VARCHAR(255)) is used only by the Eventuate CDC service to persist binlog/replication offsets; no code in this application reads or writes it and no API input reaches it. Final read-back shows 0 rows.",
+      "confidence": 0.85,
+      "limitations": [
+        "Deployed variant: AWS init SQL (aws-fargate-terraform/*.initialize-database.sql, schema context dbctx-9ed09ac67b2d) on MySQL 8.0.42 with database charset latin1; the application's default Flyway schema (eventuate-common-flyway) declares different types (e.g. message.payload LONGTEXT, message.id VARCHAR(255)).",
+        "CDC service is a separate external component that was not deployed."
+      ]
+    },
+    {
+      "target_id": "pc-821a4ef460f3",
+      "target_kind": "constraint",
+      "outcome": "NOT_API_CONTROLLABLE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-observed",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C05-client-supplied-order-id",
+        "C06-readback-orders"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-control-create-order.json",
+          "kind": "http-exchange",
+          "description": "C01-control-create-order: request/response with DB before/after counts and read-back",
+          "sha256": "4478f4cd79e39c82f86a9b2374dfff060165b3f14ab528179cf184686aae8cf2"
+        },
+        {
+          "path": "logs/C01-control-create-order.log",
+          "kind": "application-log",
+          "description": "C01-control-create-order: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "6d077247344ba7e34f599222fe9829a1c031291903209f22b0f7ed1da0577c9e"
+        },
+        {
+          "path": "raw/C05-client-supplied-order-id.json",
+          "kind": "http-exchange",
+          "description": "C05-client-supplied-order-id: request/response with DB before/after counts and read-back",
+          "sha256": "6267223bc0e3cc8469006860ea0dee080cf87b1e65769aec71626b790051d793"
+        },
+        {
+          "path": "logs/C05-client-supplied-order-id.log",
+          "kind": "application-log",
+          "description": "C05-client-supplied-order-id: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "be5d39a3265e9b4a22412e0a10dfe3dd5c08323fca1eb28e87216e328b6274b1"
+        },
+        {
+          "path": "raw/C06-readback-orders.json",
+          "kind": "http-exchange",
+          "description": "C06-readback-orders: request/response with DB before/after counts and read-back",
+          "sha256": "4cda1deab5b7d4541a1ae89f54330ff00fa87d81f247370fd8c3dccc9f6e35fe"
+        },
+        {
+          "path": "logs/C06-readback-orders.log",
+          "kind": "application-log",
+          "description": "C06-readback-orders: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "49d0a7c5597c25729c61395d57ca88581457b41c5b43b10dded3424263a6be20"
+        },
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        }
+      ],
+      "rationale": "Order.id is @Id @GeneratedValue(IDENTITY); CreateOrderRequest(customerId, orderTotal) exposes no id. C05 sent \"id\":2/\"orderId\":2 (an existing order); both were silently ignored, the INSERT omitted id and MySQL AUTO_INCREMENT assigned 5. The physical PRIMARY KEY on orders.id exists (SHOW CREATE TABLE in R01), but a duplicate cannot be produced through the API.",
+      "confidence": 0.9,
+      "limitations": [
+        "orders table is created by Hibernate (spring.jpa.generate-ddl=true), not by the AWS SQL."
+      ]
+    },
+    {
+      "target_id": "dep-290f0dd7f1b1",
+      "target_kind": "dependency",
+      "outcome": "STRUCTURAL_NOT_RUNTIME_PREDICATE",
+      "exact_predicate_confirmed": false,
+      "observed_enforcement": "not-applicable",
+      "application_layer_implemented": null,
+      "response_handling": "not-applicable",
+      "case_ids": [
+        "C01-control-create-order",
+        "C05-client-supplied-order-id"
+      ],
+      "evidence": [
+        {
+          "path": "raw/C01-control-create-order.json",
+          "kind": "http-exchange",
+          "description": "C01-control-create-order: request/response with DB before/after counts and read-back",
+          "sha256": "4478f4cd79e39c82f86a9b2374dfff060165b3f14ab528179cf184686aae8cf2"
+        },
+        {
+          "path": "logs/C01-control-create-order.log",
+          "kind": "application-log",
+          "description": "C01-control-create-order: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "6d077247344ba7e34f599222fe9829a1c031291903209f22b0f7ed1da0577c9e"
+        },
+        {
+          "path": "raw/C05-client-supplied-order-id.json",
+          "kind": "http-exchange",
+          "description": "C05-client-supplied-order-id: request/response with DB before/after counts and read-back",
+          "sha256": "6267223bc0e3cc8469006860ea0dee080cf87b1e65769aec71626b790051d793"
+        },
+        {
+          "path": "logs/C05-client-supplied-order-id.log",
+          "kind": "application-log",
+          "description": "C05-client-supplied-order-id: correlated order-service log slice (Hibernate SQL, JdbcTemplate binds, exceptions)",
+          "sha256": "be5d39a3265e9b4a22412e0a10dfe3dd5c08323fca1eb28e87216e328b6274b1"
+        },
+        {
+          "path": "raw/R01-final-db-readback.txt",
+          "kind": "read-back",
+          "description": "Final row counts per table, orders DDL/AUTO_INCREMENT and SQL trace excerpt",
+          "sha256": "c71ea494e40a0213651085c42e106fde609b5b81903d5bbce7b15e9903173b65"
+        }
+      ],
+      "rationale": "The @Embedded Order.orderDetails -> OrderDetails(customerId, orderTotal) mapping is a structural ORM mapping with no violable runtime predicate. Its effect was observed: Hibernate DDL/inserts flatten it into orders.customer_id and orders.amount (read-back id=2 -> 1/12.34, id=5 -> 7/5.00).",
+      "confidence": 0.9,
+      "limitations": [
+        "No constraint semantics (e.g., non-null or FK) are attached to the embedded dependency."
+      ]
+    }
+  ],
+  "warnings": [
+    "The AWS init SQL could not be applied verbatim on MySQL 8 utf8mb4 (ERROR 1071 key too long); the eventuate database was created with CHARACTER SET latin1 (patches/00-database-charset.sql).",
+    "The AWS message table lacks message_partition required by eventuate-common-jdbc 0.21.0; every order creation failed until the column was added (C00, patches/01-schema-message-partition.sql).",
+    "Kafka consumer auto-configuration was displaced by a verification-only in-process MessageConsumerImplementation (patches/NoKafkaConsumerAutoConfiguration.java) because Kafka/CDC are external services outside the allowed ports; the JDBC outbox producer path was unchanged.",
+    "Only 2 of 74 targets (message.payload length and type) are reachable through the order-service public API; the remaining targets concern framework-generated values or tables used only by CDC/event-sourcing components."
+  ]
+}

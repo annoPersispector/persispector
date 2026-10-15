@@ -1,0 +1,34 @@
+{
+ "case_id": "U11-control-image-short-update",
+ "purpose": "control",
+ "target_ids": [
+  "pc-d49a912a6d90",
+  "pc-da8b9f1137fd"
+ ],
+ "request": {
+  "method": "PUT",
+  "url": "http://127.0.0.1:18208/user",
+  "headers": {
+   "Content-Type": "application/json",
+   "Authorization": "Token <JWT-REDACTED>"
+  },
+  "body": {
+   "user": {
+    "image": "https://img.example/short.png"
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "body": {
+   "user": {
+    "email": "alice@example.com",
+    "username": "alice",
+    "bio": "",
+    "image": "https://img.example/short.png",
+    "token": "<JWT-REDACTED>"
+   }
+  }
+ },
+ "note": ""
+}

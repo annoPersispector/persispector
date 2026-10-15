@@ -1,0 +1,65 @@
+{
+ "case_id": "F04-violation-upload-originalName-257",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18201/jifa-api/files/upload?type=GC_LOG",
+  "headers": {
+   "User-Agent": "python-requests/2.31.0",
+   "Accept-Encoding": "gzip, deflate, br",
+   "Accept": "*/*",
+   "Connection": "keep-alive",
+   "Authorization": "<JWT-REDACTED>",
+   "Content-Length": "438",
+   "Content-Type": "multipart/form-data; boundary=44e728d68d156af4f2dee6996140ad3c"
+  },
+  "body": "multipart: params={'type': 'GC_LOG'} filename='zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz.log' (len=257) content_len=19"
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+   "X-Content-Type-Options": "nosniff",
+   "X-XSS-Protection": "0",
+   "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+   "Pragma": "no-cache",
+   "Expires": "0",
+   "X-Frame-Options": "DENY",
+   "Content-Length": "342",
+   "Date": "Tue, 29 Sep 2026 15:18:15 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"Value too long for column \\\"ORIGINAL_NAME CHARACTER VARYING(256)\\\": \\\"'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz... (257)\\\"; SQL statement:\\ninsert into files (created_time,original_name,size,type,unique_name,user_id,id) values (?,?,?,?,?,?,default) [22001-220]\"}"
+ },
+ "correlated_log_lines": [
+  "2026-09-29T11:18:15.601-04:00 DEBUG 1126360 --- [.1-18201-exec-2] org.hibernate.SQL                        : insert into files (created_time,original_name,size,type,unique_name,user_id,id) values (?,?,?,?,?,?,default)",
+  "2026-09-29T11:18:15.601-04:00 TRACE 1126360 --- [.1-18201-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:TIMESTAMP) <- [2026-09-29T11:18:15.601633]",
+  "2026-09-29T11:18:15.602-04:00 TRACE 1126360 --- [.1-18201-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz.log]",
+  "2026-09-29T11:18:15.602-04:00 TRACE 1126360 --- [.1-18201-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (3:BIGINT) <- [19]",
+  "2026-09-29T11:18:15.602-04:00 TRACE 1126360 --- [.1-18201-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (4:ENUM) <- [GC_LOG]",
+  "2026-09-29T11:18:15.602-04:00 TRACE 1126360 --- [.1-18201-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (5:VARCHAR) <- [0cccb151-8c21-4d2d-92aa-d9980061eab2]",
+  "2026-09-29T11:18:15.602-04:00 TRACE 1126360 --- [.1-18201-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (6:BIGINT) <- [2]",
+  "2026-09-29T11:18:15.602-04:00  WARN 1126360 --- [.1-18201-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 22001, SQLState: 22001",
+  "2026-09-29T11:18:15.602-04:00 ERROR 1126360 --- [.1-18201-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : Value too long for column \"ORIGINAL_NAME CHARACTER VARYING(256)\": \"'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz... (257)\"; SQL statement:",
+  "2026-09-29T11:18:15.603-04:00 ERROR 1126360 --- [.1-18201-exec-2] o.e.j.s.c.GlobalExceptionHandler         : Error occurred when handling http request '/jifa-api/files/upload'",
+  "org.springframework.dao.DataIntegrityViolationException: could not execute statement [Value too long for column \"ORIGINAL_NAME CHARACTER VARYING(256)\": \"'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz... (257)\"; SQL statement:",
+  "\tat org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:293) ~[spring-orm-6.1.19.jar!/:6.1.19]",
+  "\tat org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:241) ~[spring-orm-6.1.19.jar!/:6.1.19]",
+  "\tat org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550) ~[spring-orm-6.1.19.jar!/:6.1.19]",
+  "\tat org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-6.1.19.jar!/:6.1.19]",
+  "\tat org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:160) ~[spring-tx-6.1.19.jar!/:6.1.19]",
+  "\tat org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.3.9.jar!/:6.3.9]",
+  "\tat org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.3.9.jar!/:6.3.9]",
+  "Caused by: org.hibernate.exception.DataException: could not execute statement [Value too long for column \"ORIGINAL_NAME CHARACTER VARYING(256)\": \"'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz... (257)\"; SQL statement:",
+  "\tat org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:55) ~[hibernate-core-6.5.3.Final.jar!/:6.5.3.Final]",
+  "\tat org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58) ~[hibernate-core-6.5.3.Final.jar!/:6.5.3.Final]",
+  "\tat org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.5.3.Final.jar!/:6.5.3.Final]",
+  "\tat org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138) ~[spring-tx-6.1.19.jar!/:6.1.19]",
+  "Caused by: org.h2.jdbc.JdbcSQLDataException: Value too long for column \"ORIGINAL_NAME CHARACTER VARYING(256)\": \"'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz... (257)\"; SQL statement:",
+  "\tat org.h2.message.DbException.getJdbcSQLException(DbException.java:518) ~[h2-2.2.220.jar!/:na]",
+  "\tat org.h2.message.DbException.getJdbcSQLException(DbException.java:489) ~[h2-2.2.220.jar!/:na]",
+  "\tat org.h2.message.DbException.get(DbException.java:223) ~[h2-2.2.220.jar!/:na]",
+  "\tat org.h2.message.DbException.getValueTooLongException(DbException.java:334) ~[h2-2.2.220.jar!/:na]",
+  "\tat org.h2.value.Value.getValueTooLongException(Value.java:2594) ~[h2-2.2.220.jar!/:na]"
+ ],
+ "extra": null
+}

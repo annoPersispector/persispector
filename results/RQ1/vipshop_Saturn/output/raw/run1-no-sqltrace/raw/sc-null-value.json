@@ -1,0 +1,36 @@
+{
+ "case_id": "sc-null-value",
+ "purpose": "violation",
+ "target_hint": [
+  "sys_config.value not-null"
+ ],
+ "note": "",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18205/console/configs/console/create",
+  "headers": {
+   "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+  },
+  "body": {
+   "key": "PV_TEST_C"
+  },
+  "session": "admin session cookie (redacted)"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Wed, 30 Sep 2026 00:17:19 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"status\":1,\"message\":\"Required String parameter 'value' is not present\",\"obj\":\"\"}",
+  "json": {
+   "status": 1,
+   "message": "Required String parameter 'value' is not present",
+   "obj": ""
+  }
+ },
+ "elapsed_seconds": 0.005,
+ "timestamp": "2026-09-29T20:17:19-0400"
+}

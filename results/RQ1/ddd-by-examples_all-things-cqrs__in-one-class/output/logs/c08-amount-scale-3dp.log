@@ -1,0 +1,20 @@
+2026-09-29 03:51:29.462 DEBUG 960522 --- [.1-18207-exec-5] org.hibernate.SQL                        : select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+Hibernate: select creditcard0_.id as id1_0_0_, creditcard0_.initial_limit as initial_2_0_0_, creditcard0_.used_limit as used_lim3_0_0_ from credit_card creditcard0_ where creditcard0_.id=?
+2026-09-29 03:51:29.463 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:29.463 DEBUG 960522 --- [.1-18207-exec-5] org.hibernate.SQL                        : select withdrawal0_.card_id as card_id3_1_0_, withdrawal0_.id as id1_1_0_, withdrawal0_.id as id1_1_1_, withdrawal0_.amount as amount2_1_1_, withdrawal0_.card_id as card_id3_1_1_ from withdrawal withdrawal0_ where withdrawal0_.card_id=?
+Hibernate: select withdrawal0_.card_id as card_id3_1_0_, withdrawal0_.id as id1_1_0_, withdrawal0_.id as id1_1_1_, withdrawal0_.amount as amount2_1_1_, withdrawal0_.card_id as card_id3_1_1_ from withdrawal withdrawal0_ where withdrawal0_.card_id=?
+2026-09-29 03:51:29.463 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:29.464 DEBUG 960522 --- [.1-18207-exec-5] org.hibernate.SQL                        : insert into withdrawal (amount, card_id, id) values (?, ?, ?)
+Hibernate: insert into withdrawal (amount, card_id, id) values (?, ?, ?)
+2026-09-29 03:51:29.464 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [NUMERIC] - [1.005]
+2026-09-29 03:51:29.464 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:29.464 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [BINARY] - [17cdef04-a2bc-4860-b494-35cb70236fa8]
+2026-09-29 03:51:29.465 DEBUG 960522 --- [.1-18207-exec-5] org.hibernate.SQL                        : update credit_card set initial_limit=?, used_limit=? where id=?
+Hibernate: update credit_card set initial_limit=?, used_limit=? where id=?
+2026-09-29 03:51:29.465 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [NUMERIC] - [10000.00]
+2026-09-29 03:51:29.465 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [NUMERIC] - [11.005]
+2026-09-29 03:51:29.465 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:29.465 DEBUG 960522 --- [.1-18207-exec-5] org.hibernate.SQL                        : update withdrawal set card_id=? where id=?
+Hibernate: update withdrawal set card_id=? where id=?
+2026-09-29 03:51:29.465 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BINARY] - [3a3e99f0-5ad9-47fa-961d-d75fab32ef0e]
+2026-09-29 03:51:29.465 TRACE 960522 --- [.1-18207-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [BINARY] - [17cdef04-a2bc-4860-b494-35cb70236fa8]

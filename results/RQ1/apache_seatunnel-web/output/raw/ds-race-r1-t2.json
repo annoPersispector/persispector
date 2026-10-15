@@ -1,0 +1,36 @@
+{
+  "case_id": "ds-race-r1-t2",
+  "purpose": "violation",
+  "targets": [],
+  "note": "concurrent race for composite unique; log slices overlap",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18200/seatunnel/api/v1/datasource/create",
+    "headers": {
+      "Content-Type": "application/json",
+      "token": "<JWT-REDACTED>"
+    },
+    "body": {
+      "datasourceName": "ds_race1",
+      "pluginName": "JDBC-Mysql",
+      "description": "r",
+      "datasourceConfig": "{\"url\": \"u\"}"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Connection": "close",
+      "Date": "Tue, 29 Sep 2026 08:32:51 GMT",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "code": 60004,
+      "msg": "datasource [ds_race1] already exists",
+      "data": null,
+      "failed": true,
+      "success": false
+    }
+  },
+  "log_slice": "logs/cases/ds-race-r1-t2.log"
+}

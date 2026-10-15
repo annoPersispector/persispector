@@ -1,0 +1,37 @@
+{
+  "case_id": "starred-control-2-same-values",
+  "purpose": "control",
+  "target_ids": [],
+  "note": "",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:18209/starredSchema",
+    "headers": {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "some.auth.header": "alice"
+    },
+    "form": {
+      "datasource": "docker-presto",
+      "engine": "presto",
+      "catalog": "tpch",
+      "schema": "sf1"
+    },
+    "param_lengths": {
+      "datasource": 13,
+      "engine": 6,
+      "catalog": 4,
+      "schema": 3
+    },
+    "header_lengths": {
+      "Content-Type": 33,
+      "some.auth.header": 5
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"error\":null,\"starred_schema_id\":2}"
+  },
+  "readback_sql": "SELECT starred_schema_id, datasource, engine, catalog, `schema`, CHAR_LENGTH(user) ulen FROM starred_schema ORDER BY starred_schema_id",
+  "readback_result": "+-------------------+---------------+--------+---------+--------+------+\n| starred_schema_id | datasource    | engine | catalog | schema | ulen |\n+-------------------+---------------+--------+---------+--------+------+\n|                 1 | docker-presto | presto | tpch    | sf1    |    5 |\n|                 2 | docker-presto | presto | tpch    | sf1    |    5 |\n+-------------------+---------------+--------+---------+--------+------+",
+  "log_excerpt_path": "logs/cases/starred-control-2-same-values.log"
+}

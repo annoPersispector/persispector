@@ -1,0 +1,42 @@
+*************************** 1. row ***************************
+       Table: canary_archive
+Create Table: CREATE TABLE `canary_archive` (
+  `id` varchar(255) NOT NULL,
+  `content` json NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+*************************** 1. row ***************************
+       Table: canary_config
+Create Table: CREATE TABLE `canary_config` (
+  `id` varchar(255) NOT NULL,
+  `content` json NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+*************************** 1. row ***************************
+       Table: metric_sets
+Create Table: CREATE TABLE `metric_sets` (
+  `id` varchar(255) NOT NULL,
+  `content` json NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+*************************** 1. row ***************************
+       Table: metric_set_pairs
+Create Table: CREATE TABLE `metric_set_pairs` (
+  `id` varchar(255) NOT NULL,
+  `content` json NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+ID	EXECTYPE	MD5SUM
+create-canary-archive-table	EXECUTED	9:5d83edd6d2f8a7a6ca95a9fa710871dd
+create-canary-config-table	EXECUTED	9:8796ee3e81ca47ca405371ce1acc3156
+create-metric-sets-table	EXECUTED	9:3f021387da794b48f5173bc917b7afc5
+create-metric-set-pairs-table	EXECUTED	9:2134ffac22d3733bf12c9af503d4298d
+adjust-tables-for-postgres	MARK_RAN	9:9c35c9d4b244e87f946c1e358c793ff9

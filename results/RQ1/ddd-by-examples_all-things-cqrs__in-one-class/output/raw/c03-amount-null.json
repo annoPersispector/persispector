@@ -1,0 +1,21 @@
+{
+ "case_id": "c03-amount-null",
+ "request": {
+  "method": "POST",
+  "url": "http://127.0.0.1:18207/",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "body": "{\"card\": \"3a3e99f0-5ad9-47fa-961d-d75fab32ef0e\", \"amount\": null}"
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "Content-Type": "application/json;charset=UTF-8",
+   "Transfer-Encoding": "chunked",
+   "Date": "Tue, 29 Sep 2026 07:51:27 GMT",
+   "Connection": "close"
+  },
+  "body": "{\"timestamp\":\"2026-09-29T07:51:27.397+0000\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"No message available\",\"path\":\"/\"}"
+ }
+}
